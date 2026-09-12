@@ -33,6 +33,7 @@
     --vp-code-block-bg: #f6f8fa;
     --vp-code-line-highlight-color: #5c7cfa1a;
     --vp-sidebar-bg-color: var(--vp-c-bg);
+    --vp-sidebar-width: 304px;
     --vp-home-hero-name-color: transparent;
     --vp-home-hero-name-background: linear-gradient(135deg, #5c7cfa 0%, #20c997 100%);
 }

@@ -178,6 +178,10 @@
 .VPSidebarItem .text {
     font-weight: 500;
 }
+.VPSidebarItem .text .method-badge {
+    vertical-align: 1px;
+    margin-right: 6px;
+}
 
 /* ----- Transitions ----- */
 
