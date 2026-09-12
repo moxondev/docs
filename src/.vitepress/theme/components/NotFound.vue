@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { onBeforeMount, ref } from 'vue';
 
 import { getPrefix, t } from '../utils/i18n';
 import { getSmartRedirect, getUserLang, LATEST_VERSION } from '../utils/redirect';
@@ -7,7 +7,7 @@ import { getSmartRedirect, getUserLang, LATEST_VERSION } from '../utils/redirect
 defineProps<{ lang: string }>();
 const redirecting = ref(false);
 
-onMounted(() => {
+onBeforeMount(() => {
     const lang = getUserLang();
     const target = getSmartRedirect(window.location.pathname, lang, LATEST_VERSION);
     if (target) {
