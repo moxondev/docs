@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress';
 
+import { badges } from './sidebar/utils';
 import { v1 } from './sidebar/v1';
 import { v2 } from './sidebar/v2';
 import { v3 } from './sidebar/v3';
@@ -75,13 +76,13 @@ export default defineConfig({
 
         nav: [{ text: 'Home', link: '/' }],
 
-        sidebar: {
+        sidebar: badges({
             ...v5,
             ...v4,
             ...v3,
             ...v2,
             ...v1,
-        },
+        }),
 
         socialLinks: [{ icon: 'github', link: 'https://github.com/20syldev/docs' }],
 
