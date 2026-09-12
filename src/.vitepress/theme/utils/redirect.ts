@@ -4,6 +4,8 @@ export const API_BASE_URL = 'https://api.sylvain.sh';
 export const LATEST_VERSION = 'v5';
 export const KNOWN_VERSIONS = ['v1', 'v2', 'v3', 'v4', 'v5'];
 
+declare const __LATEST_RELEASE__: string;
+
 const CHANGELOG_SINCE = 'v4';
 const changelogVersions = KNOWN_VERSIONS.slice(KNOWN_VERSIONS.indexOf(CHANGELOG_SINCE));
 
@@ -29,6 +31,13 @@ export function getUserLang(): string {
     return match ? match.code : defaultLang;
 }
 
+function changelogPath(release: string, lang: string, latest: string): string {
+    const version = `v${release.split('.')[0]}`;
+    return changelogVersions.includes(version)
+        ? `/${version}/${lang}/changelog/${release}`
+        : `/${latest}/${lang}/changelog`;
+}
+
 /**
  * Computes a redirect path by injecting the version and language when missing.
  *
@@ -44,6 +53,12 @@ export function getSmartRedirect(path: string, lang: string, latest = LATEST_VER
     const vRange = `[${versionNums}]`;
     if (new RegExp(`^v${vRange}\\/(${langPattern})(\\/.*)?$`).test(p)) return null;
 
+    const langMatch = p.match(new RegExp(`^(${langPattern})\\/(.+)$`));
+    if (langMatch) {
+        const [, code, rest] = langMatch;
+        return getSmartRedirect(`/${rest}`, code, latest);
+    }
+
     const versionMatch = p.match(new RegExp(`^(v${vRange})(/(.+))?$`));
     if (versionMatch) {
         const [, version, , rest] = versionMatch;
@@ -56,11 +71,10 @@ export function getSmartRedirect(path: string, lang: string, latest = LATEST_VER
         return `/${latest}/${lang}${rest ? '/' + rest : ''}`;
     }
 
-    const changelogMatch = p.match(/^changelog\/(\d+)\.\d+\.\d+$/);
-    if (changelogMatch) {
-        const version = `v${changelogMatch[1]}`;
-        return changelogVersions.includes(version) ? `/${version}/${lang}/${p}` : `/${latest}/${lang}/changelog`;
-    }
+    if (p === 'changelog/latest') return changelogPath(__LATEST_RELEASE__, lang, latest);
+
+    const releaseMatch = p.match(/^(?:changelog\/)?(\d+\.\d+\.\d+)$/);
+    if (releaseMatch) return changelogPath(releaseMatch[1], lang, latest);
 
     if (!p.includes('.') && !p.startsWith('_')) {
         return `/${latest}/${lang}/${p}`;

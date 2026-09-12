@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { defineConfig } from 'vitepress';
 
 import { badges } from './sidebar/utils';
@@ -6,6 +7,8 @@ import { v2 } from './sidebar/v2';
 import { v3 } from './sidebar/v3';
 import { v4 } from './sidebar/v4';
 import { v5 } from './sidebar/v5';
+
+const { version } = JSON.parse(readFileSync(new URL('../../package.json', import.meta.url), 'utf-8'));
 
 export default defineConfig({
     title: 'Hyperion API Documentation',
@@ -118,6 +121,9 @@ export default defineConfig({
     },
 
     vite: {
+        define: {
+            __LATEST_RELEASE__: JSON.stringify(version),
+        },
         server: {
             host: '127.0.0.1',
         },
