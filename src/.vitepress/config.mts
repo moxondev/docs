@@ -7,6 +7,7 @@ import { v2 } from './sidebar/v2';
 import { v3 } from './sidebar/v3';
 import { v4 } from './sidebar/v4';
 import { v5 } from './sidebar/v5';
+import { v6 } from './sidebar/v6';
 
 const { version } = JSON.parse(readFileSync(new URL('../../package.json', import.meta.url), 'utf-8'));
 
@@ -80,6 +81,7 @@ export default defineConfig({
         nav: [{ text: 'Home', link: '/' }],
 
         sidebar: badges({
+            ...v6,
             ...v5,
             ...v4,
             ...v3,
