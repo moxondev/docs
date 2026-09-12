@@ -21,45 +21,45 @@ const requests: ApiRequest[] = [
     },
     {
         method: 'GET',
-        endpoint: 'https://api.sylvain.sh/v5/algorithms?method=fibonacci&value=10',
-        command: 'curl -X GET \\\n  "https://api.sylvain.sh/v5/algorithms?method=fibonacci&value=10"',
+        endpoint: 'https://api.sylvain.sh/v6/algorithms?method=fibonacci&value=10',
+        command: 'curl -X GET \\\n  "https://api.sylvain.sh/v6/algorithms?method=fibonacci&value=10"',
     },
     {
         method: 'POST',
-        endpoint: 'https://api.sylvain.sh/v5/chart',
+        endpoint: 'https://api.sylvain.sh/v6/chart',
         body: {
             type: 'bar',
             data: { labels: ['Jan', 'Feb', 'Mar'], datasets: [{ label: 'Sales', values: [120, 200, 150] }] },
             mode: 'data',
         },
         command:
-            'curl -X POST \\\n  -H "Content-Type: application/json" \\\n  -d \'{"type":"bar","data":{...},"mode":"data"}\' \\\n  "https://api.sylvain.sh/v5/chart"',
+            'curl -X POST \\\n  -H "Content-Type: application/json" \\\n  -d \'{"type":"bar","data":{...},"mode":"data"}\' \\\n  "https://api.sylvain.sh/v6/chart"',
     },
     {
         method: 'GET',
-        endpoint: 'https://api.sylvain.sh/v5/domain',
-        command: 'curl -X GET \\\n  "https://api.sylvain.sh/v5/domain"',
+        endpoint: 'https://api.sylvain.sh/v6/domain',
+        command: 'curl -X GET \\\n  "https://api.sylvain.sh/v6/domain"',
     },
     {
         method: 'GET',
-        endpoint: 'https://api.sylvain.sh/v5/evaluate?expr=2*(3%2B4)%5E2&precision=2',
-        command: 'curl -X GET \\\n  "https://api.sylvain.sh/v5/evaluate?expr=2*(3%2B4)%5E2&precision=2"',
+        endpoint: 'https://api.sylvain.sh/v6/evaluate?expr=2*(3%2B4)%5E2&precision=2',
+        command: 'curl -X GET \\\n  "https://api.sylvain.sh/v6/evaluate?expr=2*(3%2B4)%5E2&precision=2"',
     },
     {
         method: 'POST',
-        endpoint: 'https://api.sylvain.sh/v5/hash',
+        endpoint: 'https://api.sylvain.sh/v6/hash',
         body: { text: 'hello', method: 'sha256' },
         command:
-            'curl -X POST \\\n  -H "Content-Type: application/json" \\\n  -d \'{"text":"hello","method":"sha256"}\' \\\n  "https://api.sylvain.sh/v5/hash"',
+            'curl -X POST \\\n  -H "Content-Type: application/json" \\\n  -d \'{"text":"hello","method":"sha256"}\' \\\n  "https://api.sylvain.sh/v6/hash"',
     },
     {
         method: 'GET',
-        endpoint: 'https://api.sylvain.sh/v5/infos',
-        command: 'curl -X GET \\\n  "https://api.sylvain.sh/v5/infos"',
+        endpoint: 'https://api.sylvain.sh/v6/infos',
+        command: 'curl -X GET \\\n  "https://api.sylvain.sh/v6/infos"',
     },
     {
         method: 'POST',
-        endpoint: 'https://api.sylvain.sh/v5/matrix',
+        endpoint: 'https://api.sylvain.sh/v6/matrix',
         body: {
             operation: 'determinant',
             matrix: [
@@ -68,29 +68,29 @@ const requests: ApiRequest[] = [
             ],
         },
         command:
-            'curl -X POST \\\n  -H "Content-Type: application/json" \\\n  -d \'{"operation":"determinant","matrix":[[1,2],[3,4]]}\' \\\n  "https://api.sylvain.sh/v5/matrix"',
+            'curl -X POST \\\n  -H "Content-Type: application/json" \\\n  -d \'{"operation":"determinant","matrix":[[1,2],[3,4]]}\' \\\n  "https://api.sylvain.sh/v6/matrix"',
     },
     {
         method: 'GET',
-        endpoint: 'https://api.sylvain.sh/v5/personal',
-        command: 'curl -X GET \\\n  "https://api.sylvain.sh/v5/personal"',
+        endpoint: 'https://api.sylvain.sh/v6/personal',
+        command: 'curl -X GET \\\n  "https://api.sylvain.sh/v6/personal"',
     },
     {
         method: 'GET',
-        endpoint: 'https://api.sylvain.sh/v5/time?format=iso',
-        command: 'curl -X GET \\\n  "https://api.sylvain.sh/v5/time?format=iso"',
+        endpoint: 'https://api.sylvain.sh/v6/time?format=iso',
+        command: 'curl -X GET \\\n  "https://api.sylvain.sh/v6/time?format=iso"',
     },
     {
         method: 'POST',
-        endpoint: 'https://api.sylvain.sh/v5/token',
+        endpoint: 'https://api.sylvain.sh/v6/token',
         body: { len: 48, type: 'alphanum' },
         command:
-            'curl -X POST \\\n  -H "Content-Type: application/json" \\\n  -d \'{"len":48,"type":"alphanum"}\' \\\n  "https://api.sylvain.sh/v5/token"',
+            'curl -X POST \\\n  -H "Content-Type: application/json" \\\n  -d \'{"len":48,"type":"alphanum"}\' \\\n  "https://api.sylvain.sh/v6/token"',
     },
     {
         method: 'GET',
-        endpoint: 'https://api.sylvain.sh/v5/username',
-        command: 'curl -X GET \\\n  "https://api.sylvain.sh/v5/username"',
+        endpoint: 'https://api.sylvain.sh/v6/username',
+        command: 'curl -X GET \\\n  "https://api.sylvain.sh/v6/username"',
     },
 ];
 

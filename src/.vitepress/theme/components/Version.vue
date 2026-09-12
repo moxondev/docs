@@ -8,6 +8,7 @@ import { v2 } from '../../sidebar/v2';
 import { v3 } from '../../sidebar/v3';
 import { v4 } from '../../sidebar/v4';
 import { v5 } from '../../sidebar/v5';
+import { v6 } from '../../sidebar/v6';
 import { useVersion } from '../composables/useVersion';
 import { KNOWN_VERSIONS, VERSION_PATH } from '../utils/redirect';
 
@@ -32,7 +33,7 @@ function extractPages(sidebar: Record<string, SidebarItem[]>): string[] {
     return [...pages];
 }
 
-const sidebars: Record<string, Record<string, SidebarItem[]>> = { v1, v2, v3, v4, v5 };
+const sidebars: Record<string, Record<string, SidebarItem[]>> = { v1, v2, v3, v4, v5, v6 };
 const pages: Record<string, string[]> = Object.fromEntries(
     Object.entries(sidebars).map(([v, s]) => [v, extractPages(s)]),
 );
