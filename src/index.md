@@ -8,7 +8,7 @@ hero:
     actions:
         - theme: brand
           text: Get Started
-          link: /v5/en/
+          link: /v6/en/
         - theme: alt
           text: View on GitHub
           link: https://github.com/20syldev/docs
@@ -17,19 +17,19 @@ hero:
 ## Quick Start
 
 <div class="version-cards">
-  <a href="/v5/en" class="version-card current">
+  <a href="/v6/en" class="version-card current">
     <span class="badge version-badge">Current</span>
-    <span class="version-number">v5</span>
+    <span class="version-number">v6</span>
     <span class="version-desc">All features</span>
   </a>
-  <a href="/v4/en" class="version-card">
+  <a href="/v5/en" class="version-card">
     <span class="badge version-badge stable">Stable</span>
-    <span class="version-number">v4</span>
+    <span class="version-number">v5</span>
     <span class="version-desc">Previous version</span>
   </a>
-  <a href="/v3/en" class="version-card">
+  <a href="/v4/en" class="version-card">
     <span class="badge version-badge legacy">Legacy</span>
-    <span class="version-number">v3</span>
+    <span class="version-number">v4</span>
     <span class="version-desc">Legacy version</span>
   </a>
 </div>
