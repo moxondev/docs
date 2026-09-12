@@ -4,6 +4,9 @@ export const API_BASE_URL = 'https://api.sylvain.sh';
 export const LATEST_VERSION = 'v5';
 export const KNOWN_VERSIONS = ['v1', 'v2', 'v3', 'v4', 'v5'];
 
+const CHANGELOG_SINCE = 'v4';
+const changelogVersions = KNOWN_VERSIONS.slice(KNOWN_VERSIONS.indexOf(CHANGELOG_SINCE));
+
 const langPattern = langCodes.join('|');
 const versionNums = KNOWN_VERSIONS.map((v) => v.replace('v', '')).join('');
 const rootPaths = new Set(['', '404', ...languages.filter((l) => l.prefix).map((l) => l.prefix.replace(/^\//, ''))]);
@@ -36,11 +39,8 @@ export function getUserLang(): string {
  */
 export function getSmartRedirect(path: string, lang: string, latest = LATEST_VERSION): string | null {
     const p = path.replace(/\/$/, '').replace(/^\//, '');
-
-    // Known root paths → no redirect
     if (rootPaths.has(p)) return null;
 
-    // Path already has version + language → no redirect needed
     const vRange = `[${versionNums}]`;
     if (new RegExp(`^v${vRange}\\/(${langPattern})(\\/.*)?$`).test(p)) return null;
 
@@ -50,15 +50,18 @@ export function getSmartRedirect(path: string, lang: string, latest = LATEST_VER
         return `/${version}/${lang}${rest ? '/' + rest : ''}`;
     }
 
-    // /latest or /latest/page → resolve to current version
     const latestMatch = p.match(/^latest(\/(.+))?$/);
     if (latestMatch) {
         const [, , rest] = latestMatch;
         return `/${latest}/${lang}${rest ? '/' + rest : ''}`;
     }
 
-    // /pricing (bare path, no version) → inject version + language
-    // Skip static assets (.png, .svg, .js, etc.) and internal paths (_)
+    const changelogMatch = p.match(/^changelog\/(\d+)\.\d+\.\d+$/);
+    if (changelogMatch) {
+        const version = `v${changelogMatch[1]}`;
+        return changelogVersions.includes(version) ? `/${version}/${lang}/${p}` : `/${latest}/${lang}/changelog`;
+    }
+
     if (!p.includes('.') && !p.startsWith('_')) {
         return `/${latest}/${lang}/${p}`;
     }
