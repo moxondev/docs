@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 
+import { useVersion } from '../composables/useVersion';
 import type { EndpointParam } from '../data/endpoints';
 import { findEndpoint } from '../data/endpoints';
 import { API_BASE_URL } from '../utils/redirect';
@@ -27,7 +28,9 @@ const props = withDefaults(
     },
 );
 
-const endpoint = computed(() => (props.name ? findEndpoint(props.name) : undefined));
+const { version } = useVersion();
+
+const endpoint = computed(() => (props.name ? findEndpoint(props.name, version.value) : undefined));
 
 const resolvedMethod = computed(() => endpoint.value?.method ?? props.method ?? 'get');
 const resolvedPath = computed(() => endpoint.value?.path ?? props.path ?? '/');

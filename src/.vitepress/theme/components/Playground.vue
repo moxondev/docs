@@ -6,14 +6,15 @@ import { v2 } from '../../sidebar/v2';
 import { v3 } from '../../sidebar/v3';
 import { v4 } from '../../sidebar/v4';
 import { v5 } from '../../sidebar/v5';
+import { v6 } from '../../sidebar/v6';
 import { useVersion } from '../composables/useVersion';
-import { type EndpointDef, endpoints } from '../data/endpoints';
+import { type EndpointDef, endpoints, resolveEndpoint } from '../data/endpoints';
 import { t } from '../utils/i18n';
 import { bookIcon, searchIcon } from '../utils/icons';
 import { VERSION_PATH } from '../utils/redirect';
 import Panel from './Panel.vue';
 
-const sidebars = { v1, v2, v3, v4, v5 } as Record<string, Record<string, SidebarItem[]>>;
+const sidebars = { v1, v2, v3, v4, v5, v6 } as Record<string, Record<string, SidebarItem[]>>;
 
 type SidebarItem = { link?: string; items?: SidebarItem[] };
 
@@ -51,10 +52,13 @@ const versionedEndpoints = computed(() => {
     const sidebar = sidebars[version.value];
     if (!sidebar) return endpoints;
     const pages = getSidebarPages(sidebar);
-    return endpoints.filter((ep) => {
-        const path = (ep.doc ?? ep.path).replace(/^\//, '').replace(/\/:.*$/, '');
-        return pages.has(path);
-    });
+    return endpoints
+        .filter((ep) => {
+            const path = (ep.doc ?? ep.path).replace(/^\//, '').replace(/\/:.*$/, '');
+            return pages.has(path);
+        })
+        .map((ep) => resolveEndpoint(ep, version.value))
+        .filter((ep): ep is EndpointDef => ep !== null);
 });
 
 const filtered = computed(() => {

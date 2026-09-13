@@ -4,7 +4,7 @@ import VPFeatures from 'vitepress/dist/client/theme-default/components/VPFeature
 import { ref, watch } from 'vue';
 
 import { useVersion } from '../composables/useVersion';
-import { endpoints } from '../data/endpoints';
+import { endpoints, resolveEndpoint } from '../data/endpoints';
 import { t, type TranslationKey } from '../utils/i18n';
 
 const route = useRoute();
@@ -80,7 +80,7 @@ function shuffle<T>(arr: T[]): T[] {
 
 function pick() {
     const l = lang.value;
-    return shuffle(unique)
+    return shuffle(unique.filter((e) => resolveEndpoint(e, version.value)))
         .slice(0, 4)
         .map((e) => ({
             title: e.name,
