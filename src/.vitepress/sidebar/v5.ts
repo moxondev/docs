@@ -134,6 +134,7 @@ export const v5 = {
                     collapsed: true,
                     items: [
                         { text: 'Overview', link: '/v5/en/changelog' },
+                        { text: `New version ${arrowRightIcon}`, link: '/v6/en/changelog' },
                         { text: '5.9.0', link: '/v5/en/changelog/5.9.0' },
                         { text: '5.8.0', link: '/v5/en/changelog/5.8.0' },
                         { text: '5.7.0', link: '/v5/en/changelog/5.7.0' },
@@ -287,6 +288,7 @@ export const v5 = {
                     collapsed: true,
                     items: [
                         { text: 'Aperçu', link: '/v5/fr/changelog' },
+                        { text: `Nouvelle version ${arrowRightIcon}`, link: '/v6/fr/changelog' },
                         { text: '5.9.0', link: '/v5/fr/changelog/5.9.0' },
                         { text: '5.8.0', link: '/v5/fr/changelog/5.8.0' },
                         { text: '5.7.0', link: '/v5/fr/changelog/5.7.0' },
