@@ -4,6 +4,10 @@ L'endpoint `/hyperplanning` permet d'afficher les informations d'un emploi du te
 
 <Endpoint method="post" path="/hyperplanning" baseUrl="https://api.sylvain.sh" />
 
+::: warning Déprécié en 6.0.0
+Cet endpoint est déprécié. Il répond encore ici et en v6, mais la v6 ne le liste plus parmi ses endpoints disponibles, et il sera retiré définitivement en 7.0.0. Prévoyez votre migration dès maintenant — voir le [changelog 6.0.0](/v6/fr/changelog/6.0.0).
+:::
+
 ## Paramètres
 
 | Paramètre | Requis | Description                                                                         |
