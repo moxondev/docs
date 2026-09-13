@@ -1,19 +1,23 @@
 # Chat Effacer
 
-L'endpoint `/chat/:token` efface tous les messages d'un chat privé.
+L'endpoint `/chat/clear` efface tous les messages d'un chat privé.
 
-<Endpoint method="delete" path="/chat/:token" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/chat/clear" baseUrl="https://api.sylvain.sh" />
+
+::: warning Changement en 6.0.0
+Cet endpoint passe de `DELETE` à `POST`, et son identifiant sort de l'URL : `token` est désormais envoyé dans le corps JSON. Les méthodes `PATCH` et `DELETE` n'existent plus nulle part dans l'API.
+:::
 
 ## Paramètres
 
 | Paramètre  | Requis | Description                               |
 | ---------- | ------ | ----------------------------------------- |
-| `token`    | Oui    | Le token du chat privé (paramètre d'URL)  |
+| `token`    | Oui    | Le token du chat privé                    |
 | `username` | Oui    | Le nom de l'utilisateur                   |
 | `session`  | Oui    | L'identifiant de session de l'utilisateur |
 
 ::: info À savoir
-Le paramètre `token` fait partie du chemin de l'URL. Les autres paramètres sont envoyés dans un body JSON avec `Content-Type: application/json`.
+Tous les paramètres sont envoyés dans un body JSON avec `Content-Type: application/json`.
 :::
 
 ## Champs de réponse
@@ -24,11 +28,11 @@ Le paramètre `token` fait partie du chemin de l'URL. Les autres paramètres son
 
 ## Exemples de code
 
-<Examples method="delete" path="/chat/41a43360-9874-4c7a-9ca8-eec29e765a0e" :body="{ username: 'alice', session: 'abc123' }" />
+<Examples method="post" path="/chat/clear" :body="{ token: '41a43360-9874-4c7a-9ca8-eec29e765a0e', username: 'alice', session: 'abc123' }" />
 
 ## Essayer
 
-<Try method="delete" path="/chat/41a43360-9874-4c7a-9ca8-eec29e765a0e" :params="[{ name: 'username', required: true }, { name: 'session', required: true }]" />
+<Try name="Chat Clear" />
 
 ## Gestion des erreurs
 

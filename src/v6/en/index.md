@@ -24,7 +24,7 @@ Some endpoints have rate limiting to prevent abuse. If you exceed the [rate limi
 {
     "message": "Too Many Requests",
     "error": "You have exceeded the limit of 2000 requests per hour.",
-    "status": "429"
+    "status": 429
 }
 ```
 
@@ -35,13 +35,17 @@ Depending on the endpoint and limiter, the error message may also be:
 
 ## Error Handling
 
+::: warning Changed in 6.0.0
+`status` is now a **number**. It used to be a string (`"400"`), it is now `400`. A client comparing it to a string will stop matching.
+:::
+
 All endpoints return consistent error responses:
 
 ```json
 {
     "message": "Bad Request",
     "error": "Description of the error",
-    "status": "400"
+    "status": 400
 }
 ```
 
@@ -51,7 +55,7 @@ Requesting an endpoint that doesn't exist also returns a structured JSON error:
 {
     "message": "Not Found",
     "error": "Endpoint '/v6/doesnotexist' does not exist.",
-    "status": "404"
+    "status": 404
 }
 ```
 

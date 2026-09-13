@@ -1,8 +1,12 @@
 # Captcha Generation
 
-The `/captcha` endpoint generates a CAPTCHA image. It offers two modes: `image`, which returns the answer alongside the picture, and `challenge`, which keeps the answer server-side so it can be verified later.
+The `/captcha` endpoint generates a CAPTCHA image. It offers two modes: `challenge`, the default, which keeps the answer server-side so it can be verified later, and `image`, which returns the answer alongside the picture.
 
 <Endpoint method="get" path="/captcha" baseUrl="https://api.sylvain.sh" />
+
+::: warning Changed in 6.0.0
+`challenge` is now the **default** mode: the image comes with a signed token in `X-Captcha-Token` instead of the answer in clear. Code that read `X-Captcha-Text` without passing `mode` will no longer find it — pass `?mode=image` to keep the previous behaviour.
+:::
 
 ::: tip Prefer proof of work
 A visual captcha no longer stops a determined bot: vision models read them well, often better than people do. For anti-bot protection, prefer **[/pow](/v6/en/pow)**, which cannot be shortcut by a model — the only way through is to spend the computation.
@@ -12,7 +16,7 @@ A visual captcha no longer stops a determined bot: vision models read them well,
 
 | Parameter | Required | Description                                                                              |
 | --------- | -------- | ---------------------------------------------------------------------------------------- |
-| `mode`    | No       | `image` (default) or `challenge`                                                         |
+| `mode`    | No       | `challenge` (default) or `image`                                                         |
 | `text`    | No       | The captcha text. If omitted, a random string is generated. Rejected in `challenge` mode |
 | `length`  | No       | Length of the auto-generated text, 1 to 20. Default: `6`                                 |
 | `width`   | No       | Image width in pixels, 100 to 800. Default: 60 × the text length                         |
@@ -25,12 +29,12 @@ A visual captcha no longer stops a determined bot: vision models read them well,
 
 | Mode        | Response                                                                                  |
 | ----------- | ----------------------------------------------------------------------------------------- |
-| `image`     | PNG image, with the answer in the `X-Captcha-Text` header                                 |
 | `challenge` | PNG image, with a signed token in the `X-Captcha-Token` header — the answer is never sent |
+| `image`     | PNG image, with the answer in the `X-Captcha-Text` header                                 |
 
 Both modes return a PNG image (`Content-Type: image/png`), usable in an `<img>` tag.
 
-In `challenge` mode the answer never leaves the server: it exists only inside the token's signature, so intercepting the response does not reveal it. The rendering is also hardened against automated reading — glyphs overlap so they cannot be segmented, ride a sine baseline, mix font families, and are crossed by strokes drawn in the text's own colors, which no filter can subtract. The default `image` mode is unchanged. Send the token and the user's answer to [/v6/captcha](./captcha/verify) to check it.
+In `challenge` mode the answer never leaves the server: it exists only inside the token's signature, so intercepting the response does not reveal it. The rendering is also hardened against automated reading — glyphs overlap so they cannot be segmented, ride a sine baseline, mix font families, and are crossed by strokes drawn in the text's own colors, which no filter can subtract. Send the token and the user's answer to [/v6/captcha](./captcha/verify) to check it.
 
 ::: info Good to know
 Both headers are exposed to browser JavaScript through CORS, so a web page can read them from the response.

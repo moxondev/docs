@@ -36,4 +36,4 @@ If parameters are missing or invalid, the API will return an error:
 
 - <Method type="post" sm /> [/v6/chat](../chat) - Send a message
 - <Method type="post" sm /> [/v6/chat/private](./private) - Create and manage private chat channels
-- <Method type="delete" sm /> [/v6/chat/:token](./clear) - Clear all messages from a private chat
+- <Method type="post" sm /> [/v6/chat/clear](./clear) - Clear all messages from a private chat

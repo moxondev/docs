@@ -50,4 +50,4 @@ If parameters are missing or invalid, the API will return an error:
 
 - <Method type="get" sm /> [/v6/chat](./chat/messages) - Retrieve all recent messages
 - <Method type="post" sm /> [/v6/chat/private](./chat/private) - Create and manage private chat channels
-- <Method type="delete" sm /> [/v6/chat/:token](./chat/clear) - Clear all messages from a private chat
+- <Method type="post" sm /> [/v6/chat/clear](./chat/clear) - Clear all messages from a private chat

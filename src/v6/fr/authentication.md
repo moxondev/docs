@@ -59,6 +59,21 @@ La limite de burst empêche l'envoi de trop de requêtes dans un court laps de t
 
 Voir la page [Tarification](/v6/fr/pricing) pour plus de détails.
 
+### En-têtes de limite
+
+Chaque réponse porte votre quota courant, ce qui permet à un client de s'auto-réguler au lieu de découvrir sa limite en la dépassant.
+
+| En-tête                 | Description                                                         |
+| ----------------------- | ------------------------------------------------------------------- |
+| `X-RateLimit-Limit`     | Nombre de requêtes autorisées dans la fenêtre courante              |
+| `X-RateLimit-Remaining` | Nombre de requêtes restantes dans la fenêtre courante               |
+| `X-RateLimit-Reset`     | Moment où la fenêtre est réinitialisée                              |
+| `Retry-After`           | Secondes à attendre avant de réessayer, envoyé uniquement sur `429` |
+
+::: tip Nouveau en 6.0.0
+Ces en-têtes n'existaient pas avant la 6.0.0. Lisez `X-RateLimit-Remaining` sur chaque réponse et ralentissez à l'approche de zéro, plutôt que d'attendre un `429`.
+:::
+
 ## Réponses d'erreur
 
 ### Token invalide
@@ -69,7 +84,7 @@ Si le token fourni est incorrect ou expiré :
 {
     "message": "Unauthorized",
     "error": "Invalid token.",
-    "status": "401"
+    "status": 401
 }
 ```
 

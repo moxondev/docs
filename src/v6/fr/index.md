@@ -24,7 +24,7 @@ Certains endpoints ont une [limitation de débit](/v6/fr/pricing) pour éviter l
 {
     "message": "Too Many Requests",
     "error": "You have exceeded the limit of 2000 requests per hour.",
-    "status": "429"
+    "status": 429
 }
 ```
 
@@ -35,13 +35,17 @@ Selon l'endpoint et le limiteur appliqué, le message d'erreur peut aussi être 
 
 ## Gestion des erreurs
 
+::: warning Changement en 6.0.0
+`status` est désormais un **nombre**. C'était une chaîne (`"400"`), c'est maintenant `400`. Un client qui le compare à une chaîne cessera de correspondre.
+:::
+
 Tous les endpoints retournent des réponses d'erreur cohérentes :
 
 ```json
 {
     "message": "Bad Request",
     "error": "Description de l'erreur",
-    "status": "400"
+    "status": 400
 }
 ```
 
@@ -51,7 +55,7 @@ Requêter un endpoint qui n'existe pas retourne aussi une erreur JSON structuré
 {
     "message": "Not Found",
     "error": "Endpoint '/v6/doesnotexist' does not exist.",
-    "status": "404"
+    "status": 404
 }
 ```
 

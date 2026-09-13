@@ -1,19 +1,23 @@
 # Chat Clear
 
-The `/chat/:token` endpoint clears all messages from a private chat.
+The `/chat/clear` endpoint clears all messages from a private chat.
 
-<Endpoint method="delete" path="/chat/:token" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/chat/clear" baseUrl="https://api.sylvain.sh" />
+
+::: warning Changed in 6.0.0
+This endpoint moved from `DELETE` to `POST`, and its identifier left the URL: `token` is now sent in the JSON body. `PATCH` and `DELETE` no longer exist anywhere in the API.
+:::
 
 ## Parameters
 
-| Parameter  | Required | Description                            |
-| ---------- | -------- | -------------------------------------- |
-| `token`    | Yes      | The private chat token (URL parameter) |
-| `username` | Yes      | The username                           |
-| `session`  | Yes      | The user's session identifier          |
+| Parameter  | Required | Description                   |
+| ---------- | -------- | ----------------------------- |
+| `token`    | Yes      | The private chat token        |
+| `username` | Yes      | The username                  |
+| `session`  | Yes      | The user's session identifier |
 
 ::: info Good to know
-The `token` parameter is part of the URL path. The other parameters are sent as a JSON body with `Content-Type: application/json`.
+All parameters are sent as a JSON body with `Content-Type: application/json`.
 :::
 
 ## Response Fields
@@ -24,11 +28,11 @@ The `token` parameter is part of the URL path. The other parameters are sent as 
 
 ## Code Examples
 
-<Examples method="delete" path="/chat/41a43360-9874-4c7a-9ca8-eec29e765a0e" :body="{ username: 'alice', session: 'abc123' }" />
+<Examples method="post" path="/chat/clear" :body="{ token: '41a43360-9874-4c7a-9ca8-eec29e765a0e', username: 'alice', session: 'abc123' }" />
 
 ## Try It
 
-<Try method="delete" path="/chat/41a43360-9874-4c7a-9ca8-eec29e765a0e" :params="[{ name: 'username', required: true }, { name: 'session', required: true }]" />
+<Try name="Chat Clear" />
 
 ## Error Handling
 

@@ -59,6 +59,21 @@ The burst limit prevents sending too many requests in a short window. If you exc
 
 See the [Pricing](/v6/en/pricing) page for more details.
 
+### Rate Limit Headers
+
+Every response carries your current quota, so a client can pace itself instead of discovering its limit by hitting it.
+
+| Header                  | Description                                           |
+| ----------------------- | ----------------------------------------------------- |
+| `X-RateLimit-Limit`     | Requests allowed in the current window                |
+| `X-RateLimit-Remaining` | Requests left in the current window                   |
+| `X-RateLimit-Reset`     | When the window resets                                |
+| `Retry-After`           | Seconds to wait before retrying, sent only on a `429` |
+
+::: tip New in 6.0.0
+These headers did not exist before 6.0.0. Read `X-RateLimit-Remaining` on every response and slow down as it approaches zero, rather than waiting for a `429`.
+:::
+
 ## Error Responses
 
 ### Invalid Token
@@ -69,7 +84,7 @@ If the provided token is incorrect or expired:
 {
     "message": "Unauthorized",
     "error": "Invalid token.",
-    "status": "401"
+    "status": 401
 }
 ```
 

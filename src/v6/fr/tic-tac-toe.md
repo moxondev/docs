@@ -72,5 +72,5 @@ Lorsqu'une partie est terminée, la requête retournera les noms du gagnant et d
 
 - <Method type="post" sm /> [/v6/tic-tac-toe/fetch](./tic-tac-toe/fetch) - Récupérer les informations de la partie en cours
 - <Method type="post" sm /> [/v6/tic-tac-toe/list](./tic-tac-toe/list) - Lister toutes les parties publiques
-- <Method type="patch" sm /> [/v6/tic-tac-toe/:game](./tic-tac-toe/play) - Jouer un coup
-- <Method type="delete" sm /> [/v6/tic-tac-toe/:game](./tic-tac-toe/forfeit) - Abandonner une partie
+- <Method type="post" sm /> [/v6/tic-tac-toe/play](./tic-tac-toe/play) - Jouer un coup
+- <Method type="post" sm /> [/v6/tic-tac-toe/forfeit](./tic-tac-toe/forfeit) - Abandonner une partie

@@ -50,4 +50,4 @@ Si les paramètres sont manquants ou invalides, l'API retournera une erreur :
 
 - <Method type="get" sm /> [/v6/chat](./chat/messages) - Récupérer les messages récents
 - <Method type="post" sm /> [/v6/chat/private](./chat/private) - Créer et gérer des canaux de chat privés
-- <Method type="delete" sm /> [/v6/chat/:token](./chat/clear) - Effacer les messages d'un chat privé
+- <Method type="post" sm /> [/v6/chat/clear](./chat/clear) - Effacer les messages d'un chat privé

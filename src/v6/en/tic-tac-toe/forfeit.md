@@ -1,19 +1,23 @@
 # Tic-Tac-Toe Forfeit
 
-The `/tic-tac-toe/:game` endpoint forfeits (abandons) a game.
+The `/tic-tac-toe/forfeit` endpoint forfeits (abandons) a game.
 
-<Endpoint method="delete" path="/tic-tac-toe/:game" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/tic-tac-toe/forfeit" baseUrl="https://api.sylvain.sh" />
+
+::: warning Changed in 6.0.0
+This endpoint moved from `DELETE` to `POST`, and its identifier left the URL: `game` is now sent in the JSON body. `PATCH` and `DELETE` no longer exist anywhere in the API.
+:::
 
 ## Parameters
 
-| Parameter  | Required | Description                         |
-| ---------- | -------- | ----------------------------------- |
-| `game`     | Yes      | The game identifier (URL parameter) |
-| `username` | Yes      | The username forfeiting             |
-| `session`  | Yes      | The user's session identifier       |
+| Parameter  | Required | Description                   |
+| ---------- | -------- | ----------------------------- |
+| `game`     | Yes      | The game identifier           |
+| `username` | Yes      | The username forfeiting       |
+| `session`  | Yes      | The user's session identifier |
 
 ::: info Good to know
-The `game` parameter is part of the URL path. The other parameters are sent as a JSON body with `Content-Type: application/json`.
+All parameters are sent as a JSON body with `Content-Type: application/json`.
 :::
 
 ## Response Fields
@@ -26,11 +30,11 @@ The `game` parameter is part of the URL path. The other parameters are sent as a
 
 ## Code Examples
 
-<Examples method="delete" path="/tic-tac-toe/VWXYZ" :body="{ username: 'alice', session: 'abc123' }" />
+<Examples method="post" path="/tic-tac-toe/forfeit" :body="{ game: 'VWXYZ', username: 'alice', session: 'abc123' }" />
 
 ## Try It
 
-<Try method="delete" path="/tic-tac-toe/VWXYZ" :params="[{ name: 'username', required: true }, { name: 'session', required: true }]" />
+<Try name="Tic-Tac-Toe Forfeit" />
 
 ## Error Handling
 
@@ -43,6 +47,6 @@ If parameters are missing or invalid, the API will return an error:
 ## Related Endpoints
 
 - <Method type="post" sm /> [/v6/tic-tac-toe](../tic-tac-toe) - Main game endpoint for making moves
-- <Method type="patch" sm /> [/v6/tic-tac-toe/:game](./play) - Play a move
+- <Method type="post" sm /> [/v6/tic-tac-toe/play](./play) - Play a move
 - <Method type="post" sm /> [/v6/tic-tac-toe/fetch](./fetch) - Retrieve current game information
 - <Method type="post" sm /> [/v6/tic-tac-toe/list](./list) - List all public games

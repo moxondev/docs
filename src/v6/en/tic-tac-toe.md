@@ -72,5 +72,5 @@ When a game is over, the request will return the winner and loser names, as well
 
 - <Method type="post" sm /> [/v6/tic-tac-toe/fetch](./tic-tac-toe/fetch) - Retrieve current game information
 - <Method type="post" sm /> [/v6/tic-tac-toe/list](./tic-tac-toe/list) - List all public games
-- <Method type="patch" sm /> [/v6/tic-tac-toe/:game](./tic-tac-toe/play) - Play a move
-- <Method type="delete" sm /> [/v6/tic-tac-toe/:game](./tic-tac-toe/forfeit) - Forfeit a game
+- <Method type="post" sm /> [/v6/tic-tac-toe/play](./tic-tac-toe/play) - Play a move
+- <Method type="post" sm /> [/v6/tic-tac-toe/forfeit](./tic-tac-toe/forfeit) - Forfeit a game

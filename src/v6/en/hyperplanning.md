@@ -4,6 +4,10 @@ The `/hyperplanning` endpoint allows you to display a Hyperplanning schedule inf
 
 <Endpoint method="post" path="/hyperplanning" baseUrl="https://api.sylvain.sh" />
 
+::: danger Deprecated
+This endpoint is deprecated. It still answers on every version, but v6 no longer lists it among its available endpoints, and it will be removed for good in 7.0.0. Do not build anything new on it.
+:::
+
 ## Parameters
 
 | Parameter | Required | Description                                                                       |

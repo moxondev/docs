@@ -38,7 +38,18 @@ https://api.sylvain.sh/v6/infos
 
 ### Compatibilité des endpoints
 
-Tous les endpoints v5 sont entièrement compatibles en v6. Les nouveaux endpoints sont listés dans le [changelog 6.0.0](/v6/fr/changelog/6.0.0).
+La v6 n'est **pas** un remplacement transparent de la v5. Quatre endpoints changent de méthode ou de chemin, le captcha change de mode par défaut, et le champ `status` des réponses d'erreur change de type. Lisez le [changelog 6.0.0](/v6/fr/changelog/6.0.0) avant de migrer.
+
+| Ce qui change             | v5                          | v6                          |
+| ------------------------- | --------------------------- | --------------------------- |
+| Effacer un chat privé     | `DELETE /chat/:token`       | `POST /chat/clear`          |
+| Jouer un coup             | `PATCH /tic-tac-toe/:game`  | `POST /tic-tac-toe/play`    |
+| Abandonner une partie     | `DELETE /tic-tac-toe/:game` | `POST /tic-tac-toe/forfeit` |
+| Comparer deux chaînes     | `GET /levenshtein`          | `POST /levenshtein`         |
+| Mode captcha par défaut   | `image`                     | `challenge`                 |
+| `status` dans les erreurs | chaîne (`"400"`)            | nombre (`400`)              |
+
+`/hyperplanning` est déprécié et n'est plus listé en v6 ; il répond encore, et disparaîtra en 7.0.0.
 
 ## Versions précédentes
 

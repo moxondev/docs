@@ -1,8 +1,12 @@
 # Génération de captcha
 
-L'endpoint `/captcha` génère une image CAPTCHA. Il propose deux modes : `image`, qui retourne la réponse en même temps que l'image, et `challenge`, qui garde la réponse côté serveur pour la vérifier ensuite.
+L'endpoint `/captcha` génère une image CAPTCHA. Il propose deux modes : `challenge`, celui par défaut, qui garde la réponse côté serveur pour la vérifier ensuite, et `image`, qui retourne la réponse en même temps que l'image.
 
 <Endpoint method="get" path="/captcha" baseUrl="https://api.sylvain.sh" />
+
+::: warning Changement en 6.0.0
+`challenge` est désormais le mode **par défaut** : l'image arrive avec un jeton signé dans `X-Captcha-Token` plutôt qu'avec la réponse en clair. Un code qui lisait `X-Captcha-Text` sans préciser `mode` ne la trouvera plus — passez `?mode=image` pour retrouver le comportement précédent.
+:::
 
 ::: tip Préférez la preuve de travail
 Un captcha visuel n'arrête plus un robot déterminé : les modèles de vision les lisent bien, souvent mieux que les humains. Pour une protection anti-bot, préférez **[/pow](/v6/fr/pow)**, qu'aucun modèle ne peut contourner — le seul moyen de passer est de dépenser le calcul.
@@ -12,7 +16,7 @@ Un captcha visuel n'arrête plus un robot déterminé : les modèles de vision l
 
 | Paramètre | Requis | Description                                                                                |
 | --------- | ------ | ------------------------------------------------------------------------------------------ |
-| `mode`    | Non    | `image` (défaut) ou `challenge`                                                            |
+| `mode`    | Non    | `challenge` (défaut) ou `image`                                                            |
 | `text`    | Non    | Le texte du captcha. Si omis, une chaîne aléatoire est générée. Refusé en mode `challenge` |
 | `length`  | Non    | Longueur du texte auto-généré, de 1 à 20. Par défaut : `6`                                 |
 | `width`   | Non    | Largeur de l'image en pixels, de 100 à 800. Par défaut : 60 × la longueur du texte         |
@@ -30,7 +34,7 @@ Un captcha visuel n'arrête plus un robot déterminé : les modèles de vision l
 
 Les deux modes retournent une image PNG (`Content-Type: image/png`), utilisable dans une balise `<img>`.
 
-En mode `challenge`, la réponse ne quitte jamais le serveur : elle n'existe que dans la signature du jeton, donc intercepter la réponse ne la révèle pas. Le rendu est également durci contre la lecture automatique — les glyphes se chevauchent pour empêcher leur découpage, suivent une ligne de base sinusoïdale, mélangent plusieurs polices, et sont traversés par des traits de la couleur même du texte, qu'aucun filtre ne peut retirer. Le mode `image` par défaut ne change pas. Envoyez le jeton et la réponse de l'utilisateur à [/v6/captcha](./captcha/verify) pour la vérifier.
+En mode `challenge`, la réponse ne quitte jamais le serveur : elle n'existe que dans la signature du jeton, donc intercepter la réponse ne la révèle pas. Le rendu est également durci contre la lecture automatique — les glyphes se chevauchent pour empêcher leur découpage, suivent une ligne de base sinusoïdale, mélangent plusieurs polices, et sont traversés par des traits de la couleur même du texte, qu'aucun filtre ne peut retirer. Envoyez le jeton et la réponse de l'utilisateur à [/v6/captcha](./captcha/verify) pour la vérifier.
 
 ::: info À savoir
 Les deux en-têtes sont exposés au JavaScript des navigateurs via CORS, donc une page web peut les lire dans la réponse.

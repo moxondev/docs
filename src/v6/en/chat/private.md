@@ -42,4 +42,4 @@ If parameters are missing or invalid, the API will return an error:
 
 - <Method type="post" sm /> [/v6/chat](../chat) - Send a message
 - <Method type="get" sm /> [/v6/chat](./messages) - Retrieve all recent messages
-- <Method type="delete" sm /> [/v6/chat/:token](./clear) - Clear all messages from a private chat
+- <Method type="post" sm /> [/v6/chat/clear](./clear) - Clear all messages from a private chat

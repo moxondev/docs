@@ -1,20 +1,24 @@
 # Tic-Tac-Toe Jouer
 
-L'endpoint `/tic-tac-toe/:game` permet de jouer un coup dans une partie existante via une méthode REST.
+L'endpoint `/tic-tac-toe/play` permet de jouer un coup dans une partie existante via une méthode REST.
 
-<Endpoint method="patch" path="/tic-tac-toe/:game" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/tic-tac-toe/play" baseUrl="https://api.sylvain.sh" />
+
+::: warning Changement en 6.0.0
+Cet endpoint passe de `PATCH` à `POST`, et son identifiant sort de l'URL : `game` est désormais envoyé dans le corps JSON. Les méthodes `PATCH` et `DELETE` n'existent plus nulle part dans l'API.
+:::
 
 ## Paramètres
 
-| Paramètre  | Requis | Description                                  |
-| ---------- | ------ | -------------------------------------------- |
-| `game`     | Oui    | L'identifiant de la partie (paramètre d'URL) |
-| `username` | Oui    | Le nom d'utilisateur effectuant le coup      |
-| `move`     | Oui    | Le coup joué (ex. : `1-1`, `2-2`, `3-3`)     |
-| `session`  | Oui    | L'identifiant de session de l'utilisateur    |
+| Paramètre  | Requis | Description                               |
+| ---------- | ------ | ----------------------------------------- |
+| `game`     | Oui    | L'identifiant de la partie                |
+| `username` | Oui    | Le nom d'utilisateur effectuant le coup   |
+| `move`     | Oui    | Le coup joué (ex. : `1-1`, `2-2`, `3-3`)  |
+| `session`  | Oui    | L'identifiant de session de l'utilisateur |
 
 ::: info À savoir
-Le paramètre `game` fait partie du chemin de l'URL. Les autres paramètres sont envoyés dans un body JSON avec `Content-Type: application/json`.
+Tous les paramètres sont envoyés dans un body JSON avec `Content-Type: application/json`.
 :::
 
 ## Champs de réponse
@@ -28,11 +32,11 @@ Le paramètre `game` fait partie du chemin de l'URL. Les autres paramètres sont
 
 ## Exemples de code
 
-<Examples method="patch" path="/tic-tac-toe/VWXYZ" :body="{ username: 'alice', move: '1-1', session: 'abc123' }" />
+<Examples method="post" path="/tic-tac-toe/play" :body="{ game: 'VWXYZ', username: 'alice', move: '1-1', session: 'abc123' }" />
 
 ## Essayer
 
-<Try method="patch" path="/tic-tac-toe/VWXYZ" :params="[{ name: 'username', required: true }, { name: 'move', required: true }, { name: 'session', required: true }]" />
+<Try name="Tic-Tac-Toe Play" />
 
 ## Gestion des erreurs
 
@@ -49,6 +53,6 @@ Si les paramètres sont manquants ou invalides, l'API retournera une erreur :
 ## Endpoints associés
 
 - <Method type="post" sm /> [/v6/tic-tac-toe](../tic-tac-toe) - Endpoint principal du jeu pour effectuer des coups
-- <Method type="delete" sm /> [/v6/tic-tac-toe/:game](./forfeit) - Abandonner une partie
+- <Method type="post" sm /> [/v6/tic-tac-toe/forfeit](./forfeit) - Abandonner une partie
 - <Method type="post" sm /> [/v6/tic-tac-toe/fetch](./fetch) - Récupérer les informations de la partie
 - <Method type="post" sm /> [/v6/tic-tac-toe/list](./list) - Lister toutes les parties publiques
