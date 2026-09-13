@@ -4,7 +4,7 @@ The `/levenshtein` endpoint allows you to calculate the Levenshtein distance bet
 
 <Endpoint method="get" path="/levenshtein" baseUrl="https://api.sylvain.sh" />
 
-::: info How it works ?
+::: info How it works?
 The Levenshtein distance counts the minimum number of single-character edits (insertions, deletions, or substitutions) required to change one string into another. Useful for spell checking, fuzzy matching, DNA analysis, and plagiarism detection.
 :::
 

@@ -8,7 +8,7 @@ The `/levenshtein` endpoint allows you to calculate the Levenshtein distance bet
 This endpoint moved from `GET` to `POST`. The two strings are now sent as a JSON body instead of query parameters, so they no longer appear in the URL — and therefore no longer in browser history or in the logs of any intermediary.
 :::
 
-::: info How it works ?
+::: info How it works?
 The Levenshtein distance counts the minimum number of single-character edits (insertions, deletions, or substitutions) required to change one string into another. Useful for spell checking, fuzzy matching, DNA analysis, and plagiarism detection.
 :::
 
