@@ -30,6 +30,9 @@ const fr: TranslationSchema = {
         migrationTitle: 'Migration disponible',
         migrationText:
             'Une version plus récente est disponible ! Envisagez de migrer vers {version} pour les dernières fonctionnalités et améliorations.',
+        retiredTitle: 'Version retirée',
+        retiredText:
+            "L'API ne sert plus cette version depuis la 6.0.0. Sa documentation est conservée pour référence — installez `@20syldev/api@5.9.0` si vous en avez encore besoin, ou migrez vers {version}.",
         legacyTitle: 'Version obsolète',
         legacyText:
             "Ceci est une ancienne version de l'API. Envisagez de migrer vers {version} pour les dernières fonctionnalités et améliorations.",

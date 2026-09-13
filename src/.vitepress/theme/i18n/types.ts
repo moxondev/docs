@@ -26,6 +26,8 @@ export type TranslationSchema = {
     banner: {
         migrationTitle: string;
         migrationText: string;
+        retiredTitle: string;
+        retiredText: string;
         legacyTitle: string;
         legacyText: string;
         link: string;
