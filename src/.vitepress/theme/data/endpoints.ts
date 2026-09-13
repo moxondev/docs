@@ -8,6 +8,12 @@ export interface EndpointParam {
     boolean?: boolean;
 }
 
+export interface EndpointOverride {
+    method?: EndpointDef['method'];
+    path?: string;
+    removed?: boolean;
+}
+
 export interface EndpointDef {
     name: string;
     path: string;
@@ -15,6 +21,8 @@ export interface EndpointDef {
     method: 'get' | 'post' | 'patch' | 'delete';
     params: EndpointParam[];
     group: string;
+    /** Per-version differences, keyed by documentation version (e.g. `v6`). */
+    overrides?: Record<string, EndpointOverride>;
 }
 
 export const endpoints: EndpointDef[] = [
@@ -213,6 +221,7 @@ export const endpoints: EndpointDef[] = [
         doc: '/chat/clear',
         method: 'delete',
         group: 'Chat',
+        overrides: { v6: { method: 'post', path: '/chat/clear' } },
         params: [
             { name: 'token', required: true, placeholder: '41a43360-9874-4c7a-9ca8-eec29e765a0e' },
             { name: 'username', required: true, placeholder: 'alice' },
@@ -453,6 +462,7 @@ export const endpoints: EndpointDef[] = [
         path: '/hyperplanning',
         method: 'post',
         group: 'Endpoints',
+        overrides: { v6: { removed: true } },
         params: [
             { name: 'url', required: true, placeholder: 'https://example.com/planning.ics' },
             { name: 'detail', required: false, options: ['full', 'list'] },
@@ -484,6 +494,7 @@ export const endpoints: EndpointDef[] = [
         path: '/levenshtein',
         method: 'get',
         group: 'Endpoints',
+        overrides: { v6: { method: 'post' } },
         params: [
             { name: 'str1', required: true, placeholder: 'kitten' },
             { name: 'str2', required: true, placeholder: 'sitting' },
@@ -700,6 +711,7 @@ export const endpoints: EndpointDef[] = [
         doc: '/tic-tac-toe/play',
         method: 'patch',
         group: 'Tic-Tac-Toe',
+        overrides: { v6: { method: 'post', path: '/tic-tac-toe/play' } },
         params: [
             { name: 'game', required: true, placeholder: 'VWXYZ' },
             { name: 'username', required: true, placeholder: 'alice' },
@@ -713,6 +725,7 @@ export const endpoints: EndpointDef[] = [
         doc: '/tic-tac-toe/forfeit',
         method: 'delete',
         group: 'Tic-Tac-Toe',
+        overrides: { v6: { method: 'post', path: '/tic-tac-toe/forfeit' } },
         params: [
             { name: 'game', required: true, placeholder: 'VWXYZ' },
             { name: 'username', required: true, placeholder: 'alice' },
@@ -833,6 +846,22 @@ export const endpoints: EndpointDef[] = [
  * @param name - The display name of the endpoint (e.g. `'Hash'`)
  * @returns The matching `EndpointDef`, or `undefined` if not found
  */
-export function findEndpoint(name: string): EndpointDef | undefined {
-    return endpoints.find((ep) => ep.name === name);
+/**
+ * Applies a version's overrides to an endpoint.
+ *
+ * @param endpoint - The base endpoint definition
+ * @param version - The documentation version (e.g. `v6`)
+ * @returns The endpoint as that version serves it, or `null` when it no longer lists it
+ */
+export function resolveEndpoint(endpoint: EndpointDef, version: string): EndpointDef | null {
+    const override = endpoint.overrides?.[version];
+    if (!override) return endpoint;
+    if (override.removed) return null;
+    return { ...endpoint, method: override.method ?? endpoint.method, path: override.path ?? endpoint.path };
+}
+
+export function findEndpoint(name: string, version?: string): EndpointDef | undefined {
+    const endpoint = endpoints.find((ep) => ep.name === name);
+    if (!endpoint) return undefined;
+    return (version ? resolveEndpoint(endpoint, version) : endpoint) ?? undefined;
 }
