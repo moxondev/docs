@@ -28,7 +28,7 @@ Si vous souhaitez dépasser cette limite, vous devez utiliser un token d'authent
       <li><strong>588 000</strong> requêtes/semaine</li>
       <li><strong>~2.5M</strong> requêtes/mois</li>
     </ul>
-    <a href="https://www.patreon.com/c/20syl/membership" class="pricing-button" target="_blank">Acheter</a>
+    <a href="https://store.sylvain.sh/join" class="pricing-button" target="_blank">Acheter</a>
   </div>
 
   <div class="pricing-card recommended">
@@ -41,7 +41,7 @@ Si vous souhaitez dépasser cette limite, vous devez utiliser un token d'authent
       <li><strong>1 008 000</strong> requêtes/semaine</li>
       <li><strong>~4.2M</strong> requêtes/mois</li>
     </ul>
-    <a href="https://www.patreon.com/c/20syl/membership" class="pricing-button" target="_blank">Acheter</a>
+    <a href="https://store.sylvain.sh/join" class="pricing-button" target="_blank">Acheter</a>
   </div>
 
   <div class="pricing-card">
@@ -53,7 +53,7 @@ Si vous souhaitez dépasser cette limite, vous devez utiliser un token d'authent
       <li><strong>1 680 000</strong> requêtes/semaine</li>
       <li><strong>~7M</strong> requêtes/mois</li>
     </ul>
-    <a href="https://www.patreon.com/c/20syl/membership" class="pricing-button" target="_blank">Acheter</a>
+    <a href="https://store.sylvain.sh/join" class="pricing-button" target="_blank">Acheter</a>
   </div>
 </div>
 

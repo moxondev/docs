@@ -28,7 +28,7 @@ If you wish to exceed this limit, you must use an authentication token. The auth
       <li><strong>588,000</strong> requests/week</li>
       <li><strong>~2.5M</strong> requests/month</li>
     </ul>
-    <a href="https://www.patreon.com/c/20syl/membership" class="pricing-button" target="_blank">Purchase</a>
+    <a href="https://store.sylvain.sh/join" class="pricing-button" target="_blank">Purchase</a>
   </div>
 
   <div class="pricing-card recommended">
@@ -41,7 +41,7 @@ If you wish to exceed this limit, you must use an authentication token. The auth
       <li><strong>1,008,000</strong> requests/week</li>
       <li><strong>~4.2M</strong> requests/month</li>
     </ul>
-    <a href="https://www.patreon.com/c/20syl/membership" class="pricing-button" target="_blank">Purchase</a>
+    <a href="https://store.sylvain.sh/join" class="pricing-button" target="_blank">Purchase</a>
   </div>
 
   <div class="pricing-card">
@@ -53,7 +53,7 @@ If you wish to exceed this limit, you must use an authentication token. The auth
       <li><strong>1,680,000</strong> requests/week</li>
       <li><strong>~7M</strong> requests/month</li>
     </ul>
-    <a href="https://www.patreon.com/c/20syl/membership" class="pricing-button" target="_blank">Purchase</a>
+    <a href="https://store.sylvain.sh/join" class="pricing-button" target="_blank">Purchase</a>
   </div>
 </div>
 
