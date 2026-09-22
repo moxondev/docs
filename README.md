@@ -3,7 +3,7 @@
 
 # Documentation de l'API
 
-[![Version](https://custom-icon-badges.demolab.com/badge/Version%20:-v5.9.0-6479ee?logo=docs.sylvain.sh&labelColor=23272A)](https://github.com/20syldev/docs/releases/latest)
+[![Version](https://custom-icon-badges.demolab.com/badge/Version%20:-v6.0.0-6479ee?logo=docs.sylvain.sh&labelColor=23272A)](https://github.com/20syldev/docs/releases/latest)
 
 </div>
 
