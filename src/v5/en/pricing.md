@@ -1,6 +1,6 @@
 # Pricing
 
-The Hyperion API is free and allows a maximum of **2,000 requests per hour**.
+The moxon API is free and allows a maximum of **2,000 requests per hour**.
 
 If you wish to exceed this limit, you must use an authentication token. The authentication token is unique, assigned to your email, and allows you to exceed this limit.
 

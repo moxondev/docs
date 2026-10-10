@@ -2,7 +2,7 @@
 
 <Banner />
 
-Welcome to the **Hyperion API v4** documentation. This is the previous stable version of the API.
+Welcome to the **moxon API v4** documentation. This is the previous stable version of the API.
 
 ## Base URL
 

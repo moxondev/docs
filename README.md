@@ -1,9 +1,9 @@
 <div align="center">
-  <a href="https://docs.sylvain.sh"><img src="https://docs.sylvain.sh/logo.png" alt="Logo" width="25%" height="auto"/></a>
+  <a href="https://moxon.dev"><img src="https://moxon.dev/icon-512.png" alt="Logo" width="25%" height="auto"/></a>
 
 # Documentation de l'API
 
-[![Version](https://custom-icon-badges.demolab.com/badge/Version%20:-v6.0.0-6479ee?logo=docs.sylvain.sh&labelColor=23272A)](https://github.com/20syldev/docs/releases/latest)
+[![Version](https://custom-icon-badges.demolab.com/badge/Version%20:-v6.0.0-6479ee?logo=moxon.dev&labelColor=23272A)](https://github.com/moxondev/docs/releases/latest)
 
 </div>
 
@@ -11,7 +11,7 @@
 
 ## À propos de la Documentation
 
-Voici la documentation de mon API personnelle, disponible sur le domaine [docs.sylvain.sh](https://docs.sylvain.sh).
+Voici la documentation de mon API personnelle, disponible sur le domaine [moxon.dev](https://moxon.dev).
 
 ## Développement
 

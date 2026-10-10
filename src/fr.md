@@ -3,7 +3,7 @@ layout: home
 
 hero:
     name: 'Documentation'
-    text: 'API Hyperion'
+    text: 'API moxon'
     tagline: Une collection complète d'endpoints utilitaires pour les développeurs
     actions:
         - theme: brand
@@ -11,7 +11,7 @@ hero:
           link: /v6/fr/
         - theme: alt
           text: Voir sur GitHub
-          link: https://github.com/20syldev/docs
+          link: https://github.com/moxondev/docs
 ---
 
 ## Démarrage rapide

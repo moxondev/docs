@@ -2,7 +2,7 @@
 
 <Banner />
 
-Welcome to the **Hyperion API v1** documentation. This is the legacy version of the API.
+Welcome to the **moxon API v1** documentation. This is the legacy version of the API.
 
 ## Base URL
 

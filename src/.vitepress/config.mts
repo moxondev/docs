@@ -12,23 +12,25 @@ import { v6 } from './sidebar/v6';
 const { version } = JSON.parse(readFileSync(new URL('../../package.json', import.meta.url), 'utf-8'));
 
 export default defineConfig({
-    title: 'Hyperion API Documentation',
+    title: 'moxon API Documentation',
     description:
         'A comprehensive collection of utility endpoints for developers. Algorithms, chat, games, QR codes, and more.',
 
     head: [
         // Favicon
-        ['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }],
-        ['link', { rel: 'apple-touch-icon', href: '/logo.png' }],
+        ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
+        ['link', { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico', sizes: '48x48' }],
+        ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }],
+        ['link', { rel: 'manifest', href: '/site.webmanifest' }],
 
         // Theme
-        ['meta', { name: 'theme-color', content: '#5c7cfa' }],
+        ['meta', { name: 'theme-color', content: '#fde68a' }],
 
         // Open Graph
         ['meta', { property: 'og:type', content: 'website' }],
-        ['meta', { property: 'og:site_name', content: 'Hyperion API Documentation' }],
-        ['meta', { property: 'og:url', content: 'https://docs.sylvain.sh/' }],
-        ['meta', { property: 'og:title', content: 'Hyperion API Documentation' }],
+        ['meta', { property: 'og:site_name', content: 'moxon API Documentation' }],
+        ['meta', { property: 'og:url', content: 'https://moxon.dev/' }],
+        ['meta', { property: 'og:title', content: 'moxon API Documentation' }],
         [
             'meta',
             {
@@ -37,12 +39,12 @@ export default defineConfig({
                     'A comprehensive collection of utility endpoints for developers. Algorithms, chat, games, QR codes, and more.',
             },
         ],
-        ['meta', { property: 'og:image', content: 'https://docs.sylvain.sh/logo.png' }],
+        ['meta', { property: 'og:image', content: 'https://moxon.dev/og-image.png' }],
 
         // Twitter Card
         ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
         ['meta', { name: 'twitter:site', content: '@20syldev' }],
-        ['meta', { name: 'twitter:title', content: 'Hyperion API Documentation' }],
+        ['meta', { name: 'twitter:title', content: 'moxon API Documentation' }],
         [
             'meta',
             {
@@ -51,7 +53,7 @@ export default defineConfig({
                     'A comprehensive collection of utility endpoints for developers. Algorithms, chat, games, QR codes, and more.',
             },
         ],
-        ['meta', { name: 'twitter:image', content: 'https://docs.sylvain.sh/logo.png' }],
+        ['meta', { name: 'twitter:image', content: 'https://moxon.dev/og-image.png' }],
 
         // Google Structured Data
         [
@@ -60,8 +62,8 @@ export default defineConfig({
             JSON.stringify({
                 '@context': 'https://schema.org',
                 '@type': 'WebSite',
-                name: 'Hyperion API Documentation',
-                url: 'https://docs.sylvain.sh/',
+                name: 'moxon API Documentation',
+                url: 'https://moxon.dev/',
                 description: 'A comprehensive collection of utility endpoints for developers.',
                 author: {
                     '@type': 'Person',
@@ -76,7 +78,7 @@ export default defineConfig({
     lastUpdated: true,
 
     themeConfig: {
-        siteTitle: 'Hyperion API',
+        siteTitle: 'moxon API',
 
         nav: [{ text: 'Home', link: '/' }],
 
@@ -89,7 +91,7 @@ export default defineConfig({
             ...v1,
         }),
 
-        socialLinks: [{ icon: 'github', link: 'https://github.com/20syldev/docs' }],
+        socialLinks: [{ icon: 'github', link: 'https://github.com/moxondev/docs' }],
 
         search: {
             provider: 'local',
@@ -117,7 +119,7 @@ export default defineConfig({
         },
 
         editLink: {
-            pattern: 'https://github.com/20syldev/docs/edit/master/src/:path',
+            pattern: 'https://github.com/moxondev/docs/edit/master/src/:path',
             text: 'Edit this page on GitHub',
         },
     },

@@ -1,7 +1,7 @@
 {
-    "name": "hyperion",
+    "name": "moxon",
     "version": "6.0.0",
-    "description": "Hyperion API Documentation",
+    "description": "moxon API Documentation",
     "type": "module",
     "scripts": {
         "dev": "vitepress dev src",

@@ -178,7 +178,7 @@ onUnmounted(() => {
                 <span class="terminal-btn minimize"></span>
                 <span class="terminal-btn maximize"></span>
             </div>
-            <span class="terminal-title">sylvain@api</span>
+            <span class="terminal-title">moxon@api</span>
         </div>
         <div ref="body" class="terminal-body">
             <div class="terminal-line">

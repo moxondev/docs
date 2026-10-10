@@ -2,7 +2,7 @@
 
 <Banner />
 
-Bienvenue dans la documentation de l'**API Hyperion v6**. Cette API fournit une collection complète d'endpoints utilitaires pour les développeurs.
+Bienvenue dans la documentation de l'**API moxon v6**. Cette API fournit une collection complète d'endpoints utilitaires pour les développeurs.
 
 ## URL de base
 

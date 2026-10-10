@@ -24,7 +24,7 @@ const props = withDefaults(
 const { versionedPath } = useVersion();
 const fullPath = computed(() => versionedPath(props.path));
 
-const STORAGE_KEY = 'hyperion-code-lang';
+const STORAGE_KEY = 'moxon-code-lang';
 const active = ref<CodeLang>('curl');
 
 onMounted(() => {

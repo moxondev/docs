@@ -1,6 +1,6 @@
 # Authentification
 
-L'API Hyperion utilise l'authentification par token Bearer pour identifier les utilisateurs avec des plans premium.
+L'API moxon utilise l'authentification par token Bearer pour identifier les utilisateurs avec des plans premium.
 
 ## Utilisation
 

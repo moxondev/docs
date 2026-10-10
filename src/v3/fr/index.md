@@ -2,7 +2,7 @@
 
 <Banner />
 
-Bienvenue dans la documentation de l'**API Hyperion v3**. Version obsolète de l'API, conservée à titre de référence.
+Bienvenue dans la documentation de l'**API moxon v3**. Version obsolète de l'API, conservée à titre de référence.
 
 ## URL de base
 

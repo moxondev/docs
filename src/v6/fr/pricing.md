@@ -1,6 +1,6 @@
 # Tarification
 
-L'API Hyperion est gratuite et permet un maximum de **2 000 requêtes par heure**.
+L'API moxon est gratuite et permet un maximum de **2 000 requêtes par heure**.
 
 Si vous souhaitez dépasser cette limite, vous devez utiliser un token d'authentification. Le token d'authentification est unique, attribué à votre email, et vous permet de dépasser cette limite.
 

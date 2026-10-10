@@ -2,7 +2,7 @@
 
 <Banner />
 
-Welcome to the **Hyperion API v6** documentation. This API provides a comprehensive collection of utility endpoints for developers.
+Welcome to the **moxon API v6** documentation. This API provides a comprehensive collection of utility endpoints for developers.
 
 ## Base URL
 

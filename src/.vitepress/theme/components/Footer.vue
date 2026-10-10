@@ -16,9 +16,9 @@ const year = new Date().getFullYear();
             <nav class="site-footer-links">
                 <a :href="`/${version}/${lang}/changelog`">{{ t('footer.changelog', lang) }}</a>
                 <span class="site-footer-dot" />
-                <a href="https://github.com/20syldev/docs" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://github.com/moxondev/docs" target="_blank" rel="noopener">GitHub</a>
                 <span class="site-footer-dot" />
-                <a href="https://github.com/20syldev/docs/issues" target="_blank" rel="noopener">{{
+                <a href="https://github.com/moxondev/docs/issues" target="_blank" rel="noopener">{{
                     t('footer.issue', lang)
                 }}</a>
             </nav>
