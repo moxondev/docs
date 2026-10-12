@@ -28,7 +28,7 @@ Le plateau est une grille 3x3 avec des positions numérotées comme suit :
 ## Exemple de requête
 
 ```bash
-curl -X POST -d "username=Utilisateur1&move=2-2&session=abc123&game=VWXYZ" "https://api.sylvain.sh/v3/tic-tac-toe"
+curl -X POST -d "username=Utilisateur1&move=2-2&session=abc123&game=VWXYZ" "https://api.moxon.dev/v3/tic-tac-toe"
 ```
 
 ## Réponse

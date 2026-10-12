@@ -14,7 +14,7 @@ L'endpoint `/tic-tac-toe/fetch` permet d'afficher une partie de morpion en cours
 ## Exemple de requête
 
 ```bash
-curl -X POST -d "username=Utilisateur1&game=VWXYZ" "https://api.sylvain.sh/v2/tic-tac-toe/fetch"
+curl -X POST -d "username=Utilisateur1&game=VWXYZ" "https://api.moxon.dev/v2/tic-tac-toe/fetch"
 ```
 
 ## Réponse

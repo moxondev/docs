@@ -7,7 +7,7 @@ L'API moxon utilise l'authentification par token Bearer pour identifier les util
 Pour authentifier vos requêtes, incluez votre clé API dans le header `Authorization` :
 
 ```bash
-curl -H "Authorization: Bearer VOTRE_CLE_API" https://api.sylvain.sh/v5/infos
+curl -H "Authorization: Bearer VOTRE_CLE_API" https://api.moxon.dev/v5/infos
 ```
 
 ## Vérifier son offre
@@ -15,7 +15,7 @@ curl -H "Authorization: Bearer VOTRE_CLE_API" https://api.sylvain.sh/v5/infos
 Utilisez `GET /auth` pour vérifier le tier auquel un token correspond, ainsi que ses limites :
 
 ```bash
-curl -H "Authorization: Bearer VOTRE_CLE_API" https://api.sylvain.sh/auth
+curl -H "Authorization: Bearer VOTRE_CLE_API" https://api.moxon.dev/auth
 ```
 
 ```json

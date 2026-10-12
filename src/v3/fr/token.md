@@ -27,7 +27,7 @@ L'endpoint `/token` permet de générer des chaînes sécurisées appelées _tok
 ## Exemple de requête
 
 ```bash
-curl -X POST -d "len=24&type=alphanum" "https://api.sylvain.sh/v3/token"
+curl -X POST -d "len=24&type=alphanum" "https://api.moxon.dev/v3/token"
 ```
 
 ## Réponse

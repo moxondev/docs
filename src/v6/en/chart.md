@@ -2,7 +2,7 @@
 
 The `/chart` endpoint generates charts from data. It supports bar, line, pie, and donut chart types, and returns either an SVG image or raw JSON data.
 
-<Endpoint method="post" path="/chart" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/chart" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

@@ -2,7 +2,7 @@
 
 The `/chat/private` endpoint retrieves all messages sent during the last hour, belonging to a private chat.
 
-<Endpoint method="post" path="/chat/private" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/chat/private" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

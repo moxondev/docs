@@ -2,7 +2,7 @@
 
 The `/csv` endpoint converts between CSV and JSON: `parse` turns CSV text into an array of objects, `format` does the reverse.
 
-<Endpoint method="post" path="/csv" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/csv" baseUrl="https://api.moxon.dev" />
 
 ::: info How it works?
 The parser respects quoted fields, including escaped quotes (`""`) and newlines inside a quoted field. CRLF and CR line endings are normalized to LF before parsing.

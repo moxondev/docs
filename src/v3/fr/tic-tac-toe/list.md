@@ -11,7 +11,7 @@ Cet endpoint ne nécessite aucun paramètre. Il retourne toutes les parties publ
 ## Exemple de requête
 
 ```bash
-curl -X POST "https://api.sylvain.sh/v3/tic-tac-toe/list"
+curl -X POST "https://api.moxon.dev/v3/tic-tac-toe/list"
 ```
 
 ## Réponse

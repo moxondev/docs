@@ -2,7 +2,7 @@
 
 L'endpoint `/hash` convertit une chaîne de caractères en hash, c'est-à-dire une chaîne de caractères qui ne peut pas être inversée vers la chaîne originale.
 
-<Endpoint method="post" path="/hash" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/hash" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

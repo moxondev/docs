@@ -55,5 +55,5 @@ GET /v1/personal
 ## cURL
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v1/personal"
+curl -X GET "https://api.moxon.dev/v1/personal"
 ```

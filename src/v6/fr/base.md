@@ -2,7 +2,7 @@
 
 L'endpoint `/base` convertit un nombre d'une base numérique vers une autre, entre la base 2 et la base 36.
 
-<Endpoint method="get" path="/base" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/base" baseUrl="https://api.moxon.dev" />
 
 ::: info Comment ça marche ?
 Les chiffres sont lus comme `0-9` puis `a-z`, représentant les valeurs de 0 à 35 : l'entrée est donc insensible à la casse et le résultat est toujours en minuscules. La conversion utilise des entiers à précision arbitraire, ce qui permet de conserver tous les chiffres bien au-delà de `Number.MAX_SAFE_INTEGER`. Le signe moins est conservé, sauf lorsque la valeur vaut zéro (`-0` retourne `0`).

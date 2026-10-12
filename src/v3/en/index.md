@@ -9,13 +9,13 @@ Welcome to the **moxon API v3** documentation. This is an outdated version of th
 All API requests should be made to:
 
 ```
-https://api.sylvain.sh/v3
+https://api.moxon.dev/v3
 ```
 
 ## Quick Example
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v3/infos"
+curl -X GET "https://api.moxon.dev/v3/infos"
 ```
 
 ```json

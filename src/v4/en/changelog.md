@@ -4,11 +4,11 @@
 
 ### Use `/latest` (recommended)
 
-Use `api.sylvain.sh/latest` to always point to the latest version:
+Use `api.moxon.dev/latest` to always point to the latest version:
 
 ```
-https://api.sylvain.sh/latest/infos
-https://api.sylvain.sh/latest/token
+https://api.moxon.dev/latest/infos
+https://api.moxon.dev/latest/token
 ```
 
 ### Manual Migration
@@ -17,10 +17,10 @@ Replace all occurrences of `/v3/` with `/v4/` in your API requests:
 
 ```
 # Before
-https://api.sylvain.sh/v3/infos
+https://api.moxon.dev/v3/infos
 
 # After
-https://api.sylvain.sh/v4/infos
+https://api.moxon.dev/v4/infos
 ```
 
 ### Endpoint Compatibility

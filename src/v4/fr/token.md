@@ -2,7 +2,7 @@
 
 L'endpoint `/token` permet de générer des chaînes sécurisées appelées _tokens_. Cet endpoint est particulièrement utile pour créer des identifiants aléatoires pour diverses applications.
 
-<Endpoint method="post" path="/token" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/token" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

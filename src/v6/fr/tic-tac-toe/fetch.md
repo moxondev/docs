@@ -2,7 +2,7 @@
 
 L'endpoint `/tic-tac-toe/fetch` permet de récupérer les informations d'une partie de morpion en cours. Vous pouvez utiliser l'identifiant de la partie en cours pour l'afficher ou créer une nouvelle partie si aucun ID n'est fourni.
 
-<Endpoint method="post" path="/tic-tac-toe/fetch" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/tic-tac-toe/fetch" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

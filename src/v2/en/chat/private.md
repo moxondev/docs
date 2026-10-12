@@ -14,7 +14,7 @@ The `/chat/private` endpoint retrieves all messages sent during the last hour, b
 ## Request Example
 
 ```bash
-curl -X POST -d "username=User3&token=41a43360-9874-4c7a-9ca8-eec29e765a0e" "https://api.sylvain.sh/v2/chat/private"
+curl -X POST -d "username=User3&token=41a43360-9874-4c7a-9ca8-eec29e765a0e" "https://api.moxon.dev/v2/chat/private"
 ```
 
 ## Response

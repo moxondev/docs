@@ -2,7 +2,7 @@
 
 The `/placeholder` endpoint generates SVG placeholders: simple images or animated skeleton loaders.
 
-<Endpoint method="get" path="/placeholder" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/placeholder" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

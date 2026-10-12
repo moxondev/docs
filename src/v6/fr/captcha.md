@@ -2,7 +2,7 @@
 
 L'endpoint `/captcha` génère une image CAPTCHA. Il propose deux modes : `challenge`, celui par défaut, qui garde la réponse côté serveur pour la vérifier ensuite, et `image`, qui retourne la réponse en même temps que l'image.
 
-<Endpoint method="get" path="/captcha" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/captcha" baseUrl="https://api.moxon.dev" />
 
 ::: warning Changement en 6.0.0
 `challenge` est désormais le mode **par défaut** : l'image arrive avec un jeton signé dans `X-Captcha-Token` plutôt qu'avec la réponse en clair. Un code qui lisait `X-Captcha-Text` sans préciser `mode` ne la trouvera plus — passez `?mode=image` pour retrouver le comportement précédent.
@@ -47,7 +47,7 @@ La chaîne auto-générée évite les caractères ambigus (ex. `0`/`O`, `1`/`l`)
 <Examples method="get" path="/captcha" :params="{ length: '8', width: '400', noise: 'high', bg: 'f0f0f0' }" />
 
 ::: tip Exemple
-[Voir un exemple avec un texte auto-généré](https://api.sylvain.sh/v6/captcha?length=8&noise=high)
+[Voir un exemple avec un texte auto-généré](https://api.moxon.dev/v6/captcha?length=8&noise=high)
 :::
 
 ## Essayer

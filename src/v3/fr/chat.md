@@ -39,7 +39,7 @@ GET /v3/chat
 ### cURL
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v3/chat"
+curl -X GET "https://api.moxon.dev/v3/chat"
 ```
 
 ---
@@ -62,7 +62,7 @@ Permet d'envoyer un message au chat global ou à un chat privé.
 ### Exemple de requête
 
 ```bash
-curl -X POST -d "username=Utilisateur3&message=Comment ça va ?&session=abc123&token=41a43360-9874-4c7a-9ca8-eec29e765a0e" "https://api.sylvain.sh/v3/chat"
+curl -X POST -d "username=Utilisateur3&message=Comment ça va ?&session=abc123&token=41a43360-9874-4c7a-9ca8-eec29e765a0e" "https://api.moxon.dev/v3/chat"
 ```
 
 ### Réponse

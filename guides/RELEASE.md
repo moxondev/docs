@@ -14,7 +14,7 @@ Each page follows this structure:
 
 Description of the endpoint.
 
-<Endpoint method="get" path="/<name>" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/<name>" baseUrl="https://api.moxon.dev" />
 
 ## Parameters / Paramètres
 
@@ -116,7 +116,7 @@ After push + tag, edit the release notes. Follow the style of the previous relea
 gh release edit <tag> --notes "$(cat <<'EOF'
 # Version X.X.X - Mois Année
 
-- French narrative bullets from the user's perspective, with **[endpoint links](https://docs.sylvain.sh/v5/<name>)**.
+- French narrative bullets from the user's perspective, with **[endpoint links](https://moxon.dev/v5/<name>)**.
 - Each bullet ends with a period.
 EOF
 )"

@@ -2,7 +2,7 @@
 
 L'endpoint `/statistics` calcule des statistiques descriptives sur une liste de nombres.
 
-<Endpoint method="get" path="/statistics" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/statistics" baseUrl="https://api.moxon.dev" />
 
 ::: info Comment ça marche ?
 Toutes les mesures sont calculées sur la population complète (et non un échantillon). `variance` et `stddev` utilisent les formules populationnelles (division par N). `mode` retourne toutes les valeurs à égalité pour la fréquence la plus haute. `mean`, `median`, `variance` et `stddev` sont arrondis à 6 décimales.

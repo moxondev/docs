@@ -2,7 +2,7 @@
 
 The `/qrcode` endpoint generates a QR Code from a URL provided as a parameter. This endpoint is useful for quickly generating an image in PNG format.
 
-<Endpoint method="get" path="/qrcode" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/qrcode" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 
@@ -34,7 +34,7 @@ A large `iconSize` combined with generous `iconPadding` covers more QR Code modu
 By default (`format=png`), the endpoint returns a **direct PNG image** (`Content-Type: image/png`), usable in an `<img>` tag:
 
 ```html
-<img src="https://api.sylvain.sh/v6/qrcode?url=https://docs.sylvain.sh" alt="QR Code" />
+<img src="https://api.moxon.dev/v6/qrcode?url=https://moxon.dev" alt="QR Code" />
 ```
 
 With `format=base64`, the response is a JSON object:
@@ -45,7 +45,7 @@ With `format=base64`, the response is a JSON object:
 
 ## Code Examples
 
-<Examples method="get" path="/qrcode" :params="{ url: 'https://docs.sylvain.sh', size: '300', margin: '2', dark: '1a1a2e', light: 'eaeaea' }" />
+<Examples method="get" path="/qrcode" :params="{ url: 'https://moxon.dev', size: '300', margin: '2', dark: '1a1a2e', light: 'eaeaea' }" />
 
 ## Try It
 

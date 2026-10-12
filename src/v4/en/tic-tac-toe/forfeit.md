@@ -2,7 +2,7 @@
 
 The `/tic-tac-toe/:game` endpoint forfeits (abandons) a game.
 
-<Endpoint method="delete" path="/tic-tac-toe/:game" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="delete" path="/tic-tac-toe/:game" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

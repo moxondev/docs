@@ -2,7 +2,7 @@
 
 The `/symmetric` endpoint encrypts and decrypts text using AES symmetric encryption.
 
-<Endpoint method="post" path="/symmetric" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/symmetric" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

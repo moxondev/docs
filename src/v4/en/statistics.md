@@ -2,7 +2,7 @@
 
 The `/statistics` endpoint calculates descriptive statistics on a list of numbers.
 
-<Endpoint method="get" path="/statistics" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/statistics" baseUrl="https://api.moxon.dev" />
 
 ::: info How it works?
 All measures are computed on the full population (not a sample). `variance` and `stddev` use population formulas (divide by N). `mode` returns all values tied for the highest frequency. `mean`, `median`, `variance`, and `stddev` are rounded to 6 decimal places.

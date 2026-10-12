@@ -2,7 +2,7 @@
 
 L'endpoint `/captcha` génère une image CAPTCHA. Il propose deux modes : `image`, qui retourne la réponse en même temps que l'image, et `challenge`, qui garde la réponse côté serveur pour la vérifier ensuite.
 
-<Endpoint method="get" path="/captcha" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/captcha" baseUrl="https://api.moxon.dev" />
 
 ::: tip Préférez la preuve de travail
 Un captcha visuel n'arrête plus un robot déterminé : les modèles de vision les lisent bien, souvent mieux que les humains. Pour une protection anti-bot, préférez **[/pow](/v5/fr/pow)**, qu'aucun modèle ne peut contourner — le seul moyen de passer est de dépenser le calcul.
@@ -43,7 +43,7 @@ La chaîne auto-générée évite les caractères ambigus (ex. `0`/`O`, `1`/`l`)
 <Examples method="get" path="/captcha" :params="{ length: '8', width: '400', noise: 'high', bg: 'f0f0f0' }" />
 
 ::: tip Exemple
-[Voir un exemple avec un texte auto-généré](https://api.sylvain.sh/v5/captcha?length=8&noise=high)
+[Voir un exemple avec un texte auto-généré](https://api.moxon.dev/v5/captcha?length=8&noise=high)
 :::
 
 ## Essayer

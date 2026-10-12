@@ -2,7 +2,7 @@
 
 L'endpoint `/hyperplanning` permet d'afficher les informations d'un emploi du temps Hyperplanning au format JSON à partir d'un fichier ICS (calendrier).
 
-<Endpoint method="post" path="/hyperplanning" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/hyperplanning" baseUrl="https://api.moxon.dev" />
 
 ::: danger Déprécié
 Cet endpoint est déprécié. Il répond encore sur toutes les versions, mais la v6 ne le liste plus parmi ses endpoints disponibles, et il sera retiré définitivement en 7.0.0. Ne construisez plus rien dessus.

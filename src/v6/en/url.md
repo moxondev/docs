@@ -2,7 +2,7 @@
 
 The `/url` endpoint parses a URL into its structural components: scheme, host, port, path, query parameters, and fragment. Duplicate query parameters are grouped into an array.
 
-<Endpoint method="get" path="/url" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/url" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

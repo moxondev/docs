@@ -27,7 +27,7 @@ The `/token` endpoint generates secure strings called _tokens_. This endpoint is
 ## Request Example
 
 ```bash
-curl -X POST -d "len=24&type=alphanum" "https://api.sylvain.sh/v2/token"
+curl -X POST -d "len=24&type=alphanum" "https://api.moxon.dev/v2/token"
 ```
 
 ## Response

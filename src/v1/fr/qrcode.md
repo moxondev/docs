@@ -13,7 +13,7 @@ L'endpoint `/qrcode` génère un QR Code à partir d'une URL entrée en paramèt
 ## Exemple de requête
 
 ```
-GET /v1/qrcode?url=https://docs.sylvain.sh
+GET /v1/qrcode?url=https://moxon.dev
 ```
 
 ## Réponse
@@ -27,7 +27,7 @@ GET /v1/qrcode?url=https://docs.sylvain.sh
 ## cURL
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v1/qrcode?url=https://docs.sylvain.sh"
+curl -X GET "https://api.moxon.dev/v1/qrcode?url=https://moxon.dev"
 ```
 
 ## Gestion des erreurs

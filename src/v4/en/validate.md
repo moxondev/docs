@@ -2,7 +2,7 @@
 
 The `/validate` endpoint validates various data formats.
 
-<Endpoint method="get" path="/validate" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/validate" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

@@ -2,7 +2,7 @@
 
 The `/dice` endpoint rolls dice using RPG notation (NdX or NdX+M).
 
-<Endpoint method="get" path="/dice" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/dice" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

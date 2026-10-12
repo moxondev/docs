@@ -39,7 +39,7 @@ hero:
 All API requests should be made to:
 
 ```
-https://api.sylvain.sh
+https://api.moxon.dev
 ```
 
 ## Example

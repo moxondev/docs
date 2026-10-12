@@ -80,7 +80,7 @@ GET /v3/time
 ### Temps aléatoire avec format spécifique
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v3/time?type=random&format=locale&timezone=Europe/Paris"
+curl -X GET "https://api.moxon.dev/v3/time?type=random&format=locale&timezone=Europe/Paris"
 ```
 
 ```json

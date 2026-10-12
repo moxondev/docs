@@ -4,17 +4,17 @@
 
 ### Use `/latest` (recommended)
 
-Use `api.sylvain.sh/latest` to always point to the latest version:
+Use `api.moxon.dev/latest` to always point to the latest version:
 
 ```
-https://api.sylvain.sh/latest/infos
-https://api.sylvain.sh/latest/evaluate
+https://api.moxon.dev/latest/infos
+https://api.moxon.dev/latest/evaluate
 ```
 
 Nested paths and query strings are preserved through the redirect:
 
 ```
-https://api.sylvain.sh/latest/chat/private?session=abc
+https://api.moxon.dev/latest/chat/private?session=abc
 # redirects to /v5/chat/private?session=abc
 ```
 
@@ -30,10 +30,10 @@ Replace all occurrences of `/v4/` with `/v5/` in your API requests:
 
 ```
 # Before
-https://api.sylvain.sh/v4/infos
+https://api.moxon.dev/v4/infos
 
 # After
-https://api.sylvain.sh/v5/infos
+https://api.moxon.dev/v5/infos
 ```
 
 ### Endpoint Compatibility

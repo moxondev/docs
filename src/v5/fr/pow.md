@@ -2,7 +2,7 @@
 
 L'endpoint `/pow` émet un défi de preuve de travail, une protection anti-bot destinée à remplacer le captcha visuel. Le serveur fournit un `salt` et une difficulté ; le client cherche un `nonce` dont l'empreinte `sha256` commence par autant de zéros hexadécimaux, puis le renvoie pour vérification.
 
-<Endpoint method="get" path="/pow" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/pow" baseUrl="https://api.moxon.dev" />
 
 ::: info Comment ça marche ?
 À la difficulté par défaut de `4`, la résolution demande environ 32 000 hachages — moins d'une seconde dans un navigateur, imperceptible pour une personne, mais ruineuse pour un robot qui la répète des milliers de fois. Contrairement à un captcha visuel, aucun modèle de vision ne peut la contourner : le seul moyen de passer est de dépenser le calcul.
@@ -34,7 +34,7 @@ La réponse attendue ne voyage jamais jusqu'au client. Le jeton transporte le `s
 Résoudre le défi est une boucle, donc inexprimable en une seule requête. Incrémentez un compteur jusqu'à ce que l'empreinte corresponde au préfixe exigé :
 
 ```js
-const { salt, difficulty, token } = await (await fetch('https://api.sylvain.sh/v5/pow')).json();
+const { salt, difficulty, token } = await (await fetch('https://api.moxon.dev/v5/pow')).json();
 const target = '0'.repeat(difficulty);
 
 let nonce = 0;

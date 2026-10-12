@@ -38,7 +38,7 @@ GET /v3/levenshtein?str1=example&str2=samples
 ## cURL
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v3/levenshtein?str1=example&str2=samples"
+curl -X GET "https://api.moxon.dev/v3/levenshtein?str1=example&str2=samples"
 ```
 
 ## Gestion des erreurs

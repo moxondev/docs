@@ -2,7 +2,7 @@
 
 The `/levenshtein` endpoint allows you to calculate the Levenshtein distance between two strings. This distance represents the minimum number of operations required to transform one string into another.
 
-<Endpoint method="get" path="/levenshtein" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/levenshtein" baseUrl="https://api.moxon.dev" />
 
 ::: info How it works?
 The Levenshtein distance counts the minimum number of single-character edits (insertions, deletions, or substitutions) required to change one string into another. Useful for spell checking, fuzzy matching, DNA analysis, and plagiarism detection.

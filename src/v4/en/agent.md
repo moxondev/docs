@@ -2,7 +2,7 @@
 
 The `/agent` endpoint parses a User-Agent string and returns structured information about the browser, operating system, device, rendering engine, and whether the client is a bot. If no UA is provided, the request's own `User-Agent` header is used.
 
-<Endpoint method="get" path="/agent" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/agent" baseUrl="https://api.moxon.dev" />
 
 ::: tip Use Cases
 Detect the browser and OS of your visitors, identify bots and crawlers, serve device-specific content (mobile vs desktop), or log structured client metadata from raw User-Agent strings.

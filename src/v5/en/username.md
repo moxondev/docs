@@ -2,7 +2,7 @@
 
 The `/username` endpoint generates random usernames. This endpoint is useful for creating placeholder usernames or suggesting names to users.
 
-<Endpoint method="get" path="/username" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/username" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

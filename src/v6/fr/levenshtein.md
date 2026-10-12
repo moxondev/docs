@@ -2,7 +2,7 @@
 
 L'endpoint `/levenshtein` permet de calculer la distance de Levenshtein entre deux chaînes de caractères. Cette distance représente le nombre minimum d'opérations nécessaires pour transformer une chaîne en une autre.
 
-<Endpoint method="post" path="/levenshtein" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/levenshtein" baseUrl="https://api.moxon.dev" />
 
 ::: warning Changement en 6.0.0
 Cet endpoint passe de `GET` à `POST`. Les deux chaînes comparées sont désormais envoyées dans un corps JSON plutôt qu'en paramètres d'URL : elles ne transitent donc plus par l'URL, ni par l'historique de navigation, ni par les journaux d'un intermédiaire.

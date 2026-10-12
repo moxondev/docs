@@ -15,7 +15,7 @@ L'endpoint `/tic-tac-toe/fetch` permet de récupérer les informations d'une par
 ## Exemple de requête
 
 ```bash
-curl -X POST -d "username=Utilisateur1&game=VWXYZ" "https://api.sylvain.sh/v3/tic-tac-toe/fetch"
+curl -X POST -d "username=Utilisateur1&game=VWXYZ" "https://api.moxon.dev/v3/tic-tac-toe/fetch"
 ```
 
 ## Réponse

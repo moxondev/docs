@@ -11,7 +11,7 @@ This endpoint does not require any parameters.
 ## Request Example
 
 ```bash
-curl -X POST "https://api.sylvain.sh/v3/tic-tac-toe/list"
+curl -X POST "https://api.moxon.dev/v3/tic-tac-toe/list"
 ```
 
 ## Response

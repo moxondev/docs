@@ -2,7 +2,7 @@
 
 L'endpoint `/convert` permet de convertir des valeurs entre unités de la même catégorie. Vous devez fournir une valeur à convertir, une unité source et l'unité cible.
 
-<Endpoint method="get" path="/convert" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/convert" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

@@ -38,7 +38,7 @@ GET /v2/convert?value=30&from=celsius&to=kelvin
 ## cURL
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v2/convert?value=30&from=celsius&to=kelvin"
+curl -X GET "https://api.moxon.dev/v2/convert?value=30&from=celsius&to=kelvin"
 ```
 
 ## Error Handling

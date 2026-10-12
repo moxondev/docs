@@ -2,7 +2,7 @@
 
 The `/tic-tac-toe/fetch` endpoint retrieves information about a current Tic-Tac-Toe game.
 
-<Endpoint method="post" path="/tic-tac-toe/fetch" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/tic-tac-toe/fetch" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

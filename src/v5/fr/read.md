@@ -2,7 +2,7 @@
 
 L'endpoint `/read` analyse un texte et retourne son nombre de mots, de phrases et de syllabes, ses scores de lisibilité Flesch et un temps de lecture estimé.
 
-<Endpoint method="post" path="/read" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/read" baseUrl="https://api.moxon.dev" />
 
 ::: info Comment ça marche ?
 L'anglais utilise les coefficients Flesch d'origine, qui fournissent aussi un niveau scolaire Flesch-Kincaid. Le français utilise l'adaptation de Kandel & Moles, qui n'a pas d'équivalent de niveau scolaire : `fleschKincaidGrade` vaut donc `null`.

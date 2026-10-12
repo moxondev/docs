@@ -60,7 +60,7 @@ GET /v3/username
 ## cURL
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v3/username"
+curl -X GET "https://api.moxon.dev/v3/username"
 ```
 
 ## Cas d'utilisation

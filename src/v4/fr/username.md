@@ -2,7 +2,7 @@
 
 L'endpoint `/username` génère un nom d'utilisateur aléatoire composé d'un adjectif, d'un animal et d'un métier. Un nombre aléatoire est également inclus. Cet endpoint ne nécessite aucune option.
 
-<Endpoint method="get" path="/username" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/username" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

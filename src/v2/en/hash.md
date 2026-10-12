@@ -69,7 +69,7 @@ The `/hash` endpoint converts a string into a hash, i.e. a string of characters 
 ## Request Example
 
 ```bash
-curl -X POST -d "text=hello&method=sha512" "https://api.sylvain.sh/v2/hash"
+curl -X POST -d "text=hello&method=sha512" "https://api.moxon.dev/v2/hash"
 ```
 
 ## Response

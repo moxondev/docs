@@ -2,7 +2,7 @@
 
 L'endpoint `/headers` retourne les en-têtes HTTP envoyés par le client. Il est utile pour déboguer les proxies, les configurations CORS et les pipelines de requêtes. Les en-têtes sensibles sont automatiquement masqués.
 
-<Endpoint method="get" path="/headers" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/headers" baseUrl="https://api.moxon.dev" />
 
 ::: tip Cas d'utilisation
 Inspectez les en-têtes envoyés par votre client au serveur, déboguez les configurations de reverse proxy, vérifiez les en-têtes CORS, ou contrôlez si les en-têtes d'authentification sont bien transmis.

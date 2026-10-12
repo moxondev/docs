@@ -2,7 +2,7 @@
 
 The `/captcha` endpoint verifies an answer submitted for a challenge-mode captcha: send back the token from the `X-Captcha-Token` header, along with the text the user typed.
 
-<Endpoint method="post" path="/captcha" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/captcha" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

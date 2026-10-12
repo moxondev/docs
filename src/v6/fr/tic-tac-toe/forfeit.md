@@ -2,7 +2,7 @@
 
 L'endpoint `/tic-tac-toe/forfeit` permet d'abandonner une partie (forfait).
 
-<Endpoint method="post" path="/tic-tac-toe/forfeit" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/tic-tac-toe/forfeit" baseUrl="https://api.moxon.dev" />
 
 ::: warning Changement en 6.0.0
 Cet endpoint passe de `DELETE` à `POST`, et son identifiant sort de l'URL : `game` est désormais envoyé dans le corps JSON. Les méthodes `PATCH` et `DELETE` n'existent plus nulle part dans l'API.

@@ -28,7 +28,7 @@ The board is a 3x3 grid with positions numbered as follows:
 ## Request Example
 
 ```bash
-curl -X POST -d "username=User1&move=2-2&session=abc123&game=VWXYZ" "https://api.sylvain.sh/v3/tic-tac-toe"
+curl -X POST -d "username=User1&move=2-2&session=abc123&game=VWXYZ" "https://api.moxon.dev/v3/tic-tac-toe"
 ```
 
 ## Response

@@ -2,7 +2,7 @@
 
 L'endpoint `/password` génère un ou plusieurs mots de passe à l'aide d'une randomisation cryptographiquement sécurisée (`crypto.randomInt`). Deux modes sont disponibles : `random` (basé sur des caractères) et `passphrase` (basé sur des mots). Chaque réponse inclut les mots de passe générés ainsi que leur niveau de force et leur score d'entropie.
 
-<Endpoint method="get" path="/password" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/password" baseUrl="https://api.moxon.dev" />
 
 ::: tip Cas d'utilisation
 Générez des mots de passe sécurisés lors de la création de comptes, produisez des passphrases pour une mémorisation facilitée, testez une interface de force de mot de passe, ou alimentez des fixtures de test avec de vrais identifiants réalistes.

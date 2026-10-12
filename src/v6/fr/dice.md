@@ -2,7 +2,7 @@
 
 L'endpoint `/dice` lance des dés en notation RPG (NdX ou NdX+M).
 
-<Endpoint method="get" path="/dice" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/dice" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

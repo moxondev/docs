@@ -2,7 +2,7 @@
 
 The `/ip` endpoint analyzes an IPv4 or IPv6 address and returns its type, class, binary representation, decimal value, and reverse DNS notation. If no address is provided, the client's own IP is analyzed.
 
-<Endpoint method="get" path="/ip" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/ip" baseUrl="https://api.moxon.dev" />
 
 ::: tip Use Cases
 Determine whether an IP is public or private, inspect the binary and decimal form of an address, generate the reverse DNS record for PTR lookups, or identify the address class for network planning.

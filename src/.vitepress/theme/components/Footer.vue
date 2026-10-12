@@ -12,7 +12,7 @@ const year = new Date().getFullYear();
 <template>
     <footer :class="['site-footer', { 'has-sidebar': hasSidebar }]">
         <div class="site-footer-inner">
-            <span class="site-footer-copy">&copy; {{ year }} <a href="/">docs.sylvain.sh</a></span>
+            <span class="site-footer-copy">&copy; {{ year }} <a href="/">moxon.dev</a></span>
             <nav class="site-footer-links">
                 <a :href="`/${version}/${lang}/changelog`">{{ t('footer.changelog', lang) }}</a>
                 <span class="site-footer-dot" />

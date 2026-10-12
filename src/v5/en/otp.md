@@ -2,7 +2,7 @@
 
 The `/otp` endpoint generates and verifies one-time passwords (TOTP/HOTP), compatible with Google Authenticator and Aegis.
 
-<Endpoint method="post" path="/otp" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/otp" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

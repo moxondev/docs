@@ -2,7 +2,7 @@
 
 The `/address` endpoint generates one or more fictional postal addresses for a given country. Each address includes a street, city, zip code, region, and country name. If no country is specified, one is picked at random.
 
-<Endpoint method="get" path="/address" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/address" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

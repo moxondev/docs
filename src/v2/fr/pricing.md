@@ -16,7 +16,7 @@ Si vous souhaitez dépasser cette limite, vous devez utiliser un token d'authent
       <li><strong>336 000</strong> requêtes/semaine</li>
       <li><strong>~1.4M</strong> requêtes/mois</li>
     </ul>
-    <a href="https://api.sylvain.sh" class="pricing-button" target="_blank">Commencer</a>
+    <a href="https://api.moxon.dev" class="pricing-button" target="_blank">Commencer</a>
   </div>
 
   <div class="pricing-card">
@@ -28,7 +28,7 @@ Si vous souhaitez dépasser cette limite, vous devez utiliser un token d'authent
       <li><strong>588 000</strong> requêtes/semaine</li>
       <li><strong>~2.5M</strong> requêtes/mois</li>
     </ul>
-    <a href="https://store.sylvain.sh/join" class="pricing-button" target="_blank">Acheter</a>
+    <a href="https://store.moxon.dev/join" class="pricing-button" target="_blank">Acheter</a>
   </div>
 
   <div class="pricing-card recommended">
@@ -41,7 +41,7 @@ Si vous souhaitez dépasser cette limite, vous devez utiliser un token d'authent
       <li><strong>1 008 000</strong> requêtes/semaine</li>
       <li><strong>~4.2M</strong> requêtes/mois</li>
     </ul>
-    <a href="https://store.sylvain.sh/join" class="pricing-button" target="_blank">Acheter</a>
+    <a href="https://store.moxon.dev/join" class="pricing-button" target="_blank">Acheter</a>
   </div>
 
   <div class="pricing-card">
@@ -53,7 +53,7 @@ Si vous souhaitez dépasser cette limite, vous devez utiliser un token d'authent
       <li><strong>1 680 000</strong> requêtes/semaine</li>
       <li><strong>~7M</strong> requêtes/mois</li>
     </ul>
-    <a href="https://store.sylvain.sh/join" class="pricing-button" target="_blank">Acheter</a>
+    <a href="https://store.moxon.dev/join" class="pricing-button" target="_blank">Acheter</a>
   </div>
 </div>
 
@@ -66,7 +66,7 @@ Si vous souhaitez un nombre de requêtes supérieur à 10 000 par heure ou un ta
 Pour utiliser votre clé API, incluez-la dans l'en-tête `Authorization` :
 
 ```bash
-curl -H "Authorization: Bearer VOTRE_CLE_API" https://api.sylvain.sh/v2/infos
+curl -H "Authorization: Bearer VOTRE_CLE_API" https://api.moxon.dev/v2/infos
 ```
 
 ### Réponse d'erreur

@@ -18,13 +18,11 @@ export default defineConfig({
 
     head: [
         // Favicon
-        ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
-        ['link', { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico', sizes: '48x48' }],
-        ['link', { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' }],
-        ['link', { rel: 'manifest', href: '/site.webmanifest' }],
+        ['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }],
+        ['link', { rel: 'apple-touch-icon', href: '/logo.png' }],
 
         // Theme
-        ['meta', { name: 'theme-color', content: '#fde68a' }],
+        ['meta', { name: 'theme-color', content: '#5c7cfa' }],
 
         // Open Graph
         ['meta', { property: 'og:type', content: 'website' }],
@@ -39,7 +37,7 @@ export default defineConfig({
                     'A comprehensive collection of utility endpoints for developers. Algorithms, chat, games, QR codes, and more.',
             },
         ],
-        ['meta', { property: 'og:image', content: 'https://moxon.dev/og-image.png' }],
+        ['meta', { property: 'og:image', content: 'https://moxon.dev/logo.png' }],
 
         // Twitter Card
         ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
@@ -53,7 +51,7 @@ export default defineConfig({
                     'A comprehensive collection of utility endpoints for developers. Algorithms, chat, games, QR codes, and more.',
             },
         ],
-        ['meta', { name: 'twitter:image', content: 'https://moxon.dev/og-image.png' }],
+        ['meta', { name: 'twitter:image', content: 'https://moxon.dev/logo.png' }],
 
         // Google Structured Data
         [

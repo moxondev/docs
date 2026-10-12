@@ -23,11 +23,11 @@ The endpoint returns a PNG image of the generated captcha.
 ## cURL
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v1/captcha?text=test1234?ABCD" --output captcha.png
+curl -X GET "https://api.moxon.dev/v1/captcha?text=test1234?ABCD" --output captcha.png
 ```
 
 ::: tip Example
-[See an example of the generated captcha](https://api.sylvain.sh/v1/captcha?text=test1234?ABCD)
+[See an example of the generated captcha](https://api.moxon.dev/v1/captcha?text=test1234?ABCD)
 :::
 
 ## Error Handling

@@ -16,7 +16,7 @@ If you wish to exceed this limit, you must use an authentication token. The auth
       <li><strong>336,000</strong> requests/week</li>
       <li><strong>~1.4M</strong> requests/month</li>
     </ul>
-    <a href="https://api.sylvain.sh" class="pricing-button" target="_blank">Get Started</a>
+    <a href="https://api.moxon.dev" class="pricing-button" target="_blank">Get Started</a>
   </div>
 
   <div class="pricing-card">
@@ -28,7 +28,7 @@ If you wish to exceed this limit, you must use an authentication token. The auth
       <li><strong>588,000</strong> requests/week</li>
       <li><strong>~2.5M</strong> requests/month</li>
     </ul>
-    <a href="https://store.sylvain.sh/join" class="pricing-button" target="_blank">Purchase</a>
+    <a href="https://store.moxon.dev/join" class="pricing-button" target="_blank">Purchase</a>
   </div>
 
   <div class="pricing-card recommended">
@@ -41,7 +41,7 @@ If you wish to exceed this limit, you must use an authentication token. The auth
       <li><strong>1,008,000</strong> requests/week</li>
       <li><strong>~4.2M</strong> requests/month</li>
     </ul>
-    <a href="https://store.sylvain.sh/join" class="pricing-button" target="_blank">Purchase</a>
+    <a href="https://store.moxon.dev/join" class="pricing-button" target="_blank">Purchase</a>
   </div>
 
   <div class="pricing-card">
@@ -53,7 +53,7 @@ If you wish to exceed this limit, you must use an authentication token. The auth
       <li><strong>1,680,000</strong> requests/week</li>
       <li><strong>~7M</strong> requests/month</li>
     </ul>
-    <a href="https://store.sylvain.sh/join" class="pricing-button" target="_blank">Purchase</a>
+    <a href="https://store.moxon.dev/join" class="pricing-button" target="_blank">Purchase</a>
   </div>
 </div>
 
@@ -66,7 +66,7 @@ If you need more than 10,000 requests per hour or a custom pricing plan, send an
 To use your API key, include it in the `Authorization` header:
 
 ```bash
-curl -H "Authorization: Bearer YOUR_API_KEY" https://api.sylvain.sh/v1/infos
+curl -H "Authorization: Bearer YOUR_API_KEY" https://api.moxon.dev/v1/infos
 ```
 
 ### Error Response

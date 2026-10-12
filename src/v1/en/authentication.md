@@ -7,7 +7,7 @@ The moxon API uses Bearer token authentication to identify users with premium pl
 To authenticate your requests, include your API key in the `Authorization` header:
 
 ```bash
-curl -H "Authorization: Bearer YOUR_API_KEY" https://api.sylvain.sh/v1/infos
+curl -H "Authorization: Bearer YOUR_API_KEY" https://api.moxon.dev/v1/infos
 ```
 
 ## Rate Limits

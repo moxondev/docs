@@ -2,7 +2,7 @@
 
 L'endpoint `/chat` fournit un système de messagerie en temps réel avec support pour les canaux publics et privés. Les messages sont stockés pendant 1 heure.
 
-<Endpoint method="post" path="/chat" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/chat" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

@@ -2,7 +2,7 @@
 
 L'endpoint `/personal` génère des informations aléatoires sur une personne. Nom, email, localisation, numéro de téléphone, profession et bien plus sont générés. Cet endpoint ne nécessite aucune option.
 
-<Endpoint method="get" path="/personal" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/personal" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

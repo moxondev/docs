@@ -2,7 +2,7 @@
 
 L'endpoint `/chat/:token` efface tous les messages d'un chat privé.
 
-<Endpoint method="delete" path="/chat/:token" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="delete" path="/chat/:token" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

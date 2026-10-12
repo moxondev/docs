@@ -2,7 +2,7 @@
 
 The `/barcode` endpoint generates barcode images from a data string. It supports several standard barcode formats and renders the result as SVG or PNG.
 
-<Endpoint method="get" path="/barcode" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/barcode" baseUrl="https://api.moxon.dev" />
 
 ::: info Format details
 
@@ -28,13 +28,13 @@ The `/barcode` endpoint generates barcode images from a data string. It supports
 By default (`format=svg`), the endpoint returns an **inline SVG image** (`Content-Type: image/svg+xml`), usable in an `<img>` tag:
 
 ```html
-<img src="https://api.sylvain.sh/v6/barcode?data=Hello123" alt="Barcode" />
+<img src="https://api.moxon.dev/v6/barcode?data=Hello123" alt="Barcode" />
 ```
 
 With `format=png`, the response is a raw PNG buffer (`Content-Type: image/png`):
 
 ```html
-<img src="https://api.sylvain.sh/v6/barcode?data=Hello123&format=png" alt="Barcode" />
+<img src="https://api.moxon.dev/v6/barcode?data=Hello123&format=png" alt="Barcode" />
 ```
 
 ## Code Examples

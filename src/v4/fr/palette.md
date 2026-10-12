@@ -2,7 +2,7 @@
 
 L'endpoint `/palette` génère une palette de couleurs harmonieuse à partir d'une couleur HEX.
 
-<Endpoint method="get" path="/palette" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/palette" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

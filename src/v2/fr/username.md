@@ -27,5 +27,5 @@ GET /v2/username
 ## cURL
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v2/username"
+curl -X GET "https://api.moxon.dev/v2/username"
 ```

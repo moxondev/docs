@@ -2,7 +2,7 @@
 
 L'endpoint `/pow` vérifie un défi de preuve de travail résolu : renvoyez le jeton émis avec le défi, accompagné du nonce trouvé.
 
-<Endpoint method="post" path="/pow" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/pow" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

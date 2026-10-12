@@ -2,7 +2,7 @@
 
 L'endpoint `/semver` analyse, incrémente et compare des versions sémantiques selon la spécification semver.org.
 
-<Endpoint method="get" path="/semver" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/semver" baseUrl="https://api.moxon.dev" />
 
 ::: info Comment ça marche ?
 Une version doit respecter la grammaire officielle `MAJOR.MINOR.PATCH`, suivie éventuellement de `-prerelease` et `+build`. Les zéros initiaux sont refusés, donc `01.2.3` est invalide.

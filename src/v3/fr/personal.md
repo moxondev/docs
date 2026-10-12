@@ -88,7 +88,7 @@ GET /v3/personal
 ## cURL
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v3/personal"
+curl -X GET "https://api.moxon.dev/v3/personal"
 ```
 
 ::: warning Note

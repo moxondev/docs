@@ -2,7 +2,7 @@
 
 L'endpoint `/regex` teste un pattern d'expression régulière contre une chaîne de texte et retourne les correspondances structurées avec leurs groupes capturants et groupes nommés.
 
-<Endpoint method="get" path="/regex" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/regex" baseUrl="https://api.moxon.dev" />
 
 ::: tip Cas d'utilisation
 Validez des patterns regex lors du développement, extrayez des données structurées depuis du texte brut, déboguez des groupes capturants complexes, ou construisez des aperçus de recherche basés sur des regex sans exécuter de code côté serveur.

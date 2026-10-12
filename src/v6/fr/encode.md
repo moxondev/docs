@@ -2,7 +2,7 @@
 
 L'endpoint `/encode` encode ou décode du texte dans différents formats.
 
-<Endpoint method="get" path="/encode" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/encode" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

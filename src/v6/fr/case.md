@@ -2,7 +2,7 @@
 
 L'endpoint `/case` convertit un texte entre 9 formats de casse avec une tokenisation universelle (split camelCase, `_`, `-`, `.`, espaces).
 
-<Endpoint method="get" path="/case" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/case" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

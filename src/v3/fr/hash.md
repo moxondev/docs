@@ -96,7 +96,7 @@ L'endpoint `/hash` convertit une chaîne de caractères en hash, c'est-à-dire u
 ## Exemple de requête
 
 ```bash
-curl -X POST -d "text=hello&method=sha512" "https://api.sylvain.sh/v3/hash"
+curl -X POST -d "text=hello&method=sha512" "https://api.moxon.dev/v3/hash"
 ```
 
 ## Réponse

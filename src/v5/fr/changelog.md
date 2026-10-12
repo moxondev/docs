@@ -4,17 +4,17 @@
 
 ### Utiliser `/latest` (recommandé)
 
-Utilisez `api.sylvain.sh/latest` pour toujours pointer vers la dernière version :
+Utilisez `api.moxon.dev/latest` pour toujours pointer vers la dernière version :
 
 ```
-https://api.sylvain.sh/latest/infos
-https://api.sylvain.sh/latest/evaluate
+https://api.moxon.dev/latest/infos
+https://api.moxon.dev/latest/evaluate
 ```
 
 Les chemins imbriqués et les paramètres de requête sont préservés par la redirection :
 
 ```
-https://api.sylvain.sh/latest/chat/private?session=abc
+https://api.moxon.dev/latest/chat/private?session=abc
 # redirige vers /v5/chat/private?session=abc
 ```
 
@@ -30,10 +30,10 @@ Remplacez `/v4/` par `/v5/` dans vos requêtes :
 
 ```
 # Avant
-https://api.sylvain.sh/v4/infos
+https://api.moxon.dev/v4/infos
 
 # Après
-https://api.sylvain.sh/v5/infos
+https://api.moxon.dev/v5/infos
 ```
 
 ### Compatibilité des endpoints

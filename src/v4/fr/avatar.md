@@ -2,7 +2,7 @@
 
 L'endpoint `/avatar` génère des images d'avatars déterministes à partir d'une chaîne seed. Le même seed produit toujours la même image, ce qui permet des représentations d'utilisateurs cohérentes.
 
-<Endpoint method="get" path="/avatar" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/avatar" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 
@@ -19,13 +19,13 @@ L'endpoint `/avatar` génère des images d'avatars déterministes à partir d'un
 Par défaut (`format=png`), l'endpoint retourne une **image PNG directe** (`Content-Type: image/png`), utilisable dans une balise `<img>` :
 
 ```html
-<img src="https://api.sylvain.sh/v4/avatar?seed=alice" alt="Avatar" />
+<img src="https://api.moxon.dev/v4/avatar?seed=alice" alt="Avatar" />
 ```
 
 Avec `format=svg`, la réponse est un SVG inline (`Content-Type: image/svg+xml`) :
 
 ```html
-<img src="https://api.sylvain.sh/v4/avatar?seed=alice&format=svg" alt="Avatar" />
+<img src="https://api.moxon.dev/v4/avatar?seed=alice&format=svg" alt="Avatar" />
 ```
 
 ## Exemples de code

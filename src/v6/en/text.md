@@ -2,7 +2,7 @@
 
 The `/text` endpoint provides text manipulation and generation utilities.
 
-<Endpoint method="get" path="/text" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/text" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

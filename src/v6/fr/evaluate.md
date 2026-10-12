@@ -2,7 +2,7 @@
 
 L'endpoint `/evaluate` évalue une expression mathématique de manière sécurisée et retourne son résultat. Il utilise un parseur Pratt — aucun `eval()` n'est jamais appelé.
 
-<Endpoint method="get" path="/evaluate" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/evaluate" baseUrl="https://api.moxon.dev" />
 
 ::: info Comment ça marche ?
 Les expressions sont tokenisées puis parsées récursivement via des binding powers (Pratt parsing). Le résultat est calculé directement depuis l'AST — pas d'`eval()`, pas de `Function()`. Deux constantes sont disponibles : `pi` (≈ 3.14159…) et `e` (≈ 2.71828…). La profondeur de récursion est limitée à 100 et la longueur de l'expression à 500 caractères.

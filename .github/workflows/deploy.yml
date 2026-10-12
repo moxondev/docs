@@ -1,4 +1,4 @@
-name: Deploy docs.sylvain.sh
+name: Deploy moxon.dev
 
 on:
     push:

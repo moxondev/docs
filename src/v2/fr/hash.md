@@ -69,7 +69,7 @@ L'endpoint `/hash` permet de convertir un texte en hash, c'est-à-dire en un cod
 ## Exemple de requête
 
 ```bash
-curl -X POST -d "text=hello&method=sha512" "https://api.sylvain.sh/v2/hash"
+curl -X POST -d "text=hello&method=sha512" "https://api.moxon.dev/v2/hash"
 ```
 
 ## Réponse

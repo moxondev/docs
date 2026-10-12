@@ -9,7 +9,7 @@ Welcome to the **moxon API v4** documentation. This is the previous stable versi
 All API requests should be made to:
 
 ```
-https://api.sylvain.sh/v4
+https://api.moxon.dev/v4
 ```
 
 ## Quick Example

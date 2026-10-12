@@ -14,7 +14,7 @@ The `/tic-tac-toe/fetch` endpoint allows you to retrieve an ongoing Tic-Tac-Toe 
 ## Request Example
 
 ```bash
-curl -X POST -d "username=User1&game=VWXYZ" "https://api.sylvain.sh/v2/tic-tac-toe/fetch"
+curl -X POST -d "username=User1&game=VWXYZ" "https://api.moxon.dev/v2/tic-tac-toe/fetch"
 ```
 
 ## Response

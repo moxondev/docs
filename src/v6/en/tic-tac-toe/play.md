@@ -2,7 +2,7 @@
 
 The `/tic-tac-toe/play` endpoint plays a move in an existing game using a REST method.
 
-<Endpoint method="post" path="/tic-tac-toe/play" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/tic-tac-toe/play" baseUrl="https://api.moxon.dev" />
 
 ::: warning Changed in 6.0.0
 This endpoint moved from `PATCH` to `POST`, and its identifier left the URL: `game` is now sent in the JSON body. `PATCH` and `DELETE` no longer exist anywhere in the API.

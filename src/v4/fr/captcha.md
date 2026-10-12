@@ -2,7 +2,7 @@
 
 L'endpoint `/captcha` génère une image CAPTCHA. Vous pouvez fournir votre propre texte ou laisser l'API en générer un aléatoirement.
 
-<Endpoint method="get" path="/captcha" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/captcha" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 
@@ -30,7 +30,7 @@ Lorsqu'aucun `text` n'est fourni, la chaîne auto-générée évite les caractè
 <Examples method="get" path="/captcha" :params="{ length: '8', width: '400', noise: 'high', bg: 'f0f0f0' }" />
 
 ::: tip Exemple
-[Voir un exemple avec texte auto-généré](https://api.sylvain.sh/v4/captcha?length=8&noise=high)
+[Voir un exemple avec texte auto-généré](https://api.moxon.dev/v4/captcha?length=8&noise=high)
 :::
 
 ## Essayer

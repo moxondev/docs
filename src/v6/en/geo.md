@@ -2,7 +2,7 @@
 
 The `/geo` endpoint calculates the distance and bearing between two GPS coordinates using the Haversine formula.
 
-<Endpoint method="get" path="/geo" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/geo" baseUrl="https://api.moxon.dev" />
 
 ::: info How it works?
 The Haversine formula computes the great-circle distance between two points on a sphere — the shortest path over the Earth's surface, ignoring elevation. Bearing is the initial compass heading from point A to point B, expressed in degrees (0° = North) and as a cardinal direction.

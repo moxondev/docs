@@ -9,7 +9,7 @@ Welcome to the **moxon API v6** documentation. This API provides a comprehensive
 All API requests should be made to:
 
 ```
-https://api.sylvain.sh/v6
+https://api.moxon.dev/v6
 ```
 
 ## Quick Example

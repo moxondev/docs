@@ -2,7 +2,7 @@
 
 L'endpoint `/matrix` effectue des opérations mathématiques sur des matrices. Il supporte l'arithmétique, la multiplication scalaire, la transposition et les opérations d'algèbre linéaire sur des matrices allant jusqu'à 20×20.
 
-<Endpoint method="post" path="/matrix" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/matrix" baseUrl="https://api.moxon.dev" />
 
 ::: info Comment ça marche ?
 Le déterminant est calculé par élimination gaussienne avec pivot partiel. L'inverse utilise l'élimination de Gauss-Jordan sur une matrice augmentée. Toutes les entrées sont validées : les valeurs doivent être des nombres finis, les lignes doivent avoir une longueur uniforme, et la matrice ne doit pas dépasser 20×20.

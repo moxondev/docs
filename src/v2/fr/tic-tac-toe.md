@@ -16,7 +16,7 @@ L'endpoint `/tic-tac-toe` permet de jouer et de stocker une partie de morpion en
 ## Exemple de requête
 
 ```bash
-curl -X POST -d "username=Utilisateur1&move=2-2&session=abc123&game=VWXYZ" "https://api.sylvain.sh/v2/tic-tac-toe"
+curl -X POST -d "username=Utilisateur1&move=2-2&session=abc123&game=VWXYZ" "https://api.moxon.dev/v2/tic-tac-toe"
 ```
 
 ## Réponse

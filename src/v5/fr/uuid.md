@@ -2,7 +2,7 @@
 
 L'endpoint `/uuid` génère des UUID v4 aléatoires, ou analyse un UUID existant pour en extraire la version et la variante.
 
-<Endpoint method="get" path="/uuid" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/uuid" baseUrl="https://api.moxon.dev" />
 
 ::: info Comment ça marche ?
 L'endpoint a deux modes. Lorsque `uuid` est fourni, il passe en analyse et `count` est ignoré. Sinon, il génère `count` UUID v4 aléatoires (un seul par défaut). Un UUID mal formé n'est pas une erreur : il est retourné avec `valid: false` et des composants à `null`.

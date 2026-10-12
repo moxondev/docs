@@ -2,7 +2,7 @@
 
 L'endpoint `/algorithms` fournit plusieurs algorithmes à utiliser comme paramètres. Vous pouvez entrer une ou deux valeurs selon l'algorithme.
 
-<Endpoint method="get" path="/algorithms" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/algorithms" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

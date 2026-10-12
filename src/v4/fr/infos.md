@@ -1,8 +1,8 @@
 # Informations sur l'API
 
-L'endpoint `/infos` fournit des informations générales sur l'[API](https://api.sylvain.sh). Cet endpoint ne nécessite aucune option.
+L'endpoint `/infos` fournit des informations générales sur l'[API](https://api.moxon.dev). Cet endpoint ne nécessite aucune option.
 
-<Endpoint method="get" path="/infos" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/infos" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

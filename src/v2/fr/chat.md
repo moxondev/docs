@@ -39,7 +39,7 @@ GET /v2/chat
 ### cURL
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v2/chat"
+curl -X GET "https://api.moxon.dev/v2/chat"
 ```
 
 ---
@@ -62,7 +62,7 @@ L'endpoint `/chat` permet l'envoi d'un message vers le chat global ou un chat pr
 ### Exemple de requête
 
 ```bash
-curl -X POST -d "username=Utilisateur3&message=Ça va ?&session=abc123&token=41a43360-9874-4c7a-9ca8-eec29e765a0e" "https://api.sylvain.sh/v2/chat"
+curl -X POST -d "username=Utilisateur3&message=Ça va ?&session=abc123&token=41a43360-9874-4c7a-9ca8-eec29e765a0e" "https://api.moxon.dev/v2/chat"
 ```
 
 ### Réponse

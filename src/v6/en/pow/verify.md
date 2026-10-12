@@ -2,7 +2,7 @@
 
 The `/pow` endpoint verifies a solved proof-of-work challenge: send back the token issued with the challenge, along with the nonce you found.
 
-<Endpoint method="post" path="/pow" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/pow" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

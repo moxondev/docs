@@ -44,7 +44,7 @@ len=24&type=alphanum
 ## cURL
 
 ```bash
-curl -X POST -d "len=24&type=alphanum" "https://api.sylvain.sh/v1/token"
+curl -X POST -d "len=24&type=alphanum" "https://api.moxon.dev/v1/token"
 ```
 
 ## Gestion des erreurs

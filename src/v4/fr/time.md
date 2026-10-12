@@ -2,7 +2,7 @@
 
 L'endpoint `/time` permet de récupérer des informations sur le temps en fonction de différents paramètres. Vous pouvez obtenir l'heure actuelle ou une heure aléatoire entre une plage spécifiée, dans différents formats et fuseaux horaires.
 
-<Endpoint method="get" path="/time" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/time" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

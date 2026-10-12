@@ -2,7 +2,7 @@
 
 L'endpoint `/credit` génère des numéros de cartes bancaires fictifs à des fins de test. Tous les numéros passent l'algorithme de checksum Luhn et utilisent les préfixes IIN corrects pour chaque marque.
 
-<Endpoint method="get" path="/credit" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/credit" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

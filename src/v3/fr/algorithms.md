@@ -44,7 +44,7 @@ GET /v3/algorithms?method=gcd&value=17&value2=493
 ## cURL
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v3/algorithms?method=gcd&value=17&value2=493"
+curl -X GET "https://api.moxon.dev/v3/algorithms?method=gcd&value=17&value2=493"
 ```
 
 ## Gestion des erreurs

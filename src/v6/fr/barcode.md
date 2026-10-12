@@ -2,7 +2,7 @@
 
 L'endpoint `/barcode` génère des images de codes-barres à partir d'une chaîne de données. Il supporte plusieurs formats standards et retourne le résultat en SVG ou PNG.
 
-<Endpoint method="get" path="/barcode" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/barcode" baseUrl="https://api.moxon.dev" />
 
 ::: info Détails des formats
 
@@ -28,13 +28,13 @@ L'endpoint `/barcode` génère des images de codes-barres à partir d'une chaîn
 Par défaut (`format=svg`), l'endpoint retourne une **image SVG inline** (`Content-Type: image/svg+xml`), utilisable dans une balise `<img>` :
 
 ```html
-<img src="https://api.sylvain.sh/v6/barcode?data=Hello123" alt="Code-barres" />
+<img src="https://api.moxon.dev/v6/barcode?data=Hello123" alt="Code-barres" />
 ```
 
 Avec `format=png`, la réponse est un buffer PNG brut (`Content-Type: image/png`) :
 
 ```html
-<img src="https://api.sylvain.sh/v6/barcode?data=Hello123&format=png" alt="Code-barres" />
+<img src="https://api.moxon.dev/v6/barcode?data=Hello123&format=png" alt="Code-barres" />
 ```
 
 ## Exemples de code

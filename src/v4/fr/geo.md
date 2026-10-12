@@ -2,7 +2,7 @@
 
 L'endpoint `/geo` calcule la distance et le cap entre deux coordonnées GPS en utilisant la formule de Haversine.
 
-<Endpoint method="get" path="/geo" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/geo" baseUrl="https://api.moxon.dev" />
 
 ::: info Comment ça marche ?
 La formule de Haversine calcule la distance orthodromique entre deux points sur une sphère — le trajet le plus court à la surface de la Terre, sans tenir compte du relief. Le cap est la direction initiale de la boussole du point A vers le point B, exprimée en degrés (0° = Nord) et en direction cardinale.

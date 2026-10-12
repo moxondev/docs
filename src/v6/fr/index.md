@@ -9,7 +9,7 @@ Bienvenue dans la documentation de l'**API moxon v6**. Cette API fournit une col
 Toutes les requêtes API doivent être effectuées vers :
 
 ```
-https://api.sylvain.sh/v6
+https://api.moxon.dev/v6
 ```
 
 ## Exemple rapide

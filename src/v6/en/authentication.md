@@ -7,7 +7,7 @@ The moxon API uses Bearer token authentication to identify users with premium pl
 To authenticate your requests, include your API key in the `Authorization` header:
 
 ```bash
-curl -H "Authorization: Bearer YOUR_API_KEY" https://api.sylvain.sh/v6/infos
+curl -H "Authorization: Bearer YOUR_API_KEY" https://api.moxon.dev/v6/infos
 ```
 
 ## Checking Your Plan
@@ -15,7 +15,7 @@ curl -H "Authorization: Bearer YOUR_API_KEY" https://api.sylvain.sh/v6/infos
 Use `GET /auth` to check which tier a token resolves to, along with its limits:
 
 ```bash
-curl -H "Authorization: Bearer YOUR_API_KEY" https://api.sylvain.sh/auth
+curl -H "Authorization: Bearer YOUR_API_KEY" https://api.moxon.dev/auth
 ```
 
 ```json

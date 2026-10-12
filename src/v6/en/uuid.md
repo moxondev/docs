@@ -2,7 +2,7 @@
 
 The `/uuid` endpoint generates random UUID v4 values, or parses an existing UUID to extract its version and variant.
 
-<Endpoint method="get" path="/uuid" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/uuid" baseUrl="https://api.moxon.dev" />
 
 ::: info How it works?
 The endpoint has two modes. When `uuid` is provided, it switches to parsing and `count` is ignored. Otherwise it generates `count` random UUID v4 values (a single one by default). A malformed UUID is not an error: it is returned with `valid: false` and `null` components.

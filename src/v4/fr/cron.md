@@ -2,7 +2,7 @@
 
 L'endpoint `/cron` analyse une expression cron à 5 champs et retourne une description lisible ainsi que les prochains timestamps d'exécution planifiés.
 
-<Endpoint method="get" path="/cron" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/cron" baseUrl="https://api.moxon.dev" />
 
 ::: tip Cas d'utilisation
 Prévisualisez les prochaines exécutions avant de planifier une tâche, affichez une description lisible d'une expression cron dans une interface, déboguez les problèmes de timing cron selon les fuseaux horaires, ou validez qu'une expression se déclenche aux intervalles attendus.

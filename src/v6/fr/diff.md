@@ -2,7 +2,7 @@
 
 L'endpoint `/diff` compare deux textes et retourne une liste ordonnée des changements, ligne par ligne ou mot par mot.
 
-<Endpoint method="post" path="/diff" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/diff" baseUrl="https://api.moxon.dev" />
 
 ::: info Comment ça marche ?
 La comparaison repose sur l'algorithme de la plus longue sous-séquence commune (LCS) : il recherche le plus grand ensemble de segments partagés par les deux textes dans le même ordre, et tout ce qui en sort est signalé comme ajouté ou supprimé. En mode `line`, les textes sont découpés aux sauts de ligne, les lignes vides étant conservées ; en mode `word`, ils sont découpés sur les espaces et les segments vides sont ignorés.

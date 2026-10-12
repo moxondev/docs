@@ -1,6 +1,6 @@
 # API Information
 
-The `/infos` endpoint provides general information about the [API](https://api.sylvain.sh). This endpoint does not require any options.
+The `/infos` endpoint provides general information about the [API](https://api.moxon.dev). This endpoint does not require any options.
 
 <Endpoint method="get" path="/infos" />
 
@@ -39,5 +39,5 @@ GET /v3/infos
 ## cURL
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v3/infos"
+curl -X GET "https://api.moxon.dev/v3/infos"
 ```

@@ -2,7 +2,7 @@
 
 L'endpoint `/asymmetric` effectue la génération de clés RSA asymétriques, le chiffrement et le déchiffrement.
 
-<Endpoint method="post" path="/asymmetric" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/asymmetric" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

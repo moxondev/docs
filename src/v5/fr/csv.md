@@ -2,7 +2,7 @@
 
 L'endpoint `/csv` convertit entre CSV et JSON : `parse` transforme un texte CSV en tableau d'objets, `format` fait l'inverse.
 
-<Endpoint method="post" path="/csv" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/csv" baseUrl="https://api.moxon.dev" />
 
 ::: info Comment ça marche ?
 Le parseur respecte les champs entre guillemets, y compris les guillemets échappés (`""`) et les sauts de ligne à l'intérieur d'un champ entre guillemets. Les fins de ligne CRLF et CR sont normalisées en LF avant l'analyse.

@@ -2,7 +2,7 @@
 
 The `/domain` endpoint generates various random data about a domain to create a complete profile. This endpoint does not require any options.
 
-<Endpoint method="get" path="/domain" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/domain" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

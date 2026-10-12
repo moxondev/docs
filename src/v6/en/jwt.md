@@ -2,7 +2,7 @@
 
 The `/jwt` endpoint decodes a JSON Web Token without verifying the signature. Expiration is detected via the `exp` claim.
 
-<Endpoint method="post" path="/jwt" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="post" path="/jwt" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

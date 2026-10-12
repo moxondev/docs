@@ -2,7 +2,7 @@
 
 The `/password` endpoint generates one or more passwords using cryptographically secure randomness (`crypto.randomInt`). Supports two modes: `random` (character-based) and `passphrase` (word-based). Each response includes the generated passwords along with their strength rating and entropy score.
 
-<Endpoint method="get" path="/password" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/password" baseUrl="https://api.moxon.dev" />
 
 ::: tip Use Cases
 Generate secure passwords for users during account creation, produce passphrases for easier memorization, test password strength UI, or seed test fixtures with realistic credentials.

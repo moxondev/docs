@@ -26,5 +26,5 @@ GET /v1/color
 ## cURL
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v1/color"
+curl -X GET "https://api.moxon.dev/v1/color"
 ```

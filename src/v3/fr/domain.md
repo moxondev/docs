@@ -19,7 +19,7 @@ GET /v3/domain
 ```json
 {
     "domain": "sylvain.sh",
-    "full_domain": "api.sylvain.sh",
+    "full_domain": "api.moxon.dev",
     "ip_address": ["216.24.57.4", "216.24.57.252"],
     "ssl_certified": true,
     "hosting_provider": "Render",
@@ -65,5 +65,5 @@ GET /v3/domain
 ## cURL
 
 ```bash
-curl -X GET "https://api.sylvain.sh/v3/domain"
+curl -X GET "https://api.moxon.dev/v3/domain"
 ```

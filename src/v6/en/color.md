@@ -2,7 +2,7 @@
 
 The `/color` endpoint generates a color in multiple formats. You can provide a HEX color to convert, or omit it to get a random color.
 
-<Endpoint method="get" path="/color" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/color" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

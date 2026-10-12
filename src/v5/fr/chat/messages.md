@@ -2,7 +2,7 @@
 
 L'endpoint `/chat` récupère tous les messages envoyés durant la dernière heure. Cet endpoint ne nécessite aucune option.
 
-<Endpoint method="get" path="/chat" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/chat" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

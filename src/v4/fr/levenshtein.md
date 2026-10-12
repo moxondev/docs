@@ -2,7 +2,7 @@
 
 L'endpoint `/levenshtein` permet de calculer la distance de Levenshtein entre deux chaînes de caractères. Cette distance représente le nombre minimum d'opérations nécessaires pour transformer une chaîne en une autre.
 
-<Endpoint method="get" path="/levenshtein" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/levenshtein" baseUrl="https://api.moxon.dev" />
 
 ::: info Comment ça marche ?
 La distance de Levenshtein compte le nombre minimum d'éditions (insertions, suppressions, substitutions) pour transformer une chaîne en une autre. Utile pour la vérification orthographique, la correspondance approximative, l'analyse ADN et la détection de plagiat.

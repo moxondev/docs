@@ -2,7 +2,7 @@
 
 The `/tic-tac-toe/:game` endpoint plays a move in an existing game using a REST method.
 
-<Endpoint method="patch" path="/tic-tac-toe/:game" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="patch" path="/tic-tac-toe/:game" baseUrl="https://api.moxon.dev" />
 
 ## Parameters
 

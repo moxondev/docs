@@ -2,7 +2,7 @@
 
 L'endpoint `/url` décompose une URL en ses composants structurels : schéma, hôte, port, chemin, paramètres de requête et fragment. Les paramètres de requête dupliqués sont regroupés dans un tableau.
 
-<Endpoint method="get" path="/url" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/url" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

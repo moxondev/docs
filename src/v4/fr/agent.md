@@ -2,7 +2,7 @@
 
 L'endpoint `/agent` analyse un User-Agent et retourne des informations structurées sur le navigateur, le système d'exploitation, l'appareil, le moteur de rendu et si le client est un bot. Si aucun UA n'est fourni, le header `User-Agent` de la requête est utilisé.
 
-<Endpoint method="get" path="/agent" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/agent" baseUrl="https://api.moxon.dev" />
 
 ::: tip Cas d'utilisation
 Détectez le navigateur et le système de vos visiteurs, identifiez les bots et crawlers, servez du contenu adapté à l'appareil (mobile vs bureau), ou journalisez les métadonnées client structurées à partir de User-Agent bruts.

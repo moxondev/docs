@@ -2,7 +2,7 @@
 
 L'endpoint `/tic-tac-toe/:game` permet d'abandonner une partie (forfait).
 
-<Endpoint method="delete" path="/tic-tac-toe/:game" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="delete" path="/tic-tac-toe/:game" baseUrl="https://api.moxon.dev" />
 
 ## Paramètres
 

@@ -2,7 +2,7 @@
 
 The `/headers` endpoint returns the HTTP headers sent by the client. It is useful for debugging proxies, CORS configurations, and request pipelines. Sensitive headers are automatically redacted.
 
-<Endpoint method="get" path="/headers" baseUrl="https://api.sylvain.sh" />
+<Endpoint method="get" path="/headers" baseUrl="https://api.moxon.dev" />
 
 ::: tip Use Cases
 Inspect what headers your client sends to the server, debug reverse proxy configurations, verify CORS headers, or check if authentication headers are being forwarded correctly.
