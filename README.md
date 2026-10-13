@@ -1,5 +1,5 @@
 <div align="center">
-  <a href="https://moxon.dev"><img src="https://moxon.dev/logo.png" alt="Logo" width="25%" height="auto"/></a>
+  <a href="https://moxon.dev"><img src="https://moxon.dev/icon-512.png" alt="Logo" width="25%" height="auto"/></a>
 
 # Documentation de l'API
 
