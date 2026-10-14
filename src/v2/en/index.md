@@ -23,7 +23,7 @@ curl -X GET "https://api.moxon.dev/v2/infos"
     "endpoints": 17,
     "last_version": "v2",
     "documentation": "https://docs.sylvain.sh",
-    "github": "https://github.com/20syldev/api",
+    "github": "https://github.com/moxondev/api",
     "creation": "November 25th 2024"
 }
 ```
