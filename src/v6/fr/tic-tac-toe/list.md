@@ -5,7 +5,7 @@ L'endpoint `/tic-tac-toe/list` permet de récupérer toutes les parties de morpi
 <Endpoint method="post" path="/tic-tac-toe/list" baseUrl="https://api.moxon.dev" />
 
 ::: info À savoir
-La liste inclut uniquement les parties publiques actuellement en cours (pas terminées). Les parties sont triées par heure de création avec les plus récentes en premier. Les parties privées ne sont jamais incluses dans cette liste pour des raisons de confidentialité. Vous pouvez rejoindre n'importe quelle partie listée en utilisant son ID avec l'endpoint [/tic-tac-toe](../tic-tac-toe).
+La liste inclut uniquement les parties publiques actuellement en cours (pas terminées). Les parties sont triées par heure de création avec les plus récentes en premier. Les parties privées ne sont jamais incluses dans cette liste pour des raisons de confidentialité. Vous pouvez rejoindre n'importe quelle partie listée en utilisant son ID avec l'endpoint [/tic-tac-toe/play](./play) ou [/tic-tac-toe/fetch](./fetch).
 :::
 
 ## Paramètres
@@ -18,18 +18,18 @@ Cet endpoint ne nécessite aucun paramètre. Il retourne toutes les parties publ
 
 ## Champs de réponse
 
-| Champ                  | Type       | Description                                         |
-| ---------------------- | ---------- | --------------------------------------------------- |
-| `message`              | `string`   | Message de confirmation                             |
-| `count`                | `number`   | Nombre de parties publiques disponibles             |
-| `games`                | `object[]` | Tableau d'objets de partie                          |
-| `games[].id`           | `string`   | Identifiant unique de la partie                     |
-| `games[].players`      | `string[]` | Tableau des noms d'utilisateur des joueurs          |
-| `games[].playersCount` | `number`   | Nombre de joueurs actuellement dans la partie (0-2) |
-| `games[].moves`        | `number`   | Nombre de coups joués dans la partie                |
-| `games[].turn`         | `string`   | Nom d'utilisateur du joueur dont c'est le tour      |
-| `games[].status`       | `string`   | Statut actuel de la partie (`waiting` ou `ready`)   |
-| `games[].creation`     | `number`   | Horodatage de création de la partie                 |
+| Champ                  | Type       | Description                                            |
+| ---------------------- | ---------- | ------------------------------------------------------ |
+| `message`              | `string`   | Message de confirmation                                |
+| `count`                | `number`   | Nombre de parties publiques disponibles                |
+| `games`                | `object[]` | Tableau d'objets de partie                             |
+| `games[].id`           | `string`   | Identifiant unique de la partie                        |
+| `games[].players`      | `string[]` | Tableau des noms d'utilisateur des joueurs             |
+| `games[].playersCount` | `number`   | Nombre de joueurs actuellement dans la partie (0-2)    |
+| `games[].moves`        | `number`   | Nombre de coups joués dans la partie                   |
+| `games[].turn`         | `string`   | Nom d'utilisateur du joueur dont c'est le tour         |
+| `games[].status`       | `string`   | Statut actuel de la partie (`waiting` ou `ready`)      |
+| `games[].creation`     | `number`   | Horodatage de création de la partie (en millisecondes) |
 
 ## Valeurs de statut de partie
 
@@ -42,7 +42,12 @@ Cet endpoint ne nécessite aucun paramètre. Il retourne toutes les parties publ
 
 <Try name="Tic-Tac-Toe List" />
 
+## Gestion des erreurs
+
+Cet endpoint ne nécessite aucun paramètre et ne retourne pas d'erreur liée aux paramètres.
+
 ## Endpoints associés
 
-- <Method type="post" sm /> [/v6/tic-tac-toe](../tic-tac-toe) - Endpoint principal du jeu pour effectuer des coups
+- [Morpion en ligne](../tic-tac-toe) - Déroulement d'une partie et migration depuis la v4 et la v5
+- <Method type="post" sm /> [/v6/tic-tac-toe/play](./play) - Jouer un coup
 - <Method type="post" sm /> [/v6/tic-tac-toe/fetch](./fetch) - Récupérer les détails d'une partie spécifique

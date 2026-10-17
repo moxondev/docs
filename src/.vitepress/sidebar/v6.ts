@@ -7,6 +7,7 @@ export const v6 = {
             items: [
                 { text: 'Getting Started', link: '/v6/en/' },
                 { text: 'Authentication', link: '/v6/en/authentication' },
+                { text: 'Manifest', link: '/v6/en/manifest' },
             ],
         },
         {
@@ -89,11 +90,7 @@ export const v6 = {
                     text: 'Tic-Tac-Toe',
                     collapsed: true,
                     items: [
-                        {
-                            text: '/v6/tic-tac-toe',
-                            link: '/v6/en/tic-tac-toe',
-                            badge: 'POST',
-                        },
+                        { text: 'Overview', link: '/v6/en/tic-tac-toe' },
                         {
                             text: '/v6/tic-tac-toe/play',
                             link: '/v6/en/tic-tac-toe/play',
@@ -133,6 +130,7 @@ export const v6 = {
                     collapsed: true,
                     items: [
                         { text: 'Overview', link: '/v6/en/changelog' },
+                        { text: '6.1.0', link: '/v6/en/changelog/6.1.0' },
                         { text: '6.0.0', link: '/v6/en/changelog/6.0.0' },
                         { text: `Previous version ${arrowRightIcon}`, link: '/v5/en/changelog' },
                     ],
@@ -150,6 +148,7 @@ export const v6 = {
             items: [
                 { text: 'Commencer', link: '/v6/fr/' },
                 { text: 'Authentification', link: '/v6/fr/authentication' },
+                { text: 'Manifest', link: '/v6/fr/manifest' },
             ],
         },
         {
@@ -232,11 +231,7 @@ export const v6 = {
                     text: 'Tic-Tac-Toe',
                     collapsed: true,
                     items: [
-                        {
-                            text: '/v6/tic-tac-toe',
-                            link: '/v6/fr/tic-tac-toe',
-                            badge: 'POST',
-                        },
+                        { text: 'Aperçu', link: '/v6/fr/tic-tac-toe' },
                         {
                             text: '/v6/tic-tac-toe/play',
                             link: '/v6/fr/tic-tac-toe/play',
@@ -276,6 +271,7 @@ export const v6 = {
                     collapsed: true,
                     items: [
                         { text: 'Aperçu', link: '/v6/fr/changelog' },
+                        { text: '6.1.0', link: '/v6/fr/changelog/6.1.0' },
                         { text: '6.0.0', link: '/v6/fr/changelog/6.0.0' },
                         { text: `Version précédente ${arrowRightIcon}`, link: '/v5/fr/changelog' },
                     ],

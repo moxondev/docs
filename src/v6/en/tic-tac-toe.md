@@ -1,17 +1,24 @@
 # Online Tic-Tac-Toe
 
-The `/tic-tac-toe` endpoint allows playing and storing an online Tic-Tac-Toe game. Games are stored for 1 hour and support both public and private modes.
+The `/tic-tac-toe` endpoints allow playing online Tic-Tac-Toe between two players. Games support both public and private modes. A game in progress is deleted after 1 hour without a move, and a finished game 10 minutes after it ends.
 
-<Endpoint method="post" path="/tic-tac-toe" baseUrl="https://api.moxon.dev" />
+::: warning Changed in 6.0.0
+`POST /tic-tac-toe` no longer exists in v6: it answers `404` (`Endpoint not available in v6.`). Each action has its own endpoint, listed below. To play a move, use [`POST /tic-tac-toe/play`](./tic-tac-toe/play) with the same JSON body (`username`, `move`, `session`, `game`).
+:::
 
-## Parameters
+## Endpoints
 
-| Parameter  | Required | Description                                                                        |
-| ---------- | -------- | ---------------------------------------------------------------------------------- |
-| `username` | Yes      | The username making the move                                                       |
-| `move`     | Yes      | The move played in `row-column` format (e.g., `1-1`, `2-2`, `3-3`)                 |
-| `session`  | Yes      | The user's session identifier                                                      |
-| `game`     | Yes      | The game identifier for connection. If the game does not exist, it will be created |
+- <Method type="post" sm /> [/v6/tic-tac-toe/fetch](./tic-tac-toe/fetch) - Create a game or retrieve its information
+- <Method type="post" sm /> [/v6/tic-tac-toe/list](./tic-tac-toe/list) - List all public games
+- <Method type="post" sm /> [/v6/tic-tac-toe/play](./tic-tac-toe/play) - Play a move
+- <Method type="post" sm /> [/v6/tic-tac-toe/forfeit](./tic-tac-toe/forfeit) - Forfeit a game
+
+## How a Game Works
+
+1. Create a game with `/tic-tac-toe/fetch`, public by default or private with `private`. You can also play right away with `/tic-tac-toe/play`: if the `game` identifier does not exist, the game is created.
+2. A second player joins the game with its identifier, through `/tic-tac-toe/fetch` or `/tic-tac-toe/play`. Public games are listed by `/tic-tac-toe/list`. A game accepts two players at most.
+3. Players take turns with `/tic-tac-toe/play`.
+4. The game ends when a player wins, when the board is full (tie), or when a player forfeits with `/tic-tac-toe/forfeit`.
 
 ## Move Format
 
@@ -25,52 +32,12 @@ The board is a 3x3 grid with positions numbered as follows:
 3-1 | 3-2 | 3-3
 ```
 
-## Code Examples
+## From v4 and v5
 
-<Examples method="post" path="/tic-tac-toe" :body="{ username: 'User1', move: '2-2', session: 'abc123', game: 'VWXYZ' }" />
+| Action                             | Version 4 and 5             | Version 6                   |
+| ---------------------------------- | --------------------------- | --------------------------- |
+| Play a move (`game` in the body)   | `POST /tic-tac-toe`         | `POST /tic-tac-toe/play`    |
+| Play a move (`game` in the URL)    | `PATCH /tic-tac-toe/:game`  | `POST /tic-tac-toe/play`    |
+| Forfeit a game (`game` in the URL) | `DELETE /tic-tac-toe/:game` | `POST /tic-tac-toe/forfeit` |
 
-## Response Fields
-
-| Field     | Type           | Description                              |
-| --------- | -------------- | ---------------------------------------- |
-| `message` | `string`       | Status message about the move            |
-| `winner`  | `string\|null` | Username of the winner (if game is over) |
-| `loser`   | `string\|null` | Username of the loser (if game is over)  |
-| `tie`     | `boolean`      | Whether the game ended in a tie          |
-
-## Error Responses
-
-| Error                                                              | Description                      |
-| ------------------------------------------------------------------ | -------------------------------- |
-| `Global rate limit exceeded.`                                      | Global API rate limit reached    |
-| `You have exceeded the limit of X requests per hour.`              | Hourly IP/token limit reached    |
-| `Rate limit exceeded. Try again in X seconds.`                     | Per-user short-window limit      |
-| `Invalid move. Please provide a valid move (e.g., 1-1, 2-2, 3-3).` | Invalid move format              |
-| `Game is full, you can only watch.`                                | Game already has two players     |
-| `Please wait for the other player to make a move.`                 | Not your turn                    |
-| `Move already made. Please choose a different move.`               | Cell already occupied            |
-| `Session ID mismatch`                                              | Session doesn't match the player |
-
-## Try It
-
-<Try name="Tic-Tac-Toe" />
-
-## Error Handling
-
-If parameters are missing or invalid, the API will return an error:
-
-| Error Message                                       | Description                                   |
-| --------------------------------------------------- | --------------------------------------------- |
-| `Please provide a username (?username={username})`  | The `username` parameter is missing           |
-| `Please provide a valid move (&move={move})`        | The `move` parameter is missing or invalid    |
-| `Please provide a valid session ID (&session={ID})` | The `session` parameter is missing or invalid |
-| `Please provide a valid game ID (&game={ID})`       | The `game` parameter is missing or invalid    |
-
-When a game is over, the request will return the winner and loser names, as well as whether there is a tie.
-
-## Related Endpoints
-
-- <Method type="post" sm /> [/v6/tic-tac-toe/fetch](./tic-tac-toe/fetch) - Retrieve current game information
-- <Method type="post" sm /> [/v6/tic-tac-toe/list](./tic-tac-toe/list) - List all public games
-- <Method type="post" sm /> [/v6/tic-tac-toe/play](./tic-tac-toe/play) - Play a move
-- <Method type="post" sm /> [/v6/tic-tac-toe/forfeit](./tic-tac-toe/forfeit) - Forfeit a game
+For `POST /tic-tac-toe`, only the path changes: the request body stays the same. For `PATCH` and `DELETE`, the `game` identifier moves from the URL to the JSON body.

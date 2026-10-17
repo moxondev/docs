@@ -1,17 +1,24 @@
 # Morpion en ligne
 
-L'endpoint `/tic-tac-toe` permet de jouer et de stocker une partie de morpion en ligne. Les parties sont stockées pendant 1 heure et supportent les modes public et privé.
+Les endpoints `/tic-tac-toe` permettent de jouer au morpion en ligne à deux joueurs. Les parties supportent les modes public et privé. Une partie en cours est supprimée après 1 heure sans coup, et une partie terminée 10 minutes après sa fin.
 
-<Endpoint method="post" path="/tic-tac-toe" baseUrl="https://api.moxon.dev" />
+::: warning Changement en 6.0.0
+`POST /tic-tac-toe` n'existe plus en v6 : il répond `404` (`Endpoint not available in v6.`). Chaque action a son propre endpoint, listé ci-dessous. Pour jouer un coup, utilisez [`POST /tic-tac-toe/play`](./tic-tac-toe/play) avec le même corps JSON (`username`, `move`, `session`, `game`).
+:::
 
-## Paramètres
+## Endpoints
 
-| Paramètre  | Requis | Description                                                                                    |
-| ---------- | ------ | ---------------------------------------------------------------------------------------------- |
-| `username` | Oui    | Le nom d'utilisateur effectuant le mouvement                                                   |
-| `move`     | Oui    | Le coup joué au format `ligne-colonne` (ex. : `1-1`, `2-2`, `3-3`)                             |
-| `session`  | Oui    | L'identifiant de session de l'utilisateur                                                      |
-| `game`     | Oui    | L'identifiant de la partie permettant la connexion. Si la partie n'existe pas, elle sera créée |
+- <Method type="post" sm /> [/v6/tic-tac-toe/fetch](./tic-tac-toe/fetch) - Créer une partie ou récupérer ses informations
+- <Method type="post" sm /> [/v6/tic-tac-toe/list](./tic-tac-toe/list) - Lister toutes les parties publiques
+- <Method type="post" sm /> [/v6/tic-tac-toe/play](./tic-tac-toe/play) - Jouer un coup
+- <Method type="post" sm /> [/v6/tic-tac-toe/forfeit](./tic-tac-toe/forfeit) - Abandonner une partie
+
+## Déroulement d'une partie
+
+1. Créez une partie avec `/tic-tac-toe/fetch`, publique par défaut ou privée avec `private`. Vous pouvez aussi jouer directement avec `/tic-tac-toe/play` : si l'identifiant `game` n'existe pas, la partie est créée.
+2. Un second joueur rejoint la partie avec son identifiant, via `/tic-tac-toe/fetch` ou `/tic-tac-toe/play`. Les parties publiques sont listées par `/tic-tac-toe/list`. Une partie accepte deux joueurs au maximum.
+3. Les joueurs jouent chacun leur tour avec `/tic-tac-toe/play`.
+4. La partie prend fin lorsqu'un joueur gagne, que la grille est pleine (égalité) ou qu'un joueur abandonne avec `/tic-tac-toe/forfeit`.
 
 ## Format des coups
 
@@ -25,52 +32,12 @@ Le plateau est une grille 3x3 avec des positions numérotées comme suit :
 3-1 | 3-2 | 3-3
 ```
 
-## Exemples de code
+## Depuis la v4 et la v5
 
-<Examples method="post" path="/tic-tac-toe" :body="{ username: 'Utilisateur1', move: '2-2', session: 'abc123', game: 'VWXYZ' }" />
+| Action                                    | Version 4 et 5              | Version 6                   |
+| ----------------------------------------- | --------------------------- | --------------------------- |
+| Jouer un coup (`game` dans le corps)      | `POST /tic-tac-toe`         | `POST /tic-tac-toe/play`    |
+| Jouer un coup (`game` dans l'URL)         | `PATCH /tic-tac-toe/:game`  | `POST /tic-tac-toe/play`    |
+| Abandonner une partie (`game` dans l'URL) | `DELETE /tic-tac-toe/:game` | `POST /tic-tac-toe/forfeit` |
 
-## Champs de réponse
-
-| Champ     | Type           | Description                                              |
-| --------- | -------------- | -------------------------------------------------------- |
-| `message` | `string`       | Message de statut du coup                                |
-| `winner`  | `string\|null` | Nom d'utilisateur du gagnant (si la partie est terminée) |
-| `loser`   | `string\|null` | Nom d'utilisateur du perdant (si la partie est terminée) |
-| `tie`     | `boolean`      | Si la partie s'est terminée par une égalité              |
-
-## Réponses d'erreur
-
-| Erreur                                                             | Description                            |
-| ------------------------------------------------------------------ | -------------------------------------- |
-| `Global rate limit exceeded.`                                      | Limite globale de l'API atteinte       |
-| `You have exceeded the limit of X requests per hour.`              | Limite horaire IP/token atteinte       |
-| `Rate limit exceeded. Try again in X seconds.`                     | Limite courte durée par utilisateur    |
-| `Invalid move. Please provide a valid move (e.g., 1-1, 2-2, 3-3).` | Format de coup invalide                |
-| `Game is full, you can only watch.`                                | La partie a déjà deux joueurs          |
-| `Please wait for the other player to make a move.`                 | Ce n'est pas votre tour                |
-| `Move already made. Please choose a different move.`               | Case déjà occupée                      |
-| `Session ID mismatch`                                              | La session ne correspond pas au joueur |
-
-## Essayer
-
-<Try name="Tic-Tac-Toe" />
-
-## Gestion des erreurs
-
-Si les paramètres sont manquants ou invalides, l'API retournera une erreur :
-
-| Message d'erreur                                    | Description                                     |
-| --------------------------------------------------- | ----------------------------------------------- |
-| `Please provide a username (?username={username})`  | Le paramètre `username` est manquant            |
-| `Please provide a valid move (&move={move})`        | Le paramètre `move` est manquant ou invalide    |
-| `Please provide a valid session ID (&session={ID})` | Le paramètre `session` est manquant ou invalide |
-| `Please provide a valid game ID (&game={ID})`       | Le paramètre `game` est manquant ou invalide    |
-
-Lorsqu'une partie est terminée, la requête retournera les noms du gagnant et du perdant, ainsi que s'il y a égalité.
-
-## Endpoints associés
-
-- <Method type="post" sm /> [/v6/tic-tac-toe/fetch](./tic-tac-toe/fetch) - Récupérer les informations de la partie en cours
-- <Method type="post" sm /> [/v6/tic-tac-toe/list](./tic-tac-toe/list) - Lister toutes les parties publiques
-- <Method type="post" sm /> [/v6/tic-tac-toe/play](./tic-tac-toe/play) - Jouer un coup
-- <Method type="post" sm /> [/v6/tic-tac-toe/forfeit](./tic-tac-toe/forfeit) - Abandonner une partie
+Pour `POST /tic-tac-toe`, seul le chemin change : le corps de la requête reste le même. Pour `PATCH` et `DELETE`, l'identifiant `game` passe de l'URL au corps JSON.

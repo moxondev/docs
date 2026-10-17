@@ -698,6 +698,7 @@ export const endpoints: EndpointDef[] = [
         path: '/tic-tac-toe',
         method: 'post',
         group: 'Tic-Tac-Toe',
+        overrides: { v6: { removed: true } },
         params: [
             { name: 'username', required: true, placeholder: 'john' },
             { name: 'move', required: true, placeholder: '5' },
@@ -740,7 +741,7 @@ export const endpoints: EndpointDef[] = [
         params: [
             { name: 'username', required: true, placeholder: 'john' },
             { name: 'game', required: false, placeholder: 'abc123' },
-            { name: 'private', required: false, options: ['true', 'false'] },
+            { name: 'private', required: false, options: ['true', 'false'], boolean: true },
         ],
     },
     {

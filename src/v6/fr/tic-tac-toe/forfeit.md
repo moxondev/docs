@@ -22,11 +22,13 @@ Tous les paramètres sont envoyés dans un body JSON avec `Content-Type: applica
 
 ## Champs de réponse
 
-| Champ     | Type     | Description                               |
-| --------- | -------- | ----------------------------------------- |
-| `message` | `string` | Confirmation du forfait                   |
-| `winner`  | `string` | Nom d'utilisateur du gagnant (adversaire) |
-| `loser`   | `string` | Nom d'utilisateur du joueur qui abandonne |
+| Champ     | Type           | Description                                                                              |
+| --------- | -------------- | ---------------------------------------------------------------------------------------- |
+| `message` | `string`       | Confirmation du forfait                                                                  |
+| `winner`  | `string\|null` | Nom d'utilisateur du gagnant (adversaire), `null` si le joueur était seul dans la partie |
+| `loser`   | `string`       | Nom d'utilisateur du joueur qui abandonne                                                |
+
+La partie est supprimée après un forfait.
 
 ## Exemples de code
 
@@ -40,13 +42,18 @@ Tous les paramètres sont envoyés dans un body JSON avec `Content-Type: applica
 
 Si les paramètres sont manquants ou invalides, l'API retournera une erreur :
 
-| Message d'erreur      | Description                            |
-| --------------------- | -------------------------------------- |
-| `Session ID mismatch` | La session ne correspond pas au joueur |
+| Message d'erreur                                    | Description                               |
+| --------------------------------------------------- | ----------------------------------------- |
+| `Please provide a username (?username={username})`  | Le paramètre `username` est manquant      |
+| `Please provide a valid session ID (&session={ID})` | Le paramètre `session` est manquant       |
+| `Please provide a game ID (&game={ID})`             | Le paramètre `game` est manquant          |
+| `Game not found`                                    | La partie n'existe pas                    |
+| `Session ID mismatch`                               | La session ne correspond pas au joueur    |
+| `You are not a player in this game`                 | Le joueur ne participe pas à cette partie |
 
 ## Endpoints associés
 
-- <Method type="post" sm /> [/v6/tic-tac-toe](../tic-tac-toe) - Endpoint principal du jeu pour effectuer des coups
+- [Morpion en ligne](../tic-tac-toe) - Déroulement d'une partie et migration depuis la v4 et la v5
 - <Method type="post" sm /> [/v6/tic-tac-toe/play](./play) - Jouer un coup
 - <Method type="post" sm /> [/v6/tic-tac-toe/fetch](./fetch) - Récupérer les informations de la partie
 - <Method type="post" sm /> [/v6/tic-tac-toe/list](./list) - Lister toutes les parties publiques

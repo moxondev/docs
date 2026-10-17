@@ -100,10 +100,11 @@ The `/hash` endpoint converts a string into a hash, i.e. a string of characters 
 
 ## Response Fields
 
-| Field    | Type     | Description                                          |
-| -------- | -------- | ---------------------------------------------------- |
-| `method` | `string` | Hashing method used                                  |
-| `hash`   | `string` | Resulting hash string (hex or base64 encoded digest) |
+| Field      | Type     | Description                                          |
+| ---------- | -------- | ---------------------------------------------------- |
+| `method`   | `string` | Hashing method used                                  |
+| `hash`     | `string` | Resulting hash string (hex or base64 encoded digest) |
+| `encoding` | `string` | Encoding of the digest: `hex` or `base64`            |
 
 ## Try It
 

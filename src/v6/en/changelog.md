@@ -36,14 +36,45 @@ https://api.moxon.dev/v5/infos
 https://api.moxon.dev/v6/infos
 ```
 
+### Migrating from @20syldev/api
+
+The `@20syldev/api` package becomes `@moxon/api` and no longer evolves. The exports and the `/v6` HTTP API are unchanged: migrating only takes a rename.
+
+```bash
+npm uninstall @20syldev/api
+npm install @moxon/api
+```
+
+Then replace the package name in your imports. The sub-paths are identical:
+
+```diff
+- import { evaluate } from '@20syldev/api/v6';
++ import { evaluate } from '@moxon/api/v6';
+```
+
+| Before                 | After               |
+| ---------------------- | ------------------- |
+| `@20syldev/api`        | `@moxon/api`        |
+| `@20syldev/api/v4`     | `@moxon/api/v4`     |
+| `@20syldev/api/v5`     | `@moxon/api/v5`     |
+| `@20syldev/api/v6`     | `@moxon/api/v6`     |
+| `@20syldev/api/server` | `@moxon/api/server` |
+
+The `@moxon/api/manifest` sub-path is new and experimental: see the [Manifest](/v6/en/manifest) page.
+
+::: warning Versions v1 to v3
+`v1`, `v2` and `v3` were retired in 6.0.0. They remain available only through `@20syldev/api@5.9.0`.
+:::
+
 ### Endpoint Compatibility
 
-v6 is **not** a drop-in replacement for v5. Four endpoints changed method or path, the captcha changed its default mode, and the `status` field of error responses changed type. Read the [6.0.0 changelog](/v6/en/changelog/6.0.0) before migrating.
+v6 is **not** a drop-in replacement for v5. Five endpoints changed method or path, the captcha changed its default mode, and the `status` field of error responses changed type. Read the [6.0.0 changelog](/v6/en/changelog/6.0.0) before migrating.
 
 | What changed                | v5                          | v6                          |
 | --------------------------- | --------------------------- | --------------------------- |
 | Clear a private chat        | `DELETE /chat/:token`       | `POST /chat/clear`          |
-| Play a move                 | `PATCH /tic-tac-toe/:game`  | `POST /tic-tac-toe/play`    |
+| Play a move (body)          | `POST /tic-tac-toe`         | `POST /tic-tac-toe/play`    |
+| Play a move (URL)           | `PATCH /tic-tac-toe/:game`  | `POST /tic-tac-toe/play`    |
 | Forfeit a game              | `DELETE /tic-tac-toe/:game` | `POST /tic-tac-toe/forfeit` |
 | Compare two strings         | `GET /levenshtein`          | `POST /levenshtein`         |
 | Captcha default mode        | `image`                     | `challenge`                 |

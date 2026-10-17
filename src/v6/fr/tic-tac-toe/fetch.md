@@ -6,11 +6,11 @@ L'endpoint `/tic-tac-toe/fetch` permet de récupérer les informations d'une par
 
 ## Paramètres
 
-| Paramètre  | Requis | Description                                                                                               |
-| ---------- | ------ | --------------------------------------------------------------------------------------------------------- |
-| `username` | Oui    | Le nom d'utilisateur effectuant la requête                                                                |
-| `game`     | Non    | L'identifiant de la partie à afficher. S'il n'est pas fourni, un nouvel identifiant de partie sera généré |
-| `private`  | Non    | Définir à `true` pour créer une partie privée (défaut : `false`)                                          |
+| Paramètre  | Requis | Description                                                                                                                 |
+| ---------- | ------ | --------------------------------------------------------------------------------------------------------------------------- |
+| `username` | Oui    | Le nom d'utilisateur effectuant la requête                                                                                  |
+| `game`     | Non    | L'identifiant de la partie à afficher. S'il n'est pas fourni, un nouvel identifiant de partie sera généré                   |
+| `private`  | Non    | Booléen JSON : `true` pour créer une partie privée (défaut : `false`). Pris en compte uniquement à la création de la partie |
 
 ## Exemples de code
 
@@ -53,5 +53,5 @@ Lorsqu'une nouvelle partie est créée, l'utilisateur est automatiquement ajout�
 
 ## Endpoints associés
 
-- <Method type="post" sm /> [/v6/tic-tac-toe](../tic-tac-toe) - Endpoint principal du jeu pour effectuer des coups
+- [Morpion en ligne](../tic-tac-toe) - Déroulement d'une partie et migration depuis la v4 et la v5
 - <Method type="post" sm /> [/v6/tic-tac-toe/list](./list) - Lister toutes les parties publiques

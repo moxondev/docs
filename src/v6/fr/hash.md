@@ -100,10 +100,11 @@ L'endpoint `/hash` convertit une chaîne de caractères en hash, c'est-à-dire u
 
 ## Champs de réponse
 
-| Champ    | Type     | Description                                             |
-| -------- | -------- | ------------------------------------------------------- |
-| `method` | `string` | Méthode de hachage utilisée                             |
-| `hash`   | `string` | Hash résultant (encodé en hex ou base64 selon le choix) |
+| Champ      | Type     | Description                                             |
+| ---------- | -------- | ------------------------------------------------------- |
+| `method`   | `string` | Méthode de hachage utilisée                             |
+| `hash`     | `string` | Hash résultant (encodé en hex ou base64 selon le choix) |
+| `encoding` | `string` | Encodage du hash : `hex` ou `base64`                    |
 
 ## Essayer
 

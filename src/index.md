@@ -42,6 +42,16 @@ All API requests should be made to:
 https://api.moxon.dev
 ```
 
+## npm Package
+
+The same utilities are available straight from Node.js with the **`@moxon/api`** package, without going through the network:
+
+```bash
+npm install @moxon/api
+```
+
+See [Using the npm package](/v6/en/#using-the-npm-package) for the available imports.
+
 ## Example
 
 <Try method="get" path="/health" :params="[]" auto-send no-version />

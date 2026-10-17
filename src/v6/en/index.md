@@ -16,6 +16,67 @@ https://api.moxon.dev/v6
 
 <Try name="Infos" auto-send />
 
+## Using the npm package
+
+The HTTP API available at `https://api.moxon.dev` needs no package: a plain request is enough. The **`@moxon/api`** npm package is useful to call the same utilities straight from Node.js, without going through the network.
+
+```bash
+npm install @moxon/api
+```
+
+The package requires **Node.js 22.12 or newer**. It ships as ESM, but remains usable from CommonJS: Node has been able to `require()` an ESM module since 22.12, which is why that is the floor.
+
+```js
+import { evaluate } from '@moxon/api'; // ESM
+const { evaluate } = require('@moxon/api'); // CommonJS
+```
+
+### Available imports
+
+The root import always resolves to the latest version. Use a subpath (`/v4` to `/v6`) to pin a specific one.
+
+| Import                | Contents                                                        |
+| --------------------- | --------------------------------------------------------------- |
+| `@moxon/api`          | Latest version, equivalent to `@moxon/api/v6`                   |
+| `@moxon/api/v4`       | The v4 functions                                                |
+| `@moxon/api/v5`       | The v5 functions                                                |
+| `@moxon/api/v6`       | The v6 functions                                                |
+| `@moxon/api/server`   | The API's HTTP server, with all its versions, started on import |
+| `@moxon/api/manifest` | Description of the endpoints as data (**experimental**)         |
+
+The server loads its plugins asynchronously: from CommonJS, it must be imported rather than required.
+
+```js
+await import('@moxon/api/server'); // from CommonJS
+```
+
+### Usage example
+
+```js
+// Latest version, equivalent to '@moxon/api/v6'
+import { color, evaluate, username } from '@moxon/api';
+
+// Or a specific version
+import { color as colorV4 } from '@moxon/api/v4';
+
+// Evaluate a math expression
+const expr = evaluate('sin(pi / 2) + sqrt(4)', 5);
+console.log(expr.result); // 3
+console.log(expr.expression); // 'sin(pi / 2) + sqrt(4)'
+
+// Generate a random color, converted to every common notation
+const c = color();
+console.log(c.hex, c.rgb, c.hsl, c.hsv, c.hwb, c.cmyk);
+
+// Generate a random username
+const user = username();
+console.log(user.username);
+```
+
+::: tip Tip
+To describe the endpoints as data (method, path, parameters, example), see the [Manifest](/v6/en/manifest), an experimental export of the package. If your project still uses the former package name, the [migration guide](/v6/en/changelog#migrating-from-20syldev-api) explains the rename.
+:::
+
 ## Rate Limiting
 
 Some endpoints have rate limiting to prevent abuse. If you exceed the [rate limit](/v6/en/pricing), you'll receive an error response:
