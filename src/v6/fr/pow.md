@@ -5,7 +5,7 @@ L'endpoint `/pow` émet un défi de preuve de travail, une protection anti-bot d
 <Endpoint method="get" path="/pow" baseUrl="https://api.moxon.dev" />
 
 ::: info Comment ça marche ?
-À la difficulté par défaut de `4`, la résolution demande environ 32 000 hachages — moins d'une seconde dans un navigateur, imperceptible pour une personne, mais ruineuse pour un robot qui la répète des milliers de fois. Contrairement à un captcha visuel, aucun modèle de vision ne peut la contourner : le seul moyen de passer est de dépenser le calcul.
+À la difficulté par défaut de `4`, la résolution demande en moyenne environ 65 000 hachages (16⁴) — moins d'une seconde dans un navigateur, imperceptible pour une personne, mais ruineuse pour un robot qui la répète des milliers de fois. Contrairement à un captcha visuel, aucun modèle de vision ne peut la contourner : le seul moyen de passer est de dépenser le calcul.
 
 La réponse attendue ne voyage jamais jusqu'au client. Le jeton transporte le `salt` et la difficulté en clair, mais sa signature est calculée côté serveur avec un secret : elle ne peut être ni forgée, ni relue.
 :::

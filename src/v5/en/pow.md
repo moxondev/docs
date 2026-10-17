@@ -5,7 +5,7 @@ The `/pow` endpoint issues a proof-of-work challenge, an anti-bot protection mea
 <Endpoint method="get" path="/pow" baseUrl="https://api.moxon.dev" />
 
 ::: info How it works?
-At the default difficulty of `4`, solving takes about 32,000 hashes — under a second in a browser and imperceptible to a person, but ruinous for a bot repeating it thousands of times. Unlike a visual captcha, no vision model can shortcut it: the only way through is to spend the computation.
+At the default difficulty of `4`, solving takes about 65,000 hashes on average (16⁴) — under a second in a browser and imperceptible to a person, but ruinous for a bot repeating it thousands of times. Unlike a visual captcha, no vision model can shortcut it: the only way through is to spend the computation.
 
 The expected answer never travels to the client. The token carries the `salt` and difficulty in clear, but its signature is computed server-side with a secret, so it cannot be forged or read back.
 :::
