@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://moxon.dev/sitemap.xml
