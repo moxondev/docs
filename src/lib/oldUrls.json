@@ -1,0 +1,4024 @@
+{
+    "counts": {
+        "pages": 500,
+        "homes": 2,
+        "html": 503
+    },
+    "notFound": "/404.html",
+    "homes": [
+        {
+            "lang": "fr",
+            "url": "/fr",
+            "html": "/fr.html",
+            "file": "fr.html"
+        },
+        {
+            "lang": "en",
+            "url": "/",
+            "html": "/index.html",
+            "file": "index.html"
+        }
+    ],
+    "pages": [
+        {
+            "version": "v1",
+            "lang": "en",
+            "id": "algorithms",
+            "url": "/v1/en/algorithms",
+            "html": "/v1/en/algorithms.html",
+            "file": "v1/en/algorithms.html"
+        },
+        {
+            "version": "v1",
+            "lang": "en",
+            "id": "authentication",
+            "url": "/v1/en/authentication",
+            "html": "/v1/en/authentication.html",
+            "file": "v1/en/authentication.html"
+        },
+        {
+            "version": "v1",
+            "lang": "en",
+            "id": "captcha",
+            "url": "/v1/en/captcha",
+            "html": "/v1/en/captcha.html",
+            "file": "v1/en/captcha.html"
+        },
+        {
+            "version": "v1",
+            "lang": "en",
+            "id": "color",
+            "url": "/v1/en/color",
+            "html": "/v1/en/color.html",
+            "file": "v1/en/color.html"
+        },
+        {
+            "version": "v1",
+            "lang": "en",
+            "id": "convert",
+            "url": "/v1/en/convert",
+            "html": "/v1/en/convert.html",
+            "file": "v1/en/convert.html"
+        },
+        {
+            "version": "v1",
+            "lang": "en",
+            "id": "domain",
+            "url": "/v1/en/domain",
+            "html": "/v1/en/domain.html",
+            "file": "v1/en/domain.html"
+        },
+        {
+            "version": "v1",
+            "lang": "en",
+            "id": "index",
+            "url": "/v1/en/",
+            "html": "/v1/en/index.html",
+            "file": "v1/en/index.html"
+        },
+        {
+            "version": "v1",
+            "lang": "en",
+            "id": "infos",
+            "url": "/v1/en/infos",
+            "html": "/v1/en/infos.html",
+            "file": "v1/en/infos.html"
+        },
+        {
+            "version": "v1",
+            "lang": "en",
+            "id": "personal",
+            "url": "/v1/en/personal",
+            "html": "/v1/en/personal.html",
+            "file": "v1/en/personal.html"
+        },
+        {
+            "version": "v1",
+            "lang": "en",
+            "id": "pricing",
+            "url": "/v1/en/pricing",
+            "html": "/v1/en/pricing.html",
+            "file": "v1/en/pricing.html"
+        },
+        {
+            "version": "v1",
+            "lang": "en",
+            "id": "qrcode",
+            "url": "/v1/en/qrcode",
+            "html": "/v1/en/qrcode.html",
+            "file": "v1/en/qrcode.html"
+        },
+        {
+            "version": "v1",
+            "lang": "en",
+            "id": "token",
+            "url": "/v1/en/token",
+            "html": "/v1/en/token.html",
+            "file": "v1/en/token.html"
+        },
+        {
+            "version": "v1",
+            "lang": "en",
+            "id": "username",
+            "url": "/v1/en/username",
+            "html": "/v1/en/username.html",
+            "file": "v1/en/username.html"
+        },
+        {
+            "version": "v1",
+            "lang": "fr",
+            "id": "algorithms",
+            "url": "/v1/fr/algorithms",
+            "html": "/v1/fr/algorithms.html",
+            "file": "v1/fr/algorithms.html"
+        },
+        {
+            "version": "v1",
+            "lang": "fr",
+            "id": "authentication",
+            "url": "/v1/fr/authentication",
+            "html": "/v1/fr/authentication.html",
+            "file": "v1/fr/authentication.html"
+        },
+        {
+            "version": "v1",
+            "lang": "fr",
+            "id": "captcha",
+            "url": "/v1/fr/captcha",
+            "html": "/v1/fr/captcha.html",
+            "file": "v1/fr/captcha.html"
+        },
+        {
+            "version": "v1",
+            "lang": "fr",
+            "id": "color",
+            "url": "/v1/fr/color",
+            "html": "/v1/fr/color.html",
+            "file": "v1/fr/color.html"
+        },
+        {
+            "version": "v1",
+            "lang": "fr",
+            "id": "convert",
+            "url": "/v1/fr/convert",
+            "html": "/v1/fr/convert.html",
+            "file": "v1/fr/convert.html"
+        },
+        {
+            "version": "v1",
+            "lang": "fr",
+            "id": "domain",
+            "url": "/v1/fr/domain",
+            "html": "/v1/fr/domain.html",
+            "file": "v1/fr/domain.html"
+        },
+        {
+            "version": "v1",
+            "lang": "fr",
+            "id": "index",
+            "url": "/v1/fr/",
+            "html": "/v1/fr/index.html",
+            "file": "v1/fr/index.html"
+        },
+        {
+            "version": "v1",
+            "lang": "fr",
+            "id": "infos",
+            "url": "/v1/fr/infos",
+            "html": "/v1/fr/infos.html",
+            "file": "v1/fr/infos.html"
+        },
+        {
+            "version": "v1",
+            "lang": "fr",
+            "id": "personal",
+            "url": "/v1/fr/personal",
+            "html": "/v1/fr/personal.html",
+            "file": "v1/fr/personal.html"
+        },
+        {
+            "version": "v1",
+            "lang": "fr",
+            "id": "pricing",
+            "url": "/v1/fr/pricing",
+            "html": "/v1/fr/pricing.html",
+            "file": "v1/fr/pricing.html"
+        },
+        {
+            "version": "v1",
+            "lang": "fr",
+            "id": "qrcode",
+            "url": "/v1/fr/qrcode",
+            "html": "/v1/fr/qrcode.html",
+            "file": "v1/fr/qrcode.html"
+        },
+        {
+            "version": "v1",
+            "lang": "fr",
+            "id": "token",
+            "url": "/v1/fr/token",
+            "html": "/v1/fr/token.html",
+            "file": "v1/fr/token.html"
+        },
+        {
+            "version": "v1",
+            "lang": "fr",
+            "id": "username",
+            "url": "/v1/fr/username",
+            "html": "/v1/fr/username.html",
+            "file": "v1/fr/username.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "algorithms",
+            "url": "/v2/en/algorithms",
+            "html": "/v2/en/algorithms.html",
+            "file": "v2/en/algorithms.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "authentication",
+            "url": "/v2/en/authentication",
+            "html": "/v2/en/authentication.html",
+            "file": "v2/en/authentication.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "captcha",
+            "url": "/v2/en/captcha",
+            "html": "/v2/en/captcha.html",
+            "file": "v2/en/captcha.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "chat",
+            "url": "/v2/en/chat",
+            "html": "/v2/en/chat.html",
+            "file": "v2/en/chat.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "chat/private",
+            "url": "/v2/en/chat/private",
+            "html": "/v2/en/chat/private.html",
+            "file": "v2/en/chat/private.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "color",
+            "url": "/v2/en/color",
+            "html": "/v2/en/color.html",
+            "file": "v2/en/color.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "convert",
+            "url": "/v2/en/convert",
+            "html": "/v2/en/convert.html",
+            "file": "v2/en/convert.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "domain",
+            "url": "/v2/en/domain",
+            "html": "/v2/en/domain.html",
+            "file": "v2/en/domain.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "hash",
+            "url": "/v2/en/hash",
+            "html": "/v2/en/hash.html",
+            "file": "v2/en/hash.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "index",
+            "url": "/v2/en/",
+            "html": "/v2/en/index.html",
+            "file": "v2/en/index.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "infos",
+            "url": "/v2/en/infos",
+            "html": "/v2/en/infos.html",
+            "file": "v2/en/infos.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "personal",
+            "url": "/v2/en/personal",
+            "html": "/v2/en/personal.html",
+            "file": "v2/en/personal.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "pricing",
+            "url": "/v2/en/pricing",
+            "html": "/v2/en/pricing.html",
+            "file": "v2/en/pricing.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "qrcode",
+            "url": "/v2/en/qrcode",
+            "html": "/v2/en/qrcode.html",
+            "file": "v2/en/qrcode.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "tic-tac-toe",
+            "url": "/v2/en/tic-tac-toe",
+            "html": "/v2/en/tic-tac-toe.html",
+            "file": "v2/en/tic-tac-toe.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "tic-tac-toe/fetch",
+            "url": "/v2/en/tic-tac-toe/fetch",
+            "html": "/v2/en/tic-tac-toe/fetch.html",
+            "file": "v2/en/tic-tac-toe/fetch.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "token",
+            "url": "/v2/en/token",
+            "html": "/v2/en/token.html",
+            "file": "v2/en/token.html"
+        },
+        {
+            "version": "v2",
+            "lang": "en",
+            "id": "username",
+            "url": "/v2/en/username",
+            "html": "/v2/en/username.html",
+            "file": "v2/en/username.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "algorithms",
+            "url": "/v2/fr/algorithms",
+            "html": "/v2/fr/algorithms.html",
+            "file": "v2/fr/algorithms.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "authentication",
+            "url": "/v2/fr/authentication",
+            "html": "/v2/fr/authentication.html",
+            "file": "v2/fr/authentication.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "captcha",
+            "url": "/v2/fr/captcha",
+            "html": "/v2/fr/captcha.html",
+            "file": "v2/fr/captcha.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "chat",
+            "url": "/v2/fr/chat",
+            "html": "/v2/fr/chat.html",
+            "file": "v2/fr/chat.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "chat/private",
+            "url": "/v2/fr/chat/private",
+            "html": "/v2/fr/chat/private.html",
+            "file": "v2/fr/chat/private.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "color",
+            "url": "/v2/fr/color",
+            "html": "/v2/fr/color.html",
+            "file": "v2/fr/color.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "convert",
+            "url": "/v2/fr/convert",
+            "html": "/v2/fr/convert.html",
+            "file": "v2/fr/convert.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "domain",
+            "url": "/v2/fr/domain",
+            "html": "/v2/fr/domain.html",
+            "file": "v2/fr/domain.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "hash",
+            "url": "/v2/fr/hash",
+            "html": "/v2/fr/hash.html",
+            "file": "v2/fr/hash.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "index",
+            "url": "/v2/fr/",
+            "html": "/v2/fr/index.html",
+            "file": "v2/fr/index.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "infos",
+            "url": "/v2/fr/infos",
+            "html": "/v2/fr/infos.html",
+            "file": "v2/fr/infos.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "personal",
+            "url": "/v2/fr/personal",
+            "html": "/v2/fr/personal.html",
+            "file": "v2/fr/personal.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "pricing",
+            "url": "/v2/fr/pricing",
+            "html": "/v2/fr/pricing.html",
+            "file": "v2/fr/pricing.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "qrcode",
+            "url": "/v2/fr/qrcode",
+            "html": "/v2/fr/qrcode.html",
+            "file": "v2/fr/qrcode.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "tic-tac-toe",
+            "url": "/v2/fr/tic-tac-toe",
+            "html": "/v2/fr/tic-tac-toe.html",
+            "file": "v2/fr/tic-tac-toe.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "tic-tac-toe/fetch",
+            "url": "/v2/fr/tic-tac-toe/fetch",
+            "html": "/v2/fr/tic-tac-toe/fetch.html",
+            "file": "v2/fr/tic-tac-toe/fetch.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "token",
+            "url": "/v2/fr/token",
+            "html": "/v2/fr/token.html",
+            "file": "v2/fr/token.html"
+        },
+        {
+            "version": "v2",
+            "lang": "fr",
+            "id": "username",
+            "url": "/v2/fr/username",
+            "html": "/v2/fr/username.html",
+            "file": "v2/fr/username.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "algorithms",
+            "url": "/v3/en/algorithms",
+            "html": "/v3/en/algorithms.html",
+            "file": "v3/en/algorithms.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "authentication",
+            "url": "/v3/en/authentication",
+            "html": "/v3/en/authentication.html",
+            "file": "v3/en/authentication.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "captcha",
+            "url": "/v3/en/captcha",
+            "html": "/v3/en/captcha.html",
+            "file": "v3/en/captcha.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "chat",
+            "url": "/v3/en/chat",
+            "html": "/v3/en/chat.html",
+            "file": "v3/en/chat.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "chat/private",
+            "url": "/v3/en/chat/private",
+            "html": "/v3/en/chat/private.html",
+            "file": "v3/en/chat/private.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "color",
+            "url": "/v3/en/color",
+            "html": "/v3/en/color.html",
+            "file": "v3/en/color.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "convert",
+            "url": "/v3/en/convert",
+            "html": "/v3/en/convert.html",
+            "file": "v3/en/convert.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "domain",
+            "url": "/v3/en/domain",
+            "html": "/v3/en/domain.html",
+            "file": "v3/en/domain.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "hash",
+            "url": "/v3/en/hash",
+            "html": "/v3/en/hash.html",
+            "file": "v3/en/hash.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "hyperplanning",
+            "url": "/v3/en/hyperplanning",
+            "html": "/v3/en/hyperplanning.html",
+            "file": "v3/en/hyperplanning.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "index",
+            "url": "/v3/en/",
+            "html": "/v3/en/index.html",
+            "file": "v3/en/index.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "infos",
+            "url": "/v3/en/infos",
+            "html": "/v3/en/infos.html",
+            "file": "v3/en/infos.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "levenshtein",
+            "url": "/v3/en/levenshtein",
+            "html": "/v3/en/levenshtein.html",
+            "file": "v3/en/levenshtein.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "personal",
+            "url": "/v3/en/personal",
+            "html": "/v3/en/personal.html",
+            "file": "v3/en/personal.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "pricing",
+            "url": "/v3/en/pricing",
+            "html": "/v3/en/pricing.html",
+            "file": "v3/en/pricing.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "qrcode",
+            "url": "/v3/en/qrcode",
+            "html": "/v3/en/qrcode.html",
+            "file": "v3/en/qrcode.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "tic-tac-toe",
+            "url": "/v3/en/tic-tac-toe",
+            "html": "/v3/en/tic-tac-toe.html",
+            "file": "v3/en/tic-tac-toe.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "tic-tac-toe/fetch",
+            "url": "/v3/en/tic-tac-toe/fetch",
+            "html": "/v3/en/tic-tac-toe/fetch.html",
+            "file": "v3/en/tic-tac-toe/fetch.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "tic-tac-toe/list",
+            "url": "/v3/en/tic-tac-toe/list",
+            "html": "/v3/en/tic-tac-toe/list.html",
+            "file": "v3/en/tic-tac-toe/list.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "time",
+            "url": "/v3/en/time",
+            "html": "/v3/en/time.html",
+            "file": "v3/en/time.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "token",
+            "url": "/v3/en/token",
+            "html": "/v3/en/token.html",
+            "file": "v3/en/token.html"
+        },
+        {
+            "version": "v3",
+            "lang": "en",
+            "id": "username",
+            "url": "/v3/en/username",
+            "html": "/v3/en/username.html",
+            "file": "v3/en/username.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "algorithms",
+            "url": "/v3/fr/algorithms",
+            "html": "/v3/fr/algorithms.html",
+            "file": "v3/fr/algorithms.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "authentication",
+            "url": "/v3/fr/authentication",
+            "html": "/v3/fr/authentication.html",
+            "file": "v3/fr/authentication.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "captcha",
+            "url": "/v3/fr/captcha",
+            "html": "/v3/fr/captcha.html",
+            "file": "v3/fr/captcha.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "chat",
+            "url": "/v3/fr/chat",
+            "html": "/v3/fr/chat.html",
+            "file": "v3/fr/chat.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "chat/private",
+            "url": "/v3/fr/chat/private",
+            "html": "/v3/fr/chat/private.html",
+            "file": "v3/fr/chat/private.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "color",
+            "url": "/v3/fr/color",
+            "html": "/v3/fr/color.html",
+            "file": "v3/fr/color.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "convert",
+            "url": "/v3/fr/convert",
+            "html": "/v3/fr/convert.html",
+            "file": "v3/fr/convert.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "domain",
+            "url": "/v3/fr/domain",
+            "html": "/v3/fr/domain.html",
+            "file": "v3/fr/domain.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "hash",
+            "url": "/v3/fr/hash",
+            "html": "/v3/fr/hash.html",
+            "file": "v3/fr/hash.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "hyperplanning",
+            "url": "/v3/fr/hyperplanning",
+            "html": "/v3/fr/hyperplanning.html",
+            "file": "v3/fr/hyperplanning.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "index",
+            "url": "/v3/fr/",
+            "html": "/v3/fr/index.html",
+            "file": "v3/fr/index.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "infos",
+            "url": "/v3/fr/infos",
+            "html": "/v3/fr/infos.html",
+            "file": "v3/fr/infos.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "levenshtein",
+            "url": "/v3/fr/levenshtein",
+            "html": "/v3/fr/levenshtein.html",
+            "file": "v3/fr/levenshtein.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "personal",
+            "url": "/v3/fr/personal",
+            "html": "/v3/fr/personal.html",
+            "file": "v3/fr/personal.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "pricing",
+            "url": "/v3/fr/pricing",
+            "html": "/v3/fr/pricing.html",
+            "file": "v3/fr/pricing.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "qrcode",
+            "url": "/v3/fr/qrcode",
+            "html": "/v3/fr/qrcode.html",
+            "file": "v3/fr/qrcode.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "tic-tac-toe",
+            "url": "/v3/fr/tic-tac-toe",
+            "html": "/v3/fr/tic-tac-toe.html",
+            "file": "v3/fr/tic-tac-toe.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "tic-tac-toe/fetch",
+            "url": "/v3/fr/tic-tac-toe/fetch",
+            "html": "/v3/fr/tic-tac-toe/fetch.html",
+            "file": "v3/fr/tic-tac-toe/fetch.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "tic-tac-toe/list",
+            "url": "/v3/fr/tic-tac-toe/list",
+            "html": "/v3/fr/tic-tac-toe/list.html",
+            "file": "v3/fr/tic-tac-toe/list.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "time",
+            "url": "/v3/fr/time",
+            "html": "/v3/fr/time.html",
+            "file": "v3/fr/time.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "token",
+            "url": "/v3/fr/token",
+            "html": "/v3/fr/token.html",
+            "file": "v3/fr/token.html"
+        },
+        {
+            "version": "v3",
+            "lang": "fr",
+            "id": "username",
+            "url": "/v3/fr/username",
+            "html": "/v3/fr/username.html",
+            "file": "v3/fr/username.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "address",
+            "url": "/v4/en/address",
+            "html": "/v4/en/address.html",
+            "file": "v4/en/address.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "agent",
+            "url": "/v4/en/agent",
+            "html": "/v4/en/agent.html",
+            "file": "v4/en/agent.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "algorithms",
+            "url": "/v4/en/algorithms",
+            "html": "/v4/en/algorithms.html",
+            "file": "v4/en/algorithms.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "authentication",
+            "url": "/v4/en/authentication",
+            "html": "/v4/en/authentication.html",
+            "file": "v4/en/authentication.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "avatar",
+            "url": "/v4/en/avatar",
+            "html": "/v4/en/avatar.html",
+            "file": "v4/en/avatar.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "barcode",
+            "url": "/v4/en/barcode",
+            "html": "/v4/en/barcode.html",
+            "file": "v4/en/barcode.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "captcha",
+            "url": "/v4/en/captcha",
+            "html": "/v4/en/captcha.html",
+            "file": "v4/en/captcha.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "changelog",
+            "url": "/v4/en/changelog",
+            "html": "/v4/en/changelog.html",
+            "file": "v4/en/changelog.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "changelog/4.0.0",
+            "url": "/v4/en/changelog/4.0.0",
+            "html": "/v4/en/changelog/4.0.0.html",
+            "file": "v4/en/changelog/4.0.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "changelog/4.1.0",
+            "url": "/v4/en/changelog/4.1.0",
+            "html": "/v4/en/changelog/4.1.0.html",
+            "file": "v4/en/changelog/4.1.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "changelog/4.2.0",
+            "url": "/v4/en/changelog/4.2.0",
+            "html": "/v4/en/changelog/4.2.0.html",
+            "file": "v4/en/changelog/4.2.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "changelog/4.3.0",
+            "url": "/v4/en/changelog/4.3.0",
+            "html": "/v4/en/changelog/4.3.0.html",
+            "file": "v4/en/changelog/4.3.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "changelog/4.4.0",
+            "url": "/v4/en/changelog/4.4.0",
+            "html": "/v4/en/changelog/4.4.0.html",
+            "file": "v4/en/changelog/4.4.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "changelog/4.5.0",
+            "url": "/v4/en/changelog/4.5.0",
+            "html": "/v4/en/changelog/4.5.0.html",
+            "file": "v4/en/changelog/4.5.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "changelog/4.6.0",
+            "url": "/v4/en/changelog/4.6.0",
+            "html": "/v4/en/changelog/4.6.0.html",
+            "file": "v4/en/changelog/4.6.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "changelog/4.7.0",
+            "url": "/v4/en/changelog/4.7.0",
+            "html": "/v4/en/changelog/4.7.0.html",
+            "file": "v4/en/changelog/4.7.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "changelog/4.8.0",
+            "url": "/v4/en/changelog/4.8.0",
+            "html": "/v4/en/changelog/4.8.0.html",
+            "file": "v4/en/changelog/4.8.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "changelog/4.9.0",
+            "url": "/v4/en/changelog/4.9.0",
+            "html": "/v4/en/changelog/4.9.0.html",
+            "file": "v4/en/changelog/4.9.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "chat",
+            "url": "/v4/en/chat",
+            "html": "/v4/en/chat.html",
+            "file": "v4/en/chat.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "chat/clear",
+            "url": "/v4/en/chat/clear",
+            "html": "/v4/en/chat/clear.html",
+            "file": "v4/en/chat/clear.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "chat/messages",
+            "url": "/v4/en/chat/messages",
+            "html": "/v4/en/chat/messages.html",
+            "file": "v4/en/chat/messages.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "chat/private",
+            "url": "/v4/en/chat/private",
+            "html": "/v4/en/chat/private.html",
+            "file": "v4/en/chat/private.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "color",
+            "url": "/v4/en/color",
+            "html": "/v4/en/color.html",
+            "file": "v4/en/color.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "convert",
+            "url": "/v4/en/convert",
+            "html": "/v4/en/convert.html",
+            "file": "v4/en/convert.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "credit",
+            "url": "/v4/en/credit",
+            "html": "/v4/en/credit.html",
+            "file": "v4/en/credit.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "cron",
+            "url": "/v4/en/cron",
+            "html": "/v4/en/cron.html",
+            "file": "v4/en/cron.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "dice",
+            "url": "/v4/en/dice",
+            "html": "/v4/en/dice.html",
+            "file": "v4/en/dice.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "domain",
+            "url": "/v4/en/domain",
+            "html": "/v4/en/domain.html",
+            "file": "v4/en/domain.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "encode",
+            "url": "/v4/en/encode",
+            "html": "/v4/en/encode.html",
+            "file": "v4/en/encode.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "geo",
+            "url": "/v4/en/geo",
+            "html": "/v4/en/geo.html",
+            "file": "v4/en/geo.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "hash",
+            "url": "/v4/en/hash",
+            "html": "/v4/en/hash.html",
+            "file": "v4/en/hash.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "headers",
+            "url": "/v4/en/headers",
+            "html": "/v4/en/headers.html",
+            "file": "v4/en/headers.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "hyperplanning",
+            "url": "/v4/en/hyperplanning",
+            "html": "/v4/en/hyperplanning.html",
+            "file": "v4/en/hyperplanning.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "index",
+            "url": "/v4/en/",
+            "html": "/v4/en/index.html",
+            "file": "v4/en/index.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "infos",
+            "url": "/v4/en/infos",
+            "html": "/v4/en/infos.html",
+            "file": "v4/en/infos.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "ip",
+            "url": "/v4/en/ip",
+            "html": "/v4/en/ip.html",
+            "file": "v4/en/ip.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "levenshtein",
+            "url": "/v4/en/levenshtein",
+            "html": "/v4/en/levenshtein.html",
+            "file": "v4/en/levenshtein.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "palette",
+            "url": "/v4/en/palette",
+            "html": "/v4/en/palette.html",
+            "file": "v4/en/palette.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "password",
+            "url": "/v4/en/password",
+            "html": "/v4/en/password.html",
+            "file": "v4/en/password.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "personal",
+            "url": "/v4/en/personal",
+            "html": "/v4/en/personal.html",
+            "file": "v4/en/personal.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "placeholder",
+            "url": "/v4/en/placeholder",
+            "html": "/v4/en/placeholder.html",
+            "file": "v4/en/placeholder.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "playground",
+            "url": "/v4/en/playground",
+            "html": "/v4/en/playground.html",
+            "file": "v4/en/playground.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "pricing",
+            "url": "/v4/en/pricing",
+            "html": "/v4/en/pricing.html",
+            "file": "v4/en/pricing.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "qrcode",
+            "url": "/v4/en/qrcode",
+            "html": "/v4/en/qrcode.html",
+            "file": "v4/en/qrcode.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "regex",
+            "url": "/v4/en/regex",
+            "html": "/v4/en/regex.html",
+            "file": "v4/en/regex.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "statistics",
+            "url": "/v4/en/statistics",
+            "html": "/v4/en/statistics.html",
+            "file": "v4/en/statistics.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "text",
+            "url": "/v4/en/text",
+            "html": "/v4/en/text.html",
+            "file": "v4/en/text.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "tic-tac-toe",
+            "url": "/v4/en/tic-tac-toe",
+            "html": "/v4/en/tic-tac-toe.html",
+            "file": "v4/en/tic-tac-toe.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "tic-tac-toe/fetch",
+            "url": "/v4/en/tic-tac-toe/fetch",
+            "html": "/v4/en/tic-tac-toe/fetch.html",
+            "file": "v4/en/tic-tac-toe/fetch.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "tic-tac-toe/forfeit",
+            "url": "/v4/en/tic-tac-toe/forfeit",
+            "html": "/v4/en/tic-tac-toe/forfeit.html",
+            "file": "v4/en/tic-tac-toe/forfeit.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "tic-tac-toe/list",
+            "url": "/v4/en/tic-tac-toe/list",
+            "html": "/v4/en/tic-tac-toe/list.html",
+            "file": "v4/en/tic-tac-toe/list.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "tic-tac-toe/play",
+            "url": "/v4/en/tic-tac-toe/play",
+            "html": "/v4/en/tic-tac-toe/play.html",
+            "file": "v4/en/tic-tac-toe/play.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "time",
+            "url": "/v4/en/time",
+            "html": "/v4/en/time.html",
+            "file": "v4/en/time.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "token",
+            "url": "/v4/en/token",
+            "html": "/v4/en/token.html",
+            "file": "v4/en/token.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "username",
+            "url": "/v4/en/username",
+            "html": "/v4/en/username.html",
+            "file": "v4/en/username.html"
+        },
+        {
+            "version": "v4",
+            "lang": "en",
+            "id": "validate",
+            "url": "/v4/en/validate",
+            "html": "/v4/en/validate.html",
+            "file": "v4/en/validate.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "address",
+            "url": "/v4/fr/address",
+            "html": "/v4/fr/address.html",
+            "file": "v4/fr/address.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "agent",
+            "url": "/v4/fr/agent",
+            "html": "/v4/fr/agent.html",
+            "file": "v4/fr/agent.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "algorithms",
+            "url": "/v4/fr/algorithms",
+            "html": "/v4/fr/algorithms.html",
+            "file": "v4/fr/algorithms.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "authentication",
+            "url": "/v4/fr/authentication",
+            "html": "/v4/fr/authentication.html",
+            "file": "v4/fr/authentication.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "avatar",
+            "url": "/v4/fr/avatar",
+            "html": "/v4/fr/avatar.html",
+            "file": "v4/fr/avatar.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "barcode",
+            "url": "/v4/fr/barcode",
+            "html": "/v4/fr/barcode.html",
+            "file": "v4/fr/barcode.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "captcha",
+            "url": "/v4/fr/captcha",
+            "html": "/v4/fr/captcha.html",
+            "file": "v4/fr/captcha.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "changelog",
+            "url": "/v4/fr/changelog",
+            "html": "/v4/fr/changelog.html",
+            "file": "v4/fr/changelog.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "changelog/4.0.0",
+            "url": "/v4/fr/changelog/4.0.0",
+            "html": "/v4/fr/changelog/4.0.0.html",
+            "file": "v4/fr/changelog/4.0.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "changelog/4.1.0",
+            "url": "/v4/fr/changelog/4.1.0",
+            "html": "/v4/fr/changelog/4.1.0.html",
+            "file": "v4/fr/changelog/4.1.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "changelog/4.2.0",
+            "url": "/v4/fr/changelog/4.2.0",
+            "html": "/v4/fr/changelog/4.2.0.html",
+            "file": "v4/fr/changelog/4.2.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "changelog/4.3.0",
+            "url": "/v4/fr/changelog/4.3.0",
+            "html": "/v4/fr/changelog/4.3.0.html",
+            "file": "v4/fr/changelog/4.3.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "changelog/4.4.0",
+            "url": "/v4/fr/changelog/4.4.0",
+            "html": "/v4/fr/changelog/4.4.0.html",
+            "file": "v4/fr/changelog/4.4.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "changelog/4.5.0",
+            "url": "/v4/fr/changelog/4.5.0",
+            "html": "/v4/fr/changelog/4.5.0.html",
+            "file": "v4/fr/changelog/4.5.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "changelog/4.6.0",
+            "url": "/v4/fr/changelog/4.6.0",
+            "html": "/v4/fr/changelog/4.6.0.html",
+            "file": "v4/fr/changelog/4.6.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "changelog/4.7.0",
+            "url": "/v4/fr/changelog/4.7.0",
+            "html": "/v4/fr/changelog/4.7.0.html",
+            "file": "v4/fr/changelog/4.7.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "changelog/4.8.0",
+            "url": "/v4/fr/changelog/4.8.0",
+            "html": "/v4/fr/changelog/4.8.0.html",
+            "file": "v4/fr/changelog/4.8.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "changelog/4.9.0",
+            "url": "/v4/fr/changelog/4.9.0",
+            "html": "/v4/fr/changelog/4.9.0.html",
+            "file": "v4/fr/changelog/4.9.0.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "chat",
+            "url": "/v4/fr/chat",
+            "html": "/v4/fr/chat.html",
+            "file": "v4/fr/chat.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "chat/clear",
+            "url": "/v4/fr/chat/clear",
+            "html": "/v4/fr/chat/clear.html",
+            "file": "v4/fr/chat/clear.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "chat/messages",
+            "url": "/v4/fr/chat/messages",
+            "html": "/v4/fr/chat/messages.html",
+            "file": "v4/fr/chat/messages.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "chat/private",
+            "url": "/v4/fr/chat/private",
+            "html": "/v4/fr/chat/private.html",
+            "file": "v4/fr/chat/private.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "color",
+            "url": "/v4/fr/color",
+            "html": "/v4/fr/color.html",
+            "file": "v4/fr/color.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "convert",
+            "url": "/v4/fr/convert",
+            "html": "/v4/fr/convert.html",
+            "file": "v4/fr/convert.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "credit",
+            "url": "/v4/fr/credit",
+            "html": "/v4/fr/credit.html",
+            "file": "v4/fr/credit.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "cron",
+            "url": "/v4/fr/cron",
+            "html": "/v4/fr/cron.html",
+            "file": "v4/fr/cron.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "dice",
+            "url": "/v4/fr/dice",
+            "html": "/v4/fr/dice.html",
+            "file": "v4/fr/dice.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "domain",
+            "url": "/v4/fr/domain",
+            "html": "/v4/fr/domain.html",
+            "file": "v4/fr/domain.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "encode",
+            "url": "/v4/fr/encode",
+            "html": "/v4/fr/encode.html",
+            "file": "v4/fr/encode.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "geo",
+            "url": "/v4/fr/geo",
+            "html": "/v4/fr/geo.html",
+            "file": "v4/fr/geo.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "hash",
+            "url": "/v4/fr/hash",
+            "html": "/v4/fr/hash.html",
+            "file": "v4/fr/hash.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "headers",
+            "url": "/v4/fr/headers",
+            "html": "/v4/fr/headers.html",
+            "file": "v4/fr/headers.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "hyperplanning",
+            "url": "/v4/fr/hyperplanning",
+            "html": "/v4/fr/hyperplanning.html",
+            "file": "v4/fr/hyperplanning.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "index",
+            "url": "/v4/fr/",
+            "html": "/v4/fr/index.html",
+            "file": "v4/fr/index.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "infos",
+            "url": "/v4/fr/infos",
+            "html": "/v4/fr/infos.html",
+            "file": "v4/fr/infos.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "ip",
+            "url": "/v4/fr/ip",
+            "html": "/v4/fr/ip.html",
+            "file": "v4/fr/ip.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "levenshtein",
+            "url": "/v4/fr/levenshtein",
+            "html": "/v4/fr/levenshtein.html",
+            "file": "v4/fr/levenshtein.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "palette",
+            "url": "/v4/fr/palette",
+            "html": "/v4/fr/palette.html",
+            "file": "v4/fr/palette.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "password",
+            "url": "/v4/fr/password",
+            "html": "/v4/fr/password.html",
+            "file": "v4/fr/password.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "personal",
+            "url": "/v4/fr/personal",
+            "html": "/v4/fr/personal.html",
+            "file": "v4/fr/personal.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "placeholder",
+            "url": "/v4/fr/placeholder",
+            "html": "/v4/fr/placeholder.html",
+            "file": "v4/fr/placeholder.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "playground",
+            "url": "/v4/fr/playground",
+            "html": "/v4/fr/playground.html",
+            "file": "v4/fr/playground.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "pricing",
+            "url": "/v4/fr/pricing",
+            "html": "/v4/fr/pricing.html",
+            "file": "v4/fr/pricing.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "qrcode",
+            "url": "/v4/fr/qrcode",
+            "html": "/v4/fr/qrcode.html",
+            "file": "v4/fr/qrcode.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "regex",
+            "url": "/v4/fr/regex",
+            "html": "/v4/fr/regex.html",
+            "file": "v4/fr/regex.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "statistics",
+            "url": "/v4/fr/statistics",
+            "html": "/v4/fr/statistics.html",
+            "file": "v4/fr/statistics.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "text",
+            "url": "/v4/fr/text",
+            "html": "/v4/fr/text.html",
+            "file": "v4/fr/text.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "tic-tac-toe",
+            "url": "/v4/fr/tic-tac-toe",
+            "html": "/v4/fr/tic-tac-toe.html",
+            "file": "v4/fr/tic-tac-toe.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "tic-tac-toe/fetch",
+            "url": "/v4/fr/tic-tac-toe/fetch",
+            "html": "/v4/fr/tic-tac-toe/fetch.html",
+            "file": "v4/fr/tic-tac-toe/fetch.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "tic-tac-toe/forfeit",
+            "url": "/v4/fr/tic-tac-toe/forfeit",
+            "html": "/v4/fr/tic-tac-toe/forfeit.html",
+            "file": "v4/fr/tic-tac-toe/forfeit.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "tic-tac-toe/list",
+            "url": "/v4/fr/tic-tac-toe/list",
+            "html": "/v4/fr/tic-tac-toe/list.html",
+            "file": "v4/fr/tic-tac-toe/list.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "tic-tac-toe/play",
+            "url": "/v4/fr/tic-tac-toe/play",
+            "html": "/v4/fr/tic-tac-toe/play.html",
+            "file": "v4/fr/tic-tac-toe/play.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "time",
+            "url": "/v4/fr/time",
+            "html": "/v4/fr/time.html",
+            "file": "v4/fr/time.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "token",
+            "url": "/v4/fr/token",
+            "html": "/v4/fr/token.html",
+            "file": "v4/fr/token.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "username",
+            "url": "/v4/fr/username",
+            "html": "/v4/fr/username.html",
+            "file": "v4/fr/username.html"
+        },
+        {
+            "version": "v4",
+            "lang": "fr",
+            "id": "validate",
+            "url": "/v4/fr/validate",
+            "html": "/v4/fr/validate.html",
+            "file": "v4/fr/validate.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "address",
+            "url": "/v5/en/address",
+            "html": "/v5/en/address.html",
+            "file": "v5/en/address.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "agent",
+            "url": "/v5/en/agent",
+            "html": "/v5/en/agent.html",
+            "file": "v5/en/agent.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "algorithms",
+            "url": "/v5/en/algorithms",
+            "html": "/v5/en/algorithms.html",
+            "file": "v5/en/algorithms.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "asymmetric",
+            "url": "/v5/en/asymmetric",
+            "html": "/v5/en/asymmetric.html",
+            "file": "v5/en/asymmetric.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "authentication",
+            "url": "/v5/en/authentication",
+            "html": "/v5/en/authentication.html",
+            "file": "v5/en/authentication.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "avatar",
+            "url": "/v5/en/avatar",
+            "html": "/v5/en/avatar.html",
+            "file": "v5/en/avatar.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "barcode",
+            "url": "/v5/en/barcode",
+            "html": "/v5/en/barcode.html",
+            "file": "v5/en/barcode.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "base",
+            "url": "/v5/en/base",
+            "html": "/v5/en/base.html",
+            "file": "v5/en/base.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "captcha",
+            "url": "/v5/en/captcha",
+            "html": "/v5/en/captcha.html",
+            "file": "v5/en/captcha.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "captcha/verify",
+            "url": "/v5/en/captcha/verify",
+            "html": "/v5/en/captcha/verify.html",
+            "file": "v5/en/captcha/verify.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "case",
+            "url": "/v5/en/case",
+            "html": "/v5/en/case.html",
+            "file": "v5/en/case.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "changelog",
+            "url": "/v5/en/changelog",
+            "html": "/v5/en/changelog.html",
+            "file": "v5/en/changelog.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "changelog/5.0.0",
+            "url": "/v5/en/changelog/5.0.0",
+            "html": "/v5/en/changelog/5.0.0.html",
+            "file": "v5/en/changelog/5.0.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "changelog/5.1.0",
+            "url": "/v5/en/changelog/5.1.0",
+            "html": "/v5/en/changelog/5.1.0.html",
+            "file": "v5/en/changelog/5.1.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "changelog/5.2.0",
+            "url": "/v5/en/changelog/5.2.0",
+            "html": "/v5/en/changelog/5.2.0.html",
+            "file": "v5/en/changelog/5.2.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "changelog/5.3.0",
+            "url": "/v5/en/changelog/5.3.0",
+            "html": "/v5/en/changelog/5.3.0.html",
+            "file": "v5/en/changelog/5.3.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "changelog/5.4.0",
+            "url": "/v5/en/changelog/5.4.0",
+            "html": "/v5/en/changelog/5.4.0.html",
+            "file": "v5/en/changelog/5.4.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "changelog/5.5.0",
+            "url": "/v5/en/changelog/5.5.0",
+            "html": "/v5/en/changelog/5.5.0.html",
+            "file": "v5/en/changelog/5.5.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "changelog/5.6.0",
+            "url": "/v5/en/changelog/5.6.0",
+            "html": "/v5/en/changelog/5.6.0.html",
+            "file": "v5/en/changelog/5.6.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "changelog/5.7.0",
+            "url": "/v5/en/changelog/5.7.0",
+            "html": "/v5/en/changelog/5.7.0.html",
+            "file": "v5/en/changelog/5.7.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "changelog/5.8.0",
+            "url": "/v5/en/changelog/5.8.0",
+            "html": "/v5/en/changelog/5.8.0.html",
+            "file": "v5/en/changelog/5.8.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "changelog/5.9.0",
+            "url": "/v5/en/changelog/5.9.0",
+            "html": "/v5/en/changelog/5.9.0.html",
+            "file": "v5/en/changelog/5.9.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "chart",
+            "url": "/v5/en/chart",
+            "html": "/v5/en/chart.html",
+            "file": "v5/en/chart.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "chat",
+            "url": "/v5/en/chat",
+            "html": "/v5/en/chat.html",
+            "file": "v5/en/chat.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "chat/clear",
+            "url": "/v5/en/chat/clear",
+            "html": "/v5/en/chat/clear.html",
+            "file": "v5/en/chat/clear.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "chat/messages",
+            "url": "/v5/en/chat/messages",
+            "html": "/v5/en/chat/messages.html",
+            "file": "v5/en/chat/messages.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "chat/private",
+            "url": "/v5/en/chat/private",
+            "html": "/v5/en/chat/private.html",
+            "file": "v5/en/chat/private.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "color",
+            "url": "/v5/en/color",
+            "html": "/v5/en/color.html",
+            "file": "v5/en/color.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "convert",
+            "url": "/v5/en/convert",
+            "html": "/v5/en/convert.html",
+            "file": "v5/en/convert.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "credit",
+            "url": "/v5/en/credit",
+            "html": "/v5/en/credit.html",
+            "file": "v5/en/credit.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "cron",
+            "url": "/v5/en/cron",
+            "html": "/v5/en/cron.html",
+            "file": "v5/en/cron.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "csv",
+            "url": "/v5/en/csv",
+            "html": "/v5/en/csv.html",
+            "file": "v5/en/csv.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "dice",
+            "url": "/v5/en/dice",
+            "html": "/v5/en/dice.html",
+            "file": "v5/en/dice.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "diff",
+            "url": "/v5/en/diff",
+            "html": "/v5/en/diff.html",
+            "file": "v5/en/diff.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "domain",
+            "url": "/v5/en/domain",
+            "html": "/v5/en/domain.html",
+            "file": "v5/en/domain.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "encode",
+            "url": "/v5/en/encode",
+            "html": "/v5/en/encode.html",
+            "file": "v5/en/encode.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "evaluate",
+            "url": "/v5/en/evaluate",
+            "html": "/v5/en/evaluate.html",
+            "file": "v5/en/evaluate.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "geo",
+            "url": "/v5/en/geo",
+            "html": "/v5/en/geo.html",
+            "file": "v5/en/geo.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "hash",
+            "url": "/v5/en/hash",
+            "html": "/v5/en/hash.html",
+            "file": "v5/en/hash.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "headers",
+            "url": "/v5/en/headers",
+            "html": "/v5/en/headers.html",
+            "file": "v5/en/headers.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "hyperplanning",
+            "url": "/v5/en/hyperplanning",
+            "html": "/v5/en/hyperplanning.html",
+            "file": "v5/en/hyperplanning.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "index",
+            "url": "/v5/en/",
+            "html": "/v5/en/index.html",
+            "file": "v5/en/index.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "infos",
+            "url": "/v5/en/infos",
+            "html": "/v5/en/infos.html",
+            "file": "v5/en/infos.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "ip",
+            "url": "/v5/en/ip",
+            "html": "/v5/en/ip.html",
+            "file": "v5/en/ip.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "jwt",
+            "url": "/v5/en/jwt",
+            "html": "/v5/en/jwt.html",
+            "file": "v5/en/jwt.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "levenshtein",
+            "url": "/v5/en/levenshtein",
+            "html": "/v5/en/levenshtein.html",
+            "file": "v5/en/levenshtein.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "matrix",
+            "url": "/v5/en/matrix",
+            "html": "/v5/en/matrix.html",
+            "file": "v5/en/matrix.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "otp",
+            "url": "/v5/en/otp",
+            "html": "/v5/en/otp.html",
+            "file": "v5/en/otp.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "palette",
+            "url": "/v5/en/palette",
+            "html": "/v5/en/palette.html",
+            "file": "v5/en/palette.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "password",
+            "url": "/v5/en/password",
+            "html": "/v5/en/password.html",
+            "file": "v5/en/password.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "personal",
+            "url": "/v5/en/personal",
+            "html": "/v5/en/personal.html",
+            "file": "v5/en/personal.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "placeholder",
+            "url": "/v5/en/placeholder",
+            "html": "/v5/en/placeholder.html",
+            "file": "v5/en/placeholder.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "playground",
+            "url": "/v5/en/playground",
+            "html": "/v5/en/playground.html",
+            "file": "v5/en/playground.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "pow",
+            "url": "/v5/en/pow",
+            "html": "/v5/en/pow.html",
+            "file": "v5/en/pow.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "pow/verify",
+            "url": "/v5/en/pow/verify",
+            "html": "/v5/en/pow/verify.html",
+            "file": "v5/en/pow/verify.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "pricing",
+            "url": "/v5/en/pricing",
+            "html": "/v5/en/pricing.html",
+            "file": "v5/en/pricing.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "qrcode",
+            "url": "/v5/en/qrcode",
+            "html": "/v5/en/qrcode.html",
+            "file": "v5/en/qrcode.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "read",
+            "url": "/v5/en/read",
+            "html": "/v5/en/read.html",
+            "file": "v5/en/read.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "regex",
+            "url": "/v5/en/regex",
+            "html": "/v5/en/regex.html",
+            "file": "v5/en/regex.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "semver",
+            "url": "/v5/en/semver",
+            "html": "/v5/en/semver.html",
+            "file": "v5/en/semver.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "statistics",
+            "url": "/v5/en/statistics",
+            "html": "/v5/en/statistics.html",
+            "file": "v5/en/statistics.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "symmetric",
+            "url": "/v5/en/symmetric",
+            "html": "/v5/en/symmetric.html",
+            "file": "v5/en/symmetric.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "text",
+            "url": "/v5/en/text",
+            "html": "/v5/en/text.html",
+            "file": "v5/en/text.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "tic-tac-toe",
+            "url": "/v5/en/tic-tac-toe",
+            "html": "/v5/en/tic-tac-toe.html",
+            "file": "v5/en/tic-tac-toe.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "tic-tac-toe/fetch",
+            "url": "/v5/en/tic-tac-toe/fetch",
+            "html": "/v5/en/tic-tac-toe/fetch.html",
+            "file": "v5/en/tic-tac-toe/fetch.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "tic-tac-toe/forfeit",
+            "url": "/v5/en/tic-tac-toe/forfeit",
+            "html": "/v5/en/tic-tac-toe/forfeit.html",
+            "file": "v5/en/tic-tac-toe/forfeit.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "tic-tac-toe/list",
+            "url": "/v5/en/tic-tac-toe/list",
+            "html": "/v5/en/tic-tac-toe/list.html",
+            "file": "v5/en/tic-tac-toe/list.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "tic-tac-toe/play",
+            "url": "/v5/en/tic-tac-toe/play",
+            "html": "/v5/en/tic-tac-toe/play.html",
+            "file": "v5/en/tic-tac-toe/play.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "time",
+            "url": "/v5/en/time",
+            "html": "/v5/en/time.html",
+            "file": "v5/en/time.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "token",
+            "url": "/v5/en/token",
+            "html": "/v5/en/token.html",
+            "file": "v5/en/token.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "url",
+            "url": "/v5/en/url",
+            "html": "/v5/en/url.html",
+            "file": "v5/en/url.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "username",
+            "url": "/v5/en/username",
+            "html": "/v5/en/username.html",
+            "file": "v5/en/username.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "uuid",
+            "url": "/v5/en/uuid",
+            "html": "/v5/en/uuid.html",
+            "file": "v5/en/uuid.html"
+        },
+        {
+            "version": "v5",
+            "lang": "en",
+            "id": "validate",
+            "url": "/v5/en/validate",
+            "html": "/v5/en/validate.html",
+            "file": "v5/en/validate.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "address",
+            "url": "/v5/fr/address",
+            "html": "/v5/fr/address.html",
+            "file": "v5/fr/address.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "agent",
+            "url": "/v5/fr/agent",
+            "html": "/v5/fr/agent.html",
+            "file": "v5/fr/agent.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "algorithms",
+            "url": "/v5/fr/algorithms",
+            "html": "/v5/fr/algorithms.html",
+            "file": "v5/fr/algorithms.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "asymmetric",
+            "url": "/v5/fr/asymmetric",
+            "html": "/v5/fr/asymmetric.html",
+            "file": "v5/fr/asymmetric.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "authentication",
+            "url": "/v5/fr/authentication",
+            "html": "/v5/fr/authentication.html",
+            "file": "v5/fr/authentication.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "avatar",
+            "url": "/v5/fr/avatar",
+            "html": "/v5/fr/avatar.html",
+            "file": "v5/fr/avatar.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "barcode",
+            "url": "/v5/fr/barcode",
+            "html": "/v5/fr/barcode.html",
+            "file": "v5/fr/barcode.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "base",
+            "url": "/v5/fr/base",
+            "html": "/v5/fr/base.html",
+            "file": "v5/fr/base.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "captcha",
+            "url": "/v5/fr/captcha",
+            "html": "/v5/fr/captcha.html",
+            "file": "v5/fr/captcha.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "captcha/verify",
+            "url": "/v5/fr/captcha/verify",
+            "html": "/v5/fr/captcha/verify.html",
+            "file": "v5/fr/captcha/verify.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "case",
+            "url": "/v5/fr/case",
+            "html": "/v5/fr/case.html",
+            "file": "v5/fr/case.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "changelog",
+            "url": "/v5/fr/changelog",
+            "html": "/v5/fr/changelog.html",
+            "file": "v5/fr/changelog.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "changelog/5.0.0",
+            "url": "/v5/fr/changelog/5.0.0",
+            "html": "/v5/fr/changelog/5.0.0.html",
+            "file": "v5/fr/changelog/5.0.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "changelog/5.1.0",
+            "url": "/v5/fr/changelog/5.1.0",
+            "html": "/v5/fr/changelog/5.1.0.html",
+            "file": "v5/fr/changelog/5.1.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "changelog/5.2.0",
+            "url": "/v5/fr/changelog/5.2.0",
+            "html": "/v5/fr/changelog/5.2.0.html",
+            "file": "v5/fr/changelog/5.2.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "changelog/5.3.0",
+            "url": "/v5/fr/changelog/5.3.0",
+            "html": "/v5/fr/changelog/5.3.0.html",
+            "file": "v5/fr/changelog/5.3.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "changelog/5.4.0",
+            "url": "/v5/fr/changelog/5.4.0",
+            "html": "/v5/fr/changelog/5.4.0.html",
+            "file": "v5/fr/changelog/5.4.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "changelog/5.5.0",
+            "url": "/v5/fr/changelog/5.5.0",
+            "html": "/v5/fr/changelog/5.5.0.html",
+            "file": "v5/fr/changelog/5.5.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "changelog/5.6.0",
+            "url": "/v5/fr/changelog/5.6.0",
+            "html": "/v5/fr/changelog/5.6.0.html",
+            "file": "v5/fr/changelog/5.6.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "changelog/5.7.0",
+            "url": "/v5/fr/changelog/5.7.0",
+            "html": "/v5/fr/changelog/5.7.0.html",
+            "file": "v5/fr/changelog/5.7.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "changelog/5.8.0",
+            "url": "/v5/fr/changelog/5.8.0",
+            "html": "/v5/fr/changelog/5.8.0.html",
+            "file": "v5/fr/changelog/5.8.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "changelog/5.9.0",
+            "url": "/v5/fr/changelog/5.9.0",
+            "html": "/v5/fr/changelog/5.9.0.html",
+            "file": "v5/fr/changelog/5.9.0.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "chart",
+            "url": "/v5/fr/chart",
+            "html": "/v5/fr/chart.html",
+            "file": "v5/fr/chart.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "chat",
+            "url": "/v5/fr/chat",
+            "html": "/v5/fr/chat.html",
+            "file": "v5/fr/chat.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "chat/clear",
+            "url": "/v5/fr/chat/clear",
+            "html": "/v5/fr/chat/clear.html",
+            "file": "v5/fr/chat/clear.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "chat/messages",
+            "url": "/v5/fr/chat/messages",
+            "html": "/v5/fr/chat/messages.html",
+            "file": "v5/fr/chat/messages.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "chat/private",
+            "url": "/v5/fr/chat/private",
+            "html": "/v5/fr/chat/private.html",
+            "file": "v5/fr/chat/private.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "color",
+            "url": "/v5/fr/color",
+            "html": "/v5/fr/color.html",
+            "file": "v5/fr/color.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "convert",
+            "url": "/v5/fr/convert",
+            "html": "/v5/fr/convert.html",
+            "file": "v5/fr/convert.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "credit",
+            "url": "/v5/fr/credit",
+            "html": "/v5/fr/credit.html",
+            "file": "v5/fr/credit.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "cron",
+            "url": "/v5/fr/cron",
+            "html": "/v5/fr/cron.html",
+            "file": "v5/fr/cron.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "csv",
+            "url": "/v5/fr/csv",
+            "html": "/v5/fr/csv.html",
+            "file": "v5/fr/csv.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "dice",
+            "url": "/v5/fr/dice",
+            "html": "/v5/fr/dice.html",
+            "file": "v5/fr/dice.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "diff",
+            "url": "/v5/fr/diff",
+            "html": "/v5/fr/diff.html",
+            "file": "v5/fr/diff.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "domain",
+            "url": "/v5/fr/domain",
+            "html": "/v5/fr/domain.html",
+            "file": "v5/fr/domain.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "encode",
+            "url": "/v5/fr/encode",
+            "html": "/v5/fr/encode.html",
+            "file": "v5/fr/encode.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "evaluate",
+            "url": "/v5/fr/evaluate",
+            "html": "/v5/fr/evaluate.html",
+            "file": "v5/fr/evaluate.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "geo",
+            "url": "/v5/fr/geo",
+            "html": "/v5/fr/geo.html",
+            "file": "v5/fr/geo.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "hash",
+            "url": "/v5/fr/hash",
+            "html": "/v5/fr/hash.html",
+            "file": "v5/fr/hash.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "headers",
+            "url": "/v5/fr/headers",
+            "html": "/v5/fr/headers.html",
+            "file": "v5/fr/headers.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "hyperplanning",
+            "url": "/v5/fr/hyperplanning",
+            "html": "/v5/fr/hyperplanning.html",
+            "file": "v5/fr/hyperplanning.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "index",
+            "url": "/v5/fr/",
+            "html": "/v5/fr/index.html",
+            "file": "v5/fr/index.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "infos",
+            "url": "/v5/fr/infos",
+            "html": "/v5/fr/infos.html",
+            "file": "v5/fr/infos.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "ip",
+            "url": "/v5/fr/ip",
+            "html": "/v5/fr/ip.html",
+            "file": "v5/fr/ip.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "jwt",
+            "url": "/v5/fr/jwt",
+            "html": "/v5/fr/jwt.html",
+            "file": "v5/fr/jwt.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "levenshtein",
+            "url": "/v5/fr/levenshtein",
+            "html": "/v5/fr/levenshtein.html",
+            "file": "v5/fr/levenshtein.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "matrix",
+            "url": "/v5/fr/matrix",
+            "html": "/v5/fr/matrix.html",
+            "file": "v5/fr/matrix.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "otp",
+            "url": "/v5/fr/otp",
+            "html": "/v5/fr/otp.html",
+            "file": "v5/fr/otp.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "palette",
+            "url": "/v5/fr/palette",
+            "html": "/v5/fr/palette.html",
+            "file": "v5/fr/palette.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "password",
+            "url": "/v5/fr/password",
+            "html": "/v5/fr/password.html",
+            "file": "v5/fr/password.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "personal",
+            "url": "/v5/fr/personal",
+            "html": "/v5/fr/personal.html",
+            "file": "v5/fr/personal.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "placeholder",
+            "url": "/v5/fr/placeholder",
+            "html": "/v5/fr/placeholder.html",
+            "file": "v5/fr/placeholder.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "playground",
+            "url": "/v5/fr/playground",
+            "html": "/v5/fr/playground.html",
+            "file": "v5/fr/playground.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "pow",
+            "url": "/v5/fr/pow",
+            "html": "/v5/fr/pow.html",
+            "file": "v5/fr/pow.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "pow/verify",
+            "url": "/v5/fr/pow/verify",
+            "html": "/v5/fr/pow/verify.html",
+            "file": "v5/fr/pow/verify.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "pricing",
+            "url": "/v5/fr/pricing",
+            "html": "/v5/fr/pricing.html",
+            "file": "v5/fr/pricing.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "qrcode",
+            "url": "/v5/fr/qrcode",
+            "html": "/v5/fr/qrcode.html",
+            "file": "v5/fr/qrcode.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "read",
+            "url": "/v5/fr/read",
+            "html": "/v5/fr/read.html",
+            "file": "v5/fr/read.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "regex",
+            "url": "/v5/fr/regex",
+            "html": "/v5/fr/regex.html",
+            "file": "v5/fr/regex.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "semver",
+            "url": "/v5/fr/semver",
+            "html": "/v5/fr/semver.html",
+            "file": "v5/fr/semver.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "statistics",
+            "url": "/v5/fr/statistics",
+            "html": "/v5/fr/statistics.html",
+            "file": "v5/fr/statistics.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "symmetric",
+            "url": "/v5/fr/symmetric",
+            "html": "/v5/fr/symmetric.html",
+            "file": "v5/fr/symmetric.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "text",
+            "url": "/v5/fr/text",
+            "html": "/v5/fr/text.html",
+            "file": "v5/fr/text.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "tic-tac-toe",
+            "url": "/v5/fr/tic-tac-toe",
+            "html": "/v5/fr/tic-tac-toe.html",
+            "file": "v5/fr/tic-tac-toe.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "tic-tac-toe/fetch",
+            "url": "/v5/fr/tic-tac-toe/fetch",
+            "html": "/v5/fr/tic-tac-toe/fetch.html",
+            "file": "v5/fr/tic-tac-toe/fetch.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "tic-tac-toe/forfeit",
+            "url": "/v5/fr/tic-tac-toe/forfeit",
+            "html": "/v5/fr/tic-tac-toe/forfeit.html",
+            "file": "v5/fr/tic-tac-toe/forfeit.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "tic-tac-toe/list",
+            "url": "/v5/fr/tic-tac-toe/list",
+            "html": "/v5/fr/tic-tac-toe/list.html",
+            "file": "v5/fr/tic-tac-toe/list.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "tic-tac-toe/play",
+            "url": "/v5/fr/tic-tac-toe/play",
+            "html": "/v5/fr/tic-tac-toe/play.html",
+            "file": "v5/fr/tic-tac-toe/play.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "time",
+            "url": "/v5/fr/time",
+            "html": "/v5/fr/time.html",
+            "file": "v5/fr/time.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "token",
+            "url": "/v5/fr/token",
+            "html": "/v5/fr/token.html",
+            "file": "v5/fr/token.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "url",
+            "url": "/v5/fr/url",
+            "html": "/v5/fr/url.html",
+            "file": "v5/fr/url.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "username",
+            "url": "/v5/fr/username",
+            "html": "/v5/fr/username.html",
+            "file": "v5/fr/username.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "uuid",
+            "url": "/v5/fr/uuid",
+            "html": "/v5/fr/uuid.html",
+            "file": "v5/fr/uuid.html"
+        },
+        {
+            "version": "v5",
+            "lang": "fr",
+            "id": "validate",
+            "url": "/v5/fr/validate",
+            "html": "/v5/fr/validate.html",
+            "file": "v5/fr/validate.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "address",
+            "url": "/v6/en/address",
+            "html": "/v6/en/address.html",
+            "file": "v6/en/address.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "agent",
+            "url": "/v6/en/agent",
+            "html": "/v6/en/agent.html",
+            "file": "v6/en/agent.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "algorithms",
+            "url": "/v6/en/algorithms",
+            "html": "/v6/en/algorithms.html",
+            "file": "v6/en/algorithms.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "asymmetric",
+            "url": "/v6/en/asymmetric",
+            "html": "/v6/en/asymmetric.html",
+            "file": "v6/en/asymmetric.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "authentication",
+            "url": "/v6/en/authentication",
+            "html": "/v6/en/authentication.html",
+            "file": "v6/en/authentication.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "avatar",
+            "url": "/v6/en/avatar",
+            "html": "/v6/en/avatar.html",
+            "file": "v6/en/avatar.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "barcode",
+            "url": "/v6/en/barcode",
+            "html": "/v6/en/barcode.html",
+            "file": "v6/en/barcode.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "base",
+            "url": "/v6/en/base",
+            "html": "/v6/en/base.html",
+            "file": "v6/en/base.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "captcha",
+            "url": "/v6/en/captcha",
+            "html": "/v6/en/captcha.html",
+            "file": "v6/en/captcha.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "captcha/verify",
+            "url": "/v6/en/captcha/verify",
+            "html": "/v6/en/captcha/verify.html",
+            "file": "v6/en/captcha/verify.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "case",
+            "url": "/v6/en/case",
+            "html": "/v6/en/case.html",
+            "file": "v6/en/case.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "changelog",
+            "url": "/v6/en/changelog",
+            "html": "/v6/en/changelog.html",
+            "file": "v6/en/changelog.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "changelog/6.0.0",
+            "url": "/v6/en/changelog/6.0.0",
+            "html": "/v6/en/changelog/6.0.0.html",
+            "file": "v6/en/changelog/6.0.0.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "changelog/6.1.0",
+            "url": "/v6/en/changelog/6.1.0",
+            "html": "/v6/en/changelog/6.1.0.html",
+            "file": "v6/en/changelog/6.1.0.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "chart",
+            "url": "/v6/en/chart",
+            "html": "/v6/en/chart.html",
+            "file": "v6/en/chart.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "chat",
+            "url": "/v6/en/chat",
+            "html": "/v6/en/chat.html",
+            "file": "v6/en/chat.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "chat/clear",
+            "url": "/v6/en/chat/clear",
+            "html": "/v6/en/chat/clear.html",
+            "file": "v6/en/chat/clear.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "chat/messages",
+            "url": "/v6/en/chat/messages",
+            "html": "/v6/en/chat/messages.html",
+            "file": "v6/en/chat/messages.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "chat/private",
+            "url": "/v6/en/chat/private",
+            "html": "/v6/en/chat/private.html",
+            "file": "v6/en/chat/private.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "color",
+            "url": "/v6/en/color",
+            "html": "/v6/en/color.html",
+            "file": "v6/en/color.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "convert",
+            "url": "/v6/en/convert",
+            "html": "/v6/en/convert.html",
+            "file": "v6/en/convert.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "credit",
+            "url": "/v6/en/credit",
+            "html": "/v6/en/credit.html",
+            "file": "v6/en/credit.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "cron",
+            "url": "/v6/en/cron",
+            "html": "/v6/en/cron.html",
+            "file": "v6/en/cron.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "csv",
+            "url": "/v6/en/csv",
+            "html": "/v6/en/csv.html",
+            "file": "v6/en/csv.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "dice",
+            "url": "/v6/en/dice",
+            "html": "/v6/en/dice.html",
+            "file": "v6/en/dice.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "diff",
+            "url": "/v6/en/diff",
+            "html": "/v6/en/diff.html",
+            "file": "v6/en/diff.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "domain",
+            "url": "/v6/en/domain",
+            "html": "/v6/en/domain.html",
+            "file": "v6/en/domain.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "encode",
+            "url": "/v6/en/encode",
+            "html": "/v6/en/encode.html",
+            "file": "v6/en/encode.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "evaluate",
+            "url": "/v6/en/evaluate",
+            "html": "/v6/en/evaluate.html",
+            "file": "v6/en/evaluate.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "geo",
+            "url": "/v6/en/geo",
+            "html": "/v6/en/geo.html",
+            "file": "v6/en/geo.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "hash",
+            "url": "/v6/en/hash",
+            "html": "/v6/en/hash.html",
+            "file": "v6/en/hash.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "headers",
+            "url": "/v6/en/headers",
+            "html": "/v6/en/headers.html",
+            "file": "v6/en/headers.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "hyperplanning",
+            "url": "/v6/en/hyperplanning",
+            "html": "/v6/en/hyperplanning.html",
+            "file": "v6/en/hyperplanning.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "index",
+            "url": "/v6/en/",
+            "html": "/v6/en/index.html",
+            "file": "v6/en/index.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "infos",
+            "url": "/v6/en/infos",
+            "html": "/v6/en/infos.html",
+            "file": "v6/en/infos.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "ip",
+            "url": "/v6/en/ip",
+            "html": "/v6/en/ip.html",
+            "file": "v6/en/ip.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "jwt",
+            "url": "/v6/en/jwt",
+            "html": "/v6/en/jwt.html",
+            "file": "v6/en/jwt.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "levenshtein",
+            "url": "/v6/en/levenshtein",
+            "html": "/v6/en/levenshtein.html",
+            "file": "v6/en/levenshtein.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "manifest",
+            "url": "/v6/en/manifest",
+            "html": "/v6/en/manifest.html",
+            "file": "v6/en/manifest.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "matrix",
+            "url": "/v6/en/matrix",
+            "html": "/v6/en/matrix.html",
+            "file": "v6/en/matrix.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "otp",
+            "url": "/v6/en/otp",
+            "html": "/v6/en/otp.html",
+            "file": "v6/en/otp.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "palette",
+            "url": "/v6/en/palette",
+            "html": "/v6/en/palette.html",
+            "file": "v6/en/palette.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "password",
+            "url": "/v6/en/password",
+            "html": "/v6/en/password.html",
+            "file": "v6/en/password.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "personal",
+            "url": "/v6/en/personal",
+            "html": "/v6/en/personal.html",
+            "file": "v6/en/personal.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "placeholder",
+            "url": "/v6/en/placeholder",
+            "html": "/v6/en/placeholder.html",
+            "file": "v6/en/placeholder.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "playground",
+            "url": "/v6/en/playground",
+            "html": "/v6/en/playground.html",
+            "file": "v6/en/playground.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "pow",
+            "url": "/v6/en/pow",
+            "html": "/v6/en/pow.html",
+            "file": "v6/en/pow.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "pow/verify",
+            "url": "/v6/en/pow/verify",
+            "html": "/v6/en/pow/verify.html",
+            "file": "v6/en/pow/verify.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "pricing",
+            "url": "/v6/en/pricing",
+            "html": "/v6/en/pricing.html",
+            "file": "v6/en/pricing.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "qrcode",
+            "url": "/v6/en/qrcode",
+            "html": "/v6/en/qrcode.html",
+            "file": "v6/en/qrcode.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "read",
+            "url": "/v6/en/read",
+            "html": "/v6/en/read.html",
+            "file": "v6/en/read.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "regex",
+            "url": "/v6/en/regex",
+            "html": "/v6/en/regex.html",
+            "file": "v6/en/regex.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "semver",
+            "url": "/v6/en/semver",
+            "html": "/v6/en/semver.html",
+            "file": "v6/en/semver.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "statistics",
+            "url": "/v6/en/statistics",
+            "html": "/v6/en/statistics.html",
+            "file": "v6/en/statistics.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "symmetric",
+            "url": "/v6/en/symmetric",
+            "html": "/v6/en/symmetric.html",
+            "file": "v6/en/symmetric.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "text",
+            "url": "/v6/en/text",
+            "html": "/v6/en/text.html",
+            "file": "v6/en/text.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "tic-tac-toe",
+            "url": "/v6/en/tic-tac-toe",
+            "html": "/v6/en/tic-tac-toe.html",
+            "file": "v6/en/tic-tac-toe.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "tic-tac-toe/fetch",
+            "url": "/v6/en/tic-tac-toe/fetch",
+            "html": "/v6/en/tic-tac-toe/fetch.html",
+            "file": "v6/en/tic-tac-toe/fetch.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "tic-tac-toe/forfeit",
+            "url": "/v6/en/tic-tac-toe/forfeit",
+            "html": "/v6/en/tic-tac-toe/forfeit.html",
+            "file": "v6/en/tic-tac-toe/forfeit.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "tic-tac-toe/list",
+            "url": "/v6/en/tic-tac-toe/list",
+            "html": "/v6/en/tic-tac-toe/list.html",
+            "file": "v6/en/tic-tac-toe/list.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "tic-tac-toe/play",
+            "url": "/v6/en/tic-tac-toe/play",
+            "html": "/v6/en/tic-tac-toe/play.html",
+            "file": "v6/en/tic-tac-toe/play.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "time",
+            "url": "/v6/en/time",
+            "html": "/v6/en/time.html",
+            "file": "v6/en/time.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "token",
+            "url": "/v6/en/token",
+            "html": "/v6/en/token.html",
+            "file": "v6/en/token.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "url",
+            "url": "/v6/en/url",
+            "html": "/v6/en/url.html",
+            "file": "v6/en/url.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "username",
+            "url": "/v6/en/username",
+            "html": "/v6/en/username.html",
+            "file": "v6/en/username.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "uuid",
+            "url": "/v6/en/uuid",
+            "html": "/v6/en/uuid.html",
+            "file": "v6/en/uuid.html"
+        },
+        {
+            "version": "v6",
+            "lang": "en",
+            "id": "validate",
+            "url": "/v6/en/validate",
+            "html": "/v6/en/validate.html",
+            "file": "v6/en/validate.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "address",
+            "url": "/v6/fr/address",
+            "html": "/v6/fr/address.html",
+            "file": "v6/fr/address.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "agent",
+            "url": "/v6/fr/agent",
+            "html": "/v6/fr/agent.html",
+            "file": "v6/fr/agent.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "algorithms",
+            "url": "/v6/fr/algorithms",
+            "html": "/v6/fr/algorithms.html",
+            "file": "v6/fr/algorithms.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "asymmetric",
+            "url": "/v6/fr/asymmetric",
+            "html": "/v6/fr/asymmetric.html",
+            "file": "v6/fr/asymmetric.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "authentication",
+            "url": "/v6/fr/authentication",
+            "html": "/v6/fr/authentication.html",
+            "file": "v6/fr/authentication.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "avatar",
+            "url": "/v6/fr/avatar",
+            "html": "/v6/fr/avatar.html",
+            "file": "v6/fr/avatar.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "barcode",
+            "url": "/v6/fr/barcode",
+            "html": "/v6/fr/barcode.html",
+            "file": "v6/fr/barcode.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "base",
+            "url": "/v6/fr/base",
+            "html": "/v6/fr/base.html",
+            "file": "v6/fr/base.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "captcha",
+            "url": "/v6/fr/captcha",
+            "html": "/v6/fr/captcha.html",
+            "file": "v6/fr/captcha.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "captcha/verify",
+            "url": "/v6/fr/captcha/verify",
+            "html": "/v6/fr/captcha/verify.html",
+            "file": "v6/fr/captcha/verify.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "case",
+            "url": "/v6/fr/case",
+            "html": "/v6/fr/case.html",
+            "file": "v6/fr/case.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "changelog",
+            "url": "/v6/fr/changelog",
+            "html": "/v6/fr/changelog.html",
+            "file": "v6/fr/changelog.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "changelog/6.0.0",
+            "url": "/v6/fr/changelog/6.0.0",
+            "html": "/v6/fr/changelog/6.0.0.html",
+            "file": "v6/fr/changelog/6.0.0.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "changelog/6.1.0",
+            "url": "/v6/fr/changelog/6.1.0",
+            "html": "/v6/fr/changelog/6.1.0.html",
+            "file": "v6/fr/changelog/6.1.0.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "chart",
+            "url": "/v6/fr/chart",
+            "html": "/v6/fr/chart.html",
+            "file": "v6/fr/chart.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "chat",
+            "url": "/v6/fr/chat",
+            "html": "/v6/fr/chat.html",
+            "file": "v6/fr/chat.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "chat/clear",
+            "url": "/v6/fr/chat/clear",
+            "html": "/v6/fr/chat/clear.html",
+            "file": "v6/fr/chat/clear.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "chat/messages",
+            "url": "/v6/fr/chat/messages",
+            "html": "/v6/fr/chat/messages.html",
+            "file": "v6/fr/chat/messages.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "chat/private",
+            "url": "/v6/fr/chat/private",
+            "html": "/v6/fr/chat/private.html",
+            "file": "v6/fr/chat/private.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "color",
+            "url": "/v6/fr/color",
+            "html": "/v6/fr/color.html",
+            "file": "v6/fr/color.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "convert",
+            "url": "/v6/fr/convert",
+            "html": "/v6/fr/convert.html",
+            "file": "v6/fr/convert.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "credit",
+            "url": "/v6/fr/credit",
+            "html": "/v6/fr/credit.html",
+            "file": "v6/fr/credit.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "cron",
+            "url": "/v6/fr/cron",
+            "html": "/v6/fr/cron.html",
+            "file": "v6/fr/cron.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "csv",
+            "url": "/v6/fr/csv",
+            "html": "/v6/fr/csv.html",
+            "file": "v6/fr/csv.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "dice",
+            "url": "/v6/fr/dice",
+            "html": "/v6/fr/dice.html",
+            "file": "v6/fr/dice.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "diff",
+            "url": "/v6/fr/diff",
+            "html": "/v6/fr/diff.html",
+            "file": "v6/fr/diff.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "domain",
+            "url": "/v6/fr/domain",
+            "html": "/v6/fr/domain.html",
+            "file": "v6/fr/domain.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "encode",
+            "url": "/v6/fr/encode",
+            "html": "/v6/fr/encode.html",
+            "file": "v6/fr/encode.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "evaluate",
+            "url": "/v6/fr/evaluate",
+            "html": "/v6/fr/evaluate.html",
+            "file": "v6/fr/evaluate.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "geo",
+            "url": "/v6/fr/geo",
+            "html": "/v6/fr/geo.html",
+            "file": "v6/fr/geo.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "hash",
+            "url": "/v6/fr/hash",
+            "html": "/v6/fr/hash.html",
+            "file": "v6/fr/hash.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "headers",
+            "url": "/v6/fr/headers",
+            "html": "/v6/fr/headers.html",
+            "file": "v6/fr/headers.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "hyperplanning",
+            "url": "/v6/fr/hyperplanning",
+            "html": "/v6/fr/hyperplanning.html",
+            "file": "v6/fr/hyperplanning.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "index",
+            "url": "/v6/fr/",
+            "html": "/v6/fr/index.html",
+            "file": "v6/fr/index.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "infos",
+            "url": "/v6/fr/infos",
+            "html": "/v6/fr/infos.html",
+            "file": "v6/fr/infos.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "ip",
+            "url": "/v6/fr/ip",
+            "html": "/v6/fr/ip.html",
+            "file": "v6/fr/ip.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "jwt",
+            "url": "/v6/fr/jwt",
+            "html": "/v6/fr/jwt.html",
+            "file": "v6/fr/jwt.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "levenshtein",
+            "url": "/v6/fr/levenshtein",
+            "html": "/v6/fr/levenshtein.html",
+            "file": "v6/fr/levenshtein.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "manifest",
+            "url": "/v6/fr/manifest",
+            "html": "/v6/fr/manifest.html",
+            "file": "v6/fr/manifest.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "matrix",
+            "url": "/v6/fr/matrix",
+            "html": "/v6/fr/matrix.html",
+            "file": "v6/fr/matrix.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "otp",
+            "url": "/v6/fr/otp",
+            "html": "/v6/fr/otp.html",
+            "file": "v6/fr/otp.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "palette",
+            "url": "/v6/fr/palette",
+            "html": "/v6/fr/palette.html",
+            "file": "v6/fr/palette.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "password",
+            "url": "/v6/fr/password",
+            "html": "/v6/fr/password.html",
+            "file": "v6/fr/password.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "personal",
+            "url": "/v6/fr/personal",
+            "html": "/v6/fr/personal.html",
+            "file": "v6/fr/personal.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "placeholder",
+            "url": "/v6/fr/placeholder",
+            "html": "/v6/fr/placeholder.html",
+            "file": "v6/fr/placeholder.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "playground",
+            "url": "/v6/fr/playground",
+            "html": "/v6/fr/playground.html",
+            "file": "v6/fr/playground.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "pow",
+            "url": "/v6/fr/pow",
+            "html": "/v6/fr/pow.html",
+            "file": "v6/fr/pow.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "pow/verify",
+            "url": "/v6/fr/pow/verify",
+            "html": "/v6/fr/pow/verify.html",
+            "file": "v6/fr/pow/verify.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "pricing",
+            "url": "/v6/fr/pricing",
+            "html": "/v6/fr/pricing.html",
+            "file": "v6/fr/pricing.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "qrcode",
+            "url": "/v6/fr/qrcode",
+            "html": "/v6/fr/qrcode.html",
+            "file": "v6/fr/qrcode.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "read",
+            "url": "/v6/fr/read",
+            "html": "/v6/fr/read.html",
+            "file": "v6/fr/read.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "regex",
+            "url": "/v6/fr/regex",
+            "html": "/v6/fr/regex.html",
+            "file": "v6/fr/regex.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "semver",
+            "url": "/v6/fr/semver",
+            "html": "/v6/fr/semver.html",
+            "file": "v6/fr/semver.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "statistics",
+            "url": "/v6/fr/statistics",
+            "html": "/v6/fr/statistics.html",
+            "file": "v6/fr/statistics.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "symmetric",
+            "url": "/v6/fr/symmetric",
+            "html": "/v6/fr/symmetric.html",
+            "file": "v6/fr/symmetric.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "text",
+            "url": "/v6/fr/text",
+            "html": "/v6/fr/text.html",
+            "file": "v6/fr/text.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "tic-tac-toe",
+            "url": "/v6/fr/tic-tac-toe",
+            "html": "/v6/fr/tic-tac-toe.html",
+            "file": "v6/fr/tic-tac-toe.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "tic-tac-toe/fetch",
+            "url": "/v6/fr/tic-tac-toe/fetch",
+            "html": "/v6/fr/tic-tac-toe/fetch.html",
+            "file": "v6/fr/tic-tac-toe/fetch.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "tic-tac-toe/forfeit",
+            "url": "/v6/fr/tic-tac-toe/forfeit",
+            "html": "/v6/fr/tic-tac-toe/forfeit.html",
+            "file": "v6/fr/tic-tac-toe/forfeit.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "tic-tac-toe/list",
+            "url": "/v6/fr/tic-tac-toe/list",
+            "html": "/v6/fr/tic-tac-toe/list.html",
+            "file": "v6/fr/tic-tac-toe/list.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "tic-tac-toe/play",
+            "url": "/v6/fr/tic-tac-toe/play",
+            "html": "/v6/fr/tic-tac-toe/play.html",
+            "file": "v6/fr/tic-tac-toe/play.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "time",
+            "url": "/v6/fr/time",
+            "html": "/v6/fr/time.html",
+            "file": "v6/fr/time.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "token",
+            "url": "/v6/fr/token",
+            "html": "/v6/fr/token.html",
+            "file": "v6/fr/token.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "url",
+            "url": "/v6/fr/url",
+            "html": "/v6/fr/url.html",
+            "file": "v6/fr/url.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "username",
+            "url": "/v6/fr/username",
+            "html": "/v6/fr/username.html",
+            "file": "v6/fr/username.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "uuid",
+            "url": "/v6/fr/uuid",
+            "html": "/v6/fr/uuid.html",
+            "file": "v6/fr/uuid.html"
+        },
+        {
+            "version": "v6",
+            "lang": "fr",
+            "id": "validate",
+            "url": "/v6/fr/validate",
+            "html": "/v6/fr/validate.html",
+            "file": "v6/fr/validate.html"
+        }
+    ]
+}
