@@ -1,0 +1,652 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* Local work trees are never scanned for class names */
+@source not "../../.claude-work";
+
+/* Dark utilities follow the next-themes class and never reach paper: print keeps the light look */
+@custom-variant dark {
+    @media not print {
+        &:is(.dark *) {
+            @slot;
+        }
+    }
+}
+
+/*
+ * Fonts: three variable fonts, a latin and a latin-ext subset each. The latin-ext
+ * file is only downloaded when a character of its range is on the page. Shell preloads the
+ * latin Geist and the latin Bricolage Grotesque (the logo).
+ */
+@font-face {
+    font-family: "Geist";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("./fonts/geistext.woff2") format("woff2");
+    unicode-range:
+        U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+        U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+        U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: "Geist";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("./fonts/geist.woff2") format("woff2");
+    unicode-range:
+        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+        U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Geist Mono";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("./fonts/geistmonoext.woff2") format("woff2");
+    unicode-range:
+        U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+        U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+        U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: "Geist Mono";
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("./fonts/geistmono.woff2") format("woff2");
+    unicode-range:
+        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+        U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Bricolage Grotesque";
+    font-style: normal;
+    font-weight: 200 800;
+    font-stretch: 75% 100%;
+    font-display: swap;
+    src: url("./fonts/bricolageext.woff2") format("woff2");
+    unicode-range:
+        U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+        U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+        U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: "Bricolage Grotesque";
+    font-style: normal;
+    font-weight: 200 800;
+    font-stretch: 75% 100%;
+    font-display: swap;
+    src: url("./fonts/bricolage.woff2") format("woff2");
+    unicode-range:
+        U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308,
+        U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/*
+ * Metric-matched local faces shown until the web fonts arrive, so the first paint does not
+ * shift. Values computed like next/font does (capsize metrics of Next 16.4): Geist 400 over
+ * Arial, Bricolage Grotesque 800 (logo, home title) over Arial Bold.
+ */
+@font-face {
+    font-family: "Geist Fallback";
+    src: local("Arial"), local("ArialMT");
+    size-adjust: 104.76%;
+    ascent-override: 95.94%;
+    descent-override: 28.16%;
+    line-gap-override: 0%;
+}
+
+@font-face {
+    font-family: "Bricolage Fallback";
+    font-weight: 800;
+    src: local("Arial Bold"), local("Arial-BoldMT");
+    size-adjust: 103.13%;
+    ascent-override: 90.18%;
+    descent-override: 26.18%;
+    line-gap-override: 0%;
+}
+
+/*
+ * Design tokens, light theme. Components read them through the Tailwind colors of the @theme
+ * inline block below, never as raw values.
+ */
+:root {
+    --sans: "Geist", "Geist Fallback", system-ui, sans-serif;
+    --mono: "Geist Mono", ui-monospace, monospace;
+    --display: var(--sans);
+    --brand: "Bricolage Grotesque", "Bricolage Fallback", "Geist", sans-serif;
+
+    --ink: #0f1115;
+    --text: #3a3f4b;
+    --muted: #5b6170;
+    --faint: #676e80;
+
+    --line: #e7e8ec;
+    --line-soft: #eef0f3;
+    --field: #e2e4e9;
+
+    --bg: #ffffff;
+    --side: #fbfbfc;
+    --soft: #fafbfc;
+    --surface: #ffffff;
+    --search: #f6f7f9;
+    --control: #ffffff;
+    --control-hover: #f6f7f9;
+    --chip: #f3f4f6;
+    --hover: #f1f2f5;
+    --key: #ffffff;
+
+    --hl: #fde68a;
+    --hl-hover: #fbdd72;
+    --hl-active: #f9d65c;
+    --hl-line: #f0c230;
+    --on-hl: #0f1115;
+    --kbd-on-hl: rgba(15, 17, 21, 0.1);
+    --active-bg: #fef3c7;
+    --active-ink: #0f1115;
+
+    --pill-on: #0f1115;
+    --pill-on-line: #0f1115;
+    --pill-on-ink: #ffffff;
+    --chip-on: #fde68a;
+    --chip-on-line: #fde68a;
+
+    --focus-line: #0f1115;
+    --focus-ring: #fde68a;
+
+    --post: #07714f;
+    --post-bg: #e6fcf5;
+    --get: #364fc7;
+    --get-bg: #edf1ff;
+    --req: #b02525;
+    --req-bg: #fff1f1;
+    --status: #a14a00;
+    --status-bg: #fff4e6;
+
+    --note-line: #f3df98;
+    --note-bg: #fffbeb;
+    --note-ink: #3a3115;
+
+    --scrim: rgba(15, 17, 21, 0.42);
+    --scrim-sheet: rgba(15, 17, 21, 0.45);
+    --grab: #d9dce2;
+    --seg-on: #ffffff;
+    --panel-line: #e2e4e9;
+
+    --code-bg: #0f1218;
+    --code-bar: #0c0f14;
+    --code-line: #1d212b;
+    --code-btn: #232834;
+    --code-tab: #1f2530;
+    --code-edge: transparent;
+    --code-text: #c9d1e3;
+    --code-punct: #8a93a6;
+    --code-dim: #8a93a6;
+    --code-str: #9be9c8;
+    --code-key: #f0b37e;
+    --code-fn: #9db4ff;
+    --code-sel: #e8eaf0;
+    --code-icon: #9ba3b4;
+    --code-tablist: #1a1f29;
+    --code-tabon: #2a303d;
+    --ok: #63e6be;
+    --ok-dot: #20c997;
+    --warn: #ffb46e;
+    --warn-dot: #f08c00;
+
+    --thumb: #d4d7de;
+    --thumb-hover: #b9bdc7;
+    --thumb-code: #363c4a;
+
+    --panel-shadow: 0 1px 2px rgba(15, 17, 21, 0.04), 0 12px 32px -12px rgba(15, 17, 21, 0.12);
+    --demo-shadow: 0 1px 2px rgba(15, 17, 21, 0.04), 0 12px 32px -12px rgba(15, 17, 21, 0.2);
+    --palette-shadow: 0 24px 64px -12px rgba(15, 17, 21, 0.4), 0 0 0 1px rgba(15, 17, 21, 0.08);
+    --bar-shadow: 0 -8px 24px -12px rgba(15, 17, 21, 0.12);
+    --sheet-shadow: 0 0 #0000;
+    --seg-shadow: 0 1px 2px rgba(15, 17, 21, 0.12);
+
+    color-scheme: light;
+}
+
+/* Dark theme: three near-black surfaces, the brand yellow unchanged */
+@media not print {
+    .dark {
+        --ink: #f2f3f5;
+        --text: #c6c9d0;
+        --muted: #a3a8b3;
+        --faint: #969ba8;
+
+        --line: #26282d;
+        --line-soft: #1e2024;
+        --field: #34363d;
+
+        --bg: #121316;
+        --side: #17181b;
+        --soft: #17181b;
+        --surface: #17181b;
+        --search: #1b1c20;
+        --control: #1c1d21;
+        --control-hover: #25272c;
+        --chip: #25272c;
+        --hover: #1f2125;
+        --key: #25272c;
+
+        --hl-line: rgba(253, 230, 138, 0.5);
+        --kbd-on-hl: rgba(15, 17, 21, 0.12);
+        --active-bg: rgba(253, 230, 138, 0.14);
+        --active-ink: #f2f3f5;
+
+        --pill-on: rgba(253, 230, 138, 0.14);
+        --pill-on-line: rgba(253, 230, 138, 0.55);
+        --pill-on-ink: #f2f3f5;
+        --chip-on: rgba(253, 230, 138, 0.14);
+        --chip-on-line: rgba(253, 230, 138, 0.55);
+
+        --focus-line: #fde68a;
+        --focus-ring: rgba(253, 230, 138, 0.26);
+
+        --post: #55d6a6;
+        --post-bg: rgba(85, 214, 166, 0.12);
+        --get: #94a8ff;
+        --get-bg: rgba(148, 168, 255, 0.12);
+        --req: #ff9393;
+        --req-bg: rgba(255, 120, 120, 0.12);
+        --status: #ffb46e;
+        --status-bg: rgba(255, 180, 110, 0.12);
+
+        --note-line: rgba(253, 230, 138, 0.22);
+        --note-bg: rgba(253, 230, 138, 0.06);
+        --note-ink: #e8e1c6;
+
+        --scrim: rgba(0, 0, 0, 0.62);
+        --scrim-sheet: rgba(0, 0, 0, 0.62);
+        --grab: #3b3e46;
+        --seg-on: #31343b;
+        --panel-line: #30333b;
+
+        --code-bg: #0a0b0d;
+        --code-bar: #07080a;
+        --code-line: #1b1d22;
+        --code-btn: #2a2d35;
+        --code-tab: #1f2229;
+        --code-edge: #30333b;
+        --code-tablist: #15171b;
+        --code-tabon: #2a2d35;
+
+        --thumb: #3a3d45;
+        --thumb-hover: #4d515b;
+        --thumb-code: #343741;
+
+        --panel-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35), 0 18px 40px -14px rgba(0, 0, 0, 0.7);
+        --demo-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35), 0 18px 40px -14px rgba(0, 0, 0, 0.7);
+        --palette-shadow: 0 28px 70px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px var(--panel-line);
+        --bar-shadow: 0 -10px 24px -12px rgba(0, 0, 0, 0.6);
+        --sheet-shadow: 0 -1px 0 #30333b;
+        --seg-shadow: 0 0 #0000;
+
+        color-scheme: dark;
+    }
+}
+
+/*
+ * shadcn semantic variables, aliased to the design tokens so the generated primitives follow
+ * both themes. --muted and --input are design tokens here: the primitives read their muted text
+ * through muted-foreground and their control border through input.
+ */
+:root,
+.dark {
+    --background: var(--bg);
+    --foreground: var(--ink);
+    --card: var(--bg);
+    --card-foreground: var(--ink);
+    --popover: var(--surface);
+    --popover-foreground: var(--ink);
+    --primary: var(--hl);
+    --primary-foreground: var(--on-hl);
+    --secondary: var(--chip);
+    --secondary-foreground: var(--ink);
+    --muted-foreground: var(--muted);
+    --accent: var(--chip);
+    --accent-foreground: var(--ink);
+    --destructive: var(--req);
+    --border: var(--line);
+    --input: var(--field);
+    --ring: var(--focus-line);
+}
+
+@theme inline {
+    --font-sans: var(--sans);
+    --font-mono: var(--mono);
+    --font-display: var(--display);
+    --font-brand: var(--brand);
+
+    --color-background: var(--background);
+    --color-foreground: var(--foreground);
+    --color-card: var(--card);
+    --color-card-foreground: var(--card-foreground);
+    --color-popover: var(--popover);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-primary: var(--primary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-secondary: var(--secondary);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-accent: var(--accent);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-destructive: var(--destructive);
+    --color-border: var(--border);
+    --color-input: var(--input);
+    --color-ring: var(--ring);
+
+    --color-ink: var(--ink);
+    --color-text: var(--text);
+    --color-muted: var(--muted);
+    --color-faint: var(--faint);
+    --color-line: var(--line);
+    --color-line-soft: var(--line-soft);
+    --color-field: var(--field);
+    --color-page: var(--bg);
+    --color-side: var(--side);
+    --color-soft: var(--soft);
+    --color-surface: var(--surface);
+    --color-search: var(--search);
+    --color-control: var(--control);
+    --color-control-hover: var(--control-hover);
+    --color-chip: var(--chip);
+    --color-hover: var(--hover);
+    --color-key: var(--key);
+    --color-hl: var(--hl);
+    --color-hl-hover: var(--hl-hover);
+    --color-hl-active: var(--hl-active);
+    --color-hl-line: var(--hl-line);
+    --color-on-hl: var(--on-hl);
+    --color-kbd-on-hl: var(--kbd-on-hl);
+    --color-active: var(--active-bg);
+    --color-active-ink: var(--active-ink);
+    --color-pill-on: var(--pill-on);
+    --color-pill-on-line: var(--pill-on-line);
+    --color-pill-on-ink: var(--pill-on-ink);
+    --color-chip-on: var(--chip-on);
+    --color-chip-on-line: var(--chip-on-line);
+    --color-focus-line: var(--focus-line);
+    --color-focus-ring: var(--focus-ring);
+    --color-post: var(--post);
+    --color-post-bg: var(--post-bg);
+    --color-get: var(--get);
+    --color-get-bg: var(--get-bg);
+    --color-req: var(--req);
+    --color-req-bg: var(--req-bg);
+    --color-status: var(--status);
+    --color-status-bg: var(--status-bg);
+    --color-note-line: var(--note-line);
+    --color-note-bg: var(--note-bg);
+    --color-note-ink: var(--note-ink);
+    --color-scrim: var(--scrim);
+    --color-scrim-sheet: var(--scrim-sheet);
+    --color-grab: var(--grab);
+    --color-seg-on: var(--seg-on);
+    --color-panel-line: var(--panel-line);
+    --color-code-bg: var(--code-bg);
+    --color-code-bar: var(--code-bar);
+    --color-code-line: var(--code-line);
+    --color-code-btn: var(--code-btn);
+    --color-code-tab: var(--code-tab);
+    --color-code-edge: var(--code-edge);
+    --color-code-text: var(--code-text);
+    --color-code-punct: var(--code-punct);
+    --color-code-dim: var(--code-dim);
+    --color-code-str: var(--code-str);
+    --color-code-key: var(--code-key);
+    --color-code-fn: var(--code-fn);
+    --color-code-sel: var(--code-sel);
+    --color-code-icon: var(--code-icon);
+    --color-code-tablist: var(--code-tablist);
+    --color-code-tabon: var(--code-tabon);
+    --color-ok: var(--ok);
+    --color-ok-dot: var(--ok-dot);
+    --color-warn: var(--warn);
+    --color-warn-dot: var(--warn-dot);
+
+    --shadow-panel: var(--panel-shadow);
+    --shadow-demo: var(--demo-shadow);
+    --shadow-palette: var(--palette-shadow);
+    --shadow-bar: var(--bar-shadow);
+    --shadow-sheet: var(--sheet-shadow);
+    --shadow-seg: var(--seg-shadow);
+}
+
+/*
+ * Fixed scales of the design: radii, layout breakpoints (the end of the home phone layout, of the
+ * documentation phone layout and the start of the three columns) and every animation the
+ * interface needs, declared once here.
+ */
+@theme {
+    --radius-tag: 4px;
+    --radius-chip: 5px;
+    --radius-row: 6px;
+    --radius-btn: 7px;
+    --radius-field: 8px;
+    --radius-cta: 9px;
+    --radius-box: 10px;
+    --radius-table: 12px;
+    --radius-panel: 14px;
+    --radius-sheet: 20px;
+
+    --breakpoint-home: 47.5625rem;
+    --breakpoint-desk: 60rem;
+    --breakpoint-wide: 80rem;
+
+    --animate-flash: anchor-flash 1.5s cubic-bezier(0.2, 0.6, 0.3, 1) both;
+    --animate-swap: swap-in 120ms ease-out;
+    --animate-palette-in: palette-in 140ms cubic-bezier(0.2, 0.6, 0.3, 1);
+    --animate-palette-out: palette-out 100ms ease-in both;
+    --animate-scrim-in: scrim-in 140ms ease-out;
+    --animate-scrim-out: scrim-out 100ms ease-in both;
+    --animate-sheet-in: sheet-in 220ms ease-out;
+    --animate-sheet-out: sheet-out 180ms ease-in both;
+    --animate-spinner: spinner 0.8s linear infinite;
+    --animate-pulse-dot: pulse-dot 1.2s ease-in-out infinite;
+
+    @keyframes anchor-flash {
+        0%,
+        18% {
+            background: var(--active-bg);
+            box-shadow: 0 0 0 10px var(--active-bg);
+        }
+        100% {
+            background: transparent;
+            box-shadow: 0 0 0 10px transparent;
+        }
+    }
+
+    @keyframes swap-in {
+        from {
+            opacity: 0;
+        }
+    }
+
+    @keyframes palette-in {
+        from {
+            opacity: 0;
+            transform: translateY(-6px) scale(0.99);
+        }
+    }
+
+    @keyframes palette-out {
+        to {
+            opacity: 0;
+            transform: translateY(-4px) scale(0.99);
+        }
+    }
+
+    @keyframes scrim-in {
+        from {
+            opacity: 0;
+        }
+    }
+
+    @keyframes scrim-out {
+        to {
+            opacity: 0;
+        }
+    }
+
+    @keyframes sheet-in {
+        from {
+            transform: translateY(100%);
+        }
+    }
+
+    @keyframes sheet-out {
+        to {
+            transform: translateY(100%);
+        }
+    }
+
+    @keyframes spinner {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    @keyframes pulse-dot {
+        50% {
+            opacity: 0.35;
+        }
+    }
+}
+
+@layer base {
+    * {
+        @apply border-border;
+    }
+
+    html {
+        /* Room for the sticky header: an anchor never lands under it */
+        scroll-padding-top: 4.25rem;
+        -webkit-text-size-adjust: 100%;
+    }
+
+    body {
+        @apply bg-background font-sans text-foreground;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Full-strength focus: ink outline in light, yellow in dark */
+    :focus-visible {
+        outline: 2px solid var(--focus-line);
+        outline-offset: 2px;
+    }
+
+    /* Thin custom scrollbars everywhere */
+    html,
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--thumb) transparent;
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track,
+    ::-webkit-scrollbar-corner {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--thumb);
+        background-clip: content-box;
+        border: 2px solid transparent;
+        border-radius: 999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--thumb-hover);
+        background-clip: content-box;
+    }
+}
+
+/* Scrollbar of the dark code panels */
+@utility scroll-dark {
+    scrollbar-color: var(--thumb-code) transparent;
+
+    & * {
+        scrollbar-color: var(--thumb-code) transparent;
+    }
+
+    &::-webkit-scrollbar-thumb,
+    & ::-webkit-scrollbar-thumb {
+        background: var(--thumb-code);
+        background-clip: content-box;
+    }
+}
+
+/* Horizontal pill rows: no visible bar, the overflow peeks instead */
+@utility scroll-none {
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* Long JSON strings of a response wrap with a hanging indent */
+@utility json-wrap {
+    white-space: normal;
+    word-break: break-all;
+    padding-left: 11ch;
+    text-indent: -9ch;
+}
+
+/* Prose link: ink text, the 2 px yellow underline says "link" */
+@utility prose-link {
+    color: var(--ink);
+    text-decoration-line: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--hl-line);
+    text-underline-offset: 4px;
+
+    &:hover {
+        text-decoration-color: var(--ink);
+    }
+}
+
+/*
+ * The phone Try sheet is a vaul Drawer, whose runtime stylesheet slides it in 500 ms; it is set
+ * to the 220 ms ease-out of the other sheets. Unlayered and more specific, so it wins.
+ */
+:root [data-vaul-drawer][data-vaul-drawer-direction="bottom"] {
+    animation-duration: 220ms;
+    animation-timing-function: ease-out;
+}
+
+:root [data-vaul-overlay][data-vaul-snap-points="false"] {
+    animation-duration: 220ms;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    ::before,
+    ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
