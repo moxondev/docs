@@ -1,0 +1,10 @@
+{
+    "free": "Gratuit",
+    "perMonth": "/mois",
+    "hour": "{count} requêtes/heure",
+    "day": "{count} requêtes/jour",
+    "week": "{count} requêtes/semaine",
+    "month": "{count} requêtes/mois",
+    "burst": "{count} requêtes par 10 secondes",
+    "featured": "L'offre recommandée pour la plupart des projets."
+}

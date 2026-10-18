@@ -1,0 +1,62 @@
+{
+    "placeholder": "Rechercher un endpoint, un paramètre, une erreur…",
+    "count": "{count, plural, =0 {Aucun résultat} one {# résultat} other {# résultats}}",
+    "loading": "Chargement de l'index de recherche…",
+    "failed": "L'index de recherche n'a pas pu être chargé.",
+    "groups": {
+        "endpoints": "Endpoints",
+        "params": "Paramètres",
+        "errors": "Erreurs",
+        "pages": "Pages",
+        "recent": "Récents",
+        "suggestions": "Suggestions",
+        "didYouMean": "Vouliez-vous dire",
+        "other": "Autres pistes"
+    },
+    "rows": {
+        "param": "{page} - {description}",
+        "values": "{count, plural, one {# valeur} other {# valeurs}}",
+        "error": "{page} - Erreurs",
+        "section": "Section de la page {page}"
+    },
+    "preview": {
+        "firstParam": "Premier paramètre",
+        "moreParams": "{count, plural, one {+ # autre paramètre : {names}} other {+ # autres paramètres : {names}}}",
+        "noParams": "Aucun autre paramètre",
+        "openPage": "Ouvrir la page",
+        "openPlayground": "Essayer dans le Playground"
+    },
+    "footer": {
+        "navigate": "naviguer",
+        "open": "ouvrir",
+        "close": "fermer",
+        "methodFilter": "Filtrer par méthode"
+    },
+    "none": {
+        "title": "Aucun résultat pour « {query} »",
+        "hint": "Vérifiez l'orthographe, ou essayez un mot plus court. La recherche porte sur la version {version}.",
+        "summary": "{results} : {details}"
+    },
+    "kinds": {
+        "endpoints": "{count, plural, one {# endpoint} other {# endpoints}}",
+        "params": "{count, plural, one {# paramètre} other {# paramètres}}",
+        "errors": "{count, plural, one {# erreur} other {# erreurs}}",
+        "pages": "{count, plural, one {# page} other {# pages}}"
+    },
+    "other": {
+        "catalogue": "Parcourir le catalogue",
+        "catalogueHint": "{count} endpoints répartis en {categories} catégories",
+        "playground": "Ouvrir le Playground",
+        "playgroundHint": "Essayer les endpoints depuis le navigateur"
+    },
+    "tips": {
+        "title": "Astuces de recherche",
+        "method": "Ne garde que les endpoints POST. Même principe avec <code>get:</code>.",
+        "route": "Cherche par route.",
+        "status": "Cherche par code d'erreur, ou par message.",
+        "param": "Cherche par nom de paramètre."
+    },
+    "filters": {
+        "all": "Tout"
+    }
+}

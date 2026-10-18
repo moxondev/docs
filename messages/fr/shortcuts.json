@@ -1,0 +1,20 @@
+{
+    "title": "Raccourcis clavier",
+    "singleKeys": "Raccourcis à une touche",
+    "singleKeysHint": "Actifs hors des champs de saisie. À couper avec une saisie vocale ou un contacteur.",
+    "scopes": {
+        "global": "Partout",
+        "try": "Formulaire « Essayer »",
+        "search": "Recherche"
+    },
+    "items": {
+        "lang": "Changer de langue",
+        "version": "Changer de version",
+        "theme": "Basculer entre clair et sombre",
+        "search": "Ouvrir la recherche",
+        "searchSlash": "Ouvrir la recherche hors d'un champ de saisie",
+        "send": "Envoyer la requête",
+        "playground": "Ouvrir le résultat dans le Playground",
+        "close": "Fermer la fenêtre"
+    }
+}

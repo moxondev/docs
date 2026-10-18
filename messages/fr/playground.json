@@ -1,0 +1,7 @@
+{
+    "selectEndpoint": "Choisir un endpoint",
+    "search": "Rechercher un endpoint",
+    "noResults": "Aucun résultat",
+    "viewDocs": "Voir la documentation",
+    "empty": "Choisissez un endpoint pour envoyer une requête."
+}

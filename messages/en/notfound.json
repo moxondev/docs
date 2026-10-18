@@ -1,0 +1,8 @@
+{
+    "code": "404",
+    "title": "Page not found",
+    "message": "But if you don't change your direction, and if you keep looking, you may end up where you are heading.",
+    "link": "Take me home",
+    "redirecting": "Redirecting…",
+    "redirectingTo": "Redirecting to {target}"
+}

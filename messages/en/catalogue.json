@@ -1,0 +1,7 @@
+{
+    "title": "Catalog",
+    "intro": "{count, plural, =7 {Seven categories} one {# category} other {# categories}}. Each page details the parameters, the response and the errors.",
+    "jump": "Jump to",
+    "filter": "Filter endpoints",
+    "empty": "No endpoint matches \"{query}\"."
+}

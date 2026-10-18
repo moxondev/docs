@@ -1,0 +1,20 @@
+{
+    "previous": {
+        "title": "Migration disponible",
+        "text": "Une version plus récente est disponible ! Envisagez de migrer vers {version} pour les dernières fonctionnalités et améliorations."
+    },
+    "legacy": {
+        "title": "Version obsolète",
+        "text": "Ceci est une ancienne version de l'API. Envisagez de migrer vers {version} pour les dernières fonctionnalités et améliorations."
+    },
+    "retired": {
+        "title": "Version retirée",
+        "text": "L'API ne sert plus cette version depuis la 6.0.0. Sa documentation est conservée pour référence : installez <code>@20syldev/api@5.9.0</code> si vous en avez encore besoin, ou migrez vers {version}."
+    },
+    "link": "Voir la dernière version",
+    "slim": {
+        "previous": "Vous lisez la documentation de {version}. Une version plus récente est disponible : {latest}.",
+        "legacy": "Vous lisez la documentation de {version}, une ancienne version de l'API.",
+        "retired": "Vous lisez la documentation de {version}, une version que l'API ne sert plus."
+    }
+}

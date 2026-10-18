@@ -1,0 +1,20 @@
+{
+    "previous": {
+        "title": "Migration available",
+        "text": "A newer version is available! Consider migrating to {version} for the latest features and improvements."
+    },
+    "legacy": {
+        "title": "Legacy version",
+        "text": "This is a legacy version of the API. Consider migrating to {version} for the latest features and improvements."
+    },
+    "retired": {
+        "title": "No longer served",
+        "text": "The API stopped serving this version in 6.0.0. Its documentation is kept for reference: install <code>@20syldev/api@5.9.0</code> if you still need it, or migrate to {version}."
+    },
+    "link": "View latest version",
+    "slim": {
+        "previous": "You are reading the {version} documentation. A newer version is available: {latest}.",
+        "legacy": "You are reading the {version} documentation, a legacy version of the API.",
+        "retired": "You are reading the {version} documentation, a version the API no longer serves."
+    }
+}

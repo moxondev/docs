@@ -1,0 +1,31 @@
+{
+    "title": "API moxon",
+    "lead": "{count} endpoints utilitaires : hachage, QR codes, UUID, palettes, dés, réseau… Aucune clé n'est nécessaire pour commencer.",
+    "start": "Commencer",
+    "playground": "Ouvrir le Playground",
+    "base": "URL de base",
+    "demo": "Exemple : l'empreinte <code>sha256</code> de « hello ».",
+    "further": {
+        "title": "Pour aller plus loin",
+        "authentication": {
+            "title": "Authentification",
+            "text": "Aucune clé pour commencer, un jeton Bearer pour les plans Pro."
+        },
+        "pricing": {
+            "title": "Tarifs et limites",
+            "text": "Les limites de requêtes et les plans Pro."
+        },
+        "changelog": {
+            "title": "Changelog",
+            "text": "Ce qui change dans la {release} et dans les versions précédentes."
+        },
+        "github": {
+            "title": "GitHub",
+            "text": "Le code source de l'API et de cette documentation."
+        },
+        "npm": {
+            "title": "Paquet npm",
+            "text": "Les mêmes utilitaires depuis Node.js, sans passer par le réseau."
+        }
+    }
+}

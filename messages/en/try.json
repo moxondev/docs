@@ -1,0 +1,12 @@
+{
+    "title": "Try it",
+    "send": "Send request",
+    "sending": "Sending…",
+    "select": "Select…",
+    "bar": "Try this request",
+    "requiredField": "This parameter is required.",
+    "invalidJson": "Invalid JSON: the value is sent as is.",
+    "rateLimited": "Rate limit reached. Try again in {seconds} s.",
+    "timeout": "No response after {seconds} s.",
+    "viewDocs": "View documentation"
+}

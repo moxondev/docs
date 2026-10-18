@@ -1,0 +1,12 @@
+{
+    "title": "Response",
+    "duration": "{ms} ms",
+    "networkError": "Network error",
+    "statusError": "ERR",
+    "empty": "Send the request to see the response here.",
+    "views": {
+        "response": "Response",
+        "curl": "cURL"
+    },
+    "headers": "Headers"
+}

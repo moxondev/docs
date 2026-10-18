@@ -1,0 +1,55 @@
+{
+    "copy": "Copier",
+    "copied": "Copié",
+    "copyFailed": "Copie impossible",
+    "close": "Fermer",
+    "clear": "Effacer",
+    "cancel": "Annuler",
+    "back": "Retour",
+    "loading": "Chargement…",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "home": "Accueil",
+    "github": "GitHub",
+    "version": "Version",
+    "language": "Langue",
+    "theme": "Thème",
+    "latest": "Dernière",
+    "current": "Actuelle",
+    "tags": {
+        "required": "requis",
+        "optional": "optionnel",
+        "conditional": "conditionnel"
+    },
+    "languages": {
+        "en": "English",
+        "fr": "Français"
+    },
+    "languageCodes": {
+        "en": "EN",
+        "fr": "FR"
+    },
+    "themes": {
+        "light": "Clair",
+        "dark": "Sombre",
+        "system": "Système"
+    },
+    "keys": {
+        "ctrl": "Ctrl",
+        "cmd": "Cmd",
+        "alt": "Alt",
+        "option": "Option",
+        "shift": "Maj",
+        "enter": "Entrée",
+        "escape": "Échap",
+        "up": "Haut",
+        "down": "Bas",
+        "or": "ou"
+    },
+    "error": {
+        "title": "Cette page n'a pas pu s'afficher",
+        "description": "Une erreur inattendue s'est produite. Vous pouvez réessayer ou revenir à l'accueil.",
+        "retry": "Réessayer",
+        "home": "Retour à l'accueil"
+    }
+}

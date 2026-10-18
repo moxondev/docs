@@ -1,0 +1,38 @@
+{
+    "copyMarkdown": "Copier en Markdown",
+    "markdownCopied": "Markdown copié",
+    "playground": "Playground",
+    "toc": "Sur cette page",
+    "sections": {
+        "params": "Paramètres",
+        "fields": "Réponse",
+        "examples": "Exemples de code",
+        "errors": "Erreurs",
+        "related": "Endpoints associés",
+        "try": "Essayer"
+    },
+    "moreValues": "+{count} autres",
+    "default": "Par défaut : <code>{value}</code>.",
+    "values": {
+        "filter": "Filtrer, ex. {example}",
+        "more": "Afficher {families} et autres ({count})",
+        "less": "Afficher moins",
+        "empty": "Aucune valeur ne correspond à « {query} »."
+    },
+    "callouts": {
+        "info": "Information",
+        "tip": "Astuce",
+        "warning": "Attention",
+        "danger": "Danger"
+    },
+    "code": {
+        "request": "Requête",
+        "response": "Réponse",
+        "curl": "cURL"
+    },
+    "contrib": {
+        "edit": "Modifier cette page sur GitHub",
+        "issue": "Signaler un problème",
+        "updated": "Mis à jour le {date}"
+    }
+}

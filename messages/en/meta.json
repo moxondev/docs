@@ -1,0 +1,23 @@
+{
+    "siteName": "moxon",
+    "template": "%s - moxon",
+    "versioned": "{title}, {version}",
+    "home": {
+        "title": "moxon - API documentation",
+        "description": "Documentation of the moxon API: {count} utility endpoints for developers (hashing, QR codes, UUIDs, palettes, dice, network). No key needed to get started."
+    },
+    "releaseTitle": "Changelog {release}",
+    "kinds": {
+        "index": "Get started with the moxon API {version}: base URL, first request, authentication and endpoints.",
+        "endpoint": "The {name} endpoint of the moxon API {version}: parameters, response and errors.",
+        "article": "{title}, in the documentation of the moxon API {version}.",
+        "pricing": "Request limits and plans of the moxon API {version}, free to get started.",
+        "playground": "Try every endpoint of the moxon API {version} from your browser, with the generated code.",
+        "changelog": "Release history of the moxon API {version}, with the changes of each release.",
+        "release": "What changed in release {release} of the moxon API, for the API and for the documentation."
+    },
+    "notFound": {
+        "title": "Page not found",
+        "description": "This page does not exist or has moved."
+    }
+}

@@ -1,0 +1,62 @@
+{
+    "placeholder": "Search an endpoint, a parameter, an error…",
+    "count": "{count, plural, =0 {No results} one {# result} other {# results}}",
+    "loading": "Loading the search index…",
+    "failed": "The search index could not be loaded.",
+    "groups": {
+        "endpoints": "Endpoints",
+        "params": "Parameters",
+        "errors": "Errors",
+        "pages": "Pages",
+        "recent": "Recent",
+        "suggestions": "Suggestions",
+        "didYouMean": "Did you mean",
+        "other": "Other options"
+    },
+    "rows": {
+        "param": "{page} - {description}",
+        "values": "{count, plural, one {# value} other {# values}}",
+        "error": "{page} - Errors",
+        "section": "Section of the {page} page"
+    },
+    "preview": {
+        "firstParam": "First parameter",
+        "moreParams": "{count, plural, one {+ # more parameter: {names}} other {+ # more parameters: {names}}}",
+        "noParams": "No other parameter",
+        "openPage": "Open page",
+        "openPlayground": "Try in the Playground"
+    },
+    "footer": {
+        "navigate": "navigate",
+        "open": "open",
+        "close": "close",
+        "methodFilter": "Filter by method"
+    },
+    "none": {
+        "title": "No results for \"{query}\"",
+        "hint": "Check the spelling or try a shorter word. Search covers version {version}.",
+        "summary": "{results}: {details}"
+    },
+    "kinds": {
+        "endpoints": "{count, plural, one {# endpoint} other {# endpoints}}",
+        "params": "{count, plural, one {# parameter} other {# parameters}}",
+        "errors": "{count, plural, one {# error} other {# errors}}",
+        "pages": "{count, plural, one {# page} other {# pages}}"
+    },
+    "other": {
+        "catalogue": "Browse the catalog",
+        "catalogueHint": "{count} endpoints in {categories} categories",
+        "playground": "Open the Playground",
+        "playgroundHint": "Try the endpoints from your browser"
+    },
+    "tips": {
+        "title": "Search tips",
+        "method": "Keeps only POST endpoints. Same with <code>get:</code>.",
+        "route": "Searches by route.",
+        "status": "Searches by error code or message.",
+        "param": "Searches by parameter name."
+    },
+    "filters": {
+        "all": "All"
+    }
+}

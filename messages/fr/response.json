@@ -1,0 +1,12 @@
+{
+    "title": "Réponse",
+    "duration": "{ms} ms",
+    "networkError": "Erreur réseau",
+    "statusError": "ERR",
+    "empty": "Envoyez la requête pour voir la réponse ici.",
+    "views": {
+        "response": "Réponse",
+        "curl": "cURL"
+    },
+    "headers": "En-têtes"
+}

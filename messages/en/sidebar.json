@@ -1,0 +1,21 @@
+{
+    "filter": "Filter endpoints",
+    "empty": "No endpoint",
+    "groups": {
+        "introduction": "Introduction",
+        "catalogue": "Catalog",
+        "tools": "Tools"
+    },
+    "items": {
+        "index": "Get started",
+        "authentication": "Authentication",
+        "manifest": "Manifest",
+        "pricing": "Pricing and limits",
+        "playground": "Playground",
+        "changelog": "Changelog"
+    },
+    "changelog": {
+        "overview": "Overview",
+        "previous": "Previous version"
+    }
+}

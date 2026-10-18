@@ -1,0 +1,7 @@
+{
+    "selectEndpoint": "Select an endpoint",
+    "search": "Search an endpoint",
+    "noResults": "No results",
+    "viewDocs": "View documentation",
+    "empty": "Select an endpoint to send a request."
+}

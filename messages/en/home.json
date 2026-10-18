@@ -1,0 +1,31 @@
+{
+    "title": "moxon API",
+    "lead": "{count} utility endpoints: hashing, QR codes, UUIDs, palettes, dice, network… No key needed to get started.",
+    "start": "Get started",
+    "playground": "Open the Playground",
+    "base": "Base URL",
+    "demo": "Example: the <code>sha256</code> digest of \"hello\".",
+    "further": {
+        "title": "Go further",
+        "authentication": {
+            "title": "Authentication",
+            "text": "No key to get started, a Bearer token for Pro plans."
+        },
+        "pricing": {
+            "title": "Pricing and limits",
+            "text": "Request limits and Pro plans."
+        },
+        "changelog": {
+            "title": "Changelog",
+            "text": "What changes in {release} and in earlier versions."
+        },
+        "github": {
+            "title": "GitHub",
+            "text": "The source code of the API and of these docs."
+        },
+        "npm": {
+            "title": "npm package",
+            "text": "The same utilities from Node.js, with no network call."
+        }
+    }
+}

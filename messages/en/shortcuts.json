@@ -1,0 +1,20 @@
+{
+    "title": "Keyboard shortcuts",
+    "singleKeys": "Single-key shortcuts",
+    "singleKeysHint": "Active outside text fields. Turn them off when you use voice input or a switch device.",
+    "scopes": {
+        "global": "Everywhere",
+        "try": "\"Try it\" form",
+        "search": "Search"
+    },
+    "items": {
+        "lang": "Change language",
+        "version": "Change version",
+        "theme": "Switch between light and dark",
+        "search": "Open search",
+        "searchSlash": "Open search from outside a text field",
+        "send": "Send the request",
+        "playground": "Open the result in the Playground",
+        "close": "Close the dialog"
+    }
+}

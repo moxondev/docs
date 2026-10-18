@@ -1,0 +1,55 @@
+{
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyFailed": "Copy failed",
+    "close": "Close",
+    "clear": "Clear",
+    "cancel": "Cancel",
+    "back": "Back",
+    "loading": "Loading…",
+    "previous": "Previous",
+    "next": "Next",
+    "home": "Home",
+    "github": "GitHub",
+    "version": "Version",
+    "language": "Language",
+    "theme": "Theme",
+    "latest": "Latest",
+    "current": "Current",
+    "tags": {
+        "required": "required",
+        "optional": "optional",
+        "conditional": "conditional"
+    },
+    "languages": {
+        "en": "English",
+        "fr": "Français"
+    },
+    "languageCodes": {
+        "en": "EN",
+        "fr": "FR"
+    },
+    "themes": {
+        "light": "Light",
+        "dark": "Dark",
+        "system": "System"
+    },
+    "keys": {
+        "ctrl": "Ctrl",
+        "cmd": "Cmd",
+        "alt": "Alt",
+        "option": "Option",
+        "shift": "Shift",
+        "enter": "Enter",
+        "escape": "Esc",
+        "up": "Up",
+        "down": "Down",
+        "or": "or"
+    },
+    "error": {
+        "title": "This page could not be displayed",
+        "description": "An unexpected error occurred. You can try again or go back to the home page.",
+        "retry": "Try again",
+        "home": "Back to home"
+    }
+}

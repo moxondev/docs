@@ -1,0 +1,8 @@
+{
+    "languages": {
+        "curl": "cURL",
+        "javascript": "JavaScript",
+        "python": "Python",
+        "php": "PHP"
+    }
+}
