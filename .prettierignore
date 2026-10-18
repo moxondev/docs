@@ -1,4 +1,7 @@
-src/.vitepress/cache/
-src/.vitepress/dist/
+.next
+out
+.claude-work
 package-lock.json
-node_modules/
+public/search
+public/md
+node_modules
