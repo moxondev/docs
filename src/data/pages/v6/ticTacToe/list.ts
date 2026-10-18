@@ -1,0 +1,256 @@
+import type { Page } from "@/types/content";
+
+export const page: Page = {
+    version: "v6",
+    id: "tic-tac-toe/list",
+    kind: "endpoint",
+    title: { en: "Tic-Tac-Toe List", fr: "Liste des morpions" },
+    lead: {
+        en: "The `/tic-tac-toe/list` endpoint lists all public games currently in progress. This endpoint does not return private or finished games.",
+        fr: "L'endpoint `/tic-tac-toe/list` permet de récupérer toutes les parties de morpion publiques actuellement en cours. Cet endpoint ne retourne pas les parties privées ni les parties terminées.",
+    },
+    updated: "2026-10-17",
+    operations: [
+        { id: "default", method: "post", path: "/tic-tac-toe/list", try: true, params: [] },
+    ],
+    sections: [
+        {
+            id: "",
+            blocks: [
+                { type: "endpoint", op: "default" },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: { en: "Good to know", fr: "À savoir" },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "The list only includes public games currently in progress (not finished). Games are sorted by creation time with the most recent first. Private games are never included in this list for privacy reasons. You can join any listed game using its ID with the [/tic-tac-toe/play](ref:tic-tac-toe/play) or [/tic-tac-toe/fetch](ref:tic-tac-toe/fetch) endpoint.",
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "La liste inclut uniquement les parties publiques actuellement en cours (pas terminées). Les parties sont triées par heure de création avec les plus récentes en premier. Les parties privées ne sont jamais incluses dans cette liste pour des raisons de confidentialité. Vous pouvez rejoindre n'importe quelle partie listée en utilisant son ID avec l'endpoint [/tic-tac-toe/play](ref:tic-tac-toe/play) ou [/tic-tac-toe/fetch](ref:tic-tac-toe/fetch).",
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
+        {
+            id: "parameters",
+            level: 2,
+            title: { en: "Parameters", fr: "Paramètres" },
+            aliases: ["parametres"],
+            blocks: [
+                {
+                    type: "p",
+                    text: {
+                        en: "This endpoint does not require any parameters. It returns all currently active public games.",
+                        fr: "Cet endpoint ne nécessite aucun paramètre. Il retourne toutes les parties publiques actuellement actives.",
+                    },
+                },
+            ],
+        },
+        {
+            id: "code-examples",
+            level: 2,
+            title: { en: "Code Examples", fr: "Exemples de code" },
+            aliases: ["exemples-de-code"],
+            blocks: [{ type: "examples", op: "default" }],
+        },
+        {
+            id: "response-fields",
+            level: 2,
+            title: { en: "Response Fields", fr: "Champs de réponse" },
+            aliases: ["champs-de-reponse"],
+            blocks: [
+                {
+                    type: "fields",
+                    rows: [
+                        {
+                            name: "message",
+                            type: "`string`",
+                            description: { en: "Status message", fr: "Message de confirmation" },
+                        },
+                        {
+                            name: "count",
+                            type: "`number`",
+                            description: {
+                                en: "Total number of public games",
+                                fr: "Nombre de parties publiques disponibles",
+                            },
+                        },
+                        {
+                            name: "games",
+                            type: "`object[]`",
+                            description: {
+                                en: "Array of public game objects",
+                                fr: "Tableau d'objets de partie",
+                            },
+                        },
+                        {
+                            name: "games[].id",
+                            type: "`string`",
+                            description: {
+                                en: "Game identifier",
+                                fr: "Identifiant unique de la partie",
+                            },
+                        },
+                        {
+                            name: "games[].players",
+                            type: "`string[]`",
+                            description: {
+                                en: "Array of player usernames",
+                                fr: "Tableau des noms d'utilisateur des joueurs",
+                            },
+                        },
+                        {
+                            name: "games[].playersCount",
+                            type: "`number`",
+                            description: {
+                                en: "Number of players in the game",
+                                fr: "Nombre de joueurs actuellement dans la partie (0-2)",
+                            },
+                        },
+                        {
+                            name: "games[].moves",
+                            type: "`number`",
+                            description: {
+                                en: "Number of moves made in the game",
+                                fr: "Nombre de coups joués dans la partie",
+                            },
+                        },
+                        {
+                            name: "games[].turn",
+                            type: "`string`",
+                            description: {
+                                en: "Username of the player whose turn it is",
+                                fr: "Nom d'utilisateur du joueur dont c'est le tour",
+                            },
+                        },
+                        {
+                            name: "games[].status",
+                            type: "`string`",
+                            description: {
+                                en: "Game status (`waiting`, `ready`)",
+                                fr: "Statut actuel de la partie (`waiting` ou `ready`)",
+                            },
+                        },
+                        {
+                            name: "games[].creation",
+                            type: "`number`",
+                            description: {
+                                en: "Game creation timestamp (in milliseconds)",
+                                fr: "Horodatage de création de la partie (en millisecondes)",
+                            },
+                        },
+                    ],
+                },
+            ],
+        },
+        {
+            id: "game-statuses",
+            level: 2,
+            title: { en: "Game Statuses", fr: "Valeurs de statut de partie" },
+            aliases: ["valeurs-de-statut-de-partie"],
+            blocks: [
+                {
+                    type: "table",
+                    head: { en: ["Status", "Description"], fr: ["Statut", "Description"] },
+                    rows: [
+                        [
+                            "`waiting`",
+                            {
+                                en: "Game has fewer than 2 players, waiting for others to join",
+                                fr: "La partie a moins de 2 joueurs et attend que d'autres joueurs la rejoignent",
+                            },
+                        ],
+                        [
+                            "`ready`",
+                            {
+                                en: "Game has two players and is active",
+                                fr: "La partie a 2 joueurs et est prête à être jouée",
+                            },
+                        ],
+                    ],
+                    kind: "definition",
+                },
+                { type: "try", op: "default" },
+            ],
+        },
+        {
+            id: "error-handling",
+            level: 2,
+            title: { en: "Error Handling", fr: "Gestion des erreurs" },
+            aliases: ["gestion-des-erreurs"],
+            blocks: [
+                {
+                    type: "p",
+                    text: {
+                        en: "This endpoint does not require parameters and will not return parameter-related errors.",
+                        fr: "Cet endpoint ne nécessite aucun paramètre et ne retourne pas d'erreur liée aux paramètres.",
+                    },
+                },
+            ],
+        },
+        {
+            id: "related-endpoints",
+            level: 2,
+            title: { en: "Related Endpoints", fr: "Endpoints associés" },
+            aliases: ["endpoints-associes"],
+            blocks: [
+                {
+                    type: "split",
+                    en: [
+                        {
+                            type: "related",
+                            items: [
+                                {
+                                    label: "Online Tic-Tac-Toe",
+                                    to: "tic-tac-toe",
+                                    description: "How a game works and migrating from v4 and v5",
+                                },
+                                {
+                                    label: "/v6/tic-tac-toe/play",
+                                    to: "tic-tac-toe/play",
+                                    description: "Play a move",
+                                },
+                                {
+                                    label: "/v6/tic-tac-toe/fetch",
+                                    to: "tic-tac-toe/fetch",
+                                    description: "Fetch specific game details",
+                                },
+                            ],
+                        },
+                    ],
+                    fr: [
+                        {
+                            type: "related",
+                            items: [
+                                {
+                                    label: "Morpion en ligne",
+                                    to: "tic-tac-toe",
+                                    description:
+                                        "Déroulement d'une partie et migration depuis la v4 et la v5",
+                                },
+                                {
+                                    label: "/v6/tic-tac-toe/play",
+                                    to: "tic-tac-toe/play",
+                                    description: "Jouer un coup",
+                                },
+                                {
+                                    label: "/v6/tic-tac-toe/fetch",
+                                    to: "tic-tac-toe/fetch",
+                                    description: "Récupérer les détails d'une partie spécifique",
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+};
