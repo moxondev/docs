@@ -11,6 +11,7 @@ export interface SearchDoc {
     m?: Method[];
     d?: string;
     n?: number;
+    p?: string;
     x?: string;
 }
 
