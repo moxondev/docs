@@ -1,27 +1,31 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
 
 import type { SheetProps } from "@/types/try";
 
 /**
- * Placeholder of the phone "Try it" sheet until the real dialog exists: a closed sheet shows
- * nothing, so the stub is a hidden element labelled like the future dialog.
+ * The sheet wiring as its own chunk, fetched only by the pages that mount a sheet.
+ * It renders nothing on the server, since a closed sheet shows nothing.
  *
- * @param version - Documentation version of the operation, kept as a mark on the placeholder
- * @param op - Operation the sheet will try; its id marks the placeholder
+ * @param version - Documentation version, which is also the API version of the request
+ * @param op - Operation of the sheet, with try true
+ * @param name - Endpoint name read in the dialog label ("Try the Hash endpoint")
+ */
+const SheetBody = dynamic(() => import("@/components/try/SheetBody").then((m) => m.SheetBody), {
+    ssr: false,
+});
+
+/**
+ * The phone Try sheet of an operation, or nothing when the operation has no live Try (try false).
+ * The Bar opens it through the shared sheet state; see SheetBody for its wiring and SheetPanel for
+ * the drawer.
+ *
+ * @param version - Documentation version, which is also the API version of the request
+ * @param op - Operation of the sheet; nothing renders unless its try flag is true
  * @param name - Endpoint name read in the dialog label ("Try the Hash endpoint")
  */
 export function Sheet({ version, op, name }: SheetProps) {
-    const aria = useTranslations("aria");
-
-    return (
-        <div
-            hidden
-            data-stub="sheet"
-            data-version={version}
-            data-op={op.id}
-            aria-label={aria("trySheet", { name })}
-        />
-    );
+    if (!op.try) return null;
+    return <SheetBody version={version} op={op} name={name} />;
 }
