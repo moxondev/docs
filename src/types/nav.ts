@@ -9,3 +9,10 @@ export interface NavPage {
 }
 
 export type Nav = Record<Version, Record<string, NavPage>>;
+
+export interface SlimMeta {
+    name: string;
+    category?: string;
+    back?: string;
+    methods: Method[];
+}

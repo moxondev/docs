@@ -3,7 +3,7 @@ import { localePath } from "@/i18n/routing";
 import { pick, plain } from "@/lib/inline";
 import { hasPage, href } from "@/lib/routes";
 import type { Block, Lang, Method, Page, Section, Version } from "@/types/content";
-import type { Nav } from "@/types/nav";
+import type { Nav, SlimMeta } from "@/types/nav";
 
 export type NavGroup = "introduction" | "catalogue" | "tools";
 
@@ -383,4 +383,37 @@ export function tocEntries(page: Page, lang: Lang): TocEntry[] {
         if (label) entry.label = label;
         return entry;
     });
+}
+
+/**
+ * Builds the facts that the slim header prints for a page (category, name, back link to the
+ * category of the home catalogue, methods of its Try operations), or null when the page keeps the
+ * full header: only endpoint pages with a live Try operation swap.
+ *
+ * @param nav - Navigation index, for the short title of the page
+ * @param version - Version of the page
+ * @param id - Page id ("hash", "captcha/verify")
+ * @param page - Page module, whose kind and operations are read
+ * @param lang - Language of the texts and of the back link
+ * @returns The meta for Sentinel, or null for a page without a Try operation
+ */
+export function slimMeta(
+    nav: Nav,
+    version: Version,
+    id: string,
+    page: Page,
+    lang: Lang,
+): SlimMeta | null {
+    const methods = [
+        ...new Set((page.operations ?? []).filter((op) => op.try).map((op) => op.method)),
+    ];
+    if (page.kind !== "endpoint" || methods.length === 0) return null;
+    const entry = catalogueEntry(id);
+    const category = entry && CATEGORIES.find((candidate) => candidate.id === entry.category);
+    return {
+        name: navTitle(nav, version, id, lang),
+        category: category?.title[lang],
+        back: category ? `${localePath(lang)}#${category.anchor}` : undefined,
+        methods,
+    };
 }

@@ -1,14 +1,9 @@
 import { useEffect } from "react";
 
 import { createStore, useStore } from "@/hooks/useStore";
-import type { Method } from "@/types/content";
+import type { SlimMeta } from "@/types/nav";
 
-export interface SlimMeta {
-    name: string;
-    category?: string;
-    back?: string;
-    methods: Method[];
-}
+export type { SlimMeta } from "@/types/nav";
 
 export interface SlimState {
     slim: boolean;

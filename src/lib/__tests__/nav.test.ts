@@ -14,6 +14,7 @@ import {
     pager,
     releasePages,
     sidebar,
+    slimMeta,
     subPages,
     tocEntries,
 } from "@/lib/nav";
@@ -298,5 +299,38 @@ describe("Toc entries", () => {
             ["b"],
         );
         assert.deepEqual(tocEntries(page, "en")[1], { id: "b", level: 3, title: "B" });
+    });
+});
+
+describe("slim header facts", () => {
+    const meta = async (version: Version, id: string, lang: Lang) => {
+        const page = await getPage(version, id);
+        assert.ok(page);
+        return slimMeta(NAV, version, id, page, lang);
+    };
+
+    test("an endpoint page with a Try operation gives its name, category, back link and methods", async () => {
+        assert.deepEqual(await meta("v6", "hash", "en"), {
+            name: "Hash",
+            category: CATEGORIES.find((category) => category.id === "security")?.title.en,
+            back: "/#securite",
+            methods: ["post"],
+        });
+        const fr = await meta("v6", "hash", "fr");
+        assert.equal(fr?.back, "/fr/#securite");
+        assert.equal(fr?.category, CATEGORIES.find((c) => c.id === "security")?.title.fr);
+    });
+
+    test("a sub-page keeps the family category and its own method", async () => {
+        const verify = await meta("v6", "pow/verify", "en");
+        assert.deepEqual(verify?.methods, ["post"]);
+        assert.equal(verify?.name, NAV.v6["pow/verify"].title.en);
+    });
+
+    test("pages without a live Try operation keep the full header", async () => {
+        for (const id of ["hyperplanning", "index", "changelog", "playground", "pricing"]) {
+            assert.equal(await meta("v6", id, "en"), null, id);
+        }
+        assert.equal(await meta("v5", "changelog/5.6.0", "fr"), null);
     });
 });
