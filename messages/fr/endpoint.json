@@ -16,6 +16,7 @@
     "values": {
         "filter": "Filtrer, ex. {example}",
         "more": "Afficher {families} et autres ({count})",
+        "all": "Afficher tout ({count})",
         "less": "Afficher moins",
         "empty": "Aucune valeur ne correspond à « {query} »."
     },
@@ -34,5 +35,21 @@
         "edit": "Modifier cette page sur GitHub",
         "issue": "Signaler un problème",
         "updated": "Mis à jour le {date}"
+    },
+    "columns": {
+        "parameter": "Paramètre",
+        "required": "Requis",
+        "default": "Défaut",
+        "description": "Description",
+        "field": "Champ",
+        "type": "Type",
+        "errorMessage": "Message d'erreur",
+        "error": "Erreur",
+        "status": "Statut"
+    },
+    "answers": {
+        "yes": "Oui",
+        "no": "Non",
+        "conditional": "Conditionnel"
     }
 }

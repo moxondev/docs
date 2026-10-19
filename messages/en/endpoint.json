@@ -16,6 +16,7 @@
     "values": {
         "filter": "Filter, e.g. {example}",
         "more": "Show {families} and more ({count})",
+        "all": "Show all ({count})",
         "less": "Show fewer",
         "empty": "No value matches \"{query}\"."
     },
@@ -34,5 +35,21 @@
         "edit": "Edit this page on GitHub",
         "issue": "Report an issue",
         "updated": "Last updated on {date}"
+    },
+    "columns": {
+        "parameter": "Parameter",
+        "required": "Required",
+        "default": "Default",
+        "description": "Description",
+        "field": "Field",
+        "type": "Type",
+        "errorMessage": "Error message",
+        "error": "Error",
+        "status": "Status"
+    },
+    "answers": {
+        "yes": "Yes",
+        "no": "No",
+        "conditional": "Conditional"
     }
 }

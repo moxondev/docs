@@ -3,5 +3,6 @@
     "releases": "Versions publiées",
     "latest": "Dernière version",
     "previous": "Version précédente",
-    "githubRelease": "Voir sur GitHub"
+    "githubRelease": "Voir sur GitHub",
+    "apiVersion": "API v{version}"
 }
