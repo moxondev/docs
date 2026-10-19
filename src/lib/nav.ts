@@ -39,7 +39,7 @@ export type CrumbItem =
     | { type: "link"; title: string; href: string }
     | { type: "current"; title: string };
 
-export type TocLabel = "params" | "fields" | "examples" | "errors" | "related" | "try";
+export type TocLabel = "params" | "fields" | "examples" | "errors" | "related";
 
 export interface TocEntry {
     id: string;
@@ -67,7 +67,6 @@ const TOC_LABELS: Partial<Record<Block["type"], TocLabel>> = {
     examples: "examples",
     errors: "errors",
     related: "related",
-    try: "try",
 };
 
 /**
@@ -338,8 +337,8 @@ export function crumbs(nav: Nav, version: Version, slug: string, lang: Lang): Cr
 
 /**
  * Picks the short Toc label of a section from the types of its blocks: the first typed block
- * wins, inside the split branch of the language. An inline auto-send Try block is an example,
- * not the panel, and gives no label.
+ * wins, inside the split branch of the language. A Try block gives no label: it is hidden behind
+ * the panel on endpoint pages and only an example elsewhere.
  *
  * @param blocks - Blocks of the section, in order
  * @param lang - Language whose split branches are read
@@ -352,7 +351,7 @@ function sectionLabel(blocks: readonly Block[], lang: Lang): TocLabel | undefine
             if (inner) return inner;
             continue;
         }
-        if (block.type === "try" && block.autoSend) continue;
+        if (block.type === "try") continue;
         const label = TOC_LABELS[block.type];
         if (label) return label;
     }

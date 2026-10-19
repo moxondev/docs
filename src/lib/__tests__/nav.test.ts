@@ -268,6 +268,15 @@ describe("Toc entries", () => {
         );
     });
 
+    test("a hidden Try block never gives a label (request 3-toc-try-label)", async () => {
+        const page = await getPage("v6", "tic-tac-toe/list");
+        assert.ok(page);
+        const statuses = tocEntries(page, "en").find((item) => item.id === "game-statuses");
+        assert.ok(statuses);
+        assert.equal(statuses.label, undefined);
+        assert.equal(statuses.title, "Game Statuses");
+    });
+
     test("level 3 sections are listed, the preamble is not", async () => {
         const page = await getPage("v6", "changelog");
         assert.ok(page);
