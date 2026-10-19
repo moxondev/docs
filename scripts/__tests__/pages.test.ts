@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { describe, test } from "node:test";
 
 import type { Page } from "@/types/content";
@@ -8,6 +11,7 @@ import {
     buildNav,
     checkLinks,
     checkPages,
+    formatSource,
     hasWords,
     idProblems,
     languageProblems,
@@ -17,6 +21,7 @@ import {
     navPage,
     navSource,
     type PageEntry,
+    readRelease,
     registrySource,
     sharedProse,
 } from "../pages";
@@ -116,7 +121,9 @@ describe("generated modules", () => {
         assert.deepEqual(Object.keys(nav), ["v1", "v2", "v3", "v4", "v5", "v6"]);
         assert.deepEqual(Object.keys(nav.v6), ["hash"]);
         assert.deepEqual(nav.v5, {});
-        assert.ok(navSource(nav).includes("export const NAV: Nav = {"));
+        const source = navSource(nav, "6.1.0");
+        assert.ok(source.includes("export const NAV: Nav = {"));
+        assert.ok(source.includes('export const RELEASE = "6.1.0";'));
     });
 
     test("one lazy loader per page, the releases read from their key", () => {
@@ -138,7 +145,41 @@ describe("generated modules", () => {
     });
 });
 
-describe("untranslated-prose guard (plan 3.4)", () => {
+describe("documentation release", () => {
+    const project = async (version: string, navRelease: string): Promise<string> => {
+        const root = mkdtempSync(join(tmpdir(), "pages-release-"));
+        mkdirSync(join(root, "src/data/pages"), { recursive: true });
+        writeFileSync(join(root, "package.json"), JSON.stringify({ version }));
+        const nav = join(root, "src/data/nav.ts");
+        const registry = join(root, "src/data/pages/registry.ts");
+        writeFileSync(nav, await formatSource(navSource(buildNav([]), navRelease), nav));
+        writeFileSync(registry, await formatSource(registrySource([]), registry));
+        return root;
+    };
+
+    test("readRelease reads the version of package.json and refuses a missing one", async () => {
+        assert.equal(readRelease(await project("6.1.0", "6.1.0")), "6.1.0");
+        const root = await project("6.1.0", "6.1.0");
+        writeFileSync(join(root, "package.json"), "{}");
+        assert.throws(() => readRelease(root), /no version/);
+    });
+
+    test("--check fails when RELEASE differs from package.json", async () => {
+        const quiet = console.log;
+        const noisy = console.error;
+        console.log = () => undefined;
+        console.error = () => undefined;
+        try {
+            assert.equal(await main(["--check", "--root", await project("6.1.0", "6.1.0")]), 0);
+            assert.equal(await main(["--check", "--root", await project("6.2.0", "6.1.0")]), 1);
+        } finally {
+            console.log = quiet;
+            console.error = noisy;
+        }
+    });
+});
+
+describe("untranslated-prose guard", () => {
     test("a word outside code and links is prose", () => {
         assert.equal(hasWords("Hello"), true);
         assert.equal(hasWords("**Bold** text"), true);
