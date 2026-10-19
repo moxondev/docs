@@ -3,7 +3,8 @@ import { test } from "node:test";
 
 import { AppRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { PathnameContext } from "next/dist/shared/lib/hooks-client-context.shared-runtime";
-import { createElement, type FunctionComponent } from "react";
+import { NextIntlClientProvider } from "next-intl";
+import { type ComponentProps, createElement, type FunctionComponent } from "react";
 import { renderToString } from "react-dom/server";
 
 import { useActiveSection } from "@/hooks/useActiveSection";
@@ -20,20 +21,6 @@ import { useRequest } from "@/hooks/useRequest";
 import { useShortcutLabels, useShortcuts, useSingleKeys } from "@/hooks/useShortcuts";
 import { useSentinel, useSlim } from "@/hooks/useSlim";
 import type { Operation } from "@/types/content";
-
-import { useActiveSection } from "./useActiveSection";
-import { useCodeLang } from "./useCodeLang";
-import { useCopy } from "./useCopy";
-import { useFlash } from "./useFlash";
-import { useHydrated } from "./useHydrated";
-import { useLocaleSwitch } from "./useLocaleSwitch";
-import { useLocationSearch, useQueryParam } from "./useLocationSearch";
-import { useModKey } from "./useModKey";
-import { usePalette, usePaletteShortcuts } from "./usePalette";
-import { usePreference } from "./usePreference";
-import { useRequest } from "./useRequest";
-import { useShortcutLabels, useShortcuts, useSingleKeys } from "./useShortcuts";
-import { useSentinel, useSlim } from "./useSlim";
 
 const INFOS: Operation = {
     id: "default",
@@ -58,10 +45,13 @@ const ROUTER = {
  *
  * @param probe - Component calling the hooks and printing what they return as JSON
  * @param pathname - Path of the page being prerendered
+ * @param locale - Language of the document, the one the intl provider of its root layout carries
  * @returns The value the component printed, parsed back
  */
-function serverRender(probe: FunctionComponent, pathname = "/fr/v6/hash/"): unknown {
-    const page = createElement(PathnameContext.Provider, { value: pathname }, createElement(probe));
+function serverRender(probe: FunctionComponent, pathname = "/fr/v6/hash/", locale = "fr"): unknown {
+    const props = { locale, messages: {} } as ComponentProps<typeof NextIntlClientProvider>;
+    const intl = createElement(NextIntlClientProvider, props, createElement(probe));
+    const page = createElement(PathnameContext.Provider, { value: pathname }, intl);
     const html = renderToString(
         createElement(AppRouterContext.Provider, { value: ROUTER as never }, page),
     );
@@ -143,6 +133,22 @@ test("the language links come from the prerendered path", () => {
         locale: "fr",
         links: { en: "/v6/changelog/6.1.0/", fr: "/fr/v6/changelog/6.1.0/" },
     });
+});
+
+test("the English 404 document keeps an English chrome whatever its address", () => {
+    const render = (pathname: string) =>
+        serverRender(
+            () => {
+                const { locale, links } = useLocaleSwitch();
+                return print({ locale, links, path: useRoutePath() });
+            },
+            pathname,
+            "en",
+        );
+    const home = { locale: "en", links: { en: "/", fr: "/fr/" }, path: "/" };
+    assert.deepEqual(render("/_not-found/"), home);
+    assert.deepEqual(render("/fr/zzz/"), home);
+    assert.deepEqual(render("/fr/v5/zzz"), home);
 });
 
 test("a Try form renders its first state; an auto-send form renders as loading", () => {
