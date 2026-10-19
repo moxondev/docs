@@ -6,5 +6,6 @@
     "pro": "Go Pro",
     "try": "Try it",
     "github": "Source code on GitHub",
-    "versions": "Versions"
+    "versions": "Versions",
+    "language": "{code}, switch to {name}"
 }

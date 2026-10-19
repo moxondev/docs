@@ -6,5 +6,6 @@
     "pro": "Passer Pro",
     "try": "Essayer",
     "github": "Code source sur GitHub",
-    "versions": "Versions"
+    "versions": "Versions",
+    "language": "{code}, passer en {name}"
 }
