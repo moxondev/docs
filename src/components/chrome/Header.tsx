@@ -2,7 +2,6 @@
 
 import { ChevronRightIcon, PlayIcon } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { useRef, useState } from "react";
@@ -18,6 +17,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip
 import { LINKS } from "@/data/links";
 import { NAV } from "@/data/nav";
 import { LATEST } from "@/data/versions";
+import { useRoutePath } from "@/hooks/useLocaleSwitch";
 import { useShortcuts } from "@/hooks/useShortcuts";
 import { type SlimMeta, useSlim } from "@/hooks/useSlim";
 import { hasPage, href, linkAttrs, parsePath } from "@/lib/routes";
@@ -214,7 +214,7 @@ function ProLink({ className }: PartProps) {
  * short search, Essayer). The header box keeps the full height, so the swap moves nothing.
  */
 export function Header() {
-    const pathname = usePathname() ?? "/";
+    const pathname = useRoutePath();
     const { lang, version, slug } = parsePath(pathname);
     const { slim: scrolled, meta } = useSlim();
     const { resolvedTheme, setTheme } = useTheme();

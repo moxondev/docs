@@ -2,7 +2,6 @@
 
 import { CheckIcon, ChevronDownIcon } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 import {
@@ -14,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { NAV } from "@/data/nav";
 import { LATEST, type VersionDef, VERSIONS } from "@/data/versions";
+import { useRoutePath } from "@/hooks/useLocaleSwitch";
 import { href, parsePath, versionTarget } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import type { Version } from "@/types/content";
@@ -77,7 +77,7 @@ export function Versions({ open, onOpenChange, className }: VersionsProps) {
     const aria = useTranslations("aria");
     const t = useTranslations("header");
     const common = useTranslations("common");
-    const pathname = usePathname() ?? "/";
+    const pathname = useRoutePath();
     const entries = versionEntries(NAV, pathname);
     const shown = entries.find((entry) => entry.current) ?? entries[0];
 
