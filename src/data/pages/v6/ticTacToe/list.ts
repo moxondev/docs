@@ -203,50 +203,28 @@ export const page: Page = {
             aliases: ["endpoints-associes"],
             blocks: [
                 {
-                    type: "split",
-                    en: [
+                    type: "related",
+                    items: [
                         {
-                            type: "related",
-                            items: [
-                                {
-                                    label: "Online Tic-Tac-Toe",
-                                    to: "tic-tac-toe",
-                                    description: "How a game works and migrating from v4 and v5",
-                                },
-                                {
-                                    label: "/v6/tic-tac-toe/play",
-                                    to: "tic-tac-toe/play",
-                                    description: "Play a move",
-                                },
-                                {
-                                    label: "/v6/tic-tac-toe/fetch",
-                                    to: "tic-tac-toe/fetch",
-                                    description: "Fetch specific game details",
-                                },
-                            ],
+                            label: "",
+                            to: "tic-tac-toe",
+                            description: {
+                                en: "How a game works and migrating from v4 and v5",
+                                fr: "Déroulement d'une partie et migration depuis la v4 et la v5",
+                            },
                         },
-                    ],
-                    fr: [
                         {
-                            type: "related",
-                            items: [
-                                {
-                                    label: "Morpion en ligne",
-                                    to: "tic-tac-toe",
-                                    description:
-                                        "Déroulement d'une partie et migration depuis la v4 et la v5",
-                                },
-                                {
-                                    label: "/v6/tic-tac-toe/play",
-                                    to: "tic-tac-toe/play",
-                                    description: "Jouer un coup",
-                                },
-                                {
-                                    label: "/v6/tic-tac-toe/fetch",
-                                    to: "tic-tac-toe/fetch",
-                                    description: "Récupérer les détails d'une partie spécifique",
-                                },
-                            ],
+                            label: "/v6/tic-tac-toe/play",
+                            to: "tic-tac-toe/play",
+                            description: { en: "Play a move", fr: "Jouer un coup" },
+                        },
+                        {
+                            label: "/v6/tic-tac-toe/fetch",
+                            to: "tic-tac-toe/fetch",
+                            description: {
+                                en: "Fetch specific game details",
+                                fr: "Récupérer les détails d'une partie spécifique",
+                            },
                         },
                     ],
                 },

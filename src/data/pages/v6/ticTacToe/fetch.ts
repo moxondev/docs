@@ -250,40 +250,23 @@ export const page: Page = {
             aliases: ["endpoints-associes"],
             blocks: [
                 {
-                    type: "split",
-                    en: [
+                    type: "related",
+                    items: [
                         {
-                            type: "related",
-                            items: [
-                                {
-                                    label: "Online Tic-Tac-Toe",
-                                    to: "tic-tac-toe",
-                                    description: "How a game works and migrating from v4 and v5",
-                                },
-                                {
-                                    label: "/v6/tic-tac-toe/list",
-                                    to: "tic-tac-toe/list",
-                                    description: "List all public games",
-                                },
-                            ],
+                            label: "",
+                            to: "tic-tac-toe",
+                            description: {
+                                en: "How a game works and migrating from v4 and v5",
+                                fr: "Déroulement d'une partie et migration depuis la v4 et la v5",
+                            },
                         },
-                    ],
-                    fr: [
                         {
-                            type: "related",
-                            items: [
-                                {
-                                    label: "Morpion en ligne",
-                                    to: "tic-tac-toe",
-                                    description:
-                                        "Déroulement d'une partie et migration depuis la v4 et la v5",
-                                },
-                                {
-                                    label: "/v6/tic-tac-toe/list",
-                                    to: "tic-tac-toe/list",
-                                    description: "Lister toutes les parties publiques",
-                                },
-                            ],
+                            label: "/v6/tic-tac-toe/list",
+                            to: "tic-tac-toe/list",
+                            description: {
+                                en: "List all public games",
+                                fr: "Lister toutes les parties publiques",
+                            },
                         },
                     ],
                 },
