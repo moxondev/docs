@@ -4,7 +4,8 @@ export const page: Page = {
     version: "v6",
     id: "manifest",
     kind: "article",
-    title: { en: "Manifest (experimental)", fr: "Manifest (expérimental)" },
+    status: "experimental",
+    title: { en: "Manifest", fr: "Manifest" },
     lead: {
         en: "The **`@moxon/api/manifest`** subpath of the [npm package](ref:index#using-the-npm-package) describes the HTTP endpoints as data: method, path, category, parameters and a request example. It is meant for tools that document or call the API, such as a documentation sidebar, parameter lists or a playground.",
         fr: "Le sous-chemin **`@moxon/api/manifest`** du [paquet npm](ref:index#using-the-npm-package) décrit les endpoints HTTP sous forme de données : méthode, chemin, catégorie, paramètres et exemple de requête. Il s'adresse aux outils qui documentent ou appellent l'API, comme une barre latérale de documentation, des listes de paramètres ou un playground.",

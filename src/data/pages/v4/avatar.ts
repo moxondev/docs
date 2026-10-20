@@ -22,7 +22,7 @@ export const page: Page = {
                     type: "string",
                     in: "query",
                     required: false,
-                    placeholder: "claude",
+                    placeholder: "moxon",
                 },
                 {
                     name: "type",
@@ -150,7 +150,7 @@ export const page: Page = {
                 {
                     type: "examples",
                     op: "default",
-                    query: { seed: "claude", type: "identicon", size: "200" },
+                    query: { seed: "moxon", type: "identicon", size: "200" },
                 },
                 { type: "try", op: "default" },
             ],

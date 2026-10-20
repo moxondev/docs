@@ -4,6 +4,7 @@ export const page: Page = {
     version: "v6",
     id: "hyperplanning",
     kind: "endpoint",
+    status: "deprecated",
     title: { en: "Hyperplanning", fr: "Hyperplanning" },
     lead: {
         en: "The `/hyperplanning` endpoint allows you to display a Hyperplanning schedule information in JSON format from an ICS (calendar) file.",
