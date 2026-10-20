@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
+import { LATEST } from "@/data/versions";
 import {
     ICON_TEXT,
     type InlineNode,
@@ -21,6 +22,9 @@ const EM_DASH = String.fromCodePoint(0x2014);
 const APOSTROPHE = String.fromCodePoint(0x2019);
 const QUOTE_OPEN = String.fromCodePoint(0xab);
 const QUOTE_CLOSE = String.fromCodePoint(0xbb);
+
+// A version that does not exist yet: the one after the latest, whatever the latest is
+const NEXT = `v${Number(LATEST.slice(1)) + 1}`;
 
 // Link targets of every form the grammar allows, used by the generated trees
 const TARGETS = [
@@ -754,7 +758,7 @@ describe("refTarget", () => {
     test("anything else is not a ref target", () => {
         const invalid = [
             "ref:",
-            "ref:v7/hash",
+            `ref:${NEXT}/hash`,
             "ref:v5",
             "ref:v5/",
             "ref:Hash",

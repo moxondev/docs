@@ -6,6 +6,12 @@ export interface PageAnchors {
     ids: string[];
 }
 
+/**
+ * Fragment of the home catalogue section, the target of the first breadcrumb link. It lives here
+ * and not in nav.ts so that the client chrome can read it without the catalogue data.
+ */
+export const CATALOGUE_ANCHOR = "catalogue";
+
 // Fragment of the Try panel, the target of the ids of the removed Try headings in both languages
 export const TRY_ANCHOR = "try";
 

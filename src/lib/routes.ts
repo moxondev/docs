@@ -2,7 +2,7 @@ import { SITE } from "@/data/site";
 import { localePath } from "@/i18n/routing";
 import { refTarget } from "@/lib/inline";
 import type { Lang, Version } from "@/types/content";
-import type { Nav } from "@/types/nav";
+import type { NavPage } from "@/types/nav";
 
 export interface PathInfo {
     lang: Lang;
@@ -14,6 +14,8 @@ export interface RefContext {
     lang: Lang;
     version: Version;
 }
+
+export type PageIndex = Record<Version, Record<string, Pick<NavPage, "kind">>>;
 
 export interface LinkAttrs {
     href: string;
@@ -47,12 +49,13 @@ export function isVersion(value: string): value is Version {
  * Tells whether a version of the navigation index has a page, reading own keys only, so that a
  * path segment such as "constructor" or "toString" never matches an Object member.
  *
- * @param nav - Navigation index; an unpromoted version is an empty record
+ * @param nav - Page index (the navigation index, or the smaller kinds index that the client
+ *   bundles); an unpromoted version is an empty record
  * @param version - Version whose pages are searched
  * @param slug - Page id, possibly read from an untrusted URL
  * @returns True when the version has that page
  */
-export function hasPage(nav: Nav, version: Version, slug: string): boolean {
+export function hasPage(nav: PageIndex, version: Version, slug: string): boolean {
     return Object.hasOwn(nav[version], slug);
 }
 
@@ -129,12 +132,13 @@ export function alternates(pathname: string): Record<Lang, string> {
  * Picks the page a version switch lands on: the same page when the target version has it, the
  * changelog index for a release page, else the version home.
  *
- * @param nav - Navigation index; an unpromoted version is an empty record
+ * @param nav - Page index (the navigation index or the kinds index); an unpromoted version is an
+ *   empty record
  * @param version - Version picked in the version menu, whose pages are searched
  * @param slug - Page id currently shown, in any version
  * @returns The page id to open in the target version
  */
-export function versionTarget(nav: Nav, version: Version, slug: string): string {
+export function versionTarget(nav: PageIndex, version: Version, slug: string): string {
     if (hasPage(nav, version, slug)) return slug;
     const parent = slug.includes("/") ? slug.slice(0, slug.lastIndexOf("/")) : "";
     const release = Object.values(nav).some(

@@ -3,15 +3,18 @@ import { describe, test } from "node:test";
 
 import { CATALOGUE, CATEGORIES } from "@/data/catalogue";
 import { NAV } from "@/data/nav";
-
+import { VERSIONS } from "@/data/versions";
 import {
     catalogueEntry,
     crumbs,
     familyMethods,
     isListed,
+    mentionedStatus,
     navTitle,
+    PAGE_STATUSES,
     pageOrder,
     pager,
+    pageStatus,
     releasePages,
     sidebar,
     slimMeta,
@@ -73,17 +76,13 @@ describe("catalogue entries and families", () => {
 
     test("releases sort by number, not by text", () => {
         const nav: Nav = {
-            v1: {},
-            v2: {},
-            v3: {},
+            ...(Object.fromEntries(VERSIONS.map((def) => [def.id, {}])) as Nav),
             v4: {
                 changelog: entry("changelog"),
                 "changelog/4.9.0": entry("release"),
                 "changelog/4.10.0": entry("release"),
                 "changelog/4.0.0": entry("release"),
             },
-            v5: {},
-            v6: {},
         };
         assert.deepEqual(releasePages(nav, "v4"), [
             "changelog/4.10.0",
@@ -99,6 +98,66 @@ describe("catalogue entries and families", () => {
             `V${E_ACUTE}rification de captcha`,
         );
         assert.equal(navTitle(NAV, "v6", "index", "fr"), "Commencer");
+    });
+
+    test("short names for the long titles of the nested sidebar rows, by language", () => {
+        const captcha = (lang: "fr" | "en") =>
+            sidebar(NAV, "v6", lang)
+                .catalogue.flatMap((category) => category.items)
+                .find((item) => item.slug === "captcha")?.children[0];
+        assert.equal(captcha("fr")?.short, `V${E_ACUTE}rification`);
+        assert.equal(captcha("fr")?.title, `V${E_ACUTE}rification de captcha`);
+        assert.equal(captcha("en")?.short, undefined);
+    });
+});
+
+describe("page status", () => {
+    test("v6 manifest is experimental, v6 hyperplanning deprecated, nothing else has a status", () => {
+        assert.equal(pageStatus(NAV, "v6", "manifest"), "experimental");
+        assert.equal(pageStatus(NAV, "v6", "hyperplanning"), "deprecated");
+        const marked = Object.entries(NAV.v6).filter(([, page]) => page.status);
+        assert.deepEqual(marked.map(([id]) => id).sort(), ["hyperplanning", "manifest"]);
+        assert.equal(pageStatus(NAV, "v5", "hyperplanning"), undefined);
+        assert.equal(pageStatus(NAV, "v6", "hash"), undefined);
+        assert.equal(pageStatus(NAV, "v6", "constructor"), undefined);
+        assert.equal(pageStatus({ ...NAV, v1: {} }, "v1", "manifest"), undefined);
+    });
+
+    test("the title of the manifest page no longer repeats the status word", () => {
+        assert.equal(NAV.v6.manifest.title.en, "Manifest");
+        assert.equal(NAV.v6.manifest.title.fr, "Manifest");
+    });
+
+    test("a link to a page with a status gives that status to its line", () => {
+        assert.equal(mentionedStatus(NAV, "See [Manifest](ref:manifest).", "v6"), "experimental");
+        assert.equal(
+            mentionedStatus(NAV, "**[Manifest](ref:v6/manifest)** page", "v5"),
+            "experimental",
+        );
+        assert.equal(mentionedStatus(NAV, "See [Hash](ref:hash) and [top](#a).", "v6"), undefined);
+        assert.equal(
+            mentionedStatus(NAV, "A `ref:manifest` code span and [home](ref:/).", "v6"),
+            undefined,
+        );
+        assert.equal(mentionedStatus(NAV, "See [Manifest](ref:manifest).", "v5"), undefined);
+    });
+
+    test("a link to a deprecated page gives the deprecated status to its line", () => {
+        assert.equal(
+            mentionedStatus(NAV, "**[POST /hyperplanning](ref:hyperplanning)** is gone.", "v6"),
+            "deprecated",
+        );
+        assert.equal(mentionedStatus(NAV, "See [it](ref:v5/hyperplanning).", "v6"), undefined);
+    });
+
+    test("PAGE_STATUSES lists the three statuses, and a fourth value must be added here", () => {
+        const known: Record<PageStatus, true> = {
+            experimental: true,
+            beta: true,
+            deprecated: true,
+        };
+        assert.deepEqual([...PAGE_STATUSES].sort(), Object.keys(known).sort());
+        assert.equal(new Set(PAGE_STATUSES).size, PAGE_STATUSES.length);
     });
 });
 
@@ -147,6 +206,30 @@ describe("sidebar", () => {
             captcha.children.map((link) => [link.slug, link.methods]),
             [["captcha/verify", ["post"]]],
         );
+    });
+
+    test("a page with a status carries it on its row, the others carry none", () => {
+        const model = sidebar(NAV, "v6", "en");
+        const manifest = model.tools.find((link) => link.slug === "manifest");
+        assert.equal(manifest?.status, "experimental");
+        const rows = [
+            ...model.introduction,
+            ...model.tools,
+            ...model.catalogue.flatMap((category) => category.items),
+        ];
+        assert.deepEqual(
+            rows.filter((link) => link.status).map((link) => link.slug),
+            ["manifest"],
+        );
+        assert.equal("status" in (rows.find((link) => link.slug === "hash") ?? {}), false);
+    });
+
+    test("a deprecated page that a version lists carries the status on its row", () => {
+        const nav = structuredClone(NAV);
+        nav.v5.hyperplanning.status = "deprecated";
+        const rows = sidebar(nav, "v5", "en").catalogue.flatMap((category) => category.items);
+        assert.equal(rows.find((link) => link.slug === "hyperplanning")?.status, "deprecated");
+        assert.equal(rows.find((link) => link.slug === "hash")?.status, undefined);
     });
 
     test("an unlisted entry is not in the sidebar, a listed one in an older version is", () => {
@@ -204,9 +287,11 @@ describe("page order and pager", () => {
         const captcha = pager(NAV, "v6", "captcha", "fr");
         assert.equal(captcha.next?.slug, "captcha/verify");
         assert.equal(captcha.next?.href, "/fr/v6/captcha/verify/");
-        const last = pager(NAV, "v6", "changelog", "en");
-        assert.equal(last.prev?.slug, "playground");
+        const last = pager(NAV, "v6", "manifest", "en");
+        assert.equal(last.prev?.slug, "changelog");
         assert.equal(last.next, undefined);
+        assert.equal(pager(NAV, "v6", "changelog", "en").next?.slug, "manifest");
+        assert.equal(pager(NAV, "v6", "authentication", "en").next?.slug, "pricing");
     });
 
     test("release pages page among the changelog and the releases, newest first", () => {
@@ -247,6 +332,10 @@ describe("breadcrumb", () => {
         assert.deepEqual(crumbs(NAV, "v6", "authentication", "fr"), [
             { type: "group", group: "introduction" },
             { type: "current", title: "Authentification" },
+        ]);
+        assert.deepEqual(crumbs(NAV, "v6", "manifest", "fr"), [
+            { type: "group", group: "tools" },
+            { type: "current", title: "Manifest" },
         ]);
         assert.deepEqual(crumbs(NAV, "v6", "nope", "fr"), []);
     });
@@ -328,6 +417,17 @@ describe("slim header facts", () => {
         const fr = await meta("v6", "hash", "fr");
         assert.equal(fr?.back, "/fr/#securite");
         assert.equal(fr?.category, CATEGORIES.find((c) => c.id === "security")?.title.fr);
+    });
+
+    test("the status of the page travels with the facts, absent for a stable page", async () => {
+        const page = await getPage("v6", "hash");
+        assert.ok(page);
+        const plain = slimMeta(NAV, "v6", "hash", page, "en");
+        assert.equal(plain && "status" in plain, false);
+        assert.equal(
+            slimMeta(NAV, "v6", "hash", { ...page, status: "beta" }, "en")?.status,
+            "beta",
+        );
     });
 
     test("a sub-page keeps the family category and its own method", async () => {

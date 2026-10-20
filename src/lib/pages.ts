@@ -126,6 +126,10 @@ export function docTitle(version: Version, title: string, t: MetaTranslate): str
 export function pageMetadata(lang: Lang, doc: Doc, t: MetaTranslate): Metadata {
     const { version, id, page } = doc;
     const title = plain(pick(page.title, lang));
+    const heading =
+        page.kind === "release"
+            ? t("releaseTitle", { release: page.release?.version ?? title })
+            : title;
     const entry = catalogueEntry(id);
     const fallback = t(`kinds.${page.kind}`, {
         version,
@@ -137,7 +141,7 @@ export function pageMetadata(lang: Lang, doc: Doc, t: MetaTranslate): Metadata {
     return buildMetadata(
         lang,
         {
-            title: docTitle(version, title, t),
+            title: docTitle(version, heading, t),
             description: metaDescription(page, lang, fallback, summary),
             path: href(lang, version, id),
         },

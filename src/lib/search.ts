@@ -430,6 +430,7 @@ export function pageDocs(page: Page, lang: Lang, ctx: SearchContext): SearchDoc[
         t: family ? family.name : text(b, page.title),
         u: b.u,
     };
+    if (page.status) main.s = page.status;
     if (main.k === "endpoint") {
         main.r = ops[0] ? `/${page.version}${ops[0].path}` : `/${page.version}/${page.id}`;
         const methods = family ? familyMethods(ctx.nav, page.version, page.id) : ownMethods(ops);

@@ -26,18 +26,18 @@ interface Rule {
 }
 
 /**
- * Tailwind class of each token kind, backed by the code palette of globals.css: command and JSON
- * keys --code-fn, flags --code-key, strings and values --code-str, punctuation --code-punct. An
- * unclassified token keeps the --code-text of its panel.
+ * Tailwind class of each token kind, backed by the code palette of globals.css; an unclassified
+ * token keeps the --code-text of its panel. The weight of a command or keyword is a token too
+ * (--code-fn-weight), regular in the dark code areas and semibold in the quiet Try panel.
  */
 export const TOKEN_CLASSES: Readonly<Record<TokenKind, string>> = {
-    command: "text-code-fn",
+    command: "text-code-fn font-(weight:--code-fn-weight)",
     key: "text-code-fn",
-    keyword: "text-code-fn",
+    keyword: "text-code-fn font-(weight:--code-fn-weight)",
     flag: "text-code-key",
     removed: "text-code-key",
     string: "text-code-str",
-    literal: "text-code-str",
+    literal: "text-code-literal",
     added: "text-code-str",
     punct: "text-code-punct",
     comment: "text-code-punct",

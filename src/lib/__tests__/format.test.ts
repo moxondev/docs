@@ -51,9 +51,26 @@ describe("formatApprox and formatPrice", () => {
         );
     });
 
-    test("the euro sign after the amount in French, before it in English", () => {
-        assert.equal(formatPrice(2.99, "fr"), `2.99${EURO}`);
+    test("the French reading: decimal comma, euro sign after a no-break space", () => {
+        assert.equal(formatPrice(2.99, "fr"), `2,99${NBSP}${EURO}`);
+        assert.equal(formatPrice(9.99, "fr"), `9,99${NBSP}${EURO}`);
+    });
+
+    test("the English reading: euro sign first, decimal point", () => {
         assert.equal(formatPrice(9.99, "en"), `${EURO}9.99`);
+        assert.equal(formatPrice(2.99, "en"), `${EURO}2.99`);
+    });
+
+    test("a whole amount has no decimals and a short one keeps two", () => {
+        assert.equal(formatPrice(5, "fr"), `5${NBSP}${EURO}`);
+        assert.equal(formatPrice(4.9, "fr"), `4,90${NBSP}${EURO}`);
+    });
+
+    test("the catalog keeps the price amounts of the plans", () => {
+        assert.deepEqual(
+            PLANS.map((plan) => plan.price?.amount),
+            [undefined, 2.99, 4.99, 9.99],
+        );
     });
 });
 

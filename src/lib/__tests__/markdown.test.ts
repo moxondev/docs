@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
+import { VERSIONS } from "@/data/versions";
 import { type MarkdownLabels, pageMarkdown } from "@/lib/markdown";
 import type { Block, Page } from "@/types/content";
 import type { Nav } from "@/types/nav";
@@ -8,6 +9,7 @@ import type { Nav } from "@/types/nav";
 // Characters built from code points so that this file stays pure ASCII
 const EM_DASH = String.fromCodePoint(0x2014);
 const EURO = String.fromCodePoint(0x20ac);
+const NBSP = String.fromCodePoint(0xa0);
 
 const LABELS: MarkdownLabels = {
     parameter: "Parameter",
@@ -35,11 +37,7 @@ const LABELS: MarkdownLabels = {
 };
 
 const NAV: Nav = {
-    v1: {},
-    v2: {},
-    v3: {},
-    v4: {},
-    v5: {},
+    ...(Object.fromEntries(VERSIONS.map((def) => [def.id, {}])) as Nav),
     v6: {
         "captcha/verify": {
             title: { en: "Captcha Verify", fr: "Captcha, verification" },
@@ -365,7 +363,7 @@ describe("blocks", () => {
         );
         assert.equal(
             fr[4],
-            `| PRO | 4.99${EURO}/month | 6 000 | 144 000 | 1 008 000 | ~4.2M | 120 | [Acheter](https://store.moxon.dev/join) |`,
+            `| PRO | 4,99${NBSP}${EURO}/month | 6 000 | 144 000 | 1 008 000 | ~4.2M | 120 | [Acheter](https://store.moxon.dev/join) |`,
         );
         const en = body(page([{ type: "plans" }]), "en").split("\n");
         assert.equal(

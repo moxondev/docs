@@ -1,4 +1,4 @@
-import type { Method } from "@/types/content";
+import type { Method, PageStatus } from "@/types/content";
 
 export type SearchKind = "endpoint" | "param" | "field" | "error" | "section" | "page";
 
@@ -9,6 +9,7 @@ export interface SearchDoc {
     h?: string;
     r?: string;
     m?: Method[];
+    s?: PageStatus;
     d?: string;
     n?: number;
     p?: string;

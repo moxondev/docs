@@ -6,7 +6,7 @@ import { createTranslator } from "next-intl";
 
 import { CATALOGUE } from "@/data/catalogue";
 import { NAV } from "@/data/nav";
-
+import { LATEST } from "@/data/versions";
 import {
     docParams,
     docTitle,
@@ -19,6 +19,15 @@ import {
     slugOf,
 } from "@/lib/pages";
 import type { Lang, Page } from "@/types/content";
+
+// A version that does not exist yet: the one after the latest, whatever the latest is
+const NEXT = `v${Number(LATEST.slice(1)) + 1}`;
+
+// The release page of the latest version and its release number
+const RELEASE_ID = Object.keys(NAV[LATEST]).find(
+    (id) => NAV[LATEST][id].kind === "release",
+) as string;
+const RELEASE = RELEASE_ID.slice("changelog/".length);
 
 /**
  * Builds the translator of the meta namespace from the committed messages, as next-intl does on
@@ -36,12 +45,12 @@ function metaOf(lang: Lang): MetaTranslate {
 /**
  * Builds a page without a lead, to follow the description chain.
  *
- * @param id - Page id in v6
+ * @param id - Page id in the latest version
  * @param kind - Kind of the page
  * @returns The page module
  */
 function bare(id: string, kind: Page["kind"]): Page {
-    return { version: "v6", id, kind, title: { en: "T", fr: "T" }, sections: [] };
+    return { version: LATEST, id, kind, title: { en: "T", fr: "T" }, sections: [] };
 }
 
 describe("route params", () => {
@@ -77,7 +86,7 @@ describe("page loading", () => {
         assert.equal(await getPage("v6", "nope"), null);
         assert.equal(await getPage("v6", "constructor"), null);
         assert.equal(await getPage("v6", "__proto__"), null);
-        assert.equal(await getPage("v9", "hash"), null);
+        assert.equal(await getPage(NEXT, "hash"), null);
         assert.equal(await getPage("fr", "index"), null);
     });
 
@@ -85,7 +94,7 @@ describe("page loading", () => {
         const pages = await loadPages("v6");
         assert.equal(pages.length, Object.keys(NAV.v6).length);
         assert.ok(pages.every((page) => page.version === "v6" && page.id in NAV.v6));
-        assert.deepEqual(await loadPages("v1"), []);
+        assert.equal((await loadPages("v1")).length, Object.keys(NAV.v1).length);
     });
 
     test("route params resolve to the page or to null", async () => {
@@ -102,19 +111,23 @@ describe("page loading", () => {
 
 describe("page metadata", () => {
     test("the latest version shows the title, older ones add the version", () => {
-        assert.equal(docTitle("v6", "Hash", metaOf("en")), "Hash");
+        assert.equal(docTitle(LATEST, "Hash", metaOf("en")), "Hash");
         assert.equal(docTitle("v5", "Hash", metaOf("fr")), "Hash, v5");
     });
 
     test("title, lead as description, canonical and alternates", async () => {
-        const page = await getPage("v6", "hash");
+        const page = await getPage(LATEST, "hash");
         assert.ok(page);
-        const meta = pageMetadata("en", { version: "v6", id: "hash", page }, metaOf("en"));
+        const meta = pageMetadata("en", { version: LATEST, id: "hash", page }, metaOf("en"));
         assert.equal(meta.title, "Hash");
         assert.ok(String(meta.description).startsWith("The /hash endpoint converts a string"));
         assert.deepEqual(meta.alternates, {
-            canonical: "/v6/hash/",
-            languages: { en: "/v6/hash/", fr: "/fr/v6/hash/", "x-default": "/v6/hash/" },
+            canonical: `/${LATEST}/hash/`,
+            languages: {
+                en: `/${LATEST}/hash/`,
+                fr: `/fr/${LATEST}/hash/`,
+                "x-default": `/${LATEST}/hash/`,
+            },
         });
         assert.equal((meta.openGraph as { title: string }).title, "Hash - moxon");
     });
@@ -131,38 +144,50 @@ describe("page metadata", () => {
         const summary = CATALOGUE.find((item) => item.slug === "hash")?.summary.en;
         const entry = pageMetadata(
             "en",
-            { version: "v6", id: "hash", page: bare("hash", "endpoint") },
+            { version: LATEST, id: "hash", page: bare("hash", "endpoint") },
             metaOf("en"),
         );
         assert.equal(entry.description, summary);
         const sub = pageMetadata(
             "en",
-            { version: "v6", id: "captcha/verify", page: bare("captcha/verify", "endpoint") },
+            { version: LATEST, id: "captcha/verify", page: bare("captcha/verify", "endpoint") },
             metaOf("en"),
         );
         assert.equal(
             sub.description,
-            "The Captcha endpoint of the moxon API v6: parameters, response and errors.",
+            `The Captcha endpoint of the moxon API ${LATEST}: parameters, response and errors.`,
         );
-        const changelog = await getPage("v6", "changelog");
+        const changelog = await getPage(LATEST, "changelog");
         assert.ok(changelog);
         const history = pageMetadata(
             "en",
-            { version: "v6", id: "changelog", page: changelog },
+            { version: LATEST, id: "changelog", page: changelog },
             metaOf("en"),
         );
         assert.equal(
             history.description,
-            "Release history of the moxon API v6, with the changes of each release.",
+            `Release history of the moxon API ${LATEST}, with the changes of each release.`,
         );
-        const release = await getPage("v6", "changelog/6.1.0");
+        const release = await getPage(LATEST, RELEASE_ID);
         assert.ok(release);
         const notes = pageMetadata(
             "en",
-            { version: "v6", id: "changelog/6.1.0", page: release },
+            { version: LATEST, id: RELEASE_ID, page: release },
             metaOf("en"),
         );
-        assert.equal(notes.title, "6.1.0");
-        assert.ok(String(notes.description).includes("release 6.1.0"));
+        assert.equal(notes.title, `Changelog ${RELEASE}`);
+        const notesFr = pageMetadata(
+            "fr",
+            { version: LATEST, id: RELEASE_ID, page: release },
+            metaOf("fr"),
+        );
+        assert.equal(notesFr.title, `Changelog ${RELEASE}`);
+        const older = pageMetadata(
+            "en",
+            { version: "v5", id: RELEASE_ID, page: release },
+            metaOf("en"),
+        );
+        assert.equal(older.title, `Changelog ${RELEASE}, v5`);
+        assert.ok(String(notes.description).includes(`release ${RELEASE}`));
     });
 });

@@ -31,15 +31,19 @@ export function formatApprox(n: number): string {
 }
 
 /**
- * Formats a price in euros as the legacy pricing cards print it.
+ * Formats a price in euros the way each language reads it: in French a decimal comma and the euro
+ * sign after a no-break space, in English the sign first. Only the rendering changes: the amount
+ * of the plans catalog stays a plain number.
  *
- * @param amount - Price in euros, such as 2.99
- * @param lang - Language, which places the euro sign
- * @returns "2.99" followed by the euro sign in French, preceded by it in English
+ * @param amount - Price in euros, such as 2.99; two decimals unless it is a whole number
+ * @param lang - Language, which picks the decimal mark and places the euro sign
+ * @returns The price text, to which the caller appends the period ("/month")
  */
 export function formatPrice(amount: number, lang: Lang): string {
     const euro = String.fromCodePoint(0x20ac);
-    return lang === "fr" ? `${amount}${euro}` : `${euro}${amount}`;
+    const figure = Number.isInteger(amount) ? String(amount) : amount.toFixed(2);
+    if (lang === "fr") return `${figure.replace(".", ",")}${String.fromCodePoint(0xa0)}${euro}`;
+    return `${euro}${figure}`;
 }
 
 /**

@@ -218,9 +218,13 @@ describe("token kinds", () => {
 describe("classes", () => {
     test("every kind maps to a code palette token of globals.css, no raw color", () => {
         for (const value of Object.values(TOKEN_CLASSES)) {
-            assert.match(value, /^text-code-(fn|key|str|punct)$/);
+            assert.match(
+                value,
+                /^text-code-(fn|key|str|literal|punct)( font-\(weight:--code-fn-weight\))?$/,
+            );
         }
-        assert.equal(TOKEN_CLASSES.command, "text-code-fn");
+        assert.equal(TOKEN_CLASSES.command, "text-code-fn font-(weight:--code-fn-weight)");
+        assert.equal(TOKEN_CLASSES.literal, "text-code-literal");
         assert.equal(TOKEN_CLASSES.key, "text-code-fn");
         assert.equal(TOKEN_CLASSES.flag, "text-code-key");
         assert.equal(TOKEN_CLASSES.string, "text-code-str");

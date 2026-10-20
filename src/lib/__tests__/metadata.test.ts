@@ -99,6 +99,11 @@ describe("rootMetadata and VIEWPORT", () => {
             { media: "(prefers-color-scheme: dark)", color: "#121316" },
         ]);
     });
+
+    test("the on-screen keyboard resizes the layout and both color schemes are declared", () => {
+        assert.equal(VIEWPORT.interactiveWidget, "resizes-content");
+        assert.equal(VIEWPORT.colorScheme, "light dark");
+    });
 });
 
 describe("descriptions", () => {

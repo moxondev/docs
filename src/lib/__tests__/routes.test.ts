@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, test } from "node:test";
 
+import { LATEST, VERSIONS } from "@/data/versions";
 import {
     absoluteUrl,
     alternates,
@@ -34,7 +35,7 @@ interface LegacyEntry {
 function legacyNav(): Nav {
     const file = join(import.meta.dirname, "../oldUrls.json");
     const urls = JSON.parse(readFileSync(file, "utf8")) as { pages: LegacyEntry[] };
-    const nav: Nav = { v1: {}, v2: {}, v3: {}, v4: {}, v5: {}, v6: {} };
+    const nav = Object.fromEntries(VERSIONS.map((def) => [def.id, {}])) as Nav;
     for (const page of urls.pages) {
         const kind: PageKind =
             page.id === "index"
@@ -51,6 +52,9 @@ function legacyNav(): Nav {
 
 const NAV = legacyNav();
 
+// A version that does not exist yet: the one after the latest, whatever the latest is
+const NEXT = `v${Number(LATEST.slice(1)) + 1}`;
+
 describe("segments and isVersion", () => {
     test("segments drop slashes, the query and the fragment", () => {
         assert.deepEqual(segments("/fr/v6/hash/"), ["fr", "v6", "hash"]);
@@ -59,9 +63,10 @@ describe("segments and isVersion", () => {
         assert.deepEqual(segments("/"), []);
     });
 
-    test("only v1 to v6 are versions, compared whole", () => {
-        for (const v of ["v1", "v2", "v3", "v4", "v5", "v6"]) assert.equal(isVersion(v), true);
-        for (const v of ["v7", "v0", "v66", "v6.1", "V6", "toString", "hasOwnProperty", ""]) {
+    test("only the documented versions are versions, compared whole", () => {
+        for (const def of VERSIONS) assert.equal(isVersion(def.id), true, def.id);
+        const next = [NEXT, "v0", `${LATEST}6`, `${LATEST}.1`, LATEST.toUpperCase()];
+        for (const v of [...next, "toString", "hasOwnProperty", ""]) {
             assert.equal(isVersion(v), false, v);
         }
     });
@@ -104,7 +109,7 @@ describe("parsePath", () => {
     });
 
     test("paths outside a version carry the language only", () => {
-        assert.deepEqual(parsePath("/v7/hash/"), { lang: "en" });
+        assert.deepEqual(parsePath(`/${NEXT}/hash/`), { lang: "en" });
         assert.deepEqual(parsePath("/fr/zzz/"), { lang: "fr" });
         assert.deepEqual(parsePath("/en/v6/hash/"), { lang: "en" });
     });
@@ -238,7 +243,7 @@ describe("resolveRef", () => {
     });
 
     test("a malformed ref: target throws", () => {
-        assert.throws(() => resolveRef("ref:v7/hash", fr), /malformed ref target/);
+        assert.throws(() => resolveRef(`ref:${NEXT}/hash`, fr), /malformed ref target/);
         assert.throws(() => resolveRef("ref:", fr), /malformed ref target/);
         assert.throws(() => resolveRef("ref:Hash Page", fr), /malformed ref target/);
     });

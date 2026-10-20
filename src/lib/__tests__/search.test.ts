@@ -3,6 +3,7 @@ import { before, describe, test } from "node:test";
 import { gzipSync } from "node:zlib";
 
 import { NAV } from "@/data/nav";
+import { LATEST } from "@/data/versions";
 import { pageAnchors } from "@/lib/anchors";
 import { loadPages } from "@/lib/pages";
 import { href } from "@/lib/routes";
@@ -117,7 +118,47 @@ before(async () => {
     }
 });
 
-describe("query language (plan 2.10)", () => {
+describe("page status in the index", () => {
+    test("the document of a page with a status carries it, in both languages", () => {
+        for (const lang of ["en", "fr"] as const) {
+            const marked = DOCS[lang].filter((doc) => doc.s);
+            const found = marked.map((doc) => [doc.k, doc.u, doc.s].join(" "));
+            assert.deepEqual(
+                found.sort(),
+                [
+                    `endpoint ${href(lang, "v6", "hyperplanning")} deprecated`,
+                    `page ${href(lang, "v6", "manifest")} experimental`,
+                ].sort(),
+            );
+            assert.equal(marked.find((doc) => doc.s === "experimental")?.t, "Manifest");
+        }
+    });
+
+    test("a stable page has no s key, so the index file stays as small as before", () => {
+        const hash = DOCS.en.find((doc) => doc.k === "endpoint" && doc.u === "/v6/hash/");
+        assert.ok(hash);
+        assert.equal("s" in hash, false);
+    });
+
+    test("the manifest is found by its name, with its status", () => {
+        const first = run("manif", "en")[0];
+        assert.equal(first.u, "/v6/manifest/");
+        assert.equal(first.s, "experimental");
+    });
+});
+
+describe("deprecated page in the index", () => {
+    test("the unlisted v6 hyperplanning is still searchable and says it is deprecated", () => {
+        const first = run("hyperplanning", "en")[0];
+        assert.equal(first.u, "/v6/hyperplanning/");
+        assert.equal(first.s, "deprecated");
+        const fr = run("hyperplanning", "fr")[0];
+        assert.equal(fr.u, "/fr/v6/hyperplanning/");
+        assert.equal(fr.s, "deprecated");
+    });
+});
+
+describe("query language", () => {
     test("method prefixes, routes and statuses are filters, the rest is text", () => {
         assert.deepEqual(parseQuery("  post:hash "), { text: "hash", method: "post" });
         assert.deepEqual(parseQuery("GET: ip"), { text: "ip", method: "get" });
@@ -185,7 +226,7 @@ describe("index documents of v6", () => {
     });
 
     test("documents only use the compact keys, and stay within the budget", () => {
-        const keys = new Set(["k", "t", "u", "h", "r", "m", "d", "n", "p", "x"]);
+        const keys = new Set(["k", "t", "u", "h", "r", "m", "s", "d", "n", "p", "x"]);
         for (const lang of ["en", "fr"] as const) {
             for (const doc of DOCS[lang]) {
                 for (const key of Object.keys(doc)) assert.ok(keys.has(key), key);
@@ -341,7 +382,7 @@ describe("palette helpers", () => {
         assert.equal(indexFile("v6", "fr"), "v6fr.json");
         assert.equal(indexUrl("v5", "en"), "/search/v5en.json");
         assert.deepEqual(searchScope("/fr/v5/hash/"), { lang: "fr", version: "v5" });
-        assert.deepEqual(searchScope("/fr/"), { lang: "fr", version: "v6" });
-        assert.deepEqual(searchScope("/zzz/"), { lang: "en", version: "v6" });
+        assert.deepEqual(searchScope("/fr/"), { lang: "fr", version: LATEST });
+        assert.deepEqual(searchScope("/zzz/"), { lang: "en", version: LATEST });
     });
 });

@@ -2,8 +2,15 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, test } from "node:test";
+import { createContext, runInContext } from "node:vm";
 
+import { LATEST, VERSIONS } from "@/data/versions";
+import { LOCALE_KEY } from "@/i18n/routing";
 import {
+    aliasAddresses,
+    aliasFiles,
+    aliasLang,
+    aliasScript,
     getSmartRedirect,
     getUserLang,
     LEGACY_HOME_FILES,
@@ -32,23 +39,42 @@ const URLS = JSON.parse(
     readFileSync(join(import.meta.dirname, "../oldUrls.json"), "utf8"),
 ) as LegacyUrls;
 
+// Release of the latest version, the page that /changelog/latest lands on
+const RELEASE = VERSIONS[0].release ?? "";
+
+// Pages that the latest version needs in the index even when the legacy site never had it
+const LATEST_PAGES = [
+    "index",
+    "hash",
+    "encode",
+    "captcha/verify",
+    "changelog",
+    `changelog/${RELEASE}`,
+];
+
+/**
+ * Describes a page id of the index, the kind being guessed from the id.
+ *
+ * @param id - Page id such as "hash" or "changelog/6.1.0"
+ * @returns The index entry of the page
+ */
+function entry(id: string): NavPage {
+    const kind: PageKind =
+        id === "index" ? "index" : id.startsWith("changelog/") ? "release" : "endpoint";
+    return { title: { en: id, fr: id }, kind, methods: [] };
+}
+
 /**
  * Builds a navigation index holding exactly the pages of the legacy site, the set that NAV
- * holds once every version is promoted.
+ * holds once every version is promoted. The legacy site stops at v6, so a latest version that
+ * comes later gets the few pages the rows need.
  *
- * @returns Nav with one entry per legacy page id, kinds guessed from the id
+ * @returns Nav with one entry per legacy page id and one empty version per documented version
  */
 function legacyNav(): Nav {
-    const nav: Nav = { v1: {}, v2: {}, v3: {}, v4: {}, v5: {}, v6: {} };
-    for (const page of URLS.pages) {
-        const kind: PageKind =
-            page.id === "index"
-                ? "index"
-                : page.id.startsWith("changelog/")
-                  ? "release"
-                  : "endpoint";
-        nav[page.version][page.id] = { title: { en: page.id, fr: page.id }, kind, methods: [] };
-    }
+    const nav = Object.fromEntries(VERSIONS.map((def) => [def.id, {}])) as Nav;
+    for (const page of URLS.pages) nav[page.version][page.id] = entry(page.id);
+    for (const id of LATEST_PAGES) nav[LATEST][id] ??= entry(id);
     return nav;
 }
 
@@ -56,26 +82,37 @@ const NAV = legacyNav();
 
 type Row = [path: string, detected: Lang, expected: string | null];
 
-// The rows of the redirect table in order: incoming path, detected language, expected target
+// Version home of the latest version, in English and in French
+const HOME = `/${LATEST}/`;
+const HOME_FR = `/fr/${LATEST}/`;
+
+// A version that does not exist yet: the one after the latest, whatever the latest is
+const NEXT = `v${Number(LATEST.slice(1)) + 1}`;
+
+/**
+ * The rows of the redirect table in order: incoming path, detected language, expected target.
+ * Rows that name a version or a release number keep it literal; the other rows that land on the
+ * latest version are built from LATEST.
+ */
 const ROWS: readonly Row[] = [
-    ["/latest", "en", "/v6/"],
-    ["/latest", "fr", "/fr/v6/"],
-    ["/latest/", "en", "/v6/"],
-    ["/latest/hash", "en", "/v6/hash/"],
-    ["/latest/hash/", "fr", "/fr/v6/hash/"],
-    ["/latest/captcha/verify", "en", "/v6/captcha/verify/"],
-    ["/latest/zzz", "en", "/v6/"],
-    ["/latest/zzz", "fr", "/fr/v6/"],
-    ["/changelog/latest", "en", "/v6/changelog/6.1.0/"],
-    ["/changelog/latest/", "fr", "/fr/v6/changelog/6.1.0/"],
+    ["/latest", "en", HOME],
+    ["/latest", "fr", HOME_FR],
+    ["/latest/", "en", HOME],
+    ["/latest/hash", "en", `${HOME}hash/`],
+    ["/latest/hash/", "fr", `${HOME_FR}hash/`],
+    ["/latest/captcha/verify", "en", `${HOME}captcha/verify/`],
+    ["/latest/zzz", "en", HOME],
+    ["/latest/zzz", "fr", HOME_FR],
+    ["/changelog/latest", "en", `${HOME}changelog/${RELEASE}/`],
+    ["/changelog/latest/", "fr", `${HOME_FR}changelog/${RELEASE}/`],
     ["/6.0.0", "en", "/v6/changelog/6.0.0/"],
     ["/6.0.0", "fr", "/fr/v6/changelog/6.0.0/"],
     ["/changelog/6.0.0", "en", "/v6/changelog/6.0.0/"],
     ["/changelog/6.1.0/", "en", "/v6/changelog/6.1.0/"],
     ["/5.6.0", "en", "/v5/changelog/5.6.0/"],
     ["/changelog/4.0.0", "fr", "/fr/v4/changelog/4.0.0/"],
-    ["/3.0.0", "en", "/v6/changelog/"],
-    ["/1.0.0", "fr", "/fr/v6/changelog/"],
+    ["/3.0.0", "en", `${HOME}changelog/`],
+    ["/1.0.0", "fr", `${HOME_FR}changelog/`],
     ["/6.9.9", "en", "/v6/changelog/"],
     ["/v5", "en", "/v5/"],
     ["/v5/", "fr", "/fr/v5/"],
@@ -84,23 +121,23 @@ const ROWS: readonly Row[] = [
     ["/v5/zzz", "en", "/v5/"],
     ["/v3/captcha/verify", "en", "/v3/"],
     ["/v6/captcha/verify/zzz", "fr", "/fr/v6/"],
-    ["/fr/hash", "en", "/fr/v6/hash/"],
-    ["/fr/hash/", "en", "/fr/v6/hash/"],
-    ["/en/latest/hash", "fr", "/v6/hash/"],
-    ["/en/hash", "fr", "/v6/hash/"],
+    ["/fr/hash", "en", `${HOME_FR}hash/`],
+    ["/fr/hash/", "en", `${HOME_FR}hash/`],
+    ["/en/latest/hash", "fr", `${HOME}hash/`],
+    ["/en/hash", "fr", `${HOME}hash/`],
     ["/fr/v5/zzz", "en", "/fr/v5/"],
-    ["/fr/latest", "en", "/fr/v6/"],
-    ["/fr/changelog/latest", "en", "/fr/v6/changelog/6.1.0/"],
+    ["/fr/latest", "en", HOME_FR],
+    ["/fr/changelog/latest", "en", `${HOME_FR}changelog/${RELEASE}/`],
     ["/fr/6.0.0", "en", "/fr/v6/changelog/6.0.0/"],
     ["/fr/zzz", "en", null],
     ["/en/zzz", "fr", null],
-    ["/hash", "en", "/v6/hash/"],
-    ["/hash", "fr", "/fr/v6/hash/"],
-    ["/hash/", "en", "/v6/hash/"],
-    ["/captcha/verify", "en", "/v6/captcha/verify/"],
-    ["/changelog", "fr", "/fr/v6/changelog/"],
-    ["/encode", "en", "/v6/encode/"],
-    ["/fr/encode", "en", "/fr/v6/encode/"],
+    ["/hash", "en", `${HOME}hash/`],
+    ["/hash", "fr", `${HOME_FR}hash/`],
+    ["/hash/", "en", `${HOME}hash/`],
+    ["/captcha/verify", "en", `${HOME}captcha/verify/`],
+    ["/changelog", "fr", `${HOME_FR}changelog/`],
+    ["/encode", "en", `${HOME}encode/`],
+    ["/fr/encode", "en", `${HOME_FR}encode/`],
     ["/zzz", "en", null],
     ["/encode/zzz", "en", null],
     ["/v6/en/hash", "fr", "/v6/hash/"],
@@ -128,16 +165,16 @@ const ROWS: readonly Row[] = [
     ["/index.html", "fr", "/"],
     ["/index", "fr", "/"],
     ["/fr/index.html", "en", "/fr/"],
-    ["/hash.html", "en", "/v6/hash/"],
+    ["/hash.html", "en", `${HOME}hash/`],
     ["/v5/hash.html", "fr", "/fr/v5/hash/"],
-    ["/latest/hash.html", "en", "/v6/hash/"],
-    ["/fr/hash.html", "en", "/fr/v6/hash/"],
+    ["/latest/hash.html", "en", `${HOME}hash/`],
+    ["/fr/hash.html", "en", `${HOME_FR}hash/`],
     ["/en", "fr", "/"],
     ["/en/", "fr", "/"],
     ["/", "fr", null],
     ["/fr/", "en", null],
-    ["/v7", "en", null],
-    ["/v7/hash", "en", null],
+    [`/${NEXT}`, "en", null],
+    [`/${NEXT}/hash`, "en", null],
     ["/zzz/yyy", "en", null],
     ["/favicon.ico", "en", null],
     ["/_next/static/x.js", "en", null],
@@ -171,13 +208,13 @@ describe("getSmartRedirect, the table of paths and their targets", () => {
     test("a segment named like an Object member is not a page", () => {
         assert.equal(getSmartRedirect("/constructor", NAV, "en"), null);
         assert.equal(getSmartRedirect("/fr/valueOf", NAV, "en"), null);
-        assert.equal(getSmartRedirect("/latest/toString", NAV, "en"), "/v6/");
+        assert.equal(getSmartRedirect("/latest/toString", NAV, "en"), HOME);
         assert.equal(getSmartRedirect("/v6/hasOwnProperty", NAV, "fr"), "/fr/v6/");
         assert.equal(getSmartRedirect("/v5/en/__proto__.html", NAV, "fr"), "/v5/");
     });
 
-    test("a language prefix is a whole segment, never a prefix of a page id (Q6)", () => {
-        assert.equal(getSmartRedirect("/encode", NAV, "fr"), "/fr/v6/encode/");
+    test("a language prefix is a whole segment, never a prefix of a page id", () => {
+        assert.equal(getSmartRedirect("/encode", NAV, "fr"), `${HOME_FR}encode/`);
         assert.equal(getSmartRedirect("/v6/encode", NAV, "fr"), "/fr/v6/encode/");
         assert.equal(getSmartRedirect("/fragment", NAV, "en"), null);
     });
@@ -282,5 +319,342 @@ describe("getUserLang", () => {
 
     test("with no argument it reads the runtime (Node has a navigator) and never throws", () => {
         assert.ok(["en", "fr"].includes(getUserLang()));
+    });
+});
+
+describe("aliasAddresses", () => {
+    const ADDRESSES = aliasAddresses(NAV);
+    const PLAIN = ADDRESSES.filter((address) => !address.startsWith("fr/"));
+
+    test("the latest version, its pages, the changelog shortcut and the releases", () => {
+        for (const address of [
+            "latest",
+            "latest/hash",
+            "latest/captcha/verify",
+            "hash",
+            "encode",
+            "captcha/verify",
+            "changelog",
+            "changelog/latest",
+            `changelog/${RELEASE}`,
+            RELEASE,
+            "5.6.0",
+            "changelog/5.6.0",
+            "4.0.0",
+            "changelog/4.0.0",
+        ]) {
+            assert.ok(ADDRESSES.includes(address), address);
+            assert.ok(ADDRESSES.includes(`fr/${address}`), `fr/${address}`);
+        }
+    });
+
+    test("the version homes, the index, the versions and every unknown release are left out", () => {
+        for (const address of [
+            "index",
+            "latest/index",
+            "v6",
+            "v6/hash",
+            "3.0.0",
+            "changelog/3.0.0",
+        ]) {
+            assert.ok(!ADDRESSES.includes(address), address);
+        }
+        assert.ok(ADDRESSES.every((address) => !address.startsWith("en/")));
+        assert.ok(ADDRESSES.every((address) => !address.endsWith("/") && !address.startsWith("/")));
+    });
+
+    test("distinct, in ascending order, and every address comes with its French form", () => {
+        assert.equal(new Set(ADDRESSES).size, ADDRESSES.length);
+        assert.deepEqual(ADDRESSES, [...ADDRESSES].sort());
+        assert.equal(PLAIN.length * 2, ADDRESSES.length);
+        for (const address of PLAIN) assert.ok(ADDRESSES.includes(`fr/${address}`), address);
+        assert.deepEqual(aliasAddresses(NAV), ADDRESSES);
+    });
+
+    test("one bare address per page of the latest version, none for its home", () => {
+        const pages = Object.keys(NAV[LATEST]).filter((id) => id !== "index");
+        const releases = VERSIONS.filter((def) => def.changelog).flatMap((def) =>
+            Object.keys(NAV[def.id]).filter((id) => /^changelog\/\d+\.\d+\.\d+$/.test(id)),
+        );
+        assert.ok(releases.length >= 20);
+        const wanted = new Set<string>(["latest", "changelog/latest"]);
+        for (const id of pages) wanted.add(id).add(`latest/${id}`);
+        for (const id of releases) wanted.add(id).add(id.slice("changelog/".length));
+        assert.deepEqual(PLAIN, [...wanted].sort());
+    });
+
+    test("a version without pages gives no address", () => {
+        const partial: Nav = { ...NAV, v4: {} };
+        const found = aliasAddresses(partial);
+        assert.ok(found.every((address) => !/(^|\/)(changelog\/)?4\.\d+\.\d+$/.test(address)));
+        assert.ok(found.includes("5.6.0"));
+        assert.ok(ADDRESSES.includes("4.9.0"));
+    });
+
+    test("a version whose changelog flag is off is not searched for releases", () => {
+        const flags = VERSIONS.map((def) => (def.id === "v5" ? { ...def, changelog: false } : def));
+        const found = aliasAddresses(NAV, flags);
+        assert.ok(found.every((address) => !/(^|\/)(changelog\/)?5\.\d+\.\d+$/.test(address)));
+        assert.ok(found.includes("4.0.0"));
+    });
+
+    test("an unpublished latest version leaves the releases and the two fixed shortcuts", () => {
+        const found = aliasAddresses({ ...NAV, [LATEST]: {} });
+        assert.ok(found.includes("latest"));
+        assert.ok(found.includes("changelog/latest"));
+        assert.ok(!found.includes("hash"));
+        assert.ok(found.includes("5.6.0"));
+    });
+});
+
+describe("aliasLang and aliasFiles", () => {
+    test("the language of the prefix, compared whole", () => {
+        assert.equal(aliasLang("fr/hash"), "fr");
+        assert.equal(aliasLang("fr/latest/hash"), "fr");
+        assert.equal(aliasLang("hash"), null);
+        assert.equal(aliasLang("latest/hash"), null);
+        assert.equal(aliasLang("fragment/x"), null);
+        assert.equal(aliasLang("en/hash"), null);
+    });
+
+    test("folder form and .html twin, nested ids and dotted releases included", () => {
+        assert.deepEqual(aliasFiles("latest"), ["latest/index.html", "latest.html"]);
+        assert.deepEqual(aliasFiles("captcha/verify"), [
+            "captcha/verify/index.html",
+            "captcha/verify.html",
+        ]);
+        assert.deepEqual(aliasFiles("fr/changelog/6.1.0"), [
+            "fr/changelog/6.1.0/index.html",
+            "fr/changelog/6.1.0.html",
+        ]);
+    });
+});
+
+interface Env {
+    storage: "absent" | "blocked" | "throws" | { value: string | null };
+    navigator: { languages?: readonly string[]; language?: string } | null;
+}
+
+// Targets of the alias page under test, one per language
+const TARGETS = { en: "/v6/hash/", fr: "/fr/v6/hash/" };
+
+/**
+ * Describes the localStorage global of a fake browser.
+ *
+ * @param storage - The storage behaviour wanted: missing, throwing on access, throwing on read,
+ * or holding a value for the key of the language menu
+ * @returns The property descriptor to define on a global object
+ */
+function storageOf(storage: Env["storage"]): PropertyDescriptor {
+    const throwing = () => {
+        throw new Error("storage denied");
+    };
+    if (storage === "absent") return { value: undefined, configurable: true };
+    if (storage === "blocked") return { get: throwing, configurable: true };
+    const getItem = (key: string) => {
+        if (key !== LOCALE_KEY) throw new Error(`unexpected key ${key}`);
+        return storage === "throws" ? throwing() : storage.value;
+    };
+    return { value: { getItem }, configurable: true };
+}
+
+/**
+ * Describes the localStorage and navigator globals of a fake browser.
+ *
+ * @param env - The storage and navigator behaviour wanted
+ * @returns Property descriptors to define on a global object, in a vm context or on globalThis
+ */
+function globalsOf(env: Env): PropertyDescriptorMap {
+    return {
+        localStorage: storageOf(env.storage),
+        navigator: { value: env.navigator ?? undefined, configurable: true },
+    };
+}
+
+/**
+ * Runs a function with the localStorage and navigator globals of a fake browser, then restores
+ * the real ones.
+ *
+ * @param env - The fake browser
+ * @param run - What to run while the globals are in place
+ * @returns What run returns
+ */
+function withGlobals<T>(env: Env, run: () => T): T {
+    const map = globalsOf(env);
+    const saved = Object.keys(map).map(
+        (key) => [key, Object.getOwnPropertyDescriptor(globalThis, key)] as const,
+    );
+    Object.defineProperties(globalThis, map);
+    try {
+        return run();
+    } finally {
+        for (const [key, descriptor] of saved) {
+            if (descriptor) Object.defineProperty(globalThis, key, descriptor);
+            else delete (globalThis as Record<string, unknown>)[key];
+        }
+    }
+}
+
+/**
+ * Runs an alias script in a vm context that holds a fake browser, the way a visitor's page would.
+ *
+ * @param script - The inline script of an alias page
+ * @param env - The fake browser
+ * @param search - location.search of the visit
+ * @param hash - location.hash of the visit
+ * @returns The URL given to location.replace, null when the script never called it
+ */
+function visit(script: string, env: Env, search = "", hash = ""): string | null {
+    let replaced: string | null = null;
+    const sandbox = {
+        location: {
+            search,
+            hash,
+            replace: (url: string) => {
+                replaced = url;
+            },
+        },
+    };
+    Object.defineProperties(sandbox, globalsOf(env));
+    runInContext(script, createContext(sandbox));
+    return replaced;
+}
+
+type LangCase = [name: string, env: Env, want: Lang];
+
+const FR_FR = { languages: ["fr-FR", "en"] };
+const EN_US = { languages: ["en-US"] };
+
+const CASES: readonly LangCase[] = [
+    ["saved fr beats an English browser", { storage: { value: "fr" }, navigator: EN_US }, "fr"],
+    ["saved en beats a French browser", { storage: { value: "en" }, navigator: FR_FR }, "en"],
+    [
+        "saved garbage falls back to the browser",
+        { storage: { value: "de" }, navigator: FR_FR },
+        "fr",
+    ],
+    ["saved in capitals is not a choice", { storage: { value: "FR" }, navigator: EN_US }, "en"],
+    [
+        "saved Object member name is not a choice",
+        { storage: { value: "constructor" }, navigator: FR_FR },
+        "fr",
+    ],
+    ["nothing saved, fr-FR first", { storage: { value: null }, navigator: FR_FR }, "fr"],
+    ["nothing saved, en-US", { storage: { value: null }, navigator: EN_US }, "en"],
+    [
+        "nothing saved, de-DE then fr",
+        { storage: { value: null }, navigator: { languages: ["de-DE", "fr"] } },
+        "fr",
+    ],
+    [
+        "nothing saved, only de and es",
+        { storage: { value: null }, navigator: { languages: ["de", "es"] } },
+        "en",
+    ],
+    [
+        "nothing saved, de-DE then en-GB then fr",
+        { storage: { value: null }, navigator: { languages: ["de-DE", "en-GB", "fr"] } },
+        "en",
+    ],
+    ["capital tag", { storage: { value: null }, navigator: { languages: ["FR"] } }, "fr"],
+    [
+        "an empty languages list reads navigator.language",
+        { storage: { value: null }, navigator: { languages: [], language: "fr-CA" } },
+        "fr",
+    ],
+    [
+        "no languages list reads navigator.language",
+        { storage: { value: null }, navigator: { language: "fr" } },
+        "fr",
+    ],
+    ["a storage that throws on read", { storage: "throws", navigator: FR_FR }, "fr"],
+    ["a storage that throws on access", { storage: "blocked", navigator: FR_FR }, "fr"],
+    [
+        "a storage that throws and an English browser",
+        { storage: "blocked", navigator: EN_US },
+        "en",
+    ],
+    ["no storage at all", { storage: "absent", navigator: FR_FR }, "fr"],
+    ["no navigator and nothing saved", { storage: { value: null }, navigator: null }, "en"],
+    ["no navigator but a saved choice", { storage: { value: "fr" }, navigator: null }, "fr"],
+    ["neither storage nor navigator", { storage: "absent", navigator: null }, "en"],
+];
+
+describe("aliasScript", () => {
+    const script = aliasScript(TARGETS);
+
+    for (const [name, env, want] of CASES) {
+        test(`${name}: the script and getUserLang both pick ${want}`, () => {
+            assert.equal(
+                withGlobals(env, () => getUserLang()),
+                want,
+            );
+            assert.equal(visit(script, env), TARGETS[want]);
+        });
+    }
+
+    test("the script agrees with getUserLang on every saved value and language list", () => {
+        const saved: Env["storage"][] = [
+            "absent",
+            "blocked",
+            "throws",
+            ...[null, "en", "fr", "de", "FR", "", "constructor", "__proto__", "toString"].map(
+                (value) => ({ value }),
+            ),
+        ];
+        const lists: Env["navigator"][] = [
+            null,
+            { language: "fr-FR" },
+            { language: "de" },
+            { languages: [], language: "" },
+            { languages: ["en"] },
+            { languages: ["FR-ca"] },
+            { languages: ["fr_FR"] },
+            { languages: ["de", "es", "fr"] },
+            { languages: ["de", "en", "fr"] },
+            { languages: ["frxyz", "en-US"] },
+            { languages: [], language: "en-GB" },
+        ];
+        let compared = 0;
+        for (const storage of saved) {
+            for (const navigator of lists) {
+                const env: Env = { storage, navigator };
+                const lib = withGlobals(env, () => getUserLang());
+                assert.equal(visit(script, env), TARGETS[lib], JSON.stringify(env));
+                compared += 1;
+            }
+        }
+        assert.equal(compared, saved.length * lists.length);
+    });
+
+    test("the query and the fragment are kept", () => {
+        const env: Env = { storage: { value: "fr" }, navigator: EN_US };
+        assert.equal(visit(script, env, "?a=1", "#b"), "/fr/v6/hash/?a=1#b");
+        assert.equal(visit(script, { ...env, storage: { value: "en" } }, "", "#c"), "/v6/hash/#c");
+    });
+
+    test("the key is the one of the language menu and the default is the default locale", () => {
+        assert.ok(script.includes(`getItem(${JSON.stringify(LOCALE_KEY)})`));
+        assert.ok(script.includes('l="en"'));
+        assert.equal(visit(script, { storage: "absent", navigator: null }), TARGETS.en);
+    });
+
+    test("a single target needs no detection and keeps the query and the fragment", () => {
+        const fixed = aliasScript({ fr: "/fr/v6/hash/" });
+        assert.equal(fixed, 'location.replace("/fr/v6/hash/"+location.search+location.hash)');
+        const env: Env = { storage: { value: "en" }, navigator: EN_US };
+        assert.equal(visit(fixed, env, "?x=1", "#y"), "/fr/v6/hash/?x=1#y");
+    });
+
+    test("it refuses a page without target, or without the default language", () => {
+        assert.throws(() => aliasScript({}), /needs a target/);
+        assert.throws(() => aliasScript({ fr: "/fr/v6/", en: undefined }), /needs a target|in en/);
+    });
+
+    test("a target cannot close the script element", () => {
+        const hostile = aliasScript({ en: "/a</script>/", fr: "/fr/a</script>/" });
+        assert.ok(!hostile.includes("</"));
+        assert.ok(hostile.includes("\\u003c/script>"));
+        assert.equal(visit(hostile, { storage: "absent", navigator: null }), "/a</script>/");
     });
 });

@@ -101,15 +101,28 @@ export function initialValues(op: Operation): FormValues {
 }
 
 /**
- * Tells whether every required parameter has a value, which enables the send button. A
- * conditional parameter does not block: the API answers with the rule it broke.
+ * Finds the first required parameter that has no value, in the order of the form. A conditional
+ * parameter does not count: the API answers with the rule it broke.
+ *
+ * @param op - Operation whose parameters say which values are required
+ * @param values - Current form values; an absent key counts as empty
+ * @returns The name of the first missing required parameter, null when none is missing
+ */
+export function firstMissing(op: Operation, values: FormValues): string | null {
+    const missing = op.params.find((p) => p.required === true && (values[p.name] ?? "") === "");
+    return missing?.name ?? null;
+}
+
+/**
+ * Tells whether every required parameter has a value, which lets a send go through. A conditional
+ * parameter does not block: the API answers with the rule it broke.
  *
  * @param op - Operation whose parameters say which values are required
  * @param values - Current form values; an absent key counts as empty
  * @returns True when the request can be sent
  */
 export function isComplete(op: Operation, values: FormValues): boolean {
-    return op.params.every((p) => p.required !== true || (values[p.name] ?? "") !== "");
+    return firstMissing(op, values) === null;
 }
 
 /**

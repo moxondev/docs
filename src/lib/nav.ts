@@ -1,9 +1,22 @@
 import { CATALOGUE, CATEGORIES, type CategoryId, type EndpointMeta } from "@/data/catalogue";
 import { localePath } from "@/i18n/routing";
-import { pick, plain } from "@/lib/inline";
+import { CATALOGUE_ANCHOR } from "@/lib/anchors";
+import { type InlineNode, parseInline, pick, plain, refTarget } from "@/lib/inline";
+import { releasePages } from "@/lib/releases";
 import { hasPage, href } from "@/lib/routes";
-import type { Block, Lang, Method, Page, Section, Version } from "@/types/content";
+import type {
+    Block,
+    Inline,
+    Lang,
+    Method,
+    Page,
+    PageStatus,
+    Section,
+    Version,
+} from "@/types/content";
 import type { Nav, SlimMeta } from "@/types/nav";
+
+export { releasePages };
 
 export type NavGroup = "introduction" | "catalogue" | "tools";
 
@@ -12,6 +25,8 @@ export interface NavLink {
     title: string;
     href: string;
     methods: Method[];
+    status?: PageStatus;
+    short?: string;
     children: NavLink[];
 }
 
@@ -54,8 +69,7 @@ export const INTRODUCTION: readonly string[] = ["index", "authentication", "pric
 // Pages of the Tools group in sidebar order; the manifest of the npm package is one of them
 export const TOOLS: readonly string[] = ["playground", "changelog", "manifest"];
 
-// Fragment of the home catalogue section, the target of the first breadcrumb link
-export const CATALOGUE_ANCHOR = "catalogue";
+export const PAGE_STATUSES: readonly PageStatus[] = ["experimental", "beta", "deprecated"];
 
 // Display order of the method marks of an endpoint family, so Pow reads "GET POST"
 const METHOD_ORDER: readonly Method[] = ["get", "post", "put", "patch", "delete"];
@@ -94,39 +108,6 @@ export function isListed(entry: EndpointMeta, version: Version): boolean {
 }
 
 /**
- * Compares two release page ids by release number, newest first ("changelog/6.1.0" before
- * "changelog/6.0.0", "changelog/4.10.0" before "changelog/4.9.0").
- *
- * @param a - Release page id
- * @param b - Release page id
- * @returns A negative number when a is the newer release
- */
-function newestFirst(a: string, b: string): number {
-    const parts = (id: string) => (id.split("/").pop() ?? "").split(".").map(Number);
-    const left = parts(a);
-    const right = parts(b);
-    for (let i = 0; i < Math.max(left.length, right.length); i += 1) {
-        const diff = (right[i] ?? 0) - (left[i] ?? 0);
-        if (diff !== 0) return diff;
-    }
-    return 0;
-}
-
-/**
- * Lists the release pages of a version, newest first: the changelog children of the sidebar and
- * the order of the release pager.
- *
- * @param nav - Navigation index; an unpromoted version is an empty record
- * @param version - Version whose changelog is read
- * @returns Page ids such as "changelog/6.1.0"
- */
-export function releasePages(nav: Nav, version: Version): string[] {
-    return Object.keys(nav[version])
-        .filter((slug) => nav[version][slug].kind === "release")
-        .sort(newestFirst);
-}
-
-/**
  * Lists the sub-pages of a page in id order ("captcha/verify" under "captcha"); release pages
  * are left out, they have their own order.
  *
@@ -159,6 +140,48 @@ export function familyMethods(nav: Nav, version: Version, slug: string): Method[
 }
 
 /**
+ * Gives the status of a page (experimental, beta or deprecated) from the navigation index.
+ *
+ * @param nav - Navigation index, whose pages carry the status derived from the page modules
+ * @param version - Version of the page
+ * @param slug - Page id, possibly absent from that version
+ * @returns The status, undefined for a stable page or a page the version does not have
+ */
+export function pageStatus(nav: Nav, version: Version, slug: string): PageStatus | undefined {
+    return hasPage(nav, version, slug) ? nav[version][slug].status : undefined;
+}
+
+/**
+ * Finds the first link of an inline string that targets a page with a status, so that a
+ * changelog line about a page with a status can carry the marker of that status.
+ *
+ * @param nav - Navigation index, whose pages carry their status
+ * @param text - Inline string in one language
+ * @param version - Version of the page that holds the text, which resolves the ref: links
+ * @returns The status of the first linked page that has one, else undefined
+ */
+export function mentionedStatus(nav: Nav, text: Inline, version: Version): PageStatus | undefined {
+    const visit = (nodes: readonly InlineNode[]): PageStatus | undefined => {
+        for (const node of nodes) {
+            if (node.type === "link") {
+                const ref = refTarget(node.target);
+                const found =
+                    ref && ref.slug !== ""
+                        ? pageStatus(nav, ref.version ?? version, ref.slug)
+                        : undefined;
+                if (found) return found;
+            }
+            if (node.type === "strong" || node.type === "em" || node.type === "link") {
+                const inner = visit(node.children);
+                if (inner) return inner;
+            }
+        }
+        return undefined;
+    };
+    return visit(parseInline(text));
+}
+
+/**
  * Gives the short title of a page in the navigation: the catalogue name for the page of an
  * endpoint family ("QR Code"), else the plain page title.
  *
@@ -174,22 +197,38 @@ export function navTitle(nav: Nav, version: Version, slug: string, lang: Lang): 
 }
 
 /**
+ * Short names of the sub-pages whose title is too long for the narrow nested row of the sidebar, by
+ * page id and language; the other sub-pages drop the name of their parent when they start with it
+ * (see childLabel).
+ */
+const SHORT_NAMES: Readonly<Record<string, Partial<Record<Lang, string>>>> = {
+    "captcha/verify": { fr: "V\u00e9rification" },
+    "pow/verify": { en: "Verification", fr: "V\u00e9rification" },
+    "tic-tac-toe/fetch": { fr: "R\u00e9cup\u00e9ration" },
+    "tic-tac-toe/list": { fr: "Liste" },
+};
+
+/**
  * Builds the link of one page of the navigation.
  *
  * @param nav - Navigation index holding the titles and methods
  * @param version - Version of the page
  * @param slug - Page id, present in that version
  * @param lang - Language of the title and of the href
- * @returns The link without children; a family page carries the methods of its sub-pages too
+ * @returns The link without children; a family page carries the methods of its sub-pages too, and
+ * the status of the page when it has one
  */
 function navLink(nav: Nav, version: Version, slug: string, lang: Lang): NavLink {
     const entry = catalogueEntry(slug);
+    const status = nav[version][slug].status;
     return {
         slug,
         title: navTitle(nav, version, slug, lang),
         href: href(lang, version, slug),
         methods:
             entry?.slug === slug ? familyMethods(nav, version, slug) : nav[version][slug].methods,
+        ...(status ? { status } : {}),
+        ...(SHORT_NAMES[slug]?.[lang] ? { short: SHORT_NAMES[slug][lang] } : {}),
         children: [],
     };
 }
@@ -386,8 +425,8 @@ export function tocEntries(page: Page, lang: Lang): TocEntry[] {
 
 /**
  * Builds the facts that the slim header prints for a page (category, name, back link to the
- * category of the home catalogue, methods of its Try operations), or null when the page keeps the
- * full header: only endpoint pages with a live Try operation swap.
+ * category of the home catalogue, status, methods of its Try operations), or null when the page
+ * keeps the full header: only endpoint pages with a live Try operation swap.
  *
  * @param nav - Navigation index, for the short title of the page
  * @param version - Version of the page
@@ -413,6 +452,7 @@ export function slimMeta(
         name: navTitle(nav, version, id, lang),
         category: category?.title[lang],
         back: category ? `${localePath(lang)}#${category.anchor}` : undefined,
+        ...(page.status ? { status: page.status } : {}),
         methods,
     };
 }

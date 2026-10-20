@@ -1,8 +1,9 @@
-import type { Loc, Method, PageKind, Version } from "@/types/content";
+import type { Loc, Method, PageKind, PageStatus, Version } from "@/types/content";
 
 export interface NavPage {
     title: Loc<string>;
     kind: PageKind;
+    status?: PageStatus;
     methods: Method[];
     updated?: string;
     summary?: Loc<string>;
@@ -14,5 +15,6 @@ export interface SlimMeta {
     name: string;
     category?: string;
     back?: string;
+    status?: PageStatus;
     methods: Method[];
 }

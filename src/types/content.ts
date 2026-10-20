@@ -18,10 +18,13 @@ export type CodeLang = "json" | "bash" | "html" | "js" | "diff" | "http" | "text
 export type PageKind =
     "index" | "endpoint" | "article" | "pricing" | "playground" | "changelog" | "release";
 
+export type PageStatus = "experimental" | "beta" | "deprecated";
+
 export interface Page {
     version: Version;
     id: string;
     kind: PageKind;
+    status?: PageStatus;
     title: Loc<Inline>;
     lead?: Lx<Inline>;
     banner?: true;

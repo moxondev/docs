@@ -4,6 +4,7 @@ import { describe, test } from "node:test";
 import {
     buildUrl,
     exampleRequest,
+    firstMissing,
     hasBody,
     initialValues,
     isComplete,
@@ -164,6 +165,21 @@ describe("form state", () => {
         assert.equal(isComplete(PASSWORD, { type: "a" }), true);
         assert.equal(isComplete(MATRIX, { matrix: "[[1]]" }), true);
         assert.equal(isComplete(CHAT_DELETE, { token: "", username: "u" }), false);
+    });
+
+    test("the first missing required value is named in form order, conditional ones never count", () => {
+        const op: Operation = {
+            ...PASSWORD,
+            params: [
+                { name: "a", type: "string", in: "body", required: "conditional" },
+                { name: "b", type: "string", in: "body", required: true },
+                { name: "c", type: "string", in: "body", required: true },
+            ],
+        };
+        assert.equal(firstMissing(op, {}), "b");
+        assert.equal(firstMissing(op, { b: "x" }), "c");
+        assert.equal(firstMissing(op, { b: "x", c: "y" }), null);
+        assert.equal(firstMissing({ ...op, params: [] }, {}), null);
     });
 
     test("only post, put, patch and delete send a body", () => {
