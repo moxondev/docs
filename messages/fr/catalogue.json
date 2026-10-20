@@ -3,5 +3,6 @@
     "intro": "{count, plural, =7 {Sept catégories} one {# catégorie} other {# catégories}}. Chaque page détaille les paramètres, la réponse et les erreurs.",
     "jump": "Aller à",
     "filter": "Filtrer les endpoints",
-    "empty": "Aucun endpoint ne correspond à « {query} »."
+    "empty": "Aucun endpoint ne correspond à « {query} ».",
+    "matches": "{count, plural, =0 {Aucun endpoint ne correspond} one {# endpoint correspond} other {# endpoints correspondent}}"
 }

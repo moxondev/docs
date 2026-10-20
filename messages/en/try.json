@@ -8,5 +8,11 @@
     "invalidJson": "Invalid JSON: the value is sent as is.",
     "rateLimited": "Rate limit reached. Try again in {seconds} s.",
     "timeout": "No response after {seconds} s.",
-    "viewDocs": "View documentation"
+    "viewDocs": "View documentation",
+    "required": "Required",
+    "optional": "Optional",
+    "common": "Common",
+    "options": "{count} options",
+    "noParams": "This endpoint takes no parameter.",
+    "output": "Response and code"
 }

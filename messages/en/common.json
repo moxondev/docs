@@ -16,6 +16,11 @@
     "theme": "Theme",
     "latest": "Latest",
     "current": "Current",
+    "status": {
+        "experimental": "Experimental",
+        "beta": "Beta",
+        "deprecated": "Deprecated"
+    },
     "tags": {
         "required": "required",
         "optional": "optional",

@@ -7,11 +7,10 @@
     "toc": "On this page",
     "pager": "Previous and next pages",
     "footer": "Footer",
-    "version": "Change version",
+    "versionTrigger": "moxon, version {major}",
     "versionCurrent": "current version",
-    "language": "Change language",
-    "themeDark": "Switch to dark theme",
-    "themeLight": "Switch to light theme",
+    "languageCurrent": "current language",
+    "theme": "Theme",
     "menuOpen": "Open menu",
     "menuClose": "Close menu",
     "backTo": "Back to {name}",
@@ -38,5 +37,6 @@
     "newTab": "opens in a new tab",
     "responseImage": "Image returned by the API",
     "loading": "Loading",
-    "sending": "Sending the request"
+    "sending": "Sending the request",
+    "versionReleases": "Show or hide the release notes {major}.x"
 }

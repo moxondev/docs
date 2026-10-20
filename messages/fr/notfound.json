@@ -4,5 +4,30 @@
     "message": "Mais si vous ne changez pas de direction et continuez à chercher, vous finirez peut-être par arriver là où vous alliez.",
     "link": "Retour à l'accueil",
     "redirecting": "Redirection…",
-    "redirectingTo": "Redirection vers {target}"
+    "redirectingTo": "Redirection vers {target}",
+    "search": "Rechercher « {query} » dans la documentation",
+    "searchAll": "Rechercher dans la documentation",
+    "go": "Rechercher",
+    "asked": "Adresse demandée",
+    "mean": "Vouliez-vous dire <link>{path}</link> ?",
+    "over": "Ou allez directement à",
+    "links": {
+        "start": {
+            "title": "Commencer",
+            "text": "La dernière version, v{release} : {count} endpoints, aucune clé nécessaire pour commencer."
+        },
+        "catalog": {
+            "title": "Catalogue",
+            "text": "{count} endpoints répartis en {categories} catégories."
+        },
+        "playground": {
+            "title": "Playground",
+            "text": "Essayer les endpoints depuis le navigateur."
+        },
+        "changelog": {
+            "title": "Changelog",
+            "text": "Ce qui change dans la {release} et dans les versions précédentes."
+        }
+    },
+    "older": "Vous cherchez une ancienne version ?"
 }

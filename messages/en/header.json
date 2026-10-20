@@ -6,6 +6,16 @@
     "pro": "Go Pro",
     "try": "Try it",
     "github": "Source code on GitHub",
-    "versions": "Versions",
-    "language": "{code}, switch to {name}"
+    "language": "{code}, language: {name}",
+    "theme": "Theme: {name}",
+    "versionsHome": "Home",
+    "versionsActive": "Active API",
+    "versionsArchived": "Archives",
+    "versionStatus": {
+        "previous": "Previous",
+        "legacy": "Legacy",
+        "retired": "Retired"
+    },
+    "releaseNotes": "Release notes {major}.x",
+    "documentationRelease": "Documentation {release}"
 }

@@ -2,6 +2,6 @@
     "selectEndpoint": "Choisir un endpoint",
     "search": "Rechercher un endpoint",
     "noResults": "Aucun résultat",
-    "viewDocs": "Voir la documentation",
-    "empty": "Choisissez un endpoint pour envoyer une requête."
+    "empty": "Choisissez un endpoint pour envoyer une requête.",
+    "announce": "{name}, {method} {path}, {count, plural, =0 {aucun paramètre} one {# paramètre} other {# paramètres}}"
 }

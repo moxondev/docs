@@ -6,6 +6,16 @@
     "pro": "Passer Pro",
     "try": "Essayer",
     "github": "Code source sur GitHub",
-    "versions": "Versions",
-    "language": "{code}, passer en {name}"
+    "language": "{code}, langue : {name}",
+    "theme": "Thème : {name}",
+    "versionsHome": "Accueil",
+    "versionsActive": "API active",
+    "versionsArchived": "Archives",
+    "versionStatus": {
+        "previous": "Précédente",
+        "legacy": "Ancienne",
+        "retired": "Retirée"
+    },
+    "releaseNotes": "Notes de version {major}.x",
+    "documentationRelease": "Documentation {release}"
 }

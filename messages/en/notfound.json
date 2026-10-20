@@ -4,5 +4,30 @@
     "message": "But if you don't change your direction, and if you keep looking, you may end up where you are heading.",
     "link": "Take me home",
     "redirecting": "Redirecting…",
-    "redirectingTo": "Redirecting to {target}"
+    "redirectingTo": "Redirecting to {target}",
+    "search": "Search the documentation for \"{query}\"",
+    "searchAll": "Search the documentation",
+    "go": "Search",
+    "asked": "Address requested",
+    "mean": "Did you mean <link>{path}</link>?",
+    "over": "Or go straight to",
+    "links": {
+        "start": {
+            "title": "Get started",
+            "text": "The latest version, v{release}: {count} endpoints, no key needed to start."
+        },
+        "catalog": {
+            "title": "Catalog",
+            "text": "{count} endpoints in {categories} categories."
+        },
+        "playground": {
+            "title": "Playground",
+            "text": "Try the endpoints from your browser."
+        },
+        "changelog": {
+            "title": "Changelog",
+            "text": "What changes in {release} and in earlier versions."
+        }
+    },
+    "older": "Looking for an older version?"
 }

@@ -8,5 +8,11 @@
     "invalidJson": "JSON invalide : la valeur est envoyée telle quelle.",
     "rateLimited": "Limite de requêtes atteinte. Réessayez dans {seconds} s.",
     "timeout": "Aucune réponse après {seconds} s.",
-    "viewDocs": "Voir la documentation"
+    "viewDocs": "Voir la documentation",
+    "required": "Requis",
+    "optional": "Optionnels",
+    "common": "Courantes",
+    "options": "{count} valeurs",
+    "noParams": "Cet endpoint ne prend aucun paramètre.",
+    "output": "Réponse et code"
 }

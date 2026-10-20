@@ -10,7 +10,7 @@
     "items": {
         "lang": "Changer de langue",
         "version": "Changer de version",
-        "theme": "Basculer entre clair et sombre",
+        "theme": "Thème suivant",
         "search": "Ouvrir la recherche",
         "searchSlash": "Ouvrir la recherche hors d'un champ de saisie",
         "send": "Envoyer la requête",

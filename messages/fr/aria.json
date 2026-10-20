@@ -7,11 +7,10 @@
     "toc": "Sur cette page",
     "pager": "Pages précédente et suivante",
     "footer": "Pied de page",
-    "version": "Changer de version",
+    "versionTrigger": "moxon, version {major}",
     "versionCurrent": "version actuelle",
-    "language": "Changer de langue",
-    "themeDark": "Passer au thème sombre",
-    "themeLight": "Passer au thème clair",
+    "languageCurrent": "langue actuelle",
+    "theme": "Thème",
     "menuOpen": "Ouvrir le menu",
     "menuClose": "Fermer le menu",
     "backTo": "Retour à {name}",
@@ -38,5 +37,6 @@
     "newTab": "s'ouvre dans un nouvel onglet",
     "responseImage": "Image renvoyée par l'API",
     "loading": "Chargement en cours",
-    "sending": "Envoi de la requête en cours"
+    "sending": "Envoi de la requête en cours",
+    "versionReleases": "Afficher ou masquer les notes de version {major}.x"
 }
