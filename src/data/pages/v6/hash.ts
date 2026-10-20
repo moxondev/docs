@@ -56,6 +56,7 @@ export const page: Page = {
                     in: "body",
                     required: false,
                     options: ["hex", "base64"],
+                    default: "hex",
                 },
             ],
         },
