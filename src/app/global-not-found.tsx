@@ -3,9 +3,10 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { layoutMetadata } from "@/app/root";
 import { Header } from "@/components/chrome/Header";
+import { Topbar } from "@/components/chrome/Topbar";
+import { NotFound, type NotFoundCopy } from "@/components/NotFound";
 import { CONTENT_ID, Shell } from "@/components/Shell";
 import { loadMessages } from "@/i18n/request";
-import { localePath } from "@/i18n/routing";
 
 /**
  * Builds the metadata of the 404: the root defaults (icons, manifest, social card) with the
@@ -23,25 +24,31 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 /**
- * Minimal 404 of the static export: the English copy of the notfound messages under the same
- * Shell and header as every page, with a link home. It is exported as 404.html, which GitHub
- * Pages serves for every unknown address.
+ * The 404 of the static export, exported as 404.html: the English document under the same Shell
+ * and headers as every page, whose NotFound island runs the smart redirect of the legacy URLs
+ * and shows the page in the language of the address, from the messages of both languages.
  */
 export default async function GlobalNotFound() {
     setRequestLocale("en");
     const messages = await loadMessages("en");
-    const copy = messages.notfound as Record<string, string>;
+    const french = await loadMessages("fr");
+    const copy = {
+        en: messages.notfound as unknown as NotFoundCopy,
+        fr: french.notfound as unknown as NotFoundCopy,
+    };
 
     return (
-        <Shell locale="en" messages={messages} header={<Header />}>
-            <main id={CONTENT_ID} tabIndex={-1} className="mx-auto max-w-205 px-6 pt-16 pb-18">
-                <p className="font-mono text-sm text-faint">{copy.code}</p>
-                <h1 className="mt-2 text-[36px]/[1.1] font-semibold text-ink">{copy.title}</h1>
-                <p className="mt-4.5 text-base/[1.65] text-text">{copy.message}</p>
-                <a className="prose-link mt-6 inline-block" href={localePath("en")}>
-                    {copy.link}
-                </a>
-            </main>
+        <Shell
+            locale="en"
+            messages={messages}
+            header={
+                <>
+                    <Header />
+                    <Topbar />
+                </>
+            }
+        >
+            <NotFound copy={copy} contentId={CONTENT_ID} />
         </Shell>
     );
 }

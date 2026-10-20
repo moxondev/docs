@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { layoutMetadata } from "@/app/root";
 import { Header } from "@/components/chrome/Header";
+import { Topbar } from "@/components/chrome/Topbar";
 import { Shell } from "@/components/Shell";
 import { VIEWPORT } from "@/lib/metadata";
 
@@ -26,7 +27,7 @@ export function generateMetadata(): Promise<Metadata> {
 /**
  * Root layout of the English tree (served at the root of the site): the document in English
  * with the theme, intl and tooltip providers of Shell, the language detection of the home and
- * the site header, which persist between the pages.
+ * the desktop and phone site headers, which persist between the pages.
  *
  * @param children - Page tree of the English routes
  */
@@ -35,7 +36,17 @@ export default async function RootLayout({ children }: RootLayoutProps) {
     const messages = await getMessages({ locale: "en" });
 
     return (
-        <Shell locale="en" messages={messages} detect header={<Header />}>
+        <Shell
+            locale="en"
+            messages={messages}
+            detect
+            header={
+                <>
+                    <Header />
+                    <Topbar />
+                </>
+            }
+        >
             {children}
         </Shell>
     );
