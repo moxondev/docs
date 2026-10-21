@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, test } from "node:test";
 
+import { VERSIONS } from "@/data/versions";
 import type { Page } from "@/types/content";
 import type { Nav } from "@/types/nav";
 
@@ -14,6 +15,7 @@ import {
     formatSource,
     hasWords,
     idProblems,
+    kindsSource,
     languageProblems,
     linkTargets,
     main,
@@ -118,12 +120,37 @@ describe("generated modules", () => {
         });
         assert.equal(navPage(SOURCE).updated, "2026-01-15");
         const nav = buildNav([entryOf(TARGET)]);
-        assert.deepEqual(Object.keys(nav), ["v1", "v2", "v3", "v4", "v5", "v6"]);
+        assert.deepEqual(Object.keys(nav), VERSIONS.map((def) => def.id).reverse());
         assert.deepEqual(Object.keys(nav.v6), ["hash"]);
         assert.deepEqual(nav.v5, {});
         const source = navSource(nav, "6.1.0");
         assert.ok(source.includes("export const NAV: Nav = {"));
         assert.ok(source.includes('export const RELEASE = "6.1.0";'));
+    });
+
+    test("NAV carries the status of a page, and only when it has one", () => {
+        assert.equal("status" in navPage(TARGET), false);
+        assert.equal(navPage({ ...TARGET, status: "experimental" }).status, "experimental");
+        const nav = buildNav([entryOf({ ...TARGET, status: "beta" })]);
+        assert.equal(nav.v6.hash.status, "beta");
+        assert.ok(navSource(nav, "6.1.0").includes('"status":"beta"'));
+    });
+
+    test("KINDS keeps the page ids and kinds of NAV and nothing else", () => {
+        const release: PageEntry = {
+            version: "v6",
+            id: "changelog/6.1.0",
+            module: "releases",
+            release: "6.1.0",
+            page: { ...TARGET, id: "changelog/6.1.0", kind: "release" },
+        };
+        const source = kindsSource(buildNav([entryOf(TARGET), release]));
+        assert.ok(source.includes("export const KINDS: PageIndex = {"));
+        assert.ok(source.includes('"hash": { kind: "endpoint" },'));
+        assert.ok(source.includes('"changelog/6.1.0": { kind: "release" },'));
+        assert.ok(source.includes("v1: {},"));
+        assert.ok(!source.includes("title"));
+        assert.ok(!source.includes("methods"));
     });
 
     test("one lazy loader per page, the releases read from their key", () => {
@@ -151,7 +178,9 @@ describe("documentation release", () => {
         mkdirSync(join(root, "src/data/pages"), { recursive: true });
         writeFileSync(join(root, "package.json"), JSON.stringify({ version }));
         const nav = join(root, "src/data/nav.ts");
+        const kinds = join(root, "src/data/kinds.ts");
         const registry = join(root, "src/data/pages/registry.ts");
+        writeFileSync(kinds, await formatSource(kindsSource(buildNav([])), kinds));
         writeFileSync(nav, await formatSource(navSource(buildNav([]), navRelease), nav));
         writeFileSync(registry, await formatSource(registrySource([]), registry));
         return root;
@@ -242,6 +271,19 @@ describe("untranslated-prose guard", () => {
             untranslated: 0,
             warnings: ["stale entry: Old"],
         });
+    });
+});
+
+describe("page status", () => {
+    test("a status outside the known values is a problem, a known one is not", () => {
+        const ruled = (page: Page) =>
+            checkPages([entryOf(page)], buildNav([entryOf(page)]), {}).problems.filter(
+                (problem) => problem.rule === "status",
+            );
+        assert.deepEqual(ruled({ ...SOURCE, status: "experimental" }), []);
+        assert.deepEqual(ruled({ ...SOURCE, status: "beta" }), []);
+        assert.deepEqual(ruled({ ...SOURCE, status: "deprecated" }), []);
+        assert.equal(ruled({ ...SOURCE, status: "alpha" as Page["status"] }).length, 1);
     });
 });
 
