@@ -22,7 +22,7 @@ export function Release({ ctx }: ReleaseProps) {
     if (!release) return null;
 
     return (
-        <p className="text-[15px]/[1.65] text-text">
+        <p className="text-[16px]/[1.65] text-text">
             <strong className="font-semibold text-ink">
                 <a {...linkAttrs(release.url)} aria-describedby={NEW_TAB_ID} className="prose-link">
                     {t("apiVersion", { version: release.version })}

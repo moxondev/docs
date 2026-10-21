@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 import { Sentinel } from "@/components/chrome/Sentinel";
+import { columnClass } from "@/components/chrome/targets";
 import { Sections } from "@/components/doc/Blocks";
 import { docContext, NEW_TAB_ID } from "@/components/doc/context";
 import { Contrib } from "@/components/doc/Contrib";
@@ -65,7 +66,6 @@ export async function DocPage({ lang, params }: DocPageProps) {
         [...ctx.operations.keys()].some(
             (block) => block.type === "examples" || block.type === "try",
         );
-    const wide = page.kind === "playground";
 
     const content = (
         <>
@@ -75,7 +75,7 @@ export async function DocPage({ lang, params }: DocPageProps) {
                     <Title ctx={ctx} hasTry={operation !== undefined} />
                 </div>
                 {page.lead ? (
-                    <p className="mt-4.5 text-base/[1.7] text-text">
+                    <p className="mt-4.5 max-w-(--measure) text-base/[1.7] text-text">
                         <Inline text={page.lead} ctx={ctx} />
                     </p>
                 ) : null}
@@ -110,12 +110,10 @@ export async function DocPage({ lang, params }: DocPageProps) {
                 id={CONTENT_ID}
                 tabIndex={-1}
                 className={cn(
-                    "mx-auto grid w-full min-w-0 grid-cols-[minmax(0,1fr)] content-start px-5 pt-6 pb-20 desk:px-12 desk:pt-9",
+                    "mx-auto grid w-full min-w-0 grid-cols-[minmax(0,1fr)] content-start pt-6 pb-20 desk:pt-9",
                     operation
-                        ? "max-w-319 max-desk:pb-28 wide:grid-cols-[minmax(0,1fr)_25rem] wide:gap-x-6 wide:pr-6"
-                        : wide
-                          ? "max-w-300"
-                          : "max-w-205",
+                        ? "max-w-319 px-5 max-desk:pb-28 desk:px-12 wide:grid-cols-[minmax(0,1fr)_25rem] wide:gap-x-6 wide:pr-6"
+                        : columnClass(page.kind),
                 )}
             >
                 {needsTry ? (

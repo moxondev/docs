@@ -4,8 +4,6 @@ import { describe, test } from "node:test";
 import { categoryOf, childLabel, filterCatalogue } from "@/components/doc/filter";
 import type { NavCategory, NavLink } from "@/lib/nav";
 
-import { categoryOf, filterCatalogue } from "./filter";
-
 /**
  * Builds a sidebar entry for the tests.
  *
@@ -63,5 +61,31 @@ describe("category of a page", () => {
 
     test("a page outside the catalogue has none", () => {
         assert.equal(categoryOf(CATEGORIES, "authentication"), undefined);
+    });
+});
+
+describe("childLabel", () => {
+    test("drops the name of the parent from the name of a sub-page", () => {
+        assert.equal(childLabel("Chat", "Chat Effacer"), "Effacer");
+        assert.equal(childLabel("Chat", "Chat Priv\u00e9"), "Priv\u00e9");
+    });
+
+    test("matches the parent's name without regard to case, at the start only", () => {
+        assert.equal(childLabel("Tic-tac-toe", "Tic-Tac-Toe Forfait"), "Forfait");
+        assert.equal(childLabel("Chat", "Private Chat"), "Private Chat");
+        assert.equal(
+            childLabel("Captcha", "V\u00e9rification de captcha"),
+            "V\u00e9rification de captcha",
+        );
+    });
+
+    test("keeps a name that does not start with the parent's name", () => {
+        assert.equal(childLabel("Captcha", "V\u00e9rification"), "V\u00e9rification");
+        assert.equal(childLabel("Chat", "Chatbot"), "Chatbot");
+    });
+
+    test("keeps the name of the parent alone", () => {
+        assert.equal(childLabel("Chat", "Chat"), "Chat");
+        assert.equal(childLabel("Chat", "Chat "), "Chat ");
     });
 });

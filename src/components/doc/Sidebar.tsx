@@ -6,9 +6,10 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
-import { categoryOf, filterCatalogue } from "@/components/doc/filter";
+import { categoryOf, childLabel, filterCatalogue } from "@/components/doc/filter";
 import { Method } from "@/components/doc/Method";
-import { useSlim } from "@/hooks/useSlim";
+import { Status } from "@/components/doc/Status";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import type { NavCategory, NavLink, SidebarModel } from "@/lib/nav";
 import { parsePath } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -21,7 +22,6 @@ export interface RowProps {
     link: NavLink;
     label?: string;
     current: string | undefined;
-    slot?: string;
 }
 
 export interface CategoryProps {
@@ -47,25 +47,40 @@ function inFamily(link: NavLink, slug: string | undefined): boolean {
 }
 
 /**
- * One row of the sidebar: a link with an optional method mark in a fixed slot, so the names of a
- * category line up. The page being read carries aria-current and the yellow ground.
+ * One row of the sidebar: the name, then at the end of the row the pictogram of the status and
+ * the method chips, so that the names of a category line up. The word of the status shows only in
+ * a tooltip, because a yellow marker would vanish on the yellow ground of the current row.
  *
  * @param link - Entry to show: title, path, methods
  * @param label - Text to print instead of the page title (the messages name the guides)
  * @param current - Page id being read
- * @param slot - Width class of the method slot, absent for a row without marks
  */
-function Row({ link, label, current, slot }: RowProps) {
-    return (
+function Row({ link, label, current }: RowProps) {
+    const common = useTranslations("common");
+    const row = (
         <Link
             href={link.href}
             prefetch={false}
             aria-current={current === link.slug ? "page" : undefined}
-            className={cn(ROW, slot ? "px-2 py-1.25" : "px-2.5 py-1.5")}
+            className={cn(ROW, "px-2.5 py-1.25")}
         >
-            {slot ? <Method methods={link.methods} className={slot} /> : null}
             {label ?? link.title}
+            <span className="ml-auto flex items-center gap-1.5">
+                {link.status ? <Status status={link.status} titled={false} /> : null}
+                <Method methods={link.methods} variant="tag" />
+            </span>
         </Link>
+    );
+
+    if (!link.status) return row;
+
+    return (
+        <Tooltip>
+            <TooltipTrigger asChild>{row}</TooltipTrigger>
+            <TooltipContent side="right" sideOffset={6}>
+                {common(`status.${link.status}`)}
+            </TooltipContent>
+        </Tooltip>
     );
 }
 
@@ -81,7 +96,6 @@ function Row({ link, label, current, slot }: RowProps) {
  */
 function Category({ category, open, current, onToggle }: CategoryProps) {
     const listId = `side-${category.id}`;
-    const slot = category.items.some((item) => item.methods.length > 1) ? "w-16" : "w-9";
 
     return (
         <li>
@@ -97,7 +111,7 @@ function Category({ category, open, current, onToggle }: CategoryProps) {
                     className={cn("size-3.5 shrink-0 transition-transform", open && "rotate-90")}
                 />
                 {category.title}
-                <span className="ml-auto font-mono text-[11px] font-normal text-faint">
+                <span className="ml-auto font-mono text-[12px] font-normal text-faint">
                     {category.count}
                 </span>
             </button>
@@ -108,12 +122,18 @@ function Category({ category, open, current, onToggle }: CategoryProps) {
             >
                 {category.items.map((item) => (
                     <li key={item.slug}>
-                        <Row link={item} current={current} slot={slot} />
+                        <Row link={item} current={current} />
                         {inFamily(item, current) && item.children.length > 0 ? (
                             <ul className="ml-3 flex flex-col gap-px border-l border-line pl-2">
                                 {item.children.map((child) => (
                                     <li key={child.slug}>
-                                        <Row link={child} current={current} slot={slot} />
+                                        <Row
+                                            link={child}
+                                            label={
+                                                child.short ?? childLabel(item.title, child.title)
+                                            }
+                                            current={current}
+                                        />
                                     </li>
                                 ))}
                             </ul>
@@ -137,7 +157,6 @@ export function Sidebar({ model }: SidebarProps) {
     const t = useTranslations("sidebar");
     const aria = useTranslations("aria");
     const pathname = usePathname() ?? "/";
-    const { slim } = useSlim();
     const navRef = useRef<HTMLElement>(null);
     const [query, setQuery] = useState("");
     const [flipped, setFlipped] = useState<{ path: string; ids: readonly string[] }>({
@@ -169,16 +188,13 @@ export function Sidebar({ model }: SidebarProps) {
     };
 
     return (
-        <aside className="hidden border-r border-line-soft bg-side desk:block">
+        <aside className="hidden border-r border-line-soft bg-side desk:block print:hidden">
             <nav
                 ref={navRef}
                 aria-label={aria("docsNav")}
-                className={cn(
-                    "sticky flex flex-col gap-5.5 overflow-y-auto px-3.5 pt-5 pb-10 text-sm",
-                    slim ? "top-13 h-[calc(100dvh-3.25rem)]" : "top-15 h-[calc(100dvh-3.75rem)]",
-                )}
+                className="sticky top-15 flex h-[calc(100dvh-3.75rem)] flex-col gap-5.5 overflow-y-auto px-3.5 pt-5 pb-10 text-sm"
             >
-                <label className="flex h-8.5 items-center gap-2 rounded-field border border-field bg-control px-2.5 focus-within:border-focus-line focus-within:ring-3 focus-within:ring-focus-ring">
+                <label className="flex h-8.5 shrink-0 items-center gap-2 rounded-field border border-field bg-control px-2.5 focus-within:border-focus-line focus-within:ring-3 focus-within:ring-focus-ring">
                     <FunnelIcon aria-hidden="true" className="size-3.5 shrink-0 text-faint" />
                     <input
                         type="text"
@@ -186,7 +202,7 @@ export function Sidebar({ model }: SidebarProps) {
                         onChange={(event) => setQuery(event.target.value)}
                         aria-label={aria("filterEndpoints")}
                         placeholder={t("filter")}
-                        className="min-w-0 flex-1 bg-transparent text-[13px] text-ink outline-none placeholder:text-faint"
+                        className="min-w-0 flex-1 bg-transparent text-[14px] text-ink outline-none placeholder:text-faint"
                     />
                 </label>
                 {filtering ? null : (
@@ -209,7 +225,7 @@ export function Sidebar({ model }: SidebarProps) {
                         {t("groups.catalogue")}
                     </p>
                     {categories.length === 0 ? (
-                        <p role="status" className="px-2.5 text-[13px] text-faint">
+                        <p role="status" className="px-2.5 text-[14px] text-faint">
                             {t("empty")}
                         </p>
                     ) : (

@@ -17,6 +17,24 @@ function matches(link: NavLink, needle: string): boolean {
 }
 
 /**
+ * Shortens the name of a sub-page under its parent: "Chat Clear" under "Chat" reads "Clear",
+ * since the nesting already says the family. Only a leading name is dropped, ignoring case, as a
+ * trailing one would leave a dangling word in French; a name equal to the parent's is kept whole.
+ *
+ * @param parent - Name of the entry that lists the sub-page
+ * @param child - Name of the sub-page
+ * @returns The name without the parent's name and the space next to it
+ */
+export function childLabel(parent: string, child: string): string {
+    const name = parent.toLowerCase();
+    const lower = child.toLowerCase();
+    if (lower.startsWith(`${name} `) && child.trim().length > name.length) {
+        return child.slice(name.length + 1);
+    }
+    return child;
+}
+
+/**
  * Filters the catalogue of the sidebar by name and route: a category keeps the entries that
  * match and disappears when none does.
  *

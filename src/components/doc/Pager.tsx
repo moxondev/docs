@@ -34,7 +34,7 @@ function PagerCard({ link, caption, next = false }: PagerCardProps) {
             )}
         >
             <small className="text-xs text-faint">{caption}</small>
-            <b className="text-[15px] font-medium">{link.title}</b>
+            <b className="text-[16px] font-medium">{link.title}</b>
         </Link>
     );
 }

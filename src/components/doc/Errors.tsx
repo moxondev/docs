@@ -17,7 +17,8 @@ const HINT = /^(.*\S)\s+(\([^()]*\))$/;
 
 /**
  * Prints an error message in mono, keeping its trailing query hint "(?text={text})" in one
- * piece so that it wraps as a whole under the message.
+ * piece so that it wraps as a whole under the message. The API answers in English whatever the
+ * language of the page, so the element says so.
  *
  * @param text - Message as the API returns it, printed verbatim
  */
@@ -25,7 +26,7 @@ function Message({ text }: MessageProps) {
     const match = HINT.exec(text);
 
     return (
-        <code className="min-w-0 flex-[1_1_17.5rem] font-mono text-[13px] text-ink">
+        <code lang="en" className="min-w-0 flex-[1_1_17.5rem] font-mono text-[14px] text-ink">
             {match ? (
                 <>
                     {match[1]} <span className="whitespace-nowrap">{match[2]}</span>

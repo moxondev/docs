@@ -49,7 +49,7 @@ export function Values({ head, description, example, groups }: ValuesProps) {
                         aria-label={aria("filterValues")}
                         aria-describedby={describedBy}
                         placeholder={t("values.filter", { example })}
-                        className="min-w-0 flex-1 bg-transparent text-[13px] text-ink outline-none placeholder:text-faint"
+                        className="min-w-0 flex-1 bg-transparent text-[14px] text-ink outline-none placeholder:text-faint"
                     />
                 </label>
             </div>
@@ -58,7 +58,7 @@ export function Values({ head, description, example, groups }: ValuesProps) {
             </p>
             <div className="overflow-hidden rounded-table border border-line">
                 {shown.length === 0 ? (
-                    <p role="status" className="px-4 py-3.5 text-[13px] text-muted">
+                    <p role="status" className="px-4 py-3.5 text-[14px] text-muted">
                         {t("values.empty", { query: query.trim() })}
                     </p>
                 ) : (
@@ -71,7 +71,7 @@ export function Values({ head, description, example, groups }: ValuesProps) {
                                     !filtering && !expanded && !group.primary && "hidden",
                                 )}
                             >
-                                <span className="w-full pt-0.5 text-[13px] font-medium text-text desk:w-40">
+                                <span className="w-full pt-0.5 text-[14px] font-medium text-text desk:w-40">
                                     {group.label}
                                 </span>
                                 <ul className="flex flex-[1_1_18.75rem] flex-wrap gap-1.5 font-mono text-xs">
@@ -93,7 +93,7 @@ export function Values({ head, description, example, groups }: ValuesProps) {
                         type="button"
                         aria-expanded={expanded}
                         onClick={() => setExpanded(!expanded)}
-                        className="-mt-px flex h-11 w-full items-center justify-center gap-1.5 border-t border-line-soft bg-soft text-[13px] text-ink desk:h-10.5"
+                        className="-mt-px flex h-11 w-full items-center justify-center gap-1.5 border-t border-line-soft bg-soft text-[14px] text-ink desk:h-10.5"
                     >
                         <span className="prose-link">
                             {expanded

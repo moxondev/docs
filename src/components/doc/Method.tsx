@@ -3,7 +3,7 @@ import type { Method as HttpMethod } from "@/types/content";
 
 export interface MethodProps {
     methods: readonly HttpMethod[];
-    variant?: "mark" | "chip";
+    variant?: "mark" | "chip" | "tag";
     className?: string;
 }
 
@@ -16,7 +16,7 @@ const TONES: Record<HttpMethod, string> = {
     delete: "text-post",
 };
 
-// Same pairs on the ground of a filled chip
+// Text and ground of each HTTP method on a filled chip, the small tag size included
 const CHIP_TONES: Record<HttpMethod, string> = {
     get: "bg-get-bg text-get",
     post: "bg-post-bg text-post",
@@ -26,12 +26,13 @@ const CHIP_TONES: Record<HttpMethod, string> = {
 };
 
 /**
- * Method mark of an endpoint: a quiet text mark in the sidebar and the related lists, or a
- * filled chip in the Route bar. The word says the method, the colour only helps; several
- * methods sit side by side, in the order given.
+ * Method mark of an endpoint: a filled chip in the Route bar, or a small tinted chip in the
+ * sidebar, the related lists, the search results and the cards of the catalogue. The word says
+ * the method, the colour only helps; several methods sit side by side, in the order given.
  *
  * @param methods - Methods to show, in order; none draws nothing
- * @param variant - "mark" for the quiet text (default), "chip" for the filled chip of the URL bar
+ * @param variant - "chip" for the filled chip of the URL bar, "tag" for the small tinted chip of
+ *   the lists, "mark" for the quiet text (the default)
  * @param className - Extra classes for the wrapper, for its width or alignment in a row
  */
 export function Method({ methods, variant = "mark", className }: MethodProps) {
@@ -44,12 +45,14 @@ export function Method({ methods, variant = "mark", className }: MethodProps) {
                     key={method}
                     className={cn(
                         "font-mono uppercase",
-                        variant === "chip"
-                            ? cn(
-                                  "rounded-row px-2 py-1 text-xs/4 font-semibold",
-                                  CHIP_TONES[method],
-                              )
-                            : cn("text-[10px]/4 font-semibold", TONES[method]),
+                        variant === "chip" &&
+                            cn("rounded-row px-2 py-1 text-xs/4 font-semibold", CHIP_TONES[method]),
+                        variant === "tag" &&
+                            cn(
+                                "rounded-chip px-1.25 py-0.5 text-[11px]/3.25 font-semibold",
+                                CHIP_TONES[method],
+                            ),
+                        variant === "mark" && cn("text-[11px]/4 font-semibold", TONES[method]),
                     )}
                 >
                     {method}

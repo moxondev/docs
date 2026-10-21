@@ -26,7 +26,7 @@ export function Table({ block, ctx }: TableProps) {
             className="overflow-x-auto rounded-table border border-line focus-visible:outline-offset-0"
         >
             <table className="w-full border-collapse text-left text-sm/[1.5]">
-                <thead className="bg-soft text-[13px] font-medium text-ink">
+                <thead className="bg-soft text-[14px] font-medium text-ink">
                     <tr>
                         {head.map((cell, index) => (
                             <th

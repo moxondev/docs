@@ -23,7 +23,7 @@ export interface RelatedProps {
  */
 export function Related({ block, ctx }: RelatedProps) {
     return (
-        <ul className="flex flex-col gap-2.5 text-[15px]/[1.6] text-text">
+        <ul className="flex flex-col gap-2.5 text-[16px]/[1.6] text-text">
             {block.items.map((item) => {
                 const ref = refTarget(`ref:${item.to}`);
                 const version = ref?.version ?? ctx.version;
@@ -33,7 +33,7 @@ export function Related({ block, ctx }: RelatedProps) {
 
                 return (
                     <li key={item.to} className="flex flex-wrap items-baseline gap-x-2">
-                        <Method methods={page?.methods ?? []} className="min-w-10" />
+                        <Method methods={page?.methods ?? []} variant="tag" className="min-w-10" />
                         <span>
                             <Link
                                 href={href(ctx.lang, version, slug, ref?.section)}

@@ -13,7 +13,8 @@ export interface CopyProps {
 
 /**
  * Copy button of a code block: its icon becomes a check for a moment after the copy, and the
- * result is announced to screen readers through a polite live region.
+ * result is announced to screen readers through a polite live region. On a phone an invisible
+ * extension enlarges the touch target.
  *
  * @param text - Code to put on the clipboard, verbatim
  * @param className - Extra classes for the button, for its place on the panel; a position class
@@ -32,7 +33,7 @@ export function Copy({ text, className }: CopyProps) {
                 aria-label={aria("copyCode")}
                 onClick={() => void copy(text)}
                 className={cn(
-                    "inline-flex size-7 items-center justify-center rounded-row border border-code-btn text-code-icon hover:text-code-sel",
+                    "relative inline-flex size-7 items-center justify-center rounded-row border border-code-btn text-code-icon after:absolute after:-inset-2.5 hover:text-code-sel desk:after:hidden",
                     className,
                 )}
             >

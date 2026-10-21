@@ -29,7 +29,7 @@ export function Contrib({ ctx }: ContribProps) {
     ];
 
     return (
-        <div className="flex flex-col gap-2 text-[13px]/5">
+        <div className="flex flex-col gap-2 text-[14px]/5">
             <div className="flex flex-wrap gap-x-6 gap-y-2">
                 {links.map(({ Glyph, label, url }) => (
                     <a

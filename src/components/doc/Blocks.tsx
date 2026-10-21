@@ -15,15 +15,18 @@ import { Related } from "@/components/doc/Related";
 import { Release } from "@/components/doc/Release";
 import { Route } from "@/components/doc/Route";
 import { Scope } from "@/components/doc/Scope";
+import { Status } from "@/components/doc/Status";
 import { Table } from "@/components/doc/Table";
 import { Values } from "@/components/doc/Values";
 import { Samples } from "@/components/try/Samples";
 import { Try } from "@/components/try/Try";
+import { NAV } from "@/data/nav";
 import { SITE } from "@/data/site";
 import { pick, plain } from "@/lib/inline";
+import { mentionedStatus } from "@/lib/nav";
 import { exampleRequest } from "@/lib/request";
 import { cn } from "@/lib/utils";
-import type { Block, Section } from "@/types/content";
+import type { Block, Inline as InlineText, Lx, Section } from "@/types/content";
 
 export interface BlocksProps {
     blocks: readonly Block[];
@@ -42,6 +45,14 @@ export interface SectionsProps {
     ctx: DocContext;
 }
 
+export interface LineStatusProps {
+    text: Lx<InlineText>;
+    ctx: DocContext;
+}
+
+// No-break space that keeps the marker on the same line as the last word of its text
+const GLUE = String.fromCodePoint(0xa0);
+
 /**
  * Builds the example of the filter of a Values block: the start of a featured value that has a
  * dash ("sha3" for "sha3-256"), else the first value of the list.
@@ -53,6 +64,27 @@ export interface SectionsProps {
 function filterExample(ctx: DocContext, first: string): string {
     const dashed = ctx.featured.find((value) => value.includes("-"));
     return dashed ? dashed.split("-")[0] : first;
+}
+
+/**
+ * Marker at the end of a changelog line that links a page with a status: the word on the marker,
+ * as the title of that page shows it. It closes the line so the text stays as written, and a
+ * no-break space ties it to the last word, so it wraps with that word, never alone.
+ *
+ * @param text - Inline string of the line, one per language or written once
+ * @param ctx - Context of the page: its kind, language and version, which resolve the links
+ */
+function LineStatus({ text, ctx }: LineStatusProps) {
+    if (ctx.page.kind !== "release" && ctx.page.kind !== "changelog") return null;
+    const status = mentionedStatus(NAV, pick(text, ctx.lang), ctx.version);
+    if (!status) return null;
+
+    return (
+        <span className="whitespace-nowrap">
+            {GLUE}
+            <Status status={status} variant="mark" />
+        </span>
+    );
 }
 
 /**
@@ -72,13 +104,14 @@ function BlockView({ block, ctx, head }: BlockViewProps) {
     switch (block.type) {
         case "p":
             return (
-                <p className="text-[15px]/[1.7] text-text">
+                <p className="max-w-(--measure) text-[16px]/[1.7] text-text">
                     <Inline text={block.text} ctx={ctx} />
+                    <LineStatus text={block.text} ctx={ctx} />
                 </p>
             );
         case "label":
             return (
-                <p className="text-[15px]/[1.7] font-semibold text-ink">
+                <p className="max-w-(--measure) text-[16px]/[1.7] font-semibold text-ink">
                     <Inline text={block.text} ctx={ctx} />
                 </p>
             );
@@ -88,13 +121,14 @@ function BlockView({ block, ctx, head }: BlockViewProps) {
                 <List
                     className={
                         block.ordered
-                            ? "list-decimal pl-5.5 text-[15px]/[1.7] text-text marker:text-faint"
-                            : "list-disc pl-5.5 text-[15px]/[1.7] text-text marker:text-faint"
+                            ? "max-w-(--measure) list-decimal pl-5.5 text-[16px]/[1.7] text-text marker:text-faint"
+                            : "max-w-(--measure) list-disc pl-5.5 text-[16px]/[1.7] text-text marker:text-faint"
                     }
                 >
                     {block.items.map((item, index) => (
                         <li key={index} className="mt-1 first:mt-0">
                             <Inline text={item} ctx={ctx} />
+                            <LineStatus text={item} ctx={ctx} />
                         </li>
                     ))}
                 </List>
@@ -102,7 +136,7 @@ function BlockView({ block, ctx, head }: BlockViewProps) {
         }
         case "quote":
             return (
-                <blockquote className="border-l-2 border-line pl-4 text-[15px]/[1.7] text-muted">
+                <blockquote className="max-w-(--measure) border-l-2 border-line pl-4 text-[16px]/[1.7] text-muted">
                     <p>
                         <Inline text={block.text} ctx={ctx} />
                     </p>
@@ -195,7 +229,7 @@ export function Blocks({ blocks, ctx, head }: BlocksProps) {
 /**
  * Draws the sections of a page: each titled one with its heading and permalink, the release line
  * after the first heading of a release page, then its blocks. A Values list takes the heading of
- * its section for its filter row, and a section of the other language is skipped.
+ * its section for its filter row, and a heading with no content sits close above its subsection.
  *
  * @param sections - Sections to draw, in order
  * @param ctx - Context of the page, which also holds the release line
@@ -211,6 +245,11 @@ export function Sections({ sections, ctx }: SectionsProps) {
                 const title = section.title ? pick(section.title, lang) : undefined;
                 const values = section.blocks[0]?.type === "values" ? section.blocks[0] : undefined;
                 const count = values?.groups.reduce((sum, group) => sum + group.items.length, 0);
+                const before = index > 0 ? shown[index - 1] : undefined;
+                const nested =
+                    before !== undefined &&
+                    before.blocks.length === 0 &&
+                    (section.level ?? 2) > (before.level ?? 2);
                 const heading =
                     title === undefined ? null : (
                         <Heading
@@ -226,7 +265,10 @@ export function Sections({ sections, ctx }: SectionsProps) {
                 return (
                     <section
                         key={`${section.id}-${index}`}
-                        className={cn("flex flex-col gap-4", section.id === "" ? "mt-5" : "mt-10")}
+                        className={cn(
+                            "flex flex-col gap-4",
+                            section.id === "" || nested ? "mt-5" : "mt-10",
+                        )}
                     >
                         {values ? null : heading}
                         {index === first && ctx.page.release ? <Release ctx={ctx} /> : null}

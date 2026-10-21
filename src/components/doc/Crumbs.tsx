@@ -23,7 +23,7 @@ export function Crumbs({ ctx }: CrumbsProps) {
 
     return (
         <nav aria-label={aria("breadcrumb")}>
-            <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[13px]/5 text-faint">
+            <ol className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-[14px]/5 text-faint">
                 {items.map((item, index) => (
                     <li key={index} className="flex items-center gap-1.5">
                         {index > 0 ? (
