@@ -7,14 +7,14 @@ export interface SheetHandle {
     setOpen: (open: boolean) => void;
 }
 
-// Open state of the phone Essayer sheet, shared by the Bar that opens it and the Sheet itself
+// Open state of the phone Try sheet, shared by the Bar that opens it and the Sheet itself
 export const sheetStore = createStore<boolean>(false);
 
 // Element that had the focus when the sheet opened, which gets it back on close
 let opener: HTMLElement | null = null;
 
 /**
- * Opens the phone Essayer sheet and remembers the focused element (the Bar button, or the header
+ * Opens the phone Try sheet and remembers the focused element (the Bar button, or the header
  * action) so that closing the sheet can give the focus back to it.
  */
 export function openSheet(): void {
@@ -33,7 +33,7 @@ export function restoreOpener(): void {
 }
 
 /**
- * Closes the phone Essayer sheet.
+ * Closes the phone Try sheet.
  */
 export function closeSheet(): void {
     sheetStore.set(false);
@@ -42,15 +42,15 @@ export function closeSheet(): void {
 /**
  * Follows the open state asked by the drawer primitive (onOpenChange).
  *
- * @param open - Wanted state
+ * @param open - New state: true when the primitive opens the drawer, false when it dismisses it
  */
 export function setSheetOpen(open: boolean): void {
     sheetStore.set(open);
 }
 
 /**
- * Open state of the phone Essayer sheet and its actions, the same for the Bar and the Sheet of
- * a page (one shared state). The static HTML renders it closed.
+ * Gives the open state of the phone Try sheet and its actions, shared by the Bar and the Sheet
+ * of a page. The static HTML renders it closed.
  *
  * @returns Whether the sheet is open and the module actions (stable)
  */

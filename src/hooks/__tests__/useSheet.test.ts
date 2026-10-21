@@ -1,13 +1,7 @@
 import assert from "node:assert/strict";
 import { beforeEach, test } from "node:test";
 
-import {
-    closeSheet,
-    openSheet,
-    restoreOpener,
-    setSheetOpen,
-    sheetStore,
-} from "@/components/try/store";
+import { closeSheet, openSheet, restoreOpener, setSheetOpen, sheetStore } from "@/hooks/useSheet";
 
 beforeEach(() => sheetStore.set(false));
 

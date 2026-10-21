@@ -17,6 +17,7 @@ import {
 } from "@/hooks/useShortcuts";
 import {
     type ApiResponse,
+    firstMissing,
     type FormValues,
     initialValues,
     isComplete,
@@ -31,10 +32,16 @@ export type RequestPhase = "idle" | "loading" | "done" | "error";
 
 export type FieldIssue = "required" | "json";
 
+export interface FieldFocus {
+    name: string;
+    seq: number;
+}
+
 export interface RequestState {
     phase: RequestPhase;
     values: FormValues;
     touched: readonly string[];
+    focus: FieldFocus | null;
     response: ApiResponse | null;
     retry?: number;
 }
@@ -42,6 +49,7 @@ export interface RequestState {
 export type RequestAction =
     | { type: "edit"; name: string; value: string }
     | { type: "load"; values: FormValues }
+    | { type: "flag"; name: string }
     | { type: "start" }
     | { type: "finish"; response: ApiResponse; retry?: number }
     | { type: "reset" };
@@ -57,8 +65,8 @@ export interface RequestHandle {
     retry?: number;
     request: PreparedRequest;
     complete: boolean;
-    canSend: boolean;
     issues: Readonly<Partial<Record<string, FieldIssue>>>;
+    focus: FieldFocus | null;
     setValue: (name: string, value: string) => void;
     load: (values: FormValues) => void;
     send: () => void;
@@ -96,16 +104,16 @@ const FAILED: ApiResponse = {
 export function initialRequest(op: Operation, autoSend = false): RequestState {
     const values = initialValues(op);
     const phase = autoSend && isComplete(op, values) ? "loading" : "idle";
-    return { phase, values, touched: [], response: null };
+    return { phase, values, touched: [], focus: null, response: null };
 }
 
 /**
- * Advances the Try state machine (idle, loading, done, error). An answer with a status is done,
- * whatever the status (4xx and 5xx are shown with their status); only a network failure or a
- * timeout (status 0) is error. A reset clears the answer and keeps the values.
+ * Advances the Try state machine. An answer with a status is done, whatever the status (4xx and
+ * 5xx included); only a network failure or a timeout (status 0) is error. A flag marks a required
+ * field the reader tried to skip as touched and asks the form to move the focus there.
  *
- * @param state - Current state
- * @param action - Field edit, values reload, send start, answer, or reset
+ * @param state - State before the action, never mutated
+ * @param action - Field edit, values reload, field flag, send start, answer, or reset
  * @returns The next state, the same object when nothing changes
  */
 export function requestReducer(state: RequestState, action: RequestAction): RequestState {
@@ -120,6 +128,16 @@ export function requestReducer(state: RequestState, action: RequestAction): Requ
         }
         case "load":
             return { ...state, values: { ...action.values }, touched: [] };
+        case "flag": {
+            const touched = state.touched.includes(action.name)
+                ? state.touched
+                : [...state.touched, action.name];
+            return {
+                ...state,
+                touched,
+                focus: { name: action.name, seq: (state.focus?.seq ?? 0) + 1 },
+            };
+        }
         case "start":
             return state.phase === "loading" ? state : { ...state, phase: "loading" };
         case "finish":
@@ -238,7 +256,14 @@ export function useRequest(
     }, []);
 
     const send = useCallback(() => {
-        if (state.phase === "loading" || !isComplete(op, state.values)) return;
+        if (state.phase === "loading") return;
+
+        // An incomplete form still takes the click: it flags and focuses the first missing field
+        const missing = firstMissing(op, state.values);
+        if (missing !== null) {
+            dispatch({ type: "flag", name: missing });
+            return;
+        }
 
         // Two presses in one task both see the old render: the live request is the real guard
         if (live.current.controller) return;
@@ -303,8 +328,8 @@ export function useRequest(
         retry: state.retry,
         request,
         complete,
-        canSend: complete && state.phase !== "loading",
         issues,
+        focus: state.focus,
         setValue,
         load,
         send,

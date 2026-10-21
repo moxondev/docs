@@ -156,12 +156,12 @@ test("a Try form renders its first state; an auto-send form renders as loading",
         const manual = useRequest("v6", INFOS);
         const auto = useRequest("v6", INFOS, { autoSend: true });
         return print({
-            manual: [manual.phase, manual.canSend, manual.request.url],
-            auto: [auto.phase, auto.canSend],
+            manual: [manual.phase, manual.complete, manual.request.url],
+            auto: [auto.phase, auto.complete],
         });
     });
     assert.deepEqual(out, {
         manual: ["idle", true, "https://api.moxon.dev/v6/infos?lang=fr"],
-        auto: ["loading", false],
+        auto: ["loading", true],
     });
 });

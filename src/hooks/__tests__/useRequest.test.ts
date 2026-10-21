@@ -68,6 +68,7 @@ describe("first state", () => {
             phase: "idle",
             values: { text: "", method: "sha256", options: "" },
             touched: [],
+            focus: null,
             response: null,
         });
         assert.deepEqual(initialRequest(FORFEIT).values, { game: "4f2a" });
@@ -131,6 +132,31 @@ describe("transitions", () => {
         const loaded = requestReducer(cleared, { type: "load", values: { text: "x" } });
         assert.deepEqual(loaded.values, { text: "x" });
         assert.deepEqual(loaded.touched, []);
+    });
+});
+
+describe("flagging a skipped field", () => {
+    test("a flag marks the field as touched, so its required issue shows, and asks for the focus", () => {
+        const start = initialRequest(HASH);
+        assert.deepEqual(fieldIssues(HASH, start.values, start.touched), {});
+        const flagged = requestReducer(start, { type: "flag", name: "text" });
+        assert.deepEqual(flagged.touched, ["text"]);
+        assert.deepEqual(flagged.focus, { name: "text", seq: 1 });
+        assert.deepEqual(fieldIssues(HASH, flagged.values, flagged.touched), { text: "required" });
+        assert.equal(flagged.phase, "idle");
+    });
+
+    test("flagging again asks for the focus again and keeps one touched entry", () => {
+        const once = requestReducer(initialRequest(HASH), { type: "flag", name: "text" });
+        const twice = requestReducer(once, { type: "flag", name: "text" });
+        assert.deepEqual(twice.touched, ["text"]);
+        assert.deepEqual(twice.focus, { name: "text", seq: 2 });
+    });
+
+    test("typing a value clears the flag, which only shows for an empty required field", () => {
+        const flagged = requestReducer(initialRequest(HASH), { type: "flag", name: "text" });
+        const typed = requestReducer(flagged, { type: "edit", name: "text", value: "a" });
+        assert.deepEqual(fieldIssues(HASH, typed.values, typed.touched), {});
     });
 });
 

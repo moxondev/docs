@@ -1,6 +1,6 @@
 import { usePathname } from "next/navigation";
 import { hasLocale, useLocale } from "next-intl";
-import { type MouseEvent, useCallback, useMemo } from "react";
+import { createContext, type MouseEvent, useCallback, useContext, useMemo } from "react";
 
 import { writePreference } from "@/hooks/usePreference";
 import { type AppLocale, LOCALE_KEY, routing } from "@/i18n/routing";
@@ -12,6 +12,12 @@ export interface LocaleSwitch {
     remember: (locale: AppLocale) => void;
     follow: (locale: AppLocale, event: MouseEvent<HTMLAnchorElement>) => void;
 }
+
+/**
+ * Holds the route path that a document imposes on its chrome, null where the router knows the
+ * true one.
+ */
+export const RoutePathContext = createContext<string | null>(null);
 
 /**
  * Appends the query string and the fragment of the current address to the path of the other
@@ -53,13 +59,15 @@ function useDocumentLocale(): AppLocale {
 
 /**
  * Gives the path of the page for the chrome: the pathname of the router, except in the
- * prerendered 404 (see routePath). It renders the same on the server and in the browser, so that
- * a header built from it never fails hydration.
+ * prerendered 404 (see routePath), where RoutePathContext may impose its own. It renders the same
+ * on the server and in the browser, so that a header built from it never fails hydration.
  *
  * @returns The pathname to read the language, the version and the page from
  */
 export function useRoutePath(): string {
-    return routePath(usePathname() ?? "/", useDocumentLocale());
+    const imposed = useContext(RoutePathContext);
+    const pathname = routePath(usePathname() ?? "/", useDocumentLocale());
+    return imposed ?? pathname;
 }
 
 /**
