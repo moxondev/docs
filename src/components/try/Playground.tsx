@@ -1,10 +1,9 @@
 "use client";
 
-import { ArrowUpRight } from "lucide-react";
 import dynamic from "next/dynamic";
-import Link from "next/link";
 import { useLocale, useTranslations } from "next-intl";
 
+import { DocsLink } from "@/components/try/DocsLink";
 import { Try } from "@/components/try/Try";
 import { setQueryParam, useQueryParam } from "@/hooks/useLocationSearch";
 import { href } from "@/lib/routes";
@@ -26,8 +25,8 @@ const Picker = dynamic(() => import("@/components/try/Picker").then((m) => m.Pic
 });
 
 /**
- * The Playground page body: an endpoint picker, the inline Try form of the chosen operation and a
- * link to its documentation. The choice lives in the address (?endpoint=hash), so a link from the
+ * The Playground page body: an endpoint picker, the Try bench of the chosen operation and a link to
+ * its documentation. The choice lives in the address (?endpoint=hash), so a link from the
  * documentation or the search palette lands with the endpoint already selected.
  *
  * @param version - Version whose operations are offered; the API version of every request
@@ -38,38 +37,47 @@ export function Playground({ version, entries }: PlaygroundProps) {
     const lang = useLocale() as Lang;
     const slug = useQueryParam("endpoint");
     const entry = entries.find((candidate) => candidate.slug === slug) ?? null;
+    const picker = (
+        <Picker
+            version={version}
+            entries={entries}
+            value={entry?.slug ?? null}
+            onSelect={(next) => setQueryParam("endpoint", next)}
+        />
+    );
 
     return (
         <section className="flex flex-col gap-3 py-2">
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                <Picker
-                    version={version}
-                    entries={entries}
-                    value={entry?.slug ?? null}
-                    onSelect={(next) => setQueryParam("endpoint", next)}
-                />
+            <span role="status" className="sr-only">
+                {entry
+                    ? t("announce", {
+                          name: entry.name,
+                          method: entry.op.method.toUpperCase(),
+                          path: `/${version}${entry.op.path}`,
+                          count: entry.op.params.length,
+                      })
+                    : ""}
+            </span>
+            <div className="flex flex-col gap-3 wide:grid wide:grid-cols-[27.5rem_minmax(0,1fr)] wide:gap-x-5">
+                <div className="flex flex-wrap items-center gap-x-4 gap-y-2 wide:block">
+                    {picker}
+                    {entry ? (
+                        <DocsLink href={href(lang, version, entry.slug)} className="wide:hidden" />
+                    ) : null}
+                </div>
                 {entry ? (
-                    <Link
-                        href={href(lang, version, entry.slug)}
-                        className="prose-link inline-flex items-center gap-1 text-[13px]"
-                    >
-                        {t("viewDocs")}
-                        <ArrowUpRight aria-hidden="true" className="size-3.5" />
-                    </Link>
-                ) : null}
+                    <Try
+                        version={version}
+                        op={entry.op}
+                        variant="bench"
+                        docsHref={href(lang, version, entry.slug)}
+                    />
+                ) : (
+                    <p className="rounded-panel border border-dashed border-field px-6 py-10 text-center text-[15px] text-muted wide:col-span-2">
+                        {t("empty")}
+                    </p>
+                )}
             </div>
-            {entry ? (
-                <Try
-                    key={`${version}/${entry.slug}`}
-                    version={version}
-                    op={entry.op}
-                    variant="inline"
-                />
-            ) : (
-                <p className="rounded-panel border border-dashed border-field px-6 py-10 text-center text-[14px] text-muted">
-                    {t("empty")}
-                </p>
-            )}
         </section>
     );
 }

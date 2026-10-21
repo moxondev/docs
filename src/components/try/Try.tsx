@@ -17,15 +17,30 @@ import type { TryProps } from "@/types/try";
 const Panel = dynamic(() => import("@/components/try/Panel").then((m) => m.Panel));
 
 /**
+ * The Playground bench, an island of its own.
+ * The pages with a plain panel do not carry its layout.
+ *
+ * @param version - Documentation version, which is also the API version printed before the path
+ * @param op - Operation of the bench, with try true
+ * @param docsHref - Address of the documentation page of the operation
+ */
+const Bench = dynamic(() => import("@/components/try/Bench").then((m) => m.Bench));
+
+/**
  * The Try panel of an operation, or nothing when the operation has no live Try (try false). See
  * Panel for the panel itself.
  *
  * @param version - Documentation version, which is also the API version printed before the path
  * @param op - Operation of the panel; nothing renders unless its try flag is true
- * @param variant - "panel" for the sticky desktop column, "inline" inside the content column
+ * @param variant - "panel" for the sticky desktop column, "inline" inside the content column,
+ * "bench" for the two-column Playground
  * @param autoSend - True for the Getting Started form that sends itself once on mount
+ * @param docsHref - The "bench" variant only: address of the documentation page of the operation
  */
-export function Try({ version, op, variant, autoSend }: TryProps) {
+export function Try({ version, op, variant, autoSend, docsHref }: TryProps) {
     if (!op.try) return null;
+    if (variant === "bench") {
+        return <Bench version={version} op={op} docsHref={docsHref ?? ""} />;
+    }
     return <Panel version={version} op={op} variant={variant} autoSend={autoSend} />;
 }

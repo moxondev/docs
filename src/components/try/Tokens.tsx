@@ -72,7 +72,7 @@ function Line({ tokens, wrap }: LineProps) {
 }
 
 /**
- * Highlighted lines of a dark code panel (the snippets and the JSON answer), colored by the
+ * Highlighted lines of a code panel (the snippets and the JSON answer), colored by the
  * token classes of lib/highlight. Render it inside a pre.
  *
  * @param lines - Output of highlight(), one token array per line

@@ -1,4 +1,6 @@
+import type { RequestPhase } from "@/hooks/useRequest";
 import type { ApiResponse } from "@/lib/request";
+import type { ParamSpec } from "@/types/content";
 
 export interface Hang {
     lead: number;
@@ -6,6 +8,35 @@ export interface Hang {
 }
 
 export type StatusTone = "ok" | "warn";
+
+export type StatusAccent = "ink" | "req";
+
+export type ControlSpan = "half" | "full";
+
+export interface ParamGroups {
+    required: ParamSpec[];
+    optional: ParamSpec[];
+}
+
+export interface StatusLabels {
+    sending: string;
+    error: string;
+}
+
+// Enum parameters with at most this many options are a segmented control, the others a select
+export const SEGMENT_MAX = 3;
+
+/**
+ * A segmented control whose option names add up to this many characters or fewer pairs up with its
+ * neighbour in the bench form; a longer one keeps a row of its own.
+ */
+export const SHORT_OPTIONS = 16;
+
+/**
+ * A text parameter whose placeholder, or failing that its default or preset value, is this long or
+ * shorter expects a short value and can share a row; a field with none of them keeps the full row.
+ */
+export const SHORT_TEXT = 10;
 
 // Lines this long or shorter never wrap in a panel, so they keep the plain layout
 const LONG_LINE = 40;
@@ -79,6 +110,44 @@ export function statusTone(status: number): StatusTone {
 }
 
 /**
+ * Picks the one semantic accent of the quiet status line: red for an error or a request that got
+ * no answer, ink for everything else.
+ *
+ * @param status - HTTP status of the answer, 0 when there was none
+ * @returns "req" for a failure, "ink" otherwise
+ */
+export function statusAccent(status: number): StatusAccent {
+    return status === 0 || status >= 400 ? "req" : "ink";
+}
+
+/**
+ * Decides how many rows the text area of a parameter has: a JSON value gets more than a string
+ * whose placeholder holds a line break (a CSV or a PEM sample, glued together in a one-line
+ * input). Any other parameter stays a one-line field.
+ *
+ * @param param - Parameter whose type and placeholder decide the rows
+ * @returns The number of rows, or null when the parameter is not drawn as a text area
+ */
+export function textareaRows(param: ParamSpec): number | null {
+    if (param.type === "json") return 4;
+    if (param.type === "string" && param.placeholder?.includes("\n")) return 2;
+    return null;
+}
+
+/**
+ * Names the type of a parameter when it tells something the field does not: a number or a JSON
+ * value. A string, a boolean and an enum are told by their own control, and a parameter called
+ * after its type (json) would repeat itself.
+ *
+ * @param param - Parameter whose type and name decide the hint
+ * @returns The type to print next to the name, or null when nothing is worth saying
+ */
+export function typeHint(param: ParamSpec): string | null {
+    if (param.type !== "number" && param.type !== "json") return null;
+    return param.type === param.name ? null : param.type;
+}
+
+/**
  * Finds the tab that an arrow or a Home or End key press moves to in a tab list, wrapping around
  * at both ends (the keyboard model of the ARIA tabs pattern).
  *
@@ -100,4 +169,101 @@ export function nextTab(count: number, index: number, key: string): number | nul
         default:
             return null;
     }
+}
+
+/**
+ * Says in words where a request stands: the sending label while in flight, the code with its
+ * reason phrase once an answer came, the error label otherwise. The response bar draws it and the
+ * live region reads it.
+ *
+ * @param phase - State of the request machine
+ * @param response - Last answer, null before the first one
+ * @param labels - Translated words for the two cases that have no code
+ * @returns The words, never empty
+ */
+export function statusLabel(
+    phase: RequestPhase,
+    response: ApiResponse | null,
+    labels: StatusLabels,
+): string {
+    if (phase === "loading") return labels.sending;
+    if (response && response.kind !== "error")
+        return `${response.status} ${response.statusText}`.trim();
+    return labels.error;
+}
+
+/**
+ * Picks the scroll behavior to pass to scrollIntoView: smooth unless the reader asked for less
+ * motion. The CSS rule that drops smooth scrolling does not reach an explicit option of a script
+ * call.
+ *
+ * @returns "auto" under prefers-reduced-motion, "smooth" otherwise; browser only
+ */
+export function scrollBehavior(): ScrollBehavior {
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+}
+
+/**
+ * Decides whether a control takes half a row or the whole row of the bench form, so that short
+ * controls sit two by two. The thresholds are SHORT_OPTIONS and SHORT_TEXT.
+ *
+ * @param param - Parameter whose type, options or placeholder decide the width
+ * @returns "half" for a short control, "full" for one that needs the whole row
+ */
+export function controlSpan(param: ParamSpec): ControlSpan {
+    switch (param.type) {
+        case "boolean":
+        case "number":
+            return "half";
+        case "enum": {
+            const options = param.options ?? [];
+            const chars = options.reduce((sum, option) => sum + option.length, 0);
+            const segmented = options.length > 0 && options.length <= SEGMENT_MAX;
+            return segmented && chars <= SHORT_OPTIONS ? "half" : "full";
+        }
+        case "string": {
+            const hint = (param.placeholder ?? param.default ?? param.value ?? "").length;
+            return hint > 0 && hint <= SHORT_TEXT ? "half" : "full";
+        }
+        default:
+            return "full";
+    }
+}
+
+/**
+ * Splits the parameters of an operation into the two groups of the bench form, each in its
+ * original order: the ones that must be given (required, or conditional on another one) and the
+ * optional ones. An empty group is left out by the form, so it never prints a bare heading.
+ *
+ * @param params - Operation.params
+ * @returns The required (including conditional) and the optional parameters
+ */
+export function splitParams(params: readonly ParamSpec[]): ParamGroups {
+    return {
+        required: params.filter((param) => param.required !== false),
+        optional: params.filter((param) => param.required === false),
+    };
+}
+
+/**
+ * Counts the values an enum parameter offers, for the figure printed in its field.
+ *
+ * @param param - Enum parameter whose options are counted
+ * @returns The number of options, zero for a parameter without any
+ */
+export function optionCount(param: ParamSpec): number {
+    return param.options?.length ?? 0;
+}
+
+/**
+ * Lists the values of an enum parameter that the form offers as one-click chips: the featured
+ * ones that are really among its options, in the order of the data.
+ *
+ * @param param - Enum parameter whose featured values become chips; any other type gives none
+ * @returns The featured values, empty for a parameter that is not an enum or has none
+ */
+export function featuredOptions(param: ParamSpec): string[] {
+    if (param.type !== "enum") return [];
+    const options = param.options ?? [];
+    return (param.featured ?? []).filter((value) => options.includes(value));
 }

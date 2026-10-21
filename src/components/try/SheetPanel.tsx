@@ -4,15 +4,17 @@ import { Check, Copy, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 
-import { MethodChip, RequestForm } from "@/components/try/Form";
+import { Announcer } from "@/components/try/Announcer";
+import { RequestForm, RequestLine } from "@/components/try/Form";
 import { ResponseBody, Status } from "@/components/try/Response";
-import { restoreOpener, useSheet } from "@/components/try/store";
-import { tabId, TabList } from "@/components/try/Tabs";
+import { QUIET_TAB, tabId, TabList } from "@/components/try/Tabs";
 import { Tokens } from "@/components/try/Tokens";
+import { scrollBehavior } from "@/components/try/util";
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerClose, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
 import { COPY_LABELS, useCopy } from "@/hooks/useCopy";
 import type { RequestHandle } from "@/hooks/useRequest";
+import { restoreOpener, useSheet } from "@/hooks/useSheet";
 import { highlight } from "@/lib/highlight";
 import { generateSnippet } from "@/lib/snippets";
 import type { Operation, Version } from "@/types/content";
@@ -33,9 +35,9 @@ export interface OutputProps {
 }
 
 /**
- * Dark output area of the sheet: a light bar with the Response and cURL views, the status and the
- * copy button, then either the answer or the cURL command of the form. The area scrolls into view
- * once an answer arrives, so it is never left below the fold.
+ * Output area of the sheet in the quiet look: a bar with the Response and cURL views as tabs, the
+ * status and the copy button, then the answer or the cURL command of the form. The area scrolls
+ * into view once an answer arrives, so it is never left below the fold.
  *
  * @param handle - State machine of the form, which owns the request and its answer
  * @param view - View shown, the answer or the cURL command
@@ -59,38 +61,43 @@ function Output({ handle, view, onView }: OutputProps) {
 
     useEffect(() => {
         if (handle.phase === "done" || handle.phase === "error") {
-            area.current?.scrollIntoView({ block: "nearest", behavior: "smooth" });
+            area.current?.scrollIntoView({ block: "nearest", behavior: scrollBehavior() });
         }
     }, [handle.phase]);
 
     return (
-        <div ref={area} data-vaul-no-drag className="scroll-dark bg-code-bg pb-5.5 text-code-text">
-            <div className="flex items-center gap-2.5 py-1.5 pr-1.5 pl-5">
+        <div
+            ref={area}
+            data-vaul-no-drag
+            className="code-quiet border-t border-line bg-search pb-5.5 text-code-text"
+        >
+            <div className="flex h-12 items-stretch gap-2.5 border-b border-code-line pr-1.5 pl-3">
                 <TabList
                     items={items}
                     value={view}
                     onChange={(next) => onView(next as SheetView)}
                     label={aria("outputView")}
                     panelId={panelId}
-                    className="flex gap-0.5 rounded-cta bg-code-tablist p-0.5"
-                    tabClassName="relative h-8 rounded-btn px-3.5 text-[13px] text-code-punct after:absolute after:inset-x-0 after:-inset-y-1.5 aria-selected:bg-code-tabon aria-selected:text-code-sel"
+                    className="flex"
+                    tabClassName={QUIET_TAB}
                 />
                 <span className="grow" />
                 {shown && view === "response" ? (
                     <Status
                         phase={handle.phase}
                         response={handle.response}
-                        className="text-[13px]"
+                        quiet
+                        className="self-center"
                     />
                 ) : null}
                 <Button
                     type="button"
-                    variant="code"
+                    variant="ghost"
                     size="icon-lg"
                     disabled={text === ""}
                     aria-label={aria(view === "curl" ? "copyCode" : "copyResponse")}
                     onClick={() => void copy(text)}
-                    className="border-transparent [&_svg:not([class*='size-'])]:size-4"
+                    className="self-center [&_svg:not([class*='size-'])]:size-4"
                 >
                     {status === "copied" ? (
                         <Check aria-hidden="true" />
@@ -103,10 +110,11 @@ function Output({ handle, view, onView }: OutputProps) {
                 </span>
             </div>
             <div role="tabpanel" id={panelId} aria-labelledby={tabId(panelId, view)}>
+                <Announcer phase={handle.phase} response={handle.response} />
                 {view === "curl" ? (
                     <pre
                         tabIndex={0}
-                        className="overflow-x-auto px-5 pt-1.5 pb-4 font-mono text-[12.5px]/[1.75]"
+                        className="overflow-x-auto px-5 pt-1.5 pb-4 font-mono text-[13.5px]/[1.75]"
                     >
                         <Tokens lines={lines} />
                     </pre>
@@ -119,7 +127,7 @@ function Output({ handle, view, onView }: OutputProps) {
                     />
                 ) : null}
                 {view === "response" && !handle.response ? (
-                    <p className="px-5 pt-2 pb-2 text-xs text-code-dim">{t("empty")}</p>
+                    <p className="px-5 pt-3 pb-2 text-[13px] text-muted">{t("empty")}</p>
                 ) : null}
             </div>
         </div>
@@ -127,9 +135,9 @@ function Output({ handle, view, onView }: OutputProps) {
 }
 
 /**
- * Body of the phone "Try it" sheet: a bottom drawer with a grab handle and a scrim, shown while
- * the shared sheet state is open. It holds the head (title, method, versioned path, close), the
- * same form as the desktop panel and the dark output area.
+ * Body of the phone Try sheet: a bottom drawer with a grab handle and a scrim, shown while the
+ * shared sheet state is open. It holds the head, the same form as the desktop panel and the quiet
+ * output area.
  *
  * @param version - Documentation version, which is also the API version of the request
  * @param op - Operation of the sheet, with try true
@@ -161,8 +169,7 @@ export function SheetPanel({ version, op, name, handle }: SheetPanelProps) {
                         <span aria-hidden="true">{t("title")}</span>
                         <span className="sr-only">{aria("trySheet", { name })}</span>
                     </DrawerTitle>
-                    <MethodChip method={op.method} />
-                    <span className="truncate font-mono text-xs text-muted">{`/${version}${op.path}`}</span>
+                    <RequestLine method={op.method} path={`/${version}${op.path}`} />
                     <span className="grow" />
                     <DrawerClose asChild>
                         <Button

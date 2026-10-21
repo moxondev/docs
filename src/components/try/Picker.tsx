@@ -74,7 +74,7 @@ export function scoreEntry(value: string, search: string): number {
  * filter field and the operations grouped by category. The filter matches the name, the method
  * and the path, so "post", "/hash" and "has" all find Hash.
  *
- * @param version - Version whose operations are listed; printed before each path
+ * @param version - Version whose operations are listed; printed before the path of the selected one
  * @param entries - Operations with try true of that version, each with its page slug and name
  * @param value - Slug of the selected entry, null when none is selected
  * @param onSelect - Called with the slug of the entry the reader picks
@@ -85,6 +85,7 @@ export function Picker({ version, entries, value, onSelect }: PickerProps) {
     const [open, setOpen] = useState(false);
     const groups = useMemo(() => groupEntries(entries, lang), [entries, lang]);
     const selected = entries.find((entry) => entry.slug === value) ?? null;
+    const category = CATEGORIES.find((item) => item.id === selected?.category)?.title[lang];
 
     return (
         <Popover open={open} onOpenChange={setOpen}>
@@ -95,15 +96,20 @@ export function Picker({ version, entries, value, onSelect }: PickerProps) {
                     role="combobox"
                     aria-expanded={open}
                     aria-label={t("selectEndpoint")}
-                    className="h-11 w-full max-w-md justify-start gap-2.5 rounded-box px-3 text-[14px]"
+                    className="h-11 w-full max-w-md justify-start gap-2.5 rounded-box px-3 text-[15px]"
                 >
                     {selected ? (
                         <>
                             <span className="font-medium text-ink">{selected.name}</span>
-                            <MethodChip method={selected.op.method} />
-                            <span className="truncate font-mono text-xs text-muted">
+                            <MethodChip method={selected.op.method} className="wide:hidden" />
+                            <span className="truncate font-mono text-xs text-muted wide:hidden">
                                 {`/${version}${selected.op.path}`}
                             </span>
+                            {category ? (
+                                <span className="truncate text-xs text-muted max-wide:hidden">
+                                    {category}
+                                </span>
+                            ) : null}
                         </>
                     ) : (
                         <span className="text-faint">{t("selectEndpoint")}</span>
@@ -113,6 +119,7 @@ export function Picker({ version, entries, value, onSelect }: PickerProps) {
             </PopoverTrigger>
             <PopoverContent
                 align="start"
+                aria-label={t("selectEndpoint")}
                 className="w-(--radix-popover-trigger-width) min-w-72 rounded-box border-line bg-surface p-0 shadow-palette"
             >
                 <Command filter={scoreEntry}>
@@ -130,7 +137,7 @@ export function Picker({ version, entries, value, onSelect }: PickerProps) {
                                             setOpen(false);
                                         }}
                                         data-checked={entry.slug === value || undefined}
-                                        className="gap-2.5 text-ink data-[checked=true]:font-medium data-[selected=true]:bg-chip data-[selected=true]:text-ink"
+                                        className="gap-2.5 text-ink max-desk:min-h-11 data-[checked=true]:font-medium data-[selected=true]:bg-chip data-[selected=true]:text-ink"
                                     >
                                         <span>{entry.name}</span>
                                         <span className="ml-auto flex items-center gap-2">

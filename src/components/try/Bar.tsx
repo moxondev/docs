@@ -2,8 +2,8 @@
 
 import { useTranslations } from "next-intl";
 
-import { useSheet } from "@/components/try/store";
 import { Button } from "@/components/ui/button";
+import { useSheet } from "@/hooks/useSheet";
 import type { BarProps } from "@/types/try";
 
 /**
@@ -22,7 +22,7 @@ export function Bar({ op }: BarProps) {
     return (
         <div
             data-op={op.id}
-            className="fixed inset-x-0 bottom-0 z-20 border-t border-line-soft bg-page px-5 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] shadow-bar desk:hidden"
+            className="fixed inset-x-0 bottom-0 z-20 border-t border-line-soft bg-page px-5 pt-3 pb-[max(12px,env(safe-area-inset-bottom))] shadow-bar desk:hidden print:hidden"
         >
             <Button
                 type="button"

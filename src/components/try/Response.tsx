@@ -5,7 +5,13 @@ import { useTranslations } from "next-intl";
 import { useMemo } from "react";
 
 import { Tokens } from "@/components/try/Tokens";
-import { formatBytes, responseSize, statusTone } from "@/components/try/util";
+import {
+    formatBytes,
+    responseSize,
+    statusAccent,
+    statusLabel,
+    statusTone,
+} from "@/components/try/util";
 import { Button } from "@/components/ui/button";
 import type { RequestPhase } from "@/hooks/useRequest";
 import { highlight } from "@/lib/highlight";
@@ -16,12 +22,14 @@ export interface ResponseProps {
     phase: RequestPhase;
     response: ApiResponse | null;
     retry?: number;
+    quiet?: boolean;
     onClear: () => void;
 }
 
 export interface StatusProps {
     phase: RequestPhase;
     response: ApiResponse | null;
+    quiet?: boolean;
     className?: string;
 }
 
@@ -36,28 +44,52 @@ export interface HeaderListProps {
 }
 
 /**
- * Status of the request in the response bar: a green or amber dot and the code with its reason
- * phrase ("200 OK"), "ERR" for a network failure or a timeout, a pulsing dot and the sending
- * label while the request is in flight. It is a live region, so the result is announced.
+ * Status of the request in the response bar: the code with its reason phrase, "ERR" for a network
+ * failure or a timeout, the sending label while in flight. It is only drawn: the live region of the
+ * Announcer reads the same words, and a region created with its text is rarely announced.
  *
  * @param phase - State of the request machine
  * @param response - Last answer, null before the first one
+ * @param quiet - True for the quiet look of the Try panel and sheet
  * @param className - Classes of the text size, which differs between the panel and the sheet
  */
-export function Status({ phase, response, className }: StatusProps) {
+export function Status({ phase, response, quiet = false, className }: StatusProps) {
     const t = useTranslations("response");
     const tryT = useTranslations("try");
     const loading = phase === "loading";
     const tone = response && !loading ? statusTone(response.status) : "ok";
-    const label = loading
-        ? tryT("sending")
-        : response && response.kind !== "error"
-          ? `${response.status} ${response.statusText}`.trim()
-          : t("statusError");
+    const answered = response !== null && !loading && response.kind !== "error";
+
+    const words = answered ? (
+        <>
+            {response.status}
+            <span className="max-[23rem]:hidden">{` ${response.statusText}`}</span>
+        </>
+    ) : (
+        statusLabel(phase, response, { sending: tryT("sending"), error: t("statusError") })
+    );
+
+    if (quiet) {
+        const failed = response !== null && !loading && statusAccent(response.status) === "req";
+
+        return (
+            <span
+                aria-hidden="true"
+                className={cn(
+                    "text-[14px] font-semibold",
+                    failed ? "text-req" : "text-ink",
+                    loading && "animate-pulse-dot font-normal text-muted",
+                    className,
+                )}
+            >
+                {words}
+            </span>
+        );
+    }
 
     return (
         <span
-            role="status"
+            aria-hidden="true"
             className={cn(
                 "inline-flex items-center gap-1.75 font-mono",
                 tone === "ok" ? "text-ok" : "text-warn",
@@ -72,7 +104,7 @@ export function Status({ phase, response, className }: StatusProps) {
                     loading && "animate-pulse-dot",
                 )}
             />
-            {label}
+            {words}
         </span>
     );
 }
@@ -90,7 +122,7 @@ function HeaderList({ headers }: HeaderListProps) {
 
     return (
         <details className="group border-t border-code-line">
-            <summary className="flex w-full cursor-pointer list-none items-center gap-1.5 px-4 py-2.5 text-xs text-code-dim hover:text-code-text [&::-webkit-details-marker]:hidden">
+            <summary className="flex w-full cursor-pointer list-none items-center gap-1.5 px-4 py-2.5 text-xs text-code-dim hover:text-code-text max-desk:min-h-11 [&::-webkit-details-marker]:hidden">
                 {t("headers")}
                 <span className="font-mono">{entries.length}</span>
                 <ChevronDown
@@ -98,7 +130,7 @@ function HeaderList({ headers }: HeaderListProps) {
                     className="ml-auto size-3.5 transition-transform group-open:rotate-180"
                 />
             </summary>
-            <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 px-4 pb-3 font-mono text-[11.5px]/[1.6]">
+            <dl className="grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 px-4 pb-3 font-mono text-[12.5px]/[1.6]">
                 {entries.map(([name, value]) => (
                     <div key={name} className="col-span-2 grid grid-cols-subgrid">
                         <dt className="text-code-dim">{name}</dt>
@@ -130,12 +162,12 @@ export function ResponseBody({ response, retry, dim = false }: ResponseBodyProps
     return (
         <div className={cn("transition-opacity", dim && "opacity-60")}>
             {retry !== undefined ? (
-                <p className="px-4 pt-3.5 text-[13px] text-warn">
+                <p className="px-4 pt-3.5 text-[14px] text-warn">
                     {tryT("rateLimited", { seconds: retry })}
                 </p>
             ) : null}
             {response.kind === "error" ? (
-                <p className="px-4 py-3.5 text-[13px] text-warn">
+                <p className="px-4 py-3.5 text-[14px] text-warn">
                     {response.error === "timeout"
                         ? tryT("timeout", { seconds: TIMEOUT_MS / 1000 })
                         : t("networkError")}
@@ -144,7 +176,7 @@ export function ResponseBody({ response, retry, dim = false }: ResponseBodyProps
             {response.kind === "json" ? (
                 <pre
                     tabIndex={0}
-                    className="overflow-x-auto px-4 pt-3.5 pb-4.5 font-mono text-[12.5px]/[1.7]"
+                    className="overflow-x-auto px-4 pt-3.5 pb-4.5 font-mono text-[13.5px]/[1.7]"
                 >
                     <Tokens lines={lines} wrap />
                 </pre>
@@ -152,7 +184,7 @@ export function ResponseBody({ response, retry, dim = false }: ResponseBodyProps
             {response.kind === "text" && response.body !== "" ? (
                 <pre
                     tabIndex={0}
-                    className="overflow-x-auto px-4 pt-3.5 pb-4.5 font-mono text-[12.5px]/[1.7] break-words whitespace-pre-wrap"
+                    className="overflow-x-auto px-4 pt-3.5 pb-4.5 font-mono text-[13.5px]/[1.7] break-words whitespace-pre-wrap"
                 >
                     {response.body}
                 </pre>
@@ -172,38 +204,70 @@ export function ResponseBody({ response, retry, dim = false }: ResponseBodyProps
 }
 
 /**
- * Response area of the desktop Try panel, mounted once a request was sent or is in flight: a bar
- * with the caption, the status, the duration and size, and the Clear button, then the answer body.
+ * Response area of the Try panel, mounted once a request was sent or is in flight: a bar with the
+ * caption, the status, the metrics and the Clear button, then the answer body. The quiet look puts
+ * the status and the metrics on a second row.
  *
  * @param phase - State of the request machine
  * @param response - Last answer, null before the first one
  * @param retry - Seconds to wait on a 429, undefined otherwise
+ * @param quiet - True for the quiet look; its colors come from the .code-quiet scope around it
  * @param onClear - Resets the request machine, which drops the answer and its blob URL
  */
-export function Response({ phase, response, retry, onClear }: ResponseProps) {
+export function Response({ phase, response, retry, quiet = false, onClear }: ResponseProps) {
     const t = useTranslations("response");
     const common = useTranslations("common");
     const size = response ? responseSize(response) : null;
+    const metrics =
+        response && phase !== "loading" && response.kind !== "error"
+            ? [t("duration", { ms: response.ms }), size === null ? "" : formatBytes(size)]
+                  .filter(Boolean)
+                  .join(", ")
+            : null;
+    const clear = (
+        <Button
+            type="button"
+            variant={quiet ? "ghost" : "code"}
+            size="xs"
+            onClick={onClear}
+            className={cn(
+                "relative after:absolute after:-inset-3 desk:after:hidden",
+                quiet && "h-6.5 rounded-row border border-field px-2.5 text-[13px]",
+            )}
+        >
+            {common("clear")}
+        </Button>
+    );
+
+    if (quiet) {
+        return (
+            <div className="border-t border-code-line">
+                <div className="flex items-center gap-2.5 px-4 pt-2.5">
+                    <span className="text-[13px] font-medium text-muted">{t("title")}</span>
+                    <span className="grow" />
+                    {clear}
+                </div>
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5 px-4 pt-1.5">
+                    <Status phase={phase} response={response} quiet />
+                    {metrics === null ? null : (
+                        <span className="font-mono text-[12.5px] text-faint">{metrics}</span>
+                    )}
+                </div>
+                {response ? (
+                    <ResponseBody response={response} retry={retry} dim={phase === "loading"} />
+                ) : null}
+            </div>
+        );
+    }
 
     return (
         <div>
             <div className="flex items-center gap-2.5 border-y border-code-line bg-code-bar px-4 py-2.5 text-xs text-code-dim">
                 <span className="font-medium tracking-[0.08em] uppercase">{t("title")}</span>
                 <Status phase={phase} response={response} />
-                {response && phase !== "loading" && response.kind !== "error" ? (
-                    <span className="font-mono">
-                        {[
-                            t("duration", { ms: response.ms }),
-                            size === null ? "" : formatBytes(size),
-                        ]
-                            .filter(Boolean)
-                            .join(", ")}
-                    </span>
-                ) : null}
+                {metrics === null ? null : <span className="font-mono">{metrics}</span>}
                 <span className="grow" />
-                <Button type="button" variant="code" size="xs" onClick={onClear}>
-                    {common("clear")}
-                </Button>
+                {clear}
             </div>
             {response ? (
                 <ResponseBody response={response} retry={retry} dim={phase === "loading"} />

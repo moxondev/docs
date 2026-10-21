@@ -20,6 +20,10 @@ export interface TabListProps {
     tabClassName?: string;
 }
 
+// Tab of the quiet Try panel and sheet: grey text, ink and the yellow underline when selected
+export const QUIET_TAB =
+    "relative -mb-px min-w-11 px-2.5 text-[13px] font-medium text-muted transition-colors after:absolute after:inset-x-0 after:-inset-y-px hover:text-ink aria-selected:text-ink aria-selected:shadow-[inset_0_-2px_0_var(--hl-line)] max-desk:text-[14px] desk:min-w-0 desk:after:hidden";
+
 /**
  * Builds the id of the tab button of an item, which its panel points to with aria-labelledby.
  *
