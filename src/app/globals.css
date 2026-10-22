@@ -123,6 +123,13 @@
     --display: var(--sans);
     --brand: "Bricolage Grotesque", "Bricolage Fallback", "Geist", sans-serif;
 
+    /*
+     * Reading measure of running prose; code, tables and cards use the full column. The ch unit is
+     * the width of a zero, about 1.35 times the average character of Geist prose, so 52ch is about
+     * 70 characters per line at 16 px.
+     */
+    --measure: 52ch;
+
     --ink: #0f1115;
     --text: #3a3f4b;
     --muted: #5b6170;
@@ -143,12 +150,15 @@
     --hover: #f1f2f5;
     --key: #ffffff;
 
+    /* Giant 404 of the error page, decorative: 1.16:1 on the page, the title over it is 16.3:1 */
+    --ghost: #eceef2;
+
     --hl: #fde68a;
     --hl-hover: #fbdd72;
     --hl-active: #f9d65c;
     --hl-line: #f0c230;
+    --hl-edge: #b07d00;
     --on-hl: #0f1115;
-    --kbd-on-hl: rgba(15, 17, 21, 0.1);
     --active-bg: #fef3c7;
     --active-ink: #0f1115;
 
@@ -164,7 +174,7 @@
     --post: #07714f;
     --post-bg: #e6fcf5;
     --get: #364fc7;
-    --get-bg: #edf1ff;
+    --get-bg: #edf2ff;
     --req: #b02525;
     --req-bg: #fff1f1;
     --status: #a14a00;
@@ -173,6 +183,15 @@
     --note-line: #f3df98;
     --note-bg: #fffbeb;
     --note-ink: #3a3115;
+
+    --mark: #fde68a;
+    --mark-ink: #0f1115;
+    --mark-beta: #fef3c7;
+    --mark-beta-line: #fde68a;
+    --exp: #5f3dc4;
+    --beta: #0b6b80;
+    --dep: #86372f;
+    --dep-bg: #f8ece9;
 
     --scrim: rgba(15, 17, 21, 0.42);
     --scrim-sheet: rgba(15, 17, 21, 0.45);
@@ -190,12 +209,15 @@
     --code-punct: #8a93a6;
     --code-dim: #8a93a6;
     --code-str: #9be9c8;
+    --code-literal: var(--code-str);
+    --code-fn-weight: 400;
     --code-key: #f0b37e;
     --code-fn: #9db4ff;
     --code-sel: #e8eaf0;
     --code-icon: #9ba3b4;
-    --code-tablist: #1a1f29;
-    --code-tabon: #2a303d;
+
+    /* Accent of the quiet Try panel: the strings of its code and answer (5.9:1 on --search) */
+    --code-accent: #7d5a00;
     --ok: #63e6be;
     --ok-dot: #20c997;
     --warn: #ffb46e;
@@ -210,7 +232,6 @@
     --palette-shadow: 0 24px 64px -12px rgba(15, 17, 21, 0.4), 0 0 0 1px rgba(15, 17, 21, 0.08);
     --bar-shadow: 0 -8px 24px -12px rgba(15, 17, 21, 0.12);
     --sheet-shadow: 0 0 #0000;
-    --seg-shadow: 0 1px 2px rgba(15, 17, 21, 0.12);
 
     color-scheme: light;
 }
@@ -238,8 +259,11 @@
         --hover: #1f2125;
         --key: #25272c;
 
+        /* One step lighter than the light theme ratio (1.13:1 at #1d1f24): 1.23:1 on the page */
+        --ghost: #23262c;
+
         --hl-line: rgba(253, 230, 138, 0.5);
-        --kbd-on-hl: rgba(15, 17, 21, 0.12);
+        --hl-edge: rgba(253, 230, 138, 0.7);
         --active-bg: rgba(253, 230, 138, 0.14);
         --active-ink: #f2f3f5;
 
@@ -252,10 +276,10 @@
         --focus-line: #fde68a;
         --focus-ring: rgba(253, 230, 138, 0.26);
 
-        --post: #55d6a6;
-        --post-bg: rgba(85, 214, 166, 0.12);
-        --get: #94a8ff;
-        --get-bg: rgba(148, 168, 255, 0.12);
+        --post: #63e6be;
+        --post-bg: rgba(32, 201, 151, 0.14);
+        --get: #a3b5ff;
+        --get-bg: rgba(116, 143, 252, 0.16);
         --req: #ff9393;
         --req-bg: rgba(255, 120, 120, 0.12);
         --status: #ffb46e;
@@ -264,6 +288,15 @@
         --note-line: rgba(253, 230, 138, 0.22);
         --note-bg: rgba(253, 230, 138, 0.06);
         --note-ink: #e8e1c6;
+
+        --mark: rgba(253, 230, 138, 0.14);
+        --mark-ink: #fde68a;
+        --mark-beta: transparent;
+        --mark-beta-line: rgba(253, 230, 138, 0.55);
+        --exp: #cdbdff;
+        --beta: #7be0ef;
+        --dep: #f8cdc4;
+        --dep-bg: rgba(232, 137, 122, 0.16);
 
         --scrim: rgba(0, 0, 0, 0.62);
         --scrim-sheet: rgba(0, 0, 0, 0.62);
@@ -276,9 +309,8 @@
         --code-line: #1b1d22;
         --code-btn: #2a2d35;
         --code-tab: #1f2229;
-        --code-edge: #30333b;
-        --code-tablist: #15171b;
-        --code-tabon: #2a2d35;
+        --code-edge: var(--panel-line);
+        --code-accent: #d9c36f;
 
         --thumb: #3a3d45;
         --thumb-hover: #4d515b;
@@ -288,8 +320,7 @@
         --demo-shadow: 0 0 0 1px rgba(0, 0, 0, 0.35), 0 18px 40px -14px rgba(0, 0, 0, 0.7);
         --palette-shadow: 0 28px 70px -12px rgba(0, 0, 0, 0.75), 0 0 0 1px var(--panel-line);
         --bar-shadow: 0 -10px 24px -12px rgba(0, 0, 0, 0.6);
-        --sheet-shadow: 0 -1px 0 #30333b;
-        --seg-shadow: 0 0 #0000;
+        --sheet-shadow: 0 -1px 0 var(--panel-line);
 
         color-scheme: dark;
     }
@@ -366,8 +397,8 @@
     --color-hl-hover: var(--hl-hover);
     --color-hl-active: var(--hl-active);
     --color-hl-line: var(--hl-line);
+    --color-hl-edge: var(--hl-edge);
     --color-on-hl: var(--on-hl);
-    --color-kbd-on-hl: var(--kbd-on-hl);
     --color-active: var(--active-bg);
     --color-active-ink: var(--active-ink);
     --color-pill-on: var(--pill-on);
@@ -388,6 +419,14 @@
     --color-note-line: var(--note-line);
     --color-note-bg: var(--note-bg);
     --color-note-ink: var(--note-ink);
+    --color-mark: var(--mark);
+    --color-mark-ink: var(--mark-ink);
+    --color-mark-beta: var(--mark-beta);
+    --color-mark-beta-line: var(--mark-beta-line);
+    --color-exp: var(--exp);
+    --color-beta: var(--beta);
+    --color-dep: var(--dep);
+    --color-dep-bg: var(--dep-bg);
     --color-scrim: var(--scrim);
     --color-scrim-sheet: var(--scrim-sheet);
     --color-grab: var(--grab);
@@ -403,12 +442,11 @@
     --color-code-punct: var(--code-punct);
     --color-code-dim: var(--code-dim);
     --color-code-str: var(--code-str);
+    --color-code-literal: var(--code-literal);
     --color-code-key: var(--code-key);
     --color-code-fn: var(--code-fn);
     --color-code-sel: var(--code-sel);
     --color-code-icon: var(--code-icon);
-    --color-code-tablist: var(--code-tablist);
-    --color-code-tabon: var(--code-tabon);
     --color-ok: var(--ok);
     --color-ok-dot: var(--ok-dot);
     --color-warn: var(--warn);
@@ -419,7 +457,6 @@
     --shadow-palette: var(--palette-shadow);
     --shadow-bar: var(--bar-shadow);
     --shadow-sheet: var(--sheet-shadow);
-    --shadow-seg: var(--seg-shadow);
 }
 
 /*
@@ -451,6 +488,8 @@
     --animate-scrim-out: scrim-out 100ms ease-in both;
     --animate-sheet-in: sheet-in 220ms ease-out;
     --animate-sheet-out: sheet-out 180ms ease-in both;
+    --animate-fold-down: fold-down 180ms ease-out;
+    --animate-fold-up: fold-up 150ms ease-in;
     --animate-spinner: spinner 0.8s linear infinite;
     --animate-pulse-dot: pulse-dot 1.2s ease-in-out infinite;
 
@@ -510,6 +549,24 @@
         }
     }
 
+    @keyframes fold-down {
+        from {
+            height: 0;
+        }
+        to {
+            height: var(--radix-collapsible-content-height);
+        }
+    }
+
+    @keyframes fold-up {
+        from {
+            height: var(--radix-collapsible-content-height);
+        }
+        to {
+            height: 0;
+        }
+    }
+
     @keyframes spinner {
         to {
             transform: rotate(360deg);
@@ -534,6 +591,25 @@
         -webkit-text-size-adjust: 100%;
     }
 
+    /* Room for the fixed Try bar: a focused control is never left under it */
+    @media (width < 60rem) {
+        html {
+            scroll-padding-bottom: 5.5625rem;
+        }
+    }
+
+    /* Room for the sticky send button of the Playground form: a focused field is never hidden */
+    @media (width >= 80rem) {
+        html:has([data-variant="bench"]) {
+            scroll-padding-bottom: 5.5rem;
+        }
+    }
+
+    ::selection {
+        background: var(--hl);
+        color: var(--on-hl);
+    }
+
     body {
         @apply bg-background font-sans text-foreground;
         -webkit-font-smoothing: antialiased;
@@ -544,6 +620,25 @@
     :focus-visible {
         outline: 2px solid var(--focus-line);
         outline-offset: 2px;
+    }
+
+    /* Hover and focus fades on everything clickable, 150 ms; the theme switch disables them */
+    a,
+    button,
+    summary,
+    label,
+    input,
+    select,
+    textarea,
+    [role="menuitem"],
+    [role="option"],
+    [role="tab"],
+    [role="radio"] {
+        transition-property:
+            color, background-color, border-color, text-decoration-color, box-shadow, opacity, fill,
+            stroke;
+        transition-duration: 150ms;
+        transition-timing-function: ease;
     }
 
     /* Thin custom scrollbars everywhere */
@@ -574,6 +669,562 @@
         background: var(--thumb-hover);
         background-clip: content-box;
     }
+
+    /* Running prose never ends on a lone word (an orphan); a browser without support ignores it */
+    p,
+    li,
+    blockquote {
+        text-wrap: pretty;
+    }
+}
+
+/*
+ * Pricing plans (Plans.tsx): a ladder of steps in one frame, then a folded comparison table. The
+ * wrapper is the size container: the layout follows the width of the documentation column,
+ * never the width of the window. Under 30rem everything is stacked (phone), from 30rem the four
+ * secondary limits sit in one row, from 36rem the name, the quota and the bar share a row so that
+ * the bars of all the steps line up. The yellow bar of the recommended step is a 4 px inset
+ * shadow in --hl-edge (3.6:1 against white in light, 7.7:1 in dark), not a border.
+ */
+@layer components {
+    .plans {
+        container-type: inline-size;
+        margin: 0;
+    }
+
+    .plans-frame {
+        --px: 16px;
+        overflow: hidden;
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: var(--radius-table);
+    }
+
+    .plans-scale {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .plans-step {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-areas:
+            "head cta"
+            "hero hero"
+            "bar bar"
+            "sub sub";
+        gap: 0 20px;
+        align-items: start;
+        padding: 18px var(--px);
+        overflow-wrap: anywhere;
+        border-top: 1px solid var(--line);
+    }
+
+    .plans-step:first-child {
+        border-top: 0;
+    }
+
+    .plans-head {
+        grid-area: head;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        min-width: 0;
+    }
+
+    .plans-name {
+        margin: 0;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1.2;
+        letter-spacing: 0.04em;
+        color: var(--muted);
+    }
+
+    .plans-price {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .plans-price small {
+        margin-left: 1px;
+        font-size: 15px;
+        font-weight: 400;
+        letter-spacing: 0;
+        color: var(--muted);
+    }
+
+    .plans-hero {
+        grid-area: hero;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 8px;
+        margin: 14px 0 0;
+        font-size: 16px;
+        color: var(--muted);
+    }
+
+    .plans-hero .plans-n {
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        color: var(--ink);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .plans-bar {
+        grid-area: bar;
+        height: 10px;
+        margin: 10px 0 12px;
+        overflow: hidden;
+        background: var(--chip);
+        border-radius: 6px;
+        box-shadow: inset 0 0 0 1px var(--line);
+    }
+
+    .plans-bar svg {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .plans-bar rect {
+        fill: var(--muted);
+    }
+
+    .plans-sub {
+        grid-area: sub;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        font-size: 14.5px;
+        line-height: 1.35;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+    }
+
+    .plans-sub li {
+        min-width: 0;
+    }
+
+    .plans-sub .plans-n {
+        display: block;
+        margin-bottom: 1px;
+        font-size: 17px;
+        font-weight: 500;
+        line-height: 1.3;
+        color: var(--text);
+    }
+
+    .plans-reco {
+        grid-area: reco;
+        margin: 12px 0 0;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1.7;
+        color: var(--ink);
+    }
+
+    .plans-reco span {
+        padding: 2px 6px;
+        color: var(--mark-ink);
+        background: var(--mark);
+        border-radius: 3px;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+    }
+
+    .plans-cta {
+        grid-area: cta;
+        justify-self: end;
+    }
+
+    .plans-step.is-free {
+        padding-block: 14px;
+        background: var(--chip);
+    }
+
+    .plans-step.is-free .plans-price {
+        font-size: 20px;
+    }
+
+    .plans-step.is-free .plans-hero {
+        margin-top: 8px;
+    }
+
+    .plans-step.is-free .plans-hero .plans-n {
+        font-size: 24px;
+    }
+
+    .plans-step.is-free .plans-bar {
+        height: 6px;
+        margin: 8px 0 10px;
+        background: var(--bg);
+    }
+
+    .plans-step.is-free .plans-sub .plans-n {
+        font-size: 16px;
+    }
+
+    .plans-step.is-pro {
+        padding-block: 22px;
+        background: var(--note-bg);
+        box-shadow: inset 4px 0 0 var(--hl-edge);
+        grid-template-areas:
+            "head cta"
+            "reco reco"
+            "hero hero"
+            "bar bar"
+            "sub sub";
+    }
+
+    .plans-step.is-pro .plans-name {
+        color: var(--ink);
+    }
+
+    .plans-step.is-pro .plans-price {
+        font-size: 30px;
+    }
+
+    .plans-step.is-pro .plans-price small {
+        font-size: 16px;
+    }
+
+    .plans-step.is-pro .plans-hero {
+        margin-top: 12px;
+    }
+
+    .plans-step.is-pro .plans-hero .plans-n {
+        font-size: 44px;
+    }
+
+    .plans-step.is-pro .plans-bar {
+        height: 12px;
+        margin: 12px 0 14px;
+        background: var(--bg);
+        box-shadow: inset 0 0 0 1px var(--note-line);
+    }
+
+    .plans-step.is-pro .plans-bar rect {
+        fill: var(--hl);
+        stroke: var(--hl-line);
+        stroke-width: 2;
+    }
+
+    .plans-step.is-pro .plans-sub .plans-n {
+        font-size: 17px;
+        color: var(--ink);
+    }
+
+    .plans-more {
+        border-top: 1px solid var(--line);
+    }
+
+    .plans-sum {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 48px;
+        padding: 0 var(--px);
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--text);
+        cursor: pointer;
+        list-style: none;
+    }
+
+    .plans-sum::-webkit-details-marker {
+        display: none;
+    }
+
+    .plans-sum:hover {
+        color: var(--ink);
+        background: var(--chip);
+    }
+
+    .plans-sum:focus-visible {
+        outline-offset: -2px;
+    }
+
+    .plans-chev {
+        flex: none;
+        width: 16px;
+        height: 16px;
+        color: var(--muted);
+        transition: transform 150ms ease;
+    }
+
+    .plans-more[open] .plans-chev {
+        transform: rotate(180deg);
+    }
+
+    .plans-more[open] .plans-sum {
+        border-bottom: 1px solid var(--line);
+    }
+
+    .plans-region {
+        overflow-x: auto;
+    }
+
+    .plans-region:focus-visible {
+        outline-offset: -2px;
+    }
+
+    .plans-table {
+        width: 100%;
+        min-width: 320px;
+        border-collapse: separate;
+        border-spacing: 0;
+        font-size: 14px;
+        line-height: 1.4;
+        color: var(--text);
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .plans-table th,
+    .plans-table td {
+        padding: 0 3px;
+    }
+
+    .plans-table th:first-child,
+    .plans-table td:first-child {
+        padding-left: var(--px);
+    }
+
+    .plans-table th:last-child,
+    .plans-table td:last-child {
+        padding-right: var(--px);
+    }
+
+    .plans-table thead th {
+        padding-top: 14px;
+        padding-bottom: 10px;
+        font-weight: 400;
+        vertical-align: bottom;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .plans-table .plans-corner {
+        font-size: 14.5px;
+        color: var(--faint);
+        text-align: left;
+    }
+
+    .plans-pn {
+        display: block;
+        font-size: 12.5px;
+        font-weight: 600;
+        line-height: 1.3;
+        letter-spacing: 0.02em;
+        color: var(--ink);
+    }
+
+    .plans-pp {
+        display: block;
+        margin-top: 3px;
+        font-size: 14.5px;
+        font-weight: 600;
+        line-height: 1.25;
+        color: var(--ink);
+    }
+
+    .plans-pp small {
+        display: block;
+        font-size: 13px;
+        font-weight: 400;
+        color: var(--muted);
+    }
+
+    .plans-table tbody th,
+    .plans-table tbody td {
+        height: 46px;
+        white-space: nowrap;
+        border-bottom: 1px solid var(--line-soft);
+    }
+
+    .plans-table tbody tr:last-child th,
+    .plans-table tbody tr:last-child td {
+        border-bottom: 0;
+    }
+
+    .plans-table tbody th {
+        font-weight: 400;
+        line-height: 1.25;
+        color: var(--muted);
+        text-align: left;
+        white-space: normal;
+    }
+
+    .plans-table .is-hero th {
+        font-weight: 500;
+        color: var(--ink);
+    }
+
+    .plans-table .is-hero td {
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--ink);
+    }
+
+    .plans-table .is-burst th,
+    .plans-table .is-burst td {
+        border-top: 1px solid var(--field);
+    }
+
+    .plans-tag {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+    }
+
+    .plans-table .is-pro {
+        background: color-mix(in srgb, var(--hl) 20%, transparent);
+    }
+
+    .plans-table thead .is-pro {
+        box-shadow: inset 0 3px 0 var(--hl-edge);
+    }
+
+    .plans-table tbody td.is-pro {
+        font-weight: 500;
+        color: var(--ink);
+    }
+
+    @media not print {
+        .dark .plans-table .is-pro {
+            background: color-mix(in srgb, var(--hl) 9%, transparent);
+        }
+    }
+
+    @container (min-width: 30rem) {
+        .plans-frame {
+            --px: 20px;
+        }
+
+        .plans-sub {
+            grid-auto-flow: column;
+            grid-template-columns: none;
+            grid-auto-columns: minmax(0, 1fr);
+        }
+
+        .plans-step.is-pro {
+            padding-block: 24px;
+        }
+
+        .plans-table th,
+        .plans-table td {
+            padding: 0 12px;
+        }
+
+        .plans-table {
+            font-size: 16px;
+        }
+
+        .plans-table tbody th {
+            font-size: 15.5px;
+        }
+
+        .plans-table .is-hero td {
+            font-size: 17px;
+        }
+
+        .plans-pn {
+            font-size: 14px;
+        }
+
+        .plans-pp {
+            font-size: 16px;
+        }
+
+        .plans-pp small {
+            display: inline;
+            margin-left: 1px;
+            font-size: 14px;
+        }
+
+        .plans-tag {
+            position: static;
+            display: block;
+            width: auto;
+            height: auto;
+            margin: 1px 0 0;
+            overflow: visible;
+            clip-path: none;
+            font-size: 14px;
+            color: var(--faint);
+            white-space: normal;
+        }
+    }
+
+    @container (min-width: 36rem) {
+        .plans-step {
+            grid-template-columns: 15.5rem minmax(0, 1fr) auto;
+            grid-template-areas:
+                "head head cta"
+                "hero bar bar"
+                "sub sub sub";
+            gap: 14px 20px;
+        }
+
+        .plans-step.is-free {
+            gap: 10px 20px;
+        }
+
+        .plans-step.is-pro {
+            grid-template-areas:
+                "head head cta"
+                "reco reco reco"
+                "hero bar bar"
+                "sub sub sub";
+        }
+
+        .plans-head {
+            flex-direction: row;
+            gap: 10px;
+            align-items: baseline;
+            align-self: center;
+        }
+
+        .plans-cta,
+        .plans-hero,
+        .plans-bar {
+            align-self: center;
+        }
+
+        .plans-hero,
+        .plans-bar,
+        .plans-reco,
+        .plans-step.is-free .plans-hero,
+        .plans-step.is-free .plans-bar,
+        .plans-step.is-pro .plans-hero,
+        .plans-step.is-pro .plans-bar {
+            margin: 0;
+        }
+
+        .plans-step.is-free .plans-hero .plans-n {
+            font-size: 26px;
+        }
+
+        .plans-table .is-hero td {
+            font-size: 17px;
+        }
+    }
 }
 
 /* Scrollbar of the dark code panels */
@@ -591,7 +1242,68 @@
     }
 }
 
-/* Horizontal pill rows: no visible bar, the overflow peeks instead */
+/*
+ * Quiet scope of the Try panel and of its phone sheet: the code and the answer follow the theme on
+ * the soft ground of the chrome (--search) instead of the dark slab, with a palette cut to ink,
+ * greys and one accent (strings), and the semantic colours reduced to the red of --req. The dark
+ * code tokens are redefined here only, so every other consumer (the Code examples blocks, the
+ * home demo, the Playground output) keeps its own palette. Dark theme: --search is #1b1c20 on a
+ * #17181b panel, told apart by the --line hairline above the code area.
+ */
+@layer components {
+    .code-quiet {
+        --code-bg: var(--search);
+        --code-bar: var(--search);
+        --code-line: var(--line);
+        --code-btn: var(--field);
+        --code-tab: var(--chip);
+        --code-edge: var(--line);
+        --code-text: var(--text);
+        --code-punct: var(--faint);
+        --code-dim: var(--muted);
+        --code-str: var(--code-accent);
+        --code-literal: var(--text);
+        --code-key: var(--faint);
+        --code-fn: var(--ink);
+        --code-fn-weight: 600;
+        --code-sel: var(--ink);
+        --code-icon: var(--muted);
+        --warn: var(--req);
+    }
+}
+
+/*
+ * Bottom fade of the scrolling field list of the sticky Try panel, a hint that more fields wait
+ * below. It follows the scroll position (animation-timeline: scroll) so it only exists while the
+ * list overflows and goes away at its end; a browser without scroll timelines shows no fade.
+ */
+@property --fade {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+}
+
+@keyframes fade-end {
+    0%,
+    94% {
+        --fade: 22px;
+    }
+
+    100% {
+        --fade: 0px;
+    }
+}
+
+@utility fade-end {
+    mask-image: linear-gradient(to bottom, #000 calc(100% - var(--fade)), transparent);
+
+    @supports (animation-timeline: scroll()) {
+        animation: fade-end linear both;
+        animation-timeline: scroll(self);
+    }
+}
+
+/* Horizontal pill rows: no visible bar, the pill cut at the edge shows there is more */
 @utility scroll-none {
     scrollbar-width: none;
 
@@ -608,6 +1320,38 @@
     text-indent: -9ch;
 }
 
+/*
+ * Giant 404 behind the title of the error page: a flat very-low-contrast fill in the brand face,
+ * decorative (the page also says 404 in text), never selectable, fading out toward the bottom so
+ * that it never meets the search field. It is centred on the scene and sits behind the title.
+ */
+@layer components {
+    .nf-ghost {
+        position: absolute;
+        top: -0.875rem;
+        left: 50%;
+        margin: 0;
+        transform: translateX(-50%);
+        font-family: var(--brand);
+        font-size: 11rem;
+        font-weight: 800;
+        line-height: 0.8;
+        letter-spacing: -0.04em;
+        color: var(--ghost);
+        white-space: nowrap;
+        user-select: none;
+        pointer-events: none;
+        mask-image: linear-gradient(#000 45%, transparent 100%);
+    }
+
+    @media (width >= 47.5625rem) {
+        .nf-ghost {
+            top: -0.625rem;
+            font-size: 18.75rem;
+        }
+    }
+}
+
 /* Prose link: ink text, the 2 px yellow underline says "link" */
 @utility prose-link {
     color: var(--ink);
@@ -615,6 +1359,7 @@
     text-decoration-thickness: 2px;
     text-decoration-color: var(--hl-line);
     text-underline-offset: 4px;
+    overflow-wrap: anywhere;
 
     &:hover {
         text-decoration-color: var(--ink);
@@ -648,5 +1393,21 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+}
+
+/* Print: paper keeps the light tokens, every animation and fixed layer is dropped */
+@media print {
+    :root {
+        color-scheme: light;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    [data-vaul-overlay],
+    [data-slot="dialog-overlay"] {
+        display: none !important;
     }
 }

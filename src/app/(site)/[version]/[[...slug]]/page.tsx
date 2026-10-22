@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 
+import { docJsonLd } from "@/app/root";
 import { DocPage } from "@/components/doc/Page";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { docMetadata, docParams, type DocProps, type DocRoute } from "@/lib/pages";
 
 // Only the pages of the registry exist: any other version or slug is a 404 of the export
@@ -27,11 +29,19 @@ export function generateMetadata(props: DocProps): Promise<Metadata> {
 }
 
 /**
- * Route of every English documentation page: /vN/ and /vN/<page id>/.
+ * Route of every English documentation page: /vN/ and /vN/<page id>/, with the breadcrumb
+ * structured data of an endpoint page.
  *
  * @param props - Route props of Next, whose params name the version and the page
  */
-export default function Page(props: DocProps) {
+export default async function Page(props: DocProps) {
     setRequestLocale("en");
-    return <DocPage lang="en" params={props.params} />;
+    const data = await docJsonLd("en", props.params);
+
+    return (
+        <>
+            {data ? <JsonLd data={data} /> : null}
+            <DocPage lang="en" params={props.params} />
+        </>
+    );
 }
