@@ -41,7 +41,7 @@ function Back({ meta, home }: BackProps) {
             </Link>
             <div className="ml-0.5 flex min-w-0 flex-col leading-[1.15]">
                 {meta.category ? (
-                    <small className="truncate text-[11.5px] text-muted">{meta.category}</small>
+                    <small className="truncate text-[12.5px] text-muted">{meta.category}</small>
                 ) : null}
                 <b className="truncate text-[17px] font-semibold text-ink">{meta.name}</b>
             </div>

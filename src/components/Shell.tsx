@@ -1,11 +1,13 @@
-import { type AbstractIntlMessages, createTranslator, NextIntlClientProvider } from "next-intl";
+import { type AbstractIntlMessages, NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "next-themes";
 import type { ReactNode } from "react";
 import { preload, type PreloadOptions } from "react-dom";
 
 import bricolage from "@/app/fonts/bricolage.woff2" with { turbopackModuleType: "asset" };
 import geist from "@/app/fonts/geist.woff2" with { turbopackModuleType: "asset" };
-import { Palette } from "@/components/search/Palette";
+import { Addressed } from "@/components/chrome/Addressed";
+import { PaletteHost } from "@/components/chrome/PaletteHost";
+import { SkipLink } from "@/components/chrome/SkipLink";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { type AppLocale, clientMessages, LOCALE_KEY, routing } from "@/i18n/routing";
 
@@ -15,6 +17,7 @@ export interface ShellProps {
     locale: AppLocale;
     messages: AbstractIntlMessages;
     detect?: boolean;
+    alternate?: { locale: AppLocale; messages: AbstractIntlMessages };
     header?: ReactNode;
     children: ReactNode;
 }
@@ -72,18 +75,34 @@ const DETECT_SCRIPT = `(function () {
 
 /**
  * Root document of a locale, rendered by both root layouts and by the global 404: html lang, boot
- * scripts, font preloads, providers, skip link, header slot and the search palette. The palette
- * is mounted once here so that it outlives navigations.
+ * scripts, font preloads, providers, skip link, header slot and the search palette host. The
+ * palette host is mounted once here so that it outlives navigations.
  *
  * @param locale - Locale of the document, written to the html lang attribute
  * @param messages - Every message of that locale (getMessages); the client provider only gets
  *   the namespaces of the root tree
  * @param detect - True in the English root layout only: adds the language detection script
+ * @param alternate - Only the global 404 gives it: the other language of the site with its
+ *   messages, which the chrome switches to when the address in the bar is in that language
  * @param header - Site header, rendered before the page so that it persists across pages
  * @param children - Page tree; its main element carries the id CONTENT_ID
  */
-export function Shell({ locale, messages, detect = false, header, children }: ShellProps) {
-    const aria = createTranslator({ locale, messages, namespace: "aria" });
+export function Shell({
+    locale,
+    messages,
+    detect = false,
+    alternate,
+    header,
+    children,
+}: ShellProps) {
+    const page = (
+        <>
+            <SkipLink target={CONTENT_ID} />
+            {header}
+            {children}
+            <PaletteHost />
+        </>
+    );
 
     preload(geist, FONT_PRELOAD);
     preload(bricolage, FONT_PRELOAD);
@@ -104,15 +123,16 @@ export function Shell({ locale, messages, detect = false, header, children }: Sh
                         messages={clientMessages(messages, "root")}
                     >
                         <TooltipProvider delayDuration={300}>
-                            <a
-                                href={`#${CONTENT_ID}`}
-                                className="sr-only rounded-cta bg-hl text-sm font-medium text-on-hl focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-60 focus:px-4 focus:py-2"
-                            >
-                                {aria("skip")}
-                            </a>
-                            {header}
-                            {children}
-                            <Palette />
+                            {alternate ? (
+                                <Addressed
+                                    locale={alternate.locale}
+                                    messages={clientMessages(alternate.messages, "root")}
+                                >
+                                    {page}
+                                </Addressed>
+                            ) : (
+                                page
+                            )}
                         </TooltipProvider>
                     </NextIntlClientProvider>
                 </ThemeProvider>

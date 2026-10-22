@@ -1,59 +1,64 @@
 "use client";
 
-import { GlobeIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
-import type { Ref } from "react";
+import type { ComponentType } from "react";
 
+import { LanguageFace } from "@/components/chrome/LanguageFace";
+import type { LanguageMenuProps } from "@/components/chrome/LanguageMenu";
+import { LANGUAGE_TRIGGER } from "@/components/chrome/look";
+import { useLazyMenu } from "@/hooks/useLazyMenu";
 import { useLocaleSwitch } from "@/hooks/useLocaleSwitch";
-import { type AppLocale, routing } from "@/i18n/routing";
-import { cn } from "@/lib/utils";
 
 export interface LanguageProps {
-    ref?: Ref<HTMLAnchorElement>;
-    className?: string;
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
 }
 
 /**
- * Picks the language the switch opens: the next one in the list of locales, so with English
- * and French each one switches to the other.
+ * Fetches the chunk of the language menu, which holds the dropdown primitive.
  *
- * @param locale - Language of the current page
- * @returns The language of the link target
+ * @returns The menu component, once its chunk has arrived
  */
-export function nextLocale(locale: AppLocale): AppLocale {
-    const at = routing.locales.indexOf(locale);
-    return routing.locales[(at + 1) % routing.locales.length];
+function loadMenu(): Promise<ComponentType<LanguageMenuProps>> {
+    return import("@/components/chrome/LanguageMenu").then((module) => module.LanguageMenu);
 }
 
 /**
- * Language switch of the headers: the globe and the code of the current language, as a link to
- * the same page in the other language, a full load since each language is its own root document.
- * The click saves the choice under lang and keeps the query and the fragment. Alt+L clicks it.
+ * Language switch of the desktop headers: a button with the globe, the current code and a chevron
+ * that opens the language menu (see LanguageMenu), loaded once the reader shows interest. Its
+ * name starts with the code it shows, "EN, language: English", so that the visible text begins it.
  *
- * @param ref - Ref to the anchor, for the Alt+L shortcut of the header
- * @param className - Extra classes for the link, for its place in a header
+ * @param open - Whether the menu is open, controlled by the header for the Alt+L shortcut
+ * @param onOpenChange - Called with the state the trigger, Escape or a click outside ask for
  */
-export function Language({ ref, className }: LanguageProps) {
+export function Language({ open, onOpenChange }: LanguageProps) {
     const t = useTranslations("header");
     const common = useTranslations("common");
-    const { locale, links, follow } = useLocaleSwitch();
-    const target = nextLocale(locale);
+    const { locale } = useLocaleSwitch();
+    const { plain, Menu, focus, want } = useLazyMenu(loadMenu, open);
     const code = common(`languageCodes.${locale}`);
+    const label = t("language", { name: common(`languages.${locale}`), code });
+
+    if (Menu) return <Menu open={open} onOpenChange={onOpenChange} focus={focus} />;
 
     return (
-        <a
-            ref={ref}
-            href={links[target]}
-            hrefLang={target}
-            aria-label={t("language", { code, name: common(`languages.${target}`) })}
-            onClick={(event) => follow(target, event)}
-            className={cn(
-                "flex h-8.5 shrink-0 items-center gap-1.5 rounded-field px-2.25 text-[13px] font-medium text-muted hover:bg-chip hover:text-ink",
-                className,
-            )}
+        <button
+            ref={plain}
+            type="button"
+            aria-label={label}
+            aria-haspopup="menu"
+            aria-expanded={open}
+            onPointerEnter={want}
+            onFocus={want}
+            onClick={() => onOpenChange(!open)}
+            onKeyDown={(event) => {
+                if (event.key !== "ArrowDown") return;
+                event.preventDefault();
+                onOpenChange(true);
+            }}
+            className={LANGUAGE_TRIGGER}
         >
-            <GlobeIcon aria-hidden="true" className="size-4" />
-            {code}
-        </a>
+            <LanguageFace code={code} />
+        </button>
     );
 }

@@ -6,9 +6,8 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 
-import { bannerKind } from "@/components/chrome/targets";
-import { versionLabel } from "@/components/chrome/Versions";
-import { NAV } from "@/data/nav";
+import { bannerKind, versionLabel } from "@/components/chrome/targets";
+import { KINDS } from "@/data/kinds";
 import { LATEST, VERSIONS } from "@/data/versions";
 import { href, INDEX, parsePath, versionTarget } from "@/lib/routes";
 
@@ -27,7 +26,7 @@ const ICONS = {
  */
 function code(chunks: ReactNode): ReactNode {
     return (
-        <code className="rounded-tag bg-chip px-1.5 py-0.5 font-mono text-[0.875em]">{chunks}</code>
+        <code className="rounded-tag bg-chip px-1 py-0.5 font-mono text-[0.875em]">{chunks}</code>
     );
 }
 
@@ -50,7 +49,7 @@ export function Banner() {
 
     if (slug === INDEX) {
         return (
-            <div className="mx-auto w-full max-w-205 px-5 pt-6 desk:px-12 desk:pt-9 print:hidden">
+            <div className="mx-auto w-full max-w-240 px-5 pt-6 desk:px-12 desk:pt-9 print:hidden">
                 <aside
                     aria-label={t(`${kind}.title`)}
                     className="flex items-start gap-3 rounded-box border border-note-line bg-note-bg px-3.5 py-3 text-sm/[1.55] text-note-ink"
@@ -61,7 +60,7 @@ export function Banner() {
                         <p>{t.rich(`${kind}.text`, { version: LATEST, code })}</p>
                         <Link
                             href={href(lang, LATEST)}
-                            className="prose-link inline-flex w-fit items-center gap-1.5 font-medium"
+                            className="prose-link inline-flex min-h-11 w-fit items-center gap-1.5 font-medium desk:min-h-0"
                         >
                             {t("link")}
                             <ArrowRightIcon aria-hidden="true" className="size-4" />
@@ -75,14 +74,14 @@ export function Banner() {
     return (
         <aside
             aria-label={t(`${kind}.title`)}
-            className="flex items-start gap-2.5 border-b border-note-line bg-note-bg px-5 py-2.5 text-[13px]/5 text-note-ink desk:px-12 print:hidden"
+            className="flex items-start gap-2.5 border-b border-note-line bg-note-bg px-5 py-2.5 text-[14px]/5 text-note-ink desk:px-12 print:hidden"
         >
             <Glyph aria-hidden="true" className="mt-0.5 size-4 shrink-0 text-ink" />
             <p className="min-w-0">
                 {t(`slim.${kind}`, { version: versionLabel(def), latest: latestLabel })}{" "}
                 <Link
-                    href={href(lang, LATEST, versionTarget(NAV, LATEST, slug))}
-                    className="prose-link font-medium whitespace-nowrap"
+                    href={href(lang, LATEST, versionTarget(KINDS, LATEST, slug))}
+                    className="prose-link relative font-medium whitespace-nowrap after:absolute after:inset-x-0 after:-inset-y-3.5 desk:after:hidden"
                 >
                     {t("link")}
                 </Link>

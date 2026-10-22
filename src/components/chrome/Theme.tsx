@@ -1,42 +1,54 @@
 "use client";
 
-import { MoonIcon, SunIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
-import { useEffect } from "react";
+import { type ComponentType, useEffect, useState } from "react";
 
+import { THEME_TRIGGER, tipOnKeyFocus } from "@/components/chrome/look";
+import { themeChoice } from "@/components/chrome/targets";
+import { ThemeFace } from "@/components/chrome/ThemeFace";
+import type { ThemeMenuProps } from "@/components/chrome/ThemeMenu";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
-import { THEME_COLORS, type ThemeName } from "@/data/theme";
+import { THEME_COLORS } from "@/data/theme";
 import { useHydrated } from "@/hooks/useHydrated";
-import { cn } from "@/lib/utils";
+import { useLazyMenu } from "@/hooks/useLazyMenu";
 
 export interface ThemeProps {
-    className?: string;
+    open: boolean;
+    onOpenChange: (open: boolean) => void;
 }
 
 /**
- * Picks the theme a press of the toggle (or Alt+T) switches to.
+ * Fetches the chunk of the theme menu, which holds the dropdown primitive.
  *
- * @param resolved - Theme in use as next-themes resolves it (the system one applied), undefined
- *   before hydration
- * @returns "light" when the dark theme is in use, else "dark"
+ * @returns The menu component, once its chunk has arrived
  */
-export function toggledTheme(resolved: string | undefined): ThemeName {
-    return resolved === "dark" ? "light" : "dark";
+function loadMenu(): Promise<ComponentType<ThemeMenuProps>> {
+    return import("@/components/chrome/ThemeMenu").then((module) => module.ThemeMenu);
 }
 
 /**
- * Theme toggle of the headers: a moon in the light theme, a sun in the dark one, picked by the dark
- * class that next-themes sets before the first paint. The label waits for hydration, and the
- * browser theme color follows the theme in use.
+ * Theme control of the desktop headers: an icon button that opens the theme menu (see ThemeMenu),
+ * whose chunk is fetched only once the reader shows interest. Mounted on every page, phone
+ * included, so it also keeps the browser theme color in step with the theme in use.
  *
- * @param className - Extra classes for the button, for its place in a header
+ * @param open - Whether the menu is open, controlled by the header, which keeps one menu open
+ * @param onOpenChange - Called with the state the trigger, Escape or a click outside ask for
  */
-export function Theme({ className }: ThemeProps) {
+export function Theme({ open, onOpenChange }: ThemeProps) {
+    const t = useTranslations("header");
     const aria = useTranslations("aria");
-    const { resolvedTheme, setTheme } = useTheme();
+    const common = useTranslations("common");
+    const { theme, resolvedTheme } = useTheme();
     const hydrated = useHydrated();
-    const label = aria(hydrated && resolvedTheme === "dark" ? "themeLight" : "themeDark");
+    const { plain, Menu, focus, want } = useLazyMenu(loadMenu, open);
+    const [tip, setTip] = useState(false);
+    const choice = hydrated ? themeChoice(theme) : undefined;
+    const label = choice ? t("theme", { name: common(`themes.${choice}`) }) : aria("theme");
+    const change = (next: boolean) => {
+        if (next) setTip(false);
+        onOpenChange(next);
+    };
 
     useEffect(() => {
         if (resolvedTheme !== "light" && resolvedTheme !== "dark") return;
@@ -46,21 +58,40 @@ export function Theme({ className }: ThemeProps) {
     }, [resolvedTheme]);
 
     return (
-        <Tooltip>
-            <TooltipTrigger asChild>
-                <button
-                    type="button"
-                    aria-label={label}
-                    onClick={() => setTheme(toggledTheme(resolvedTheme))}
-                    className={cn(
-                        "flex size-8.5 shrink-0 cursor-pointer items-center justify-center rounded-field text-muted hover:bg-chip hover:text-ink",
-                        className,
-                    )}
-                >
-                    <MoonIcon aria-hidden="true" className="size-4 dark:hidden" />
-                    <SunIcon aria-hidden="true" className="hidden size-4 dark:block" />
-                </button>
-            </TooltipTrigger>
+        <Tooltip open={tip} onOpenChange={(next) => setTip(next && !open)}>
+            {Menu ? (
+                <Menu
+                    open={open}
+                    onOpenChange={change}
+                    focus={focus}
+                    label={label}
+                    choice={choice}
+                />
+            ) : (
+                <TooltipTrigger asChild>
+                    <button
+                        ref={plain}
+                        type="button"
+                        aria-label={label}
+                        aria-haspopup="menu"
+                        aria-expanded={open}
+                        onPointerEnter={want}
+                        onFocus={(event) => {
+                            want();
+                            tipOnKeyFocus(event);
+                        }}
+                        onClick={() => change(!open)}
+                        onKeyDown={(event) => {
+                            if (event.key !== "ArrowDown") return;
+                            event.preventDefault();
+                            change(true);
+                        }}
+                        className={THEME_TRIGGER}
+                    >
+                        <ThemeFace />
+                    </button>
+                </TooltipTrigger>
+            )}
             <TooltipContent sideOffset={6}>{label}</TooltipContent>
         </Tooltip>
     );
