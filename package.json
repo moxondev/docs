@@ -12,6 +12,7 @@
         "build": "next build",
         "postbuild": "tsx scripts/redirects.ts",
         "start": "npx serve out -p 4816",
+        "weight": "tsx scripts/weight.ts",
         "lint": "eslint",
         "test": "tsx --test \"src/**/*.test.ts\" \"scripts/**/*.test.ts\"",
         "check": "tsx scripts/pages.ts --check && tsx scripts/messages.ts && tsx scripts/charter.ts && tsc --noEmit && eslint . && prettier --check . && npm run test",
