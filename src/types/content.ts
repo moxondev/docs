@@ -53,6 +53,7 @@ export interface Operation {
     id: string;
     method: Method;
     path: string;
+    root?: true;
     try: boolean;
     params: ParamSpec[];
 }

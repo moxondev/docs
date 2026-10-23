@@ -126,6 +126,19 @@ export function isComplete(op: Operation, values: FormValues): boolean {
 }
 
 /**
+ * Gives the path of an operation as the API serves it: after the version, or alone for a route of
+ * the root of the API such as /health.
+ *
+ * @param version - Documentation version, which is also the API version
+ * @param op - Operation whose root flag is read
+ * @param path - Path to place, the path of the operation by default
+ * @returns The path with its version prefix, or without it for a root route
+ */
+export function apiPath(version: Version, op: Operation, path: string = op.path): string {
+    return op.root ? path : `/${version}${path}`;
+}
+
+/**
  * Builds the live URL of an operation: API base, version, then the path with its ":name"
  * placeholders replaced by the encoded form values; an empty placeholder stays visible.
  *
@@ -139,7 +152,7 @@ export function buildUrl(version: Version, op: Operation, values: FormValues): s
         const value = values[name] ?? "";
         return value === "" ? whole : encodeURIComponent(value);
     });
-    return `${SITE.api}/${version}${path}`;
+    return `${SITE.api}${apiPath(version, op, path)}`;
 }
 
 /**
@@ -210,7 +223,7 @@ export function exampleRequest(
     block: ExamplesBlock,
     lang: Lang,
 ): PreparedRequest {
-    const url = `${SITE.api}/${version}${block.path ?? op.path}`;
+    const url = `${SITE.api}${apiPath(version, op, block.path ?? op.path)}`;
     if (hasBody(op.method)) {
         return { method: op.method, url, body: block.body ? pick(block.body, lang) : {} };
     }

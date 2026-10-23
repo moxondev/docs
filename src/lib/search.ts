@@ -5,6 +5,7 @@ import { LATEST, VERSIONS } from "@/data/versions";
 import { pageAnchors } from "@/lib/anchors";
 import { type IconName, pick, plain } from "@/lib/inline";
 import { catalogueEntry, familyMethods, isListed, pageOrder, releasePages } from "@/lib/nav";
+import { apiPath } from "@/lib/request";
 import { hasPage, href, parsePath } from "@/lib/routes";
 import type {
     Block,
@@ -358,7 +359,7 @@ function rowDocs(
     for (const block of blocks) {
         const op = ops.find((candidate) => candidate.id === state.op) ?? ops[0];
         const base = (): Pick<SearchDoc, "u" | "r" | "m"> =>
-            op ? { u: b.u, r: `/${b.page.version}${op.path}`, m: [op.method] } : { u: b.u };
+            op ? { u: b.u, r: apiPath(b.page.version, op), m: [op.method] } : { u: b.u };
         const ids = rows.get(block) ?? [];
         switch (block.type) {
             case "endpoint":
@@ -432,7 +433,7 @@ export function pageDocs(page: Page, lang: Lang, ctx: SearchContext): SearchDoc[
     };
     if (page.status) main.s = page.status;
     if (main.k === "endpoint") {
-        main.r = ops[0] ? `/${page.version}${ops[0].path}` : `/${page.version}/${page.id}`;
+        main.r = ops[0] ? apiPath(page.version, ops[0]) : `/${page.version}/${page.id}`;
         const methods = family ? familyMethods(ctx.nav, page.version, page.id) : ownMethods(ops);
         if (methods.length) main.m = methods;
     }

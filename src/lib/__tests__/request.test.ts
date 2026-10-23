@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
 import {
+    apiPath,
     buildUrl,
     exampleRequest,
     firstMissing,
@@ -81,6 +82,27 @@ describe("URLs", () => {
             "https://api.moxon.dev/v4/chat/a%20b%2Fc",
         );
         assert.equal(buildUrl("v4", CHAT_DELETE, {}), "https://api.moxon.dev/v4/chat/:token");
+    });
+});
+
+describe("apiPath", () => {
+    const HEALTH: Operation = {
+        id: "health",
+        method: "get",
+        path: "/health",
+        root: true,
+        try: true,
+        params: [],
+    };
+
+    test("a versioned operation is served after its version, a root one alone", () => {
+        assert.equal(apiPath("v6", PASSWORD), "/v6/password");
+        assert.equal(apiPath("v6", HEALTH), "/health");
+        assert.equal(apiPath("v5", PASSWORD, "/password/x"), "/v5/password/x");
+    });
+
+    test("the request of a root operation has no version", () => {
+        assert.equal(prepareRequest("v6", HEALTH, {}).url, "https://api.moxon.dev/health");
     });
 });
 
