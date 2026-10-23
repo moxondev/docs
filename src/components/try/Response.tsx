@@ -176,7 +176,7 @@ export function ResponseBody({ response, retry, dim = false }: ResponseBodyProps
             {response.kind === "json" ? (
                 <pre
                     tabIndex={0}
-                    className="overflow-x-auto px-4 pt-3.5 pb-4.5 font-mono text-[13.5px]/[1.7]"
+                    className="overflow-x-auto px-4 pt-3.5 pb-4.5 font-mono text-[13.5px]/[1.7] focus-visible:outline-code-focus focus-visible:-outline-offset-2"
                 >
                     <Tokens lines={lines} wrap />
                 </pre>
@@ -184,7 +184,7 @@ export function ResponseBody({ response, retry, dim = false }: ResponseBodyProps
             {response.kind === "text" && response.body !== "" ? (
                 <pre
                     tabIndex={0}
-                    className="overflow-x-auto px-4 pt-3.5 pb-4.5 font-mono text-[13.5px]/[1.7] break-words whitespace-pre-wrap"
+                    className="overflow-x-auto px-4 pt-3.5 pb-4.5 font-mono text-[13.5px]/[1.7] break-words whitespace-pre-wrap focus-visible:outline-code-focus focus-visible:-outline-offset-2"
                 >
                     {response.body}
                 </pre>

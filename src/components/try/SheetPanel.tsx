@@ -115,7 +115,7 @@ function Output({ handle, view, onView }: OutputProps) {
                 {view === "curl" ? (
                     <pre
                         tabIndex={0}
-                        className="overflow-x-auto px-5 pt-1.5 pb-4 font-mono text-[13.5px]/[1.75]"
+                        className="overflow-x-auto px-5 pt-1.5 pb-4 font-mono text-[13.5px]/[1.75] focus-visible:outline-code-focus focus-visible:-outline-offset-2"
                     >
                         <Tokens lines={lines} />
                     </pre>

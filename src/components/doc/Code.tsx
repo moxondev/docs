@@ -38,8 +38,8 @@ export function Code({ block, lang }: CodeProps) {
             <pre
                 tabIndex={0}
                 className={cn(
-                    "overflow-x-auto px-4 py-3.5 font-mono text-[13.5px]/[1.7] whitespace-pre",
-                    !block.role && "mr-11",
+                    "overflow-x-auto px-4 py-3.5 font-mono text-[13.5px]/[1.7] whitespace-pre focus-visible:outline-code-focus focus-visible:-outline-offset-2",
+                    block.role ? "rounded-b-[inherit]" : "mr-11 rounded-[inherit]",
                 )}
             >
                 <code>

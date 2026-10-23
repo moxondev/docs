@@ -101,7 +101,7 @@ export function Snippet({ request, variant = "block", className }: SnippetProps)
             <div role="tabpanel" id={panelId} aria-labelledby={tabId(panelId, lang)}>
                 <pre
                     tabIndex={0}
-                    className="overflow-x-auto px-4 py-3.5 font-mono text-[13.5px]/[1.7]"
+                    className="overflow-x-auto px-4 py-3.5 font-mono text-[13.5px]/[1.7] focus-visible:outline-code-focus focus-visible:-outline-offset-2"
                 >
                     <Tokens lines={lines} />
                 </pre>
