@@ -28,7 +28,7 @@ export function Code({ block, lang }: CodeProps) {
     return (
         <figure className="scroll-dark relative overflow-hidden rounded-table bg-code-bg text-code-text">
             {block.role ? (
-                <figcaption className="flex h-10.5 items-center justify-between border-b border-code-line pr-2 pl-4 text-xs font-medium tracking-[0.08em] text-code-dim uppercase">
+                <figcaption className="flex h-10.5 items-center justify-between border-b border-code-line pr-2 pl-4 text-[13px] font-medium text-code-dim">
                     {t(`code.${block.role}`)}
                     <Copy text={text} />
                 </figcaption>
