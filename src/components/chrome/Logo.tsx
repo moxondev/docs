@@ -4,7 +4,7 @@ import { hasLocale, useLocale, useTranslations } from "next-intl";
 import { localePath, routing } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 
-export type LogoSize = "header" | "phone";
+export type LogoSize = "header" | "phone" | "footer";
 
 export interface WordmarkProps {
     size?: LogoSize;
@@ -14,10 +14,11 @@ export interface LogoProps {
     size?: LogoSize;
 }
 
-// Font size of the wordmark: one for both forms of the desktop header, one for the phone headers
+// Font size of the wordmark: both forms of the desktop header, the phone headers, the footer
 const SIZES: Record<LogoSize, string> = {
     header: "text-[23px]/none",
     phone: "text-[22px]/none",
+    footer: "text-[19px]/none",
 };
 
 // Invisible 44 px hit area of the phone logo, drawn around its link
@@ -51,8 +52,8 @@ function Clamp() {
  * letters are a picture for assistive technologies (they would read "mo on"), so they are hidden
  * from them: whatever holds the wordmark names itself.
  *
- * @param size - Place of the wordmark, "header" for the desktop header or "phone", which picks its
- *   font size
+ * @param size - Place of the wordmark, "header" for the desktop header, "phone" or "footer",
+ *   which picks its font size
  */
 export function Wordmark({ size = "header" }: WordmarkProps) {
     return (
@@ -77,8 +78,8 @@ export function Wordmark({ size = "header" }: WordmarkProps) {
  * phone headers (the header of a wide screen folds it into the version trigger, see Versions). A
  * visually hidden text names the link, so its name contains the word that the logo shows.
  *
- * @param size - Place of the logo, "header" for the slim desktop header or "phone" for the phone
- *   headers, whose link gets a larger hit area
+ * @param size - Place of the logo, "header" for the slim desktop header, "phone" for the phone
+ *   headers or "footer" for the site footer; the last two get a larger hit area
  */
 export function Logo({ size = "header" }: LogoProps) {
     const locale = useLocale();
@@ -88,7 +89,7 @@ export function Logo({ size = "header" }: LogoProps) {
     return (
         <Link
             href={home}
-            className={cn("inline-flex shrink-0 hover:text-ink", size === "phone" && PHONE_HIT)}
+            className={cn("inline-flex shrink-0 hover:text-ink", size !== "header" && PHONE_HIT)}
         >
             <span className="sr-only">{aria("home")}</span>
             <Wordmark size={size} />
