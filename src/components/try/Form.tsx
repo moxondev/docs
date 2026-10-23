@@ -104,15 +104,17 @@ export function SendButton({ handle, touch }: SendButtonProps) {
             className="w-full rounded-field max-desk:h-12 disabled:bg-hl disabled:text-on-hl disabled:opacity-60"
         >
             {loading ? <LoaderCircle aria-hidden="true" className="animate-spinner" /> : null}
-            {loading ? t("sending") : t("send")}
-            {touch ? null : (
-                <Kbd
-                    aria-hidden="true"
-                    className="h-auto min-w-0 border-0 bg-transparent p-0 text-on-hl/66 max-desk:hidden"
-                >
-                    <KeyLabels labels={labels} />
-                </Kbd>
-            )}
+            <span className="inline-flex items-baseline gap-2.5">
+                {loading ? t("sending") : t("send")}
+                {touch ? null : (
+                    <Kbd
+                        aria-hidden="true"
+                        className="h-auto min-w-0 border-0 bg-transparent p-0 text-on-hl/66 max-desk:hidden"
+                    >
+                        <KeyLabels labels={labels} />
+                    </Kbd>
+                )}
+            </span>
         </Button>
     );
 }
