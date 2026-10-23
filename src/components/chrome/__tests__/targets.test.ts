@@ -104,7 +104,7 @@ test("the column table gives the home, the playground and the text pages their w
         "release",
         "endpoint",
     ] as const) {
-        assert.equal(columnClass(kind), "max-w-240 px-5 desk:px-12", kind);
+        assert.equal(columnClass(kind), "max-w-219 px-5 desk:px-12", kind);
     }
 });
 

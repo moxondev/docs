@@ -49,7 +49,7 @@ export function Banner() {
 
     if (slug === INDEX) {
         return (
-            <div className="mx-auto w-full max-w-240 px-5 pt-6 desk:px-12 desk:pt-9 print:hidden">
+            <div className="mx-auto w-full max-w-219 px-5 pt-6 desk:px-12 desk:pt-9 print:hidden">
                 <aside
                     aria-label={t(`${kind}.title`)}
                     className="flex items-start gap-3 rounded-box border border-note-line bg-note-bg px-3.5 py-3 text-sm/[1.55] text-note-ink"

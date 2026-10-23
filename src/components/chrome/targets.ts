@@ -157,7 +157,7 @@ export function showsFooter(
 export function columnClass(kind: PageKind | "home"): string {
     if (kind === "home") return "max-w-296 px-5 home:px-8";
     if (kind === "playground") return "max-w-300 px-5 desk:px-12";
-    return "max-w-240 px-5 desk:px-12";
+    return "max-w-219 px-5 desk:px-12";
 }
 
 /**
