@@ -15,7 +15,7 @@ export function LanguageFace({ code }: LanguageFaceProps) {
     return (
         <>
             <GlobeIcon aria-hidden="true" className="size-4" />
-            {code}
+            <span className="translate-y-px">{code}</span>
             <ChevronDownIcon aria-hidden="true" className="-ml-0.5 size-3.5" />
         </>
     );
