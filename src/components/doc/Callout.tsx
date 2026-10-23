@@ -47,13 +47,13 @@ export function Callout({ block, ctx }: CalloutProps) {
                 ) : null}
                 {body.map((part, index) =>
                     part.type === "p" ? (
-                        <p key={index} className="max-w-[64ch] text-wrap [&_code]:text-[14px]">
+                        <p key={index} className="max-w-(--measure) text-wrap [&_code]:text-[14px]">
                             <Inline text={part.text} ctx={ctx} />
                         </p>
                     ) : (
                         <ul
                             key={index}
-                            className="max-w-[64ch] list-disc pl-5 text-wrap [&_code]:text-[14px]"
+                            className="max-w-(--measure) list-disc pl-5 text-wrap [&_code]:text-[14px]"
                         >
                             {part.items.map((item, at) => (
                                 <li key={at} className="text-wrap">

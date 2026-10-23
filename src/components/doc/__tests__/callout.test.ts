@@ -67,10 +67,10 @@ describe("Callout", () => {
         assert.match(CSS, /--color-destructive: var\(--destructive\)/);
     });
 
-    test("the text goes up to 64ch and wraps normally", () => {
+    test("the text follows the reading measure of the page and wraps normally", () => {
         const html = render("info");
-        assert.equal(html.match(/max-w-\[64ch\]/g)?.length, 2);
-        assert.doesNotMatch(html, /max-w-\(--measure\)/);
+        assert.equal(html.match(/max-w-\(--measure\)/g)?.length, 2);
+        assert.doesNotMatch(html, /max-w-\[64ch\]/);
         assert.equal(html.match(/text-wrap/g)?.length, 4);
     });
 });
