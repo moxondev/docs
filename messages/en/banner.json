@@ -11,6 +11,10 @@
         "title": "No longer served",
         "text": "The API stopped serving this version in 6.0.0. Its documentation is kept for reference: install <code>@20syldev/api@5.9.0</code> if you still need it, or migrate to {version}."
     },
+    "outage": {
+        "title": "The API is not answering.",
+        "text": "Try requests will fail until it is back; this notice leaves by itself."
+    },
     "link": "View latest version",
     "slim": {
         "previous": "You are reading the {version} documentation. A newer version is available: {latest}.",
