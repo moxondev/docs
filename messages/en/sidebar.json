@@ -10,6 +10,7 @@
         "index": "Get started",
         "authentication": "Authentication",
         "manifest": "Manifest",
+        "instance": "Instance",
         "pricing": "Pricing and limits",
         "playground": "Playground",
         "changelog": "Changelog"
