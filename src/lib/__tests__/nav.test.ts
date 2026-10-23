@@ -22,7 +22,7 @@ import {
     tocEntries,
 } from "@/lib/nav";
 import { getPage } from "@/lib/pages";
-import type { Lang, Page, PageStatus, Version } from "@/types/content";
+import type { Block, Lang, Page, PageStatus, Version } from "@/types/content";
 import type { Nav, NavPage } from "@/types/nav";
 
 // Letters built from their code points so that this file stays pure ASCII
@@ -364,6 +364,35 @@ describe("Toc entries", () => {
         assert.ok(statuses);
         assert.equal(statuses.label, undefined);
         assert.equal(statuses.title, "Game Statuses");
+    });
+
+    test("a short label given by two sections is dropped: both keep their titles", () => {
+        const fields: Block = { type: "fields", rows: [] };
+        const page: Page = {
+            version: "v6",
+            id: "x",
+            kind: "article",
+            title: { en: "X", fr: "X" },
+            sections: [
+                { id: "", blocks: [] },
+                { id: "a", level: 2, title: { en: "A", fr: "A" }, blocks: [fields] },
+                { id: "b", level: 2, title: { en: "B", fr: "B" }, blocks: [fields] },
+                {
+                    id: "c",
+                    level: 2,
+                    title: { en: "C", fr: "C" },
+                    blocks: [{ type: "errors", rows: [] }],
+                },
+            ],
+        };
+        assert.deepEqual(
+            tocEntries(page, "en").map((item) => [item.id, item.label ?? item.title]),
+            [
+                ["a", "A"],
+                ["b", "B"],
+                ["c", "errors"],
+            ],
+        );
     });
 
     test("level 3 sections are listed, the preamble is not", async () => {

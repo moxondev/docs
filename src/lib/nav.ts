@@ -399,8 +399,8 @@ function sectionLabel(blocks: readonly Block[], lang: Lang): TocLabel | undefine
 
 /**
  * Lists the "On this page" entries of a page: its level 2 and level 3 sections in the
- * language, each with its plain title and, when its blocks give one, the short label that the
- * Toc prints instead.
+ * language, each with its plain title and the short label that the Toc prints instead, when its
+ * blocks give one that no other section of the page gives too.
  *
  * @param page - Page whose sections are read; the untitled preamble is skipped
  * @param lang - Language; a section that exists only in the other one is skipped
@@ -411,14 +411,16 @@ export function tocEntries(page: Page, lang: Lang): TocEntry[] {
         section.level !== undefined &&
         section.title !== undefined &&
         (!section.only || section.only === lang);
-    return page.sections.filter(titled).map((section) => {
+    const sections = page.sections.filter(titled);
+    const labels = sections.map((section) => sectionLabel(section.blocks, lang));
+    return sections.map((section, index) => {
         const entry: TocEntry = {
             id: section.id,
             level: section.level,
             title: section.title ? plain(pick(section.title, lang)) : section.id,
         };
-        const label = sectionLabel(section.blocks, lang);
-        if (label) entry.label = label;
+        const label = labels[index];
+        if (label && labels.indexOf(label) === labels.lastIndexOf(label)) entry.label = label;
         return entry;
     });
 }
