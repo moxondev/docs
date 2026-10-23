@@ -13,6 +13,7 @@ import { scrollBehavior } from "@/components/try/util";
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerClose, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
 import { COPY_LABELS, useCopy } from "@/hooks/useCopy";
+import { useKeyboardInset } from "@/hooks/useKeyboardInset";
 import type { RequestHandle } from "@/hooks/useRequest";
 import { restoreOpener, useSheet } from "@/hooks/useSheet";
 import { highlight } from "@/lib/highlight";
@@ -136,8 +137,8 @@ function Output({ handle, view, onView }: OutputProps) {
 
 /**
  * Body of the phone Try sheet: a bottom drawer with a grab handle and a scrim, shown while the
- * shared sheet state is open. It holds the head, the same form as the desktop panel and the quiet
- * output area.
+ * shared sheet state is open, with the head, the form and the quiet output area. vaul does not
+ * reposition it for the keyboard, which pins its height; the keyboard inset lifts it instead.
  *
  * @param version - Documentation version, which is also the API version of the request
  * @param op - Operation of the sheet, with try true
@@ -152,17 +153,19 @@ export function SheetPanel({ version, op, name, handle }: SheetPanelProps) {
     const [view, setView] = useState<SheetView>("response");
     const [phase, setPhase] = useState(handle.phase);
 
+    useKeyboardInset(open);
+
     if (phase !== handle.phase) {
         setPhase(handle.phase);
         if (handle.phase === "loading") setView("response");
     }
 
     return (
-        <Drawer open={open} onOpenChange={setOpen} autoFocus>
+        <Drawer open={open} onOpenChange={setOpen} autoFocus repositionInputs={false}>
             <DrawerContent
                 aria-describedby={undefined}
                 onCloseAutoFocus={restoreOpener}
-                className="bg-surface shadow-sheet data-[vaul-drawer-direction=bottom]:mt-0 data-[vaul-drawer-direction=bottom]:max-h-[calc(100dvh-3rem)] data-[vaul-drawer-direction=bottom]:rounded-t-sheet data-[vaul-drawer-direction=bottom]:border-t-0 desk:hidden"
+                className="bg-surface shadow-sheet data-[vaul-drawer-direction=bottom]:bottom-[var(--keyboard-inset,0px)] data-[vaul-drawer-direction=bottom]:mt-0 data-[vaul-drawer-direction=bottom]:max-h-[calc(100dvh-3rem-var(--keyboard-inset,0px))] data-[vaul-drawer-direction=bottom]:rounded-t-sheet data-[vaul-drawer-direction=bottom]:border-t-0 desk:hidden"
             >
                 <div className="flex shrink-0 items-center gap-2 pt-1 pr-1.5 pb-2 pl-5">
                     <DrawerTitle className="text-[17px] font-semibold text-ink">
