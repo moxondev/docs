@@ -603,6 +603,13 @@
         }
     }
 
+    /* Room for the phone outage card: the last links of a page are never left under it */
+    @media (width < 60rem) {
+        body:has([data-outage]) {
+            padding-bottom: 8rem;
+        }
+    }
+
     /* Room for the sticky send button of the Playground form: a focused field is never hidden */
     @media (width >= 80rem) {
         html:has([data-variant="bench"]) {

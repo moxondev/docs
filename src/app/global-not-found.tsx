@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { layoutMetadata } from "@/app/root";
 import { Header } from "@/components/chrome/Header";
+import { OutageHost } from "@/components/chrome/OutageHost";
 import { Topbar } from "@/components/chrome/Topbar";
 import { countEntries, homeCatalogue } from "@/components/home/model";
 import { NotFound, type NotFoundCopy } from "@/components/NotFound";
@@ -55,6 +56,7 @@ export default async function GlobalNotFound() {
                 <>
                     <Header />
                     <Topbar />
+                    <OutageHost />
                 </>
             }
         >

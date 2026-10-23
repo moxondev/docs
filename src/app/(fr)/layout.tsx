@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 
 import { layoutMetadata } from "@/app/root";
 import { Header } from "@/components/chrome/Header";
+import { OutageHost } from "@/components/chrome/OutageHost";
 import { Topbar } from "@/components/chrome/Topbar";
 import { Shell } from "@/components/Shell";
 import { VIEWPORT } from "@/lib/metadata";
@@ -43,6 +44,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
                 <>
                     <Header />
                     <Topbar />
+                    <OutageHost />
                 </>
             }
         >
