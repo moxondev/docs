@@ -124,11 +124,11 @@
     --brand: "Bricolage Grotesque", "Bricolage Fallback", "Geist", sans-serif;
 
     /*
-     * Reading measure of running prose; code, tables and cards use the full column. The ch unit is
-     * the width of a zero, about 1.35 times the average character of Geist prose, so 52ch is about
-     * 70 characters per line at 16 px.
+     * Reading measure of running prose and of the text of a callout: the whole column, like the code
+     * blocks, the tables and the cards, whose width is set by columnClass. A ch value caps it again;
+     * 52ch is about 70 characters per line at 16 px.
      */
-    --measure: 52ch;
+    --measure: 100%;
 
     --ink: #0f1115;
     --text: #3a3f4b;
