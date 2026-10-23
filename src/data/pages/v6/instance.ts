@@ -10,6 +10,10 @@ export const page: Page = {
         fr: "`/health` et `/logs` renseignent sur l'état d'une instance de l'API au lieu d'offrir un utilitaire. Ils sont à la racine, hors de toute version.",
     },
     updated: "2026-10-23",
+    operations: [
+        { id: "health", method: "get", path: "/health", root: true, try: true, params: [] },
+        { id: "logs", method: "get", path: "/logs", root: true, try: false, params: [] },
+    ],
     sections: [
         {
             id: "",
@@ -31,21 +35,12 @@ export const page: Page = {
                 {
                     type: "p",
                     text: {
-                        en: "`GET /health` answers with the state of the instance: its version, how long it has been running and how much memory it uses. It needs no token, which makes it the route to point a monitoring probe at.",
-                        fr: "`GET /health` répond avec l'état de l'instance : sa version, depuis combien de temps elle tourne et la mémoire qu'elle utilise. Elle ne demande aucun jeton, ce qui en fait la route à donner à une sonde de supervision.",
+                        en: "`GET /health` answers with the state of the instance: its version, how long it has been running and how much memory it uses. It needs no token, which makes it the route to point a monitoring probe at. The Try below sends it to `api.moxon.dev` when the page opens, so its answer is the live one.",
+                        fr: "`GET /health` répond avec l'état de l'instance : sa version, depuis combien de temps elle tourne et la mémoire qu'elle utilise. Elle ne demande aucun jeton, ce qui en fait la route à donner à une sonde de supervision. Le Try ci-dessous l'envoie à `api.moxon.dev` à l'ouverture de la page : sa réponse est donc celle du moment.",
                     },
                 },
-                {
-                    type: "code",
-                    lang: "bash",
-                    text: "curl https://api.moxon.dev/health",
-                },
-                {
-                    type: "code",
-                    lang: "json",
-                    role: "response",
-                    text: '{\n    "status": "ok",\n    "uptime": 33052,\n    "version": "6.1.0",\n    "node": "v26.12.0",\n    "memory": {\n        "rss": "54.6 MB",\n        "heap_used": "17.1 MB",\n        "heap_total": "22.5 MB"\n    },\n    "connections": 23,\n    "logs": 1000\n}',
-                },
+                { type: "endpoint", op: "health" },
+                { type: "try", op: "health", autoSend: true },
                 {
                     type: "fields",
                     rows: [
@@ -137,6 +132,7 @@ export const page: Page = {
                         fr: "`GET /logs` renvoie les 1 000 dernières requêtes auxquelles l'instance a répondu, de la plus ancienne à la plus récente. Il porte le trafic de tous les clients, il est donc fermé par défaut : il ne s'ouvre qu'une fois `LOGS_TOKEN` défini, et demande alors cette valeur dans l'en-tête `X-Logs-Token`.",
                     },
                 },
+                { type: "endpoint", op: "logs" },
                 {
                     type: "code",
                     lang: "bash",

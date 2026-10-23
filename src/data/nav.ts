@@ -1399,7 +1399,7 @@ export const NAV: Nav = {
         instance: {
             title: { en: "Instance", fr: "Instance" },
             kind: "article",
-            methods: [],
+            methods: ["get"],
             updated: "2026-10-23",
         },
         ip: {
