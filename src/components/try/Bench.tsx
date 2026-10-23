@@ -30,13 +30,11 @@ export interface IdleProps {
  */
 function Idle({ title, hint }: IdleProps) {
     return (
-        <div>
-            <div className="hidden items-center border-y border-code-line bg-code-bar px-4 py-2.5 text-xs text-code-dim wide:flex">
-                <span className="font-medium tracking-[0.08em] uppercase">{title}</span>
-            </div>
-            <p className="border-t border-code-line px-4 py-3 text-xs text-code-dim wide:border-t-0 wide:py-5">
-                {hint}
-            </p>
+        <div className="border-t border-code-line">
+            <span className="hidden px-4 pt-2.5 text-[13px] font-medium text-muted wide:block">
+                {title}
+            </span>
+            <p className="px-4 pt-3 pb-3.5 text-[13px] text-muted wide:pt-1.5">{hint}</p>
         </div>
     );
 }
@@ -89,7 +87,7 @@ function BenchBody({ version, op, docsHref }: BenchBodyProps) {
                     role="group"
                     aria-label={t("output")}
                     className={cn(
-                        "scroll-dark max-h-[70dvh] min-h-40 flex-1 overflow-y-auto border-t border-code-edge bg-code-bg text-code-text wide:sticky wide:flex wide:min-h-0 wide:flex-col wide:overflow-hidden wide:rounded-panel wide:border wide:shadow-panel",
+                        "code-quiet max-h-[70dvh] min-h-40 flex-1 overflow-y-auto border-t border-line bg-search text-code-text wide:sticky wide:flex wide:min-h-0 wide:flex-col wide:overflow-hidden wide:rounded-panel wide:border wide:shadow-panel",
                         slim
                             ? "wide:top-20 wide:max-h-[calc(100dvh-6.5rem)]"
                             : "wide:top-22 wide:max-h-[calc(100dvh-7rem)]",
@@ -104,14 +102,12 @@ function BenchBody({ version, op, docsHref }: BenchBodyProps) {
                                 : "wide:order-1",
                         )}
                     >
-                        <Snippet request={handle.request} variant="panel" className="min-h-30" />
+                        <Snippet request={handle.request} variant="quiet" className="min-h-30" />
                     </div>
                     <div
                         className={cn(
-                            "wide:max-h-[50dvh] wide:shrink-0 wide:overflow-y-auto wide:[&>div>div:first-child]:sticky wide:[&>div>div:first-child]:top-0 wide:[&>div>div:first-child]:z-10",
-                            responseFirst
-                                ? "wide:order-1 wide:[&>div>div:first-child]:border-t-0"
-                                : "wide:order-2",
+                            "wide:max-h-[50dvh] wide:shrink-0 wide:overflow-y-auto wide:[&>div>div:first-child]:sticky wide:[&>div>div:first-child]:top-0 wide:[&>div>div:first-child]:z-10 wide:[&>div>div:first-child]:bg-search",
+                            responseFirst ? "wide:order-1 wide:[&>div]:border-t-0" : "wide:order-2",
                         )}
                     >
                         {answered ? (
@@ -120,6 +116,7 @@ function BenchBody({ version, op, docsHref }: BenchBodyProps) {
                                     phase={handle.phase}
                                     response={handle.response}
                                     retry={handle.retry}
+                                    quiet
                                     onClear={handle.reset}
                                 />
                             </Suspense>
