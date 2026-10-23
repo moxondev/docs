@@ -124,7 +124,7 @@ export function SendButton({ handle, touch }: SendButtonProps) {
  * in a text field and Ctrl or Cmd+Enter anywhere send, read before the field so a list does not
  * open on them; the form never submits to the page itself.
  *
- * @param op - Operation whose parameters are the fields
+ * @param op - Operation whose parameters are the fields; without any, the button stands alone
  * @param handle - State machine of the form: values, issues, edit and send
  * @param touch - True in the phone sheet, which uses the 44 px sizes
  * @param pinned - True in a box of limited height (the sticky panel): the fields scroll, with a
@@ -148,24 +148,26 @@ export function RequestForm({
             onKeyDownCapture={handle.onKeyDown}
             className={cn("flex flex-col", touch ? "gap-3" : "gap-3.5", className)}
         >
-            <div
-                className={cn(
-                    "flex flex-col",
-                    touch ? "gap-3" : "gap-3.5",
-                    pinned && "relative -m-1 min-h-0 flex-1 overflow-y-auto p-1 wide:fade-end",
-                )}
-            >
-                {op.params.map((param) => (
-                    <Control
-                        key={param.name}
-                        param={param}
-                        value={handle.values[param.name] ?? ""}
-                        issue={handle.issues[param.name]}
-                        touch={touch}
-                        onChange={handle.setValue}
-                    />
-                ))}
-            </div>
+            {op.params.length > 0 ? (
+                <div
+                    className={cn(
+                        "flex flex-col",
+                        touch ? "gap-3" : "gap-3.5",
+                        pinned && "relative -m-1 min-h-0 flex-1 overflow-y-auto p-1 wide:fade-end",
+                    )}
+                >
+                    {op.params.map((param) => (
+                        <Control
+                            key={param.name}
+                            param={param}
+                            value={handle.values[param.name] ?? ""}
+                            issue={handle.issues[param.name]}
+                            touch={touch}
+                            onChange={handle.setValue}
+                        />
+                    ))}
+                </div>
+            ) : null}
             <SendButton handle={handle} touch={touch} />
         </form>
     );
