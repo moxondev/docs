@@ -8,9 +8,8 @@ import { highlight } from "@/lib/highlight";
 import { STATUS_TEXT } from "@/lib/request";
 
 /**
- * Static example of the hero: the dark card of the code samples with the documented sha256
- * request in every code language, then the recorded answer of the API. Nothing is sent, so the
- * home makes no request; the code area keeps its height while its chunk loads.
+ * Static example of the hero: the quiet code card of the Try panel with the documented sha256
+ * request in every code language, then the recorded answer. Nothing is sent.
  */
 export function Demo() {
     const t = useTranslations("home");
@@ -21,23 +20,22 @@ export function Demo() {
 
     return (
         <figure className="m-0 min-w-0">
-            <div className="overflow-hidden rounded-table border border-code-edge bg-code-bg text-code-text shadow-demo home:rounded-panel">
-                <LazySnippet request={request} variant="panel" className="min-h-54.75" />
-                <div className="flex items-center gap-2.5 border-y border-code-line bg-code-bar px-4 py-2.5 text-xs text-code-dim">
-                    <span className="font-medium tracking-[0.08em] uppercase">
+            <div className="code-quiet overflow-hidden rounded-table border border-code-edge bg-search text-code-text shadow-demo home:rounded-panel">
+                <LazySnippet request={request} variant="quiet" className="min-h-54.75" />
+                <div className="border-t border-code-line">
+                    <span className="block px-4 pt-2.5 text-[13px] font-medium text-muted">
                         {response("title")}
                     </span>
-                    <span className="inline-flex items-center gap-1.75 font-mono text-ok">
-                        <span aria-hidden="true" className="size-1.75 rounded-full bg-ok-dot" />
+                    <span className="block px-4 pt-1.5 text-[14px] font-semibold text-ink">
                         {`${status} ${STATUS_TEXT[status]}`}
                     </span>
+                    <pre
+                        tabIndex={0}
+                        className="overflow-x-auto px-4 pt-3.5 pb-4.5 font-mono text-[13.5px]/[1.7]"
+                    >
+                        <Tokens lines={lines} wrap />
+                    </pre>
                 </div>
-                <pre
-                    tabIndex={0}
-                    className="scroll-dark overflow-x-auto px-4 pt-3 pb-4.5 font-mono text-[13.5px]/[1.7]"
-                >
-                    <Tokens lines={lines} wrap />
-                </pre>
             </div>
             <figcaption className="mt-3 text-[14px] text-muted">
                 {t.rich("demo", {
