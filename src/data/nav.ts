@@ -1396,6 +1396,12 @@ export const NAV: Nav = {
             methods: ["get"],
             updated: "2026-10-17",
         },
+        instance: {
+            title: { en: "Instance", fr: "Instance" },
+            kind: "article",
+            methods: [],
+            updated: "2026-10-23",
+        },
         ip: {
             title: { en: "IP Analyzer", fr: "Analyse d'adresse IP" },
             kind: "endpoint",

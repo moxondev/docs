@@ -235,6 +235,7 @@ export const KINDS: PageIndex = {
         hyperplanning: { kind: "endpoint" },
         index: { kind: "index" },
         infos: { kind: "endpoint" },
+        instance: { kind: "article" },
         ip: { kind: "endpoint" },
         jwt: { kind: "endpoint" },
         levenshtein: { kind: "endpoint" },

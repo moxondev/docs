@@ -188,7 +188,7 @@ describe("sidebar", () => {
         );
         assert.deepEqual(
             model.tools.map((link) => link.slug),
-            ["playground", "changelog", "manifest"],
+            ["playground", "changelog", "manifest", "instance"],
         );
         assert.deepEqual(
             model.tools[1].children.map((link) => link.href),
@@ -251,7 +251,7 @@ describe("page order and pager", () => {
     test("Introduction first, the catalogue by category, sub-pages after their parent, Tools last", () => {
         const order = pageOrder(NAV, "v6");
         assert.deepEqual(order.slice(0, 3), ["index", "authentication", "pricing"]);
-        assert.deepEqual(order.slice(-3), ["playground", "changelog", "manifest"]);
+        assert.deepEqual(order.slice(-4), ["playground", "changelog", "manifest", "instance"]);
         const firstSecurity = CATALOGUE.find((item) => item.category === "security");
         assert.equal(order[3], firstSecurity?.slug);
         const captcha = order.indexOf("captcha");
@@ -287,10 +287,11 @@ describe("page order and pager", () => {
         const captcha = pager(NAV, "v6", "captcha", "fr");
         assert.equal(captcha.next?.slug, "captcha/verify");
         assert.equal(captcha.next?.href, "/fr/v6/captcha/verify/");
-        const last = pager(NAV, "v6", "manifest", "en");
-        assert.equal(last.prev?.slug, "changelog");
+        const last = pager(NAV, "v6", "instance", "en");
+        assert.equal(last.prev?.slug, "manifest");
         assert.equal(last.next, undefined);
         assert.equal(pager(NAV, "v6", "changelog", "en").next?.slug, "manifest");
+        assert.equal(pager(NAV, "v6", "manifest", "en").next?.slug, "instance");
         assert.equal(pager(NAV, "v6", "authentication", "en").next?.slug, "pricing");
     });
 

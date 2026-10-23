@@ -234,6 +234,7 @@ export const PAGES: Record<Version, Record<string, () => Promise<Page>>> = {
         hyperplanning: () => import("./v6/hyperplanning").then((m) => m.page),
         index: () => import("./v6/index").then((m) => m.page),
         infos: () => import("./v6/infos").then((m) => m.page),
+        instance: () => import("./v6/instance").then((m) => m.page),
         ip: () => import("./v6/ip").then((m) => m.page),
         jwt: () => import("./v6/jwt").then((m) => m.page),
         levenshtein: () => import("./v6/levenshtein").then((m) => m.page),
