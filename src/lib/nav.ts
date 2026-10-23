@@ -66,8 +66,8 @@ export interface TocEntry {
 // Pages of the Introduction group in sidebar order
 export const INTRODUCTION: readonly string[] = ["index", "authentication", "pricing"];
 
-// Pages of the Tools group in sidebar order; the manifest of the npm package is one of them
-export const TOOLS: readonly string[] = ["playground", "changelog", "manifest"];
+// Pages of the Tools group in sidebar order, with the npm manifest and the instance routes
+export const TOOLS: readonly string[] = ["playground", "changelog", "manifest", "instance"];
 
 export const PAGE_STATUSES: readonly PageStatus[] = ["experimental", "beta", "deprecated"];
 
