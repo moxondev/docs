@@ -4,7 +4,7 @@ import type { FieldFocus } from "@/hooks/useRequest";
 
 /**
  * Moves the focus to the control of a parameter inside a form, found by the data-param attribute
- * of its Control. A segmented control receives the focus on its first option.
+ * of its Control. A segmented control receives the focus on its first option, a list on its button.
  *
  * @param root - Form element, or null before it is mounted
  * @param name - Name of the parameter whose control takes the focus
@@ -18,7 +18,9 @@ export function focusField(
     const field = Array.from(root.querySelectorAll<HTMLElement>("[data-param]")).find(
         (element) => element.getAttribute("data-param") === name,
     );
-    const control = field?.querySelector<HTMLElement>("input, select, textarea");
+    const control = field?.querySelector<HTMLElement>(
+        "input, select, textarea, button[aria-haspopup]",
+    );
     control?.focus();
     return control !== undefined && control !== null;
 }

@@ -64,6 +64,28 @@ describe("focusField", () => {
     });
 });
 
+describe("focusField selector", () => {
+    test("reaches the inputs, the textareas and the button that opens a list", () => {
+        const selectors: string[] = [];
+        const root = {
+            querySelectorAll: () => [
+                {
+                    getAttribute: () => "type",
+                    querySelector: (selector: string) => {
+                        selectors.push(selector);
+                        return null;
+                    },
+                },
+            ],
+        } as unknown as HTMLElement;
+        focusField(root, "type");
+        assert.equal(selectors.length, 1);
+        for (const part of ["input", "textarea", "button[aria-haspopup]"]) {
+            assert.ok(selectors[0].split(", ").includes(part), part);
+        }
+    });
+});
+
 describe("isPending", () => {
     test("serves a request that is new, never one already served or none at all", () => {
         const first = { name: "text", seq: 1 };
