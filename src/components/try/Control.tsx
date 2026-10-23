@@ -1,10 +1,10 @@
 "use client";
 
-import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { type ReactNode, useId } from "react";
 
-import { optionCount, SEGMENT_MAX, textareaRows, typeHint } from "@/components/try/util";
+import { LazySelect } from "@/components/try/LazySelect";
+import { SEGMENT_MAX, textareaRows, typeHint } from "@/components/try/util";
 import { Input } from "@/components/ui/input";
 import type { FieldIssue } from "@/hooks/useRequest";
 import { cn } from "@/lib/utils";
@@ -143,7 +143,7 @@ function Choice({
 }
 
 /**
- * Typed field of a parameter that is not a segmented control: a native select for a long enum, a
+ * Typed field of a parameter that is not a segmented control: a list for a long enum, a
  * monospace textarea for JSON or a multi-line sample, a text input otherwise. Numbers are sent as
  * typed, so no spinner rewrites them.
  *
@@ -151,14 +151,13 @@ function Choice({
  * @param value - Current value, an empty string when nothing is entered or chosen
  * @param id - Id of the element, which its label points to
  * @param touch - True in the phone sheet: 44 px fields with 16 px text
- * @param bench - True in the Playground: a select shows how many options it holds, and below the
+ * @param bench - True in the Playground: a list shows how many options it holds, and below the
  * desktop layout the fields have the size of the phone sheet
  * @param invalid - True when the value is flagged, which paints the border and sets aria-invalid
  * @param describedBy - Id of the message under the field, when it shows one
  * @param onChange - Called with the parameter name and the new value
  */
 function Field({ param, value, id, touch, bench, invalid, describedBy, onChange }: FieldProps) {
-    const t = useTranslations("try");
     const shared = {
         id,
         value,
@@ -169,43 +168,16 @@ function Field({ param, value, id, touch, bench, invalid, describedBy, onChange 
 
     if (param.type === "enum") {
         return (
-            <div className="relative">
-                <select
-                    {...shared}
-                    onChange={(event) => onChange(param.name, event.target.value)}
-                    className={cn(
-                        "h-9 w-full cursor-pointer appearance-none rounded-field border border-field bg-control py-1 pr-8 pl-2.5 font-mono text-[14px] text-ink outline-none focus:border-focus-line focus:ring-[3px] focus:ring-focus-ring aria-invalid:border-req aria-invalid:focus:border-req",
-                        touch && "h-11 rounded-box pr-10 pl-3 text-[16px]",
-                        bench &&
-                            "max-desk:h-11 max-desk:rounded-box max-desk:pr-10 max-desk:pl-3 max-desk:text-[16px] desk:pr-24",
-                    )}
-                >
-                    {value === "" || param.required !== true ? (
-                        <option value="">{t("select")}</option>
-                    ) : null}
-                    {(param.options ?? []).map((option) => (
-                        <option key={option} value={option}>
-                            {option}
-                        </option>
-                    ))}
-                </select>
-                {bench ? (
-                    <span
-                        aria-hidden="true"
-                        className="pointer-events-none absolute top-1/2 right-8 hidden -translate-y-1/2 text-xs text-muted desk:block"
-                    >
-                        {t("options", { count: optionCount(param) })}
-                    </span>
-                ) : null}
-                <ChevronDown
-                    aria-hidden="true"
-                    className={cn(
-                        "pointer-events-none absolute top-1/2 -translate-y-1/2 text-muted",
-                        touch ? "right-3 size-4" : "right-2.5 size-3.5",
-                        bench && !touch && "max-desk:right-3 max-desk:size-4",
-                    )}
-                />
-            </div>
+            <LazySelect
+                param={param}
+                value={value}
+                id={id}
+                touch={touch}
+                bench={bench}
+                invalid={invalid}
+                describedBy={describedBy}
+                onChange={onChange}
+            />
         );
     }
 
@@ -256,7 +228,7 @@ function Field({ param, value, id, touch, bench, invalid, describedBy, onChange 
  * @param value - Current value of the field, an empty string when unset
  * @param issue - Problem found by the form: required (emptied) or json (does not parse)
  * @param touch - True in the phone sheet, which uses the 44 px sizes
- * @param bench - True in the Playground: the segments take the width of their options, a select
+ * @param bench - True in the Playground: the segments take the width of their options, a list
  * shows its option count, and on a desktop the required and optional tags are left to the heading
  * of their group
  * @param className - Extra classes for the root, for its width in the grid of the bench form

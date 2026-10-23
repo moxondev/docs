@@ -121,8 +121,8 @@ export function SendButton({ handle, touch }: SendButtonProps) {
 
 /**
  * Form of an operation: one Control per parameter of Operation.params, then the send button. Enter
- * in a text field and Ctrl or Cmd+Enter anywhere send, through the state machine; the form never
- * submits to the page itself.
+ * in a text field and Ctrl or Cmd+Enter anywhere send, read before the field so a list does not
+ * open on them; the form never submits to the page itself.
  *
  * @param op - Operation whose parameters are the fields
  * @param handle - State machine of the form: values, issues, edit and send
@@ -145,7 +145,7 @@ export function RequestForm({
             ref={form}
             noValidate
             onSubmit={(event) => event.preventDefault()}
-            onKeyDown={handle.onKeyDown}
+            onKeyDownCapture={handle.onKeyDown}
             className={cn("flex flex-col", touch ? "gap-3" : "gap-3.5", className)}
         >
             <div

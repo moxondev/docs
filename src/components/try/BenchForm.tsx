@@ -61,7 +61,7 @@ export function BenchForm({ op, handle }: BenchFormProps) {
             ref={form}
             noValidate
             onSubmit={(event) => event.preventDefault()}
-            onKeyDown={handle.onKeyDown}
+            onKeyDownCapture={handle.onKeyDown}
             className="flex flex-col gap-3.5 max-wide:p-4 wide:gap-0 wide:rounded-panel wide:border wide:border-panel-line wide:bg-surface wide:shadow-panel"
         >
             {sections.length === 0 ? (
