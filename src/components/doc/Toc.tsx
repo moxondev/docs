@@ -1,8 +1,10 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { useRef } from "react";
 
 import { useActiveSection } from "@/hooks/useActiveSection";
+import { usePullStretch } from "@/hooks/usePullStretch";
 import type { TocEntry } from "@/lib/nav";
 import { cn } from "@/lib/utils";
 
@@ -12,8 +14,8 @@ export interface TocProps {
 
 /**
  * "On this page" list of a documentation page: inline underlined links on a desktop, a row of
- * pills that scrolls sideways on a phone. The section in view is tracked while scrolling, and
- * the first pill counts as in view before any heading is reached.
+ * pills on a phone that scrolls sideways and stretches, up to a limit, when pulled. The section in
+ * view is tracked while scrolling, and the first pill counts as in view before any heading.
  *
  * @param entries - Level 2 and 3 sections of the page, each with its id, title and short label
  */
@@ -22,6 +24,9 @@ export function Toc({ entries }: TocProps) {
     const aria = useTranslations("aria");
     const active = useActiveSection(entries.map((entry) => entry.id));
     const pill = active ?? entries[0]?.id;
+    const row = useRef<HTMLUListElement>(null);
+
+    usePullStretch(row);
 
     return (
         <nav
@@ -31,7 +36,10 @@ export function Toc({ entries }: TocProps) {
             <span className="sr-only desk:not-sr-only desk:shrink-0 desk:text-[14px] desk:whitespace-nowrap desk:text-faint">
                 {t("toc")}
             </span>
-            <ul className="scroll-none -mx-5 flex gap-1.5 overflow-x-auto px-5 py-1 text-[14px] desk:mx-0 desk:min-w-0 desk:flex-1 desk:flex-wrap desk:gap-x-4 desk:gap-y-1.5 desk:overflow-visible desk:p-0">
+            <ul
+                ref={row}
+                className="scroll-none -mx-5 flex touch-pan-x gap-1.5 overflow-x-auto px-5 py-1 text-[14px] desk:mx-0 desk:min-w-0 desk:flex-1 desk:flex-wrap desk:gap-x-4 desk:gap-y-1.5 desk:touch-auto desk:overflow-visible desk:p-0"
+            >
                 {entries.map((entry) => (
                     <li key={entry.id} className="shrink-0">
                         <a
