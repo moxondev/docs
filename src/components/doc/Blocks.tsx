@@ -24,7 +24,7 @@ import { NAV } from "@/data/nav";
 import { SITE } from "@/data/site";
 import { pick, plain } from "@/lib/inline";
 import { mentionedStatus } from "@/lib/nav";
-import { exampleRequest } from "@/lib/request";
+import { apiPath, exampleRequest } from "@/lib/request";
 import { cn } from "@/lib/utils";
 import type { Block, Inline as InlineText, Lx, Section } from "@/types/content";
 
@@ -177,7 +177,7 @@ function BlockView({ block, ctx, head }: BlockViewProps) {
                 <Route
                     method={operation.method}
                     host={SITE.api}
-                    path={`/${version}${operation.path}`}
+                    path={apiPath(version, operation)}
                 />
             ) : null;
         case "examples":

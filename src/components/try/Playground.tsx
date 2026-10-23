@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { DocsLink } from "@/components/try/DocsLink";
 import { Try } from "@/components/try/Try";
 import { setQueryParam, useQueryParam } from "@/hooks/useLocationSearch";
+import { apiPath } from "@/lib/request";
 import { href } from "@/lib/routes";
 import type { Lang } from "@/types/content";
 import type { PlaygroundProps } from "@/types/try";
@@ -53,7 +54,7 @@ export function Playground({ version, entries }: PlaygroundProps) {
                     ? t("announce", {
                           name: entry.name,
                           method: entry.op.method.toUpperCase(),
-                          path: `/${version}${entry.op.path}`,
+                          path: apiPath(version, entry.op),
                           count: entry.op.params.length,
                       })
                     : ""}

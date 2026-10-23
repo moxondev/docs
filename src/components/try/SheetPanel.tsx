@@ -17,6 +17,7 @@ import { useKeyboardInset } from "@/hooks/useKeyboardInset";
 import type { RequestHandle } from "@/hooks/useRequest";
 import { restoreOpener, useSheet } from "@/hooks/useSheet";
 import { highlight } from "@/lib/highlight";
+import { apiPath } from "@/lib/request";
 import { generateSnippet } from "@/lib/snippets";
 import type { Operation, Version } from "@/types/content";
 
@@ -172,7 +173,7 @@ export function SheetPanel({ version, op, name, handle }: SheetPanelProps) {
                         <span aria-hidden="true">{t("title")}</span>
                         <span className="sr-only">{aria("trySheet", { name })}</span>
                     </DrawerTitle>
-                    <RequestLine method={op.method} path={`/${version}${op.path}`} />
+                    <RequestLine method={op.method} path={apiPath(version, op)} />
                     <span className="grow" />
                     <DrawerClose asChild>
                         <Button

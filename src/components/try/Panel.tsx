@@ -9,6 +9,7 @@ import { orFallback, whenIdle } from "@/components/try/prefetch";
 import { Snippet } from "@/components/try/Snippet";
 import { scrollBehavior } from "@/components/try/util";
 import { useRequest } from "@/hooks/useRequest";
+import { apiPath } from "@/lib/request";
 import { cn } from "@/lib/utils";
 import type { TryProps } from "@/types/try";
 
@@ -90,7 +91,7 @@ export function Panel({ version, op, variant = "panel", autoSend = false }: TryP
             <div className="flex shrink-0 items-center gap-2.5 border-b border-line-soft px-4 py-3">
                 <span className="text-sm font-semibold text-ink">{t("title")}</span>
                 <span className="grow" />
-                <RequestLine method={op.method} path={`/${version}${op.path}`} />
+                <RequestLine method={op.method} path={apiPath(version, op)} />
             </div>
             <Announcer phase={handle.phase} response={handle.response} />
             <RequestForm

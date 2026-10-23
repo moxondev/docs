@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/command";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { CATEGORIES } from "@/data/catalogue";
+import { apiPath } from "@/lib/request";
 import type { Lang, Version } from "@/types/content";
 import type { PlaygroundEntry } from "@/types/try";
 
@@ -103,7 +104,7 @@ export function Picker({ version, entries, value, onSelect }: PickerProps) {
                             <span className="font-medium text-ink">{selected.name}</span>
                             <MethodChip method={selected.op.method} className="wide:hidden" />
                             <span className="truncate font-mono text-xs text-muted wide:hidden">
-                                {`/${version}${selected.op.path}`}
+                                {apiPath(version, selected.op)}
                             </span>
                             {category ? (
                                 <span className="truncate text-xs text-muted max-wide:hidden">

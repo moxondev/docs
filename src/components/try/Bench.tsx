@@ -12,6 +12,7 @@ import { whenIdle } from "@/components/try/prefetch";
 import { Snippet } from "@/components/try/Snippet";
 import { useRequest } from "@/hooks/useRequest";
 import { useSlim } from "@/hooks/useSlim";
+import { apiPath } from "@/lib/request";
 import { cn } from "@/lib/utils";
 import type { BenchBodyProps, BenchProps } from "@/types/try";
 
@@ -57,7 +58,7 @@ function BenchBody({ version, op, docsHref }: BenchBodyProps) {
     const answered = handle.phase !== "idle" || handle.response !== null;
     const responseFirst = answered || op.params.length > 0;
     const host = /^https?:\/\/([^/?#]+)/.exec(handle.request.url)?.[1] ?? "";
-    const path = `/${version}${op.path}`;
+    const path = apiPath(version, op);
 
     useEffect(() => whenIdle(() => void loadResponse()), []);
 
