@@ -216,6 +216,9 @@
     --code-sel: #e8eaf0;
     --code-icon: #9ba3b4;
 
+    /* Focus ring drawn inside a code area: light on the dark panels, the focus color elsewhere */
+    --code-focus: var(--code-sel);
+
     /* Accent of the quiet Try panel: the strings of its code and answer (5.9:1 on --search) */
     --code-accent: #7d5a00;
     --ok: #63e6be;
@@ -275,6 +278,7 @@
 
         --focus-line: #fde68a;
         --focus-ring: rgba(253, 230, 138, 0.26);
+        --code-focus: var(--focus-line);
 
         --post: #63e6be;
         --post-bg: rgba(32, 201, 151, 0.14);
@@ -446,6 +450,7 @@
     --color-code-key: var(--code-key);
     --color-code-fn: var(--code-fn);
     --color-code-sel: var(--code-sel);
+    --color-code-focus: var(--code-focus);
     --color-code-icon: var(--code-icon);
     --color-ok: var(--ok);
     --color-ok-dot: var(--ok-dot);
@@ -1268,6 +1273,7 @@
         --code-fn-weight: 600;
         --code-sel: var(--ink);
         --code-icon: var(--muted);
+        --code-focus: var(--focus-line);
         --warn: var(--req);
     }
 }
