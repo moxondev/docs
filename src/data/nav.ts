@@ -561,7 +561,7 @@ export const NAV: Nav = {
             title: { en: "Hyperplanning", fr: "Hyperplanning" },
             kind: "endpoint",
             methods: ["post"],
-            updated: "2026-04-21",
+            updated: "2026-11-14",
         },
         index: {
             title: { en: "Getting Started", fr: "Commencer" },
@@ -972,7 +972,7 @@ export const NAV: Nav = {
             title: { en: "Hyperplanning", fr: "Hyperplanning" },
             kind: "endpoint",
             methods: ["post"],
-            updated: "2026-09-13",
+            updated: "2026-11-14",
         },
         index: {
             title: { en: "Getting Started", fr: "Commencer" },
@@ -1382,7 +1382,7 @@ export const NAV: Nav = {
             kind: "endpoint",
             methods: ["post"],
             status: "deprecated",
-            updated: "2026-09-13",
+            updated: "2026-11-14",
         },
         index: {
             title: { en: "Getting Started", fr: "Commencer" },

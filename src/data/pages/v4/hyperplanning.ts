@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/hyperplanning` endpoint allows you to display a Hyperplanning schedule information in JSON format from an ICS (calendar) file.",
         fr: "L'endpoint `/hyperplanning` permet d'afficher les informations d'un emploi du temps Hyperplanning au format JSON à partir d'un fichier ICS (calendrier).",
     },
-    updated: "2026-04-21",
+    updated: "2026-11-14",
     operations: [
         {
             id: "default",
@@ -49,8 +49,8 @@ export const page: Page = {
                             name: "url",
                             required: true,
                             description: {
-                                en: "The URL of the ICS file to use and display. Must be URL-encoded before being sent",
-                                fr: "L'URL du fichier ICS à utiliser et afficher. Doit être encodée en URL avant l'envoi",
+                                en: "The HTTPS URL of the ICS file to use and display (1MB and 5000 events at most). Must be URL-encoded before being sent",
+                                fr: "L'URL HTTPS du fichier ICS à utiliser et afficher (1 Mo et 5000 événements au maximum). Doit être encodée en URL avant l'envoi",
                             },
                         },
                         {
@@ -62,6 +62,48 @@ export const page: Page = {
                             },
                         },
                     ],
+                },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: {
+                        en: "Limits on the calendar download",
+                        fr: "Limites du téléchargement du calendrier",
+                    },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "Since 6.2.0, the ICS file is downloaded through a protected fetch. A request with a regular calendar gets exactly the same response as before; only abusive inputs are refused with the usual `400` error:",
+                            },
+                            {
+                                type: "list",
+                                items: [
+                                    "The `url`, and every redirect it goes through, must use HTTPS and point to a public host: private, loopback and other internal addresses are refused.",
+                                    "At most 10 redirects are followed.",
+                                    "The whole download, redirects included, must finish within 10 seconds.",
+                                    "The file must not exceed 1MB once decompressed.",
+                                    "The file must hold at most 5000 events, past events included.",
+                                ],
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Depuis la 6.2.0, le fichier ICS est téléchargé par une récupération protégée. Une requête avec un calendrier ordinaire reçoit exactement la même réponse qu'avant ; seules les entrées abusives sont refusées avec l'erreur `400` habituelle :",
+                            },
+                            {
+                                type: "list",
+                                items: [
+                                    "L'`url`, et chaque redirection qu'elle traverse, doit utiliser HTTPS et pointer vers un hôte public : les adresses privées, de bouclage et autres adresses internes sont refusées.",
+                                    "Au plus 10 redirections sont suivies.",
+                                    "Le téléchargement entier, redirections comprises, doit se terminer en 10 secondes.",
+                                    "Le fichier ne doit pas dépasser 1 Mo une fois décompressé.",
+                                    "Le fichier doit contenir au plus 5000 événements, événements passés compris.",
+                                ],
+                            },
+                        ],
+                    },
                 },
             ],
         },
@@ -296,6 +338,70 @@ export const page: Page = {
                             description: {
                                 en: "The `url` parameter is missing or invalid",
                                 fr: "Le paramètre `url` est manquant ou invalide",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Invalid URL.",
+                            description: {
+                                en: "The `url` parameter cannot be read as an address",
+                                fr: "Le paramètre `url` n'est pas une adresse lisible",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Only HTTPS URLs are allowed.",
+                            description: {
+                                en: "The `url`, or one of its redirects, does not use HTTPS",
+                                fr: "L'`url`, ou l'une de ses redirections, n'utilise pas HTTPS",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Access to private/internal hosts is not allowed.",
+                            description: {
+                                en: "The `url`, or one of its redirects, points to a private or internal address",
+                                fr: "L'`url`, ou l'une de ses redirections, pointe vers une adresse privée ou interne",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Invalid ICS file format.",
+                            description: {
+                                en: "The final response is not successful or is not served as `text/calendar`",
+                                fr: "La réponse finale n'est pas un succès ou n'est pas servie en `text/calendar`",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "ICS file must be under 1MB.",
+                            description: {
+                                en: "The file exceeds the 1MB size limit",
+                                fr: "Le fichier dépasse la limite de 1 Mo",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "ICS file must have at most 5000 events.",
+                            description: {
+                                en: "The file holds more than 5000 events",
+                                fr: "Le fichier contient plus de 5000 événements",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "fetch failed",
+                            description: {
+                                en: "The file could not be downloaded: network error, host that does not resolve, or more than 10 redirects",
+                                fr: "Le fichier n'a pas pu être téléchargé : erreur réseau, hôte introuvable ou plus de 10 redirections",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "The operation was aborted due to timeout",
+                            description: {
+                                en: "The download took more than 10 seconds, redirects included",
+                                fr: "Le téléchargement a pris plus de 10 secondes, redirections comprises",
                             },
                             status: 400,
                         },
