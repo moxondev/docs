@@ -55,5 +55,10 @@ export default defineConfig([
             "sort-imports": ["error", { ignoreCase: true, ignoreDeclarationSort: true }],
         },
     },
+    {
+        // The Try panel draws an image answer from a blob URL, which next/image cannot optimize
+        files: ["src/components/try/Response.tsx"],
+        rules: { "@next/next/no-img-element": "off" },
+    },
     prettier,
 ]);
