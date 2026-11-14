@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/barcode` endpoint generates barcode images from a data string. It supports several standard barcode formats and renders the result as SVG or PNG.",
         fr: "L'endpoint `/barcode` génère des images de codes-barres à partir d'une chaîne de données. Il supporte plusieurs formats standards et retourne le résultat en SVG ou PNG.",
     },
-    updated: "2026-07-26",
+    updated: "2026-11-14",
     operations: [
         {
             id: "default",
@@ -95,6 +95,25 @@ export const page: Page = {
                         ],
                     },
                 },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: { en: "Bounded input", fr: "Entrée bornée" },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "Since 6.2.0, `data` is limited to 128 characters for the variable-length formats (`code128` and `code39`): a longer string is refused with a `400` error. The fixed-length formats (`ean13`, `ean8`, `upca`) keep their own digit-count validation. A `data` parameter given more than once is refused like a missing one. A legitimate request gets the same response as before.",
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Depuis la 6.2.0, `data` est limité à 128 caractères pour les formats de longueur variable (`code128` et `code39`) : une chaîne plus longue est refusée avec une erreur `400`. Les formats de longueur fixe (`ean13`, `ean8`, `upca`) gardent leur propre validation du nombre de chiffres. Un paramètre `data` fourni plusieurs fois est refusé comme un paramètre manquant. Une requête légitime reçoit la même réponse qu'avant.",
+                            },
+                        ],
+                    },
+                },
             ],
         },
         {
@@ -111,8 +130,8 @@ export const page: Page = {
                             required: true,
                             default: "",
                             description: {
-                                en: "Data string to encode in the barcode",
-                                fr: "Chaîne de données à encoder dans le code-barres",
+                                en: "Data string to encode in the barcode (max 128 characters for `code128` and `code39`). Give the parameter once only.",
+                                fr: "Chaîne de données à encoder dans le code-barres (max 128 caractères pour `code128` et `code39`). Ne fournissez le paramètre qu'une seule fois.",
                             },
                         },
                         {
@@ -233,8 +252,8 @@ export const page: Page = {
                         {
                             message: "Please provide data to encode (?data={string})",
                             description: {
-                                en: "The `data` parameter is missing",
-                                fr: "Le paramètre `data` est manquant",
+                                en: "The `data` parameter is missing or given more than once",
+                                fr: "Le paramètre `data` est manquant ou fourni plusieurs fois",
                             },
                             status: 400,
                         },
@@ -342,6 +361,14 @@ export const page: Page = {
                             description: {
                                 en: "A `color` or `bg` value is not a valid hexadecimal color",
                                 fr: "Une valeur `color` ou `bg` n'est pas une couleur hexadécimale valide",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Data cannot exceed 128 characters",
+                            description: {
+                                en: "The `data` string is longer than 128 characters with `code128` or `code39` (since 6.2.0)",
+                                fr: "La chaîne `data` dépasse 128 caractères avec `code128` ou `code39` (depuis la 6.2.0)",
                             },
                             status: 400,
                         },

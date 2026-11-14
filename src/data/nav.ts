@@ -380,7 +380,7 @@ export const NAV: Nav = {
             title: { en: "Barcode Generation", fr: "Génération de codes-barres" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-05-12",
+            updated: "2026-11-14",
         },
         captcha: {
             title: { en: "Captcha Generation", fr: "Génération de Captcha" },
@@ -746,7 +746,7 @@ export const NAV: Nav = {
             title: { en: "Barcode Generation", fr: "Génération de codes-barres" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-07-26",
+            updated: "2026-11-14",
         },
         base: {
             title: { en: "Base Conversion", fr: "Conversion de base" },
@@ -1217,7 +1217,7 @@ export const NAV: Nav = {
             title: { en: "Barcode Generation", fr: "Génération de codes-barres" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-09-12",
+            updated: "2026-11-14",
         },
         base: {
             title: { en: "Base Conversion", fr: "Conversion de base" },
