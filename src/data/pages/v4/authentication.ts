@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The moxon API uses Bearer token authentication to identify users with premium plans.",
         fr: "L'API moxon utilise l'authentification par token Bearer pour identifier les utilisateurs avec des plans premium.",
     },
-    updated: "2026-04-18",
+    updated: "2026-11-14",
     sections: [
         { id: "", blocks: [] },
         {
@@ -70,6 +70,38 @@ export const page: Page = {
                             {
                                 type: "p",
                                 text: "La limite de burst empêche l'envoi de trop de requêtes dans un court laps de temps. Si vous dépassez la limite de burst, vous recevrez une réponse `429 Too Many Requests`.",
+                            },
+                        ],
+                    },
+                },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: {
+                        en: "How requests are counted",
+                        fr: "Comment les requêtes sont comptées",
+                    },
+                    body: {
+                        en: [
+                            { type: "p", text: "Limits apply per client address:" },
+                            {
+                                type: "list",
+                                items: [
+                                    "An IPv6 client is counted by its `/64` block, so changing address inside it does not reset the quota. An IPv4-mapped IPv6 address counts as its IPv4 address.",
+                                    "All the `/64` blocks of one `/48` network share four times the hourly quota of the plan (8,000 requests per hour on Free). Beyond it, the API answers `429` with `Too many requests from your network.` and a `Retry-After` header.",
+                                    "The limiter runs before the body is read, so a request with a malformed body or a body larger than 10 KB counts against your quota like any other. The instance-wide limit counts only the requests that were admitted.",
+                                ],
+                            },
+                        ],
+                        fr: [
+                            { type: "p", text: "Les limites s'appliquent par adresse de client :" },
+                            {
+                                type: "list",
+                                items: [
+                                    "Un client IPv6 est compté par son bloc `/64` : changer d'adresse à l'intérieur de ce bloc ne remet pas le quota à zéro. Une adresse IPv6 mappée IPv4 compte comme son adresse IPv4.",
+                                    "Tous les blocs `/64` d'un même réseau `/48` se partagent quatre fois le quota horaire de l'offre (8 000 requêtes par heure en Gratuit). Au-delà, l'API répond `429` avec `Too many requests from your network.` et un en-tête `Retry-After`.",
+                                    "Le limiteur s'exécute avant la lecture du corps : une requête dont le corps est mal formé ou dépasse 10 Ko est comptée dans votre quota comme n'importe quelle autre. La limite globale de l'instance ne compte que les requêtes admises.",
+                                ],
                             },
                         ],
                     },

@@ -368,7 +368,7 @@ export const NAV: Nav = {
             title: { en: "Authentication", fr: "Authentification" },
             kind: "article",
             methods: [],
-            updated: "2026-04-18",
+            updated: "2026-11-14",
         },
         avatar: {
             title: { en: "Avatar Generation", fr: "Génération d'avatars" },
@@ -567,7 +567,7 @@ export const NAV: Nav = {
             title: { en: "Getting Started", fr: "Commencer" },
             kind: "index",
             methods: ["get"],
-            updated: "2026-08-18",
+            updated: "2026-11-14",
         },
         infos: {
             title: { en: "API Information", fr: "Informations sur l'API" },
@@ -734,7 +734,7 @@ export const NAV: Nav = {
             title: { en: "Authentication", fr: "Authentification" },
             kind: "article",
             methods: [],
-            updated: "2026-07-31",
+            updated: "2026-11-14",
         },
         avatar: {
             title: { en: "Avatar Generation", fr: "Génération d'avatars" },
@@ -978,7 +978,7 @@ export const NAV: Nav = {
             title: { en: "Getting Started", fr: "Commencer" },
             kind: "index",
             methods: ["get"],
-            updated: "2026-09-07",
+            updated: "2026-11-14",
         },
         infos: {
             title: { en: "API Information", fr: "Informations sur l'API" },
@@ -1205,7 +1205,7 @@ export const NAV: Nav = {
             title: { en: "Authentication", fr: "Authentification" },
             kind: "article",
             methods: [],
-            updated: "2026-09-13",
+            updated: "2026-11-14",
         },
         avatar: {
             title: { en: "Avatar Generation", fr: "Génération d'avatars" },
@@ -1388,7 +1388,7 @@ export const NAV: Nav = {
             title: { en: "Getting Started", fr: "Commencer" },
             kind: "index",
             methods: ["get"],
-            updated: "2026-10-18",
+            updated: "2026-11-14",
         },
         infos: {
             title: { en: "API Information", fr: "Informations sur l'API" },

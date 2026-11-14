@@ -10,7 +10,7 @@ export const page: Page = {
         fr: "Bienvenue dans la documentation de l'**API moxon v5**. Cette API fournit une collection complète d'endpoints utilitaires pour les développeurs.",
     },
     banner: true,
-    updated: "2026-09-07",
+    updated: "2026-11-14",
     operations: [{ id: "default", method: "get", path: "/infos", try: true, params: [] }],
     sections: [
         { id: "", blocks: [] },
@@ -67,7 +67,15 @@ export const page: Page = {
                     items: [
                         "`Global rate limit exceeded.`",
                         "`Rate limit exceeded. Try again in X seconds.`",
+                        "`Too many requests from your network.`",
                     ],
+                },
+                {
+                    type: "p",
+                    text: {
+                        en: "The last one is sent to an IPv6 client whose whole `/48` network went over its share, see [Authentication](ref:authentication#rate-limits).",
+                        fr: "Le dernier est renvoyé à un client IPv6 dont tout le réseau `/48` a dépassé sa part, voir [Authentification](ref:authentication#rate-limits).",
+                    },
                 },
             ],
         },
