@@ -630,7 +630,7 @@ export const NAV: Nav = {
             title: { en: "QR Code Generation", fr: "Génération de QR Code" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-04-21",
+            updated: "2026-11-14",
         },
         regex: {
             title: { en: "Regex Tester", fr: "Testeur de regex" },
@@ -1071,7 +1071,7 @@ export const NAV: Nav = {
             title: { en: "QR Code Generation", fr: "Génération de QR Code" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-05-25",
+            updated: "2026-11-14",
         },
         read: {
             title: { en: "Readability Analysis", fr: "Analyse de lisibilité" },
@@ -1494,7 +1494,7 @@ export const NAV: Nav = {
             title: { en: "QR Code Generation", fr: "Génération de QR Code" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-09-12",
+            updated: "2026-11-14",
         },
         read: {
             title: { en: "Readability Analysis", fr: "Analyse de lisibilité" },

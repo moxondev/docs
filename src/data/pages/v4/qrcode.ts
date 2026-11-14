@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/qrcode` endpoint generates a QR Code from a URL provided as a parameter. This endpoint is useful for quickly generating an image in PNG format.",
         fr: "L'endpoint `/qrcode` génère un QR Code à partir d'une URL fournie en paramètre. Cet endpoint est pratique pour générer rapidement une image au format PNG.",
     },
-    updated: "2026-04-21",
+    updated: "2026-11-14",
     operations: [
         {
             id: "default",
@@ -156,8 +156,8 @@ export const page: Page = {
                             name: "icon",
                             required: false,
                             description: {
-                                en: "HTTPS URL of an image to overlay at the center of the QR Code",
-                                fr: "URL HTTPS d'une image à superposer au centre du QR Code",
+                                en: "HTTPS URL of a public image to overlay at the center of the QR Code (2MB and 16 megapixels at most)",
+                                fr: "URL HTTPS d'une image publique à superposer au centre du QR Code (2 Mo et 16 mégapixels au maximum)",
                             },
                         },
                         {
@@ -201,6 +201,48 @@ export const page: Page = {
                             {
                                 type: "p",
                                 text: "Lorsqu'un `icon` est fourni, le niveau de correction est automatiquement forcé à `H` pour garantir la lisibilité. L'URL de l'icône doit utiliser HTTPS, avec un timeout de 5s et une limite de 2 Mo.",
+                            },
+                        ],
+                    },
+                },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: {
+                        en: "Limits on the icon download",
+                        fr: "Limites du téléchargement de l'icône",
+                    },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "Since 6.2.0, the icon is downloaded through a protected fetch. A request with a regular icon gets exactly the same response as before; only abusive inputs are refused with the usual `400` error:",
+                            },
+                            {
+                                type: "list",
+                                items: [
+                                    "The icon address, and every redirect it goes through, must use HTTPS and point to a public host: private, loopback and other internal addresses are refused.",
+                                    "At most 10 redirects are followed.",
+                                    "The whole download, redirects included, must finish within 5 seconds.",
+                                    "The icon must not exceed 2MB once decompressed.",
+                                    "A PNG, JPEG, GIF or BMP icon over 16 megapixels is refused, whatever its file size (the frames of a GIF add up).",
+                                ],
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Depuis la 6.2.0, l'icône est téléchargée par une récupération protégée. Une requête avec une icône ordinaire reçoit exactement la même réponse qu'avant ; seules les entrées abusives sont refusées avec l'erreur `400` habituelle :",
+                            },
+                            {
+                                type: "list",
+                                items: [
+                                    "L'adresse de l'icône, et chaque redirection qu'elle traverse, doit utiliser HTTPS et pointer vers un hôte public : les adresses privées, de bouclage et autres adresses internes sont refusées.",
+                                    "Au plus 10 redirections sont suivies.",
+                                    "Le téléchargement entier, redirections comprises, doit se terminer en 5 secondes.",
+                                    "L'icône ne doit pas dépasser 2 Mo une fois décompressée.",
+                                    "Une icône PNG, JPEG, GIF ou BMP de plus de 16 mégapixels est refusée, quel que soit le poids du fichier (les images d'un GIF s'additionnent).",
+                                ],
                             },
                         ],
                     },
@@ -369,8 +411,8 @@ export const page: Page = {
                         {
                             message: "Icon URL must use HTTPS",
                             description: {
-                                en: "The `icon` URL does not use HTTPS",
-                                fr: "L'URL de l'`icon` n'utilise pas HTTPS",
+                                en: "The `icon` URL, or one of its redirects, does not use HTTPS",
+                                fr: "L'URL de l'`icon`, ou l'une de ses redirections, n'utilise pas HTTPS",
                             },
                             status: 400,
                         },
@@ -443,6 +485,46 @@ export const page: Page = {
                             description: {
                                 en: "The `iconRadius` is out of range",
                                 fr: "Le `iconRadius` est hors limites",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Icon URL must point to a public host",
+                            description: {
+                                en: "The `icon` URL, or one of its redirects, points to a private or internal address",
+                                fr: "L'URL de l'`icon`, ou l'une de ses redirections, pointe vers une adresse privée ou interne",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Icon must be under 16 megapixels",
+                            description: {
+                                en: "The icon is a PNG, JPEG, GIF or BMP image of more than 16 megapixels",
+                                fr: "L'icône est une image PNG, JPEG, GIF ou BMP de plus de 16 mégapixels",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Icon must be a valid image",
+                            description: {
+                                en: "The header of a PNG, JPEG, GIF or BMP icon cannot be read",
+                                fr: "L'en-tête d'une icône PNG, JPEG, GIF ou BMP est illisible",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "fetch failed",
+                            description: {
+                                en: "The icon could not be downloaded: network error, host that does not resolve, or more than 10 redirects",
+                                fr: "L'icône n'a pas pu être téléchargée : erreur réseau, hôte introuvable ou plus de 10 redirections",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "The operation was aborted due to timeout",
+                            description: {
+                                en: "The icon download took more than 5 seconds, redirects included",
+                                fr: "Le téléchargement de l'icône a pris plus de 5 secondes, redirections comprises",
                             },
                             status: 400,
                         },
