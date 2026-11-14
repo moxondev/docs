@@ -728,7 +728,7 @@ export const NAV: Nav = {
             title: { en: "Asymmetric", fr: "Asymmetric" },
             kind: "endpoint",
             methods: ["post"],
-            updated: "2026-07-26",
+            updated: "2026-11-14",
         },
         authentication: {
             title: { en: "Authentication", fr: "Authentification" },
@@ -1199,7 +1199,7 @@ export const NAV: Nav = {
             title: { en: "Asymmetric", fr: "Asymmetric" },
             kind: "endpoint",
             methods: ["post"],
-            updated: "2026-09-12",
+            updated: "2026-11-14",
         },
         authentication: {
             title: { en: "Authentication", fr: "Authentification" },

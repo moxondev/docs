@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/asymmetric` endpoint performs RSA asymmetric key generation, encryption, and decryption.",
         fr: "L'endpoint `/asymmetric` effectue la génération de clés RSA asymétriques, le chiffrement et le déchiffrement.",
     },
-    updated: "2026-09-12",
+    updated: "2026-11-14",
     operations: [
         {
             id: "default",
@@ -165,6 +165,28 @@ export const page: Page = {
                         ],
                     ],
                     kind: "definition",
+                },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: {
+                        en: "Key generation does not block the server",
+                        fr: "La génération de clés ne bloque pas le serveur",
+                    },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "Since 6.2.0, `keygen` generates the key pair away from the thread that answers the other requests, so a slow generation (4096 bits especially) no longer holds them up. At most 2 key pairs are generated at the same time: a further `keygen` request waits for a free slot, in order of arrival, then gets its answer. It is not refused: a request that waits only takes longer. `POST /asymmetric` relies on the new `asymmetricAsync` export of the library, available from `@moxon/api`, `@moxon/api/v5` and `@moxon/api/v6`.",
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Depuis la 6.2.0, `keygen` génère la paire de clés à l'écart du thread qui répond aux autres requêtes : une génération lente (en 4096 bits surtout) ne les retient donc plus. Au plus 2 paires de clés sont générées en même temps : une requête `keygen` supplémentaire attend qu'une place se libère, dans l'ordre d'arrivée, puis reçoit sa réponse. Elle n'est pas refusée : une requête qui attend met simplement plus de temps. `POST /asymmetric` s'appuie sur le nouvel export `asymmetricAsync` de la librairie, disponible depuis `@moxon/api`, `@moxon/api/v5` et `@moxon/api/v6`.",
+                            },
+                        ],
+                    },
                 },
             ],
         },
