@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/regex` endpoint tests a regular expression pattern against a text string and returns structured match results including capture groups and named groups.",
         fr: "L'endpoint `/regex` teste un pattern d'expression régulière contre une chaîne de texte et retourne les correspondances structurées avec leurs groupes capturants et groupes nommés.",
     },
-    updated: "2026-05-25",
+    updated: "2026-11-14",
     operations: [
         {
             id: "default",
@@ -59,6 +59,25 @@ export const page: Page = {
                         ],
                     },
                 },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: { en: "Bounded evaluation", fr: "Évaluation bornée" },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "Since 6.2.0, a pattern that runs for more than 25 ms (compilation and matching included) is interrupted and refused with a `400` error, which stops patterns that backtrack catastrophically, such as nested quantifiers on a long text. A `pattern` or `text` parameter given more than once is refused like a missing one. The other limits are unchanged. A legitimate request gets the same response as before.",
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Depuis la 6.2.0, un pattern dont l'exécution dépasse 25 ms (compilation et recherche comprises) est interrompu et refusé avec une erreur `400`, ce qui arrête les patterns à retour arrière catastrophique, comme les quantificateurs imbriqués sur un long texte. Un paramètre `pattern` ou `text` fourni plusieurs fois est refusé comme un paramètre manquant. Les autres limites sont inchangées. Une requête légitime reçoit la même réponse qu'avant.",
+                            },
+                        ],
+                    },
+                },
             ],
         },
         {
@@ -74,16 +93,16 @@ export const page: Page = {
                             name: "pattern",
                             required: true,
                             description: {
-                                en: "The regular expression pattern to test (max 200 characters).",
-                                fr: "Le pattern d'expression régulière à tester (max 200 caractères).",
+                                en: "The regular expression pattern to test (max 200 characters). Its evaluation is interrupted after 25 ms. Give the parameter once only.",
+                                fr: "Le pattern d'expression régulière à tester (max 200 caractères). Son exécution est interrompue après 25 ms. Ne fournissez le paramètre qu'une seule fois.",
                             },
                         },
                         {
                             name: "text",
                             required: true,
                             description: {
-                                en: "The text to test the pattern against (max 1000 characters).",
-                                fr: "Le texte à tester contre le pattern (max 1000 caractères).",
+                                en: "The text to test the pattern against (max 1000 characters). Give the parameter once only.",
+                                fr: "Le texte à tester contre le pattern (max 1000 caractères). Ne fournissez le paramètre qu'une seule fois.",
                             },
                         },
                         {
@@ -210,23 +229,23 @@ export const page: Page = {
                     type: "errors",
                     rows: [
                         {
-                            message: "Please provide a pattern (?pattern=...)",
+                            message: "Please provide a pattern (?pattern={regex})",
                             description: {
-                                en: "The `pattern` parameter is missing",
-                                fr: "Le paramètre `pattern` est manquant",
+                                en: "The `pattern` parameter is missing or given more than once",
+                                fr: "Le paramètre `pattern` est manquant ou fourni plusieurs fois",
                             },
                             status: 400,
                         },
                         {
-                            message: "Please provide a text (?text=...)",
+                            message: "Please provide a text (&text={string})",
                             description: {
-                                en: "The `text` parameter is missing",
-                                fr: "Le paramètre `text` est manquant",
+                                en: "The `text` parameter is missing or given more than once",
+                                fr: "Le paramètre `text` est manquant ou fourni plusieurs fois",
                             },
                             status: 400,
                         },
                         {
-                            message: "Pattern must be at most 200 characters",
+                            message: "Pattern must be under 200 characters",
                             description: {
                                 en: "The `pattern` exceeds the maximum length",
                                 fr: "Le `pattern` dépasse la longueur maximale",
@@ -234,7 +253,7 @@ export const page: Page = {
                             status: 400,
                         },
                         {
-                            message: "Text must be at most 1000 characters",
+                            message: "Text must be under 1000 characters",
                             description: {
                                 en: "The `text` exceeds the maximum length",
                                 fr: "Le `text` dépasse la longueur maximale",
@@ -242,18 +261,10 @@ export const page: Page = {
                             status: 400,
                         },
                         {
-                            message: "Invalid flag: {flag}. Accepted flags: g, i, m, s, u",
+                            message: "Pattern took too long to evaluate",
                             description: {
-                                en: "One or more flags are not supported",
-                                fr: "Un ou plusieurs flags ne sont pas supportés",
-                            },
-                            status: 400,
-                        },
-                        {
-                            message: "Invalid regular expression",
-                            description: {
-                                en: "The pattern is not a valid regular expression",
-                                fr: "Le pattern n'est pas une expression régulière valide",
+                                en: "The pattern ran for more than 25 ms and was interrupted (since 6.2.0)",
+                                fr: "L'exécution du pattern a dépassé 25 ms et a été interrompue (depuis la 6.2.0)",
                             },
                             status: 400,
                         },

@@ -636,7 +636,7 @@ export const NAV: Nav = {
             title: { en: "Regex Tester", fr: "Testeur de regex" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-05-11",
+            updated: "2026-11-14",
         },
         statistics: {
             title: { en: "Statistics", fr: "Statistiques" },
@@ -1083,7 +1083,7 @@ export const NAV: Nav = {
             title: { en: "Regex Tester", fr: "Testeur de regex" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-05-25",
+            updated: "2026-11-14",
         },
         semver: {
             title: { en: "Semantic Versioning", fr: "Versions sémantiques" },
@@ -1506,7 +1506,7 @@ export const NAV: Nav = {
             title: { en: "Regex Tester", fr: "Testeur de regex" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-09-12",
+            updated: "2026-11-14",
         },
         semver: {
             title: { en: "Semantic Versioning", fr: "Versions sémantiques" },
