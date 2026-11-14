@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/tic-tac-toe/play` endpoint plays a move in a game. If the `game` identifier does not exist, the game is created.",
         fr: "L'endpoint `/tic-tac-toe/play` permet de jouer un coup dans une partie. Si l'identifiant `game` n'existe pas, la partie est créée.",
     },
-    updated: "2026-10-17",
+    updated: "2026-11-14",
     operations: [
         {
             id: "default",
@@ -75,16 +75,16 @@ export const page: Page = {
                             name: "game",
                             required: true,
                             description: {
-                                en: "The game identifier. If the game does not exist, it is created",
-                                fr: "L'identifiant de la partie. Si la partie n'existe pas, elle est créée",
+                                en: "The game identifier. If the game does not exist, it is created. Max 256 characters",
+                                fr: "L'identifiant de la partie. Si la partie n'existe pas, elle est créée. Max 256 caractères",
                             },
                         },
                         {
                             name: "username",
                             required: true,
                             description: {
-                                en: "The username making the move",
-                                fr: "Le nom d'utilisateur effectuant le coup",
+                                en: "The username making the move (max 100 characters)",
+                                fr: "Le nom d'utilisateur effectuant le coup (max 100 caractères)",
                             },
                         },
                         {
@@ -99,8 +99,8 @@ export const page: Page = {
                             name: "session",
                             required: true,
                             description: {
-                                en: "The user's session identifier",
-                                fr: "L'identifiant de session de l'utilisateur",
+                                en: "The user's session identifier (max 256 characters)",
+                                fr: "L'identifiant de session de l'utilisateur (max 256 caractères)",
                             },
                         },
                     ],
@@ -280,6 +280,54 @@ export const page: Page = {
                             description: {
                                 en: "Session doesn't match the player",
                                 fr: "La session ne correspond pas au joueur",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Username cannot exceed 100 characters",
+                            description: {
+                                en: "The `username` parameter is longer than 100 characters (since 6.2.0)",
+                                fr: "Le paramètre `username` dépasse 100 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Session ID cannot exceed 256 characters",
+                            description: {
+                                en: "The `session` parameter is longer than 256 characters (since 6.2.0)",
+                                fr: "Le paramètre `session` dépasse 256 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Game ID cannot exceed 256 characters",
+                            description: {
+                                en: "The `game` parameter is longer than 256 characters (since 6.2.0)",
+                                fr: "Le paramètre `game` dépasse 256 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid username",
+                            description: {
+                                en: "The `username` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `username` est un objet ou un tableau (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid session ID",
+                            description: {
+                                en: "The `session` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `session` est un objet ou un tableau (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid game ID",
+                            description: {
+                                en: "The `game` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `game` est un objet ou un tableau (depuis la 6.2.0)",
                             },
                             status: 400,
                         },

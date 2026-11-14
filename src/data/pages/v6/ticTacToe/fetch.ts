@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/tic-tac-toe/fetch` endpoint retrieves information about a Tic-Tac-Toe game. You can use the identifier of a game in progress to display it, or create a new game if no ID is provided.",
         fr: "L'endpoint `/tic-tac-toe/fetch` permet de récupérer les informations d'une partie de morpion en cours. Vous pouvez utiliser l'identifiant de la partie en cours pour l'afficher ou créer une nouvelle partie si aucun ID n'est fourni.",
     },
-    updated: "2026-10-17",
+    updated: "2026-11-14",
     operations: [
         {
             id: "default",
@@ -56,16 +56,16 @@ export const page: Page = {
                             name: "username",
                             required: true,
                             description: {
-                                en: "The username of the player",
-                                fr: "Le nom d'utilisateur effectuant la requête",
+                                en: "The username of the player (max 100 characters)",
+                                fr: "Le nom d'utilisateur effectuant la requête (max 100 caractères)",
                             },
                         },
                         {
                             name: "game",
                             required: false,
                             description: {
-                                en: "The identifier of the game to display. If it is not provided, a new game identifier is generated",
-                                fr: "L'identifiant de la partie à afficher. S'il n'est pas fourni, un nouvel identifiant de partie sera généré",
+                                en: "The identifier of the game to display. If it is not provided, a new game identifier is generated. Max 256 characters",
+                                fr: "L'identifiant de la partie à afficher. S'il n'est pas fourni, un nouvel identifiant de partie sera généré. Max 256 caractères",
                             },
                         },
                         {
@@ -229,6 +229,38 @@ export const page: Page = {
                             description: {
                                 en: "The `username` parameter is missing",
                                 fr: "Le paramètre `username` est manquant",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Username cannot exceed 100 characters",
+                            description: {
+                                en: "The `username` parameter is longer than 100 characters (since 6.2.0)",
+                                fr: "Le paramètre `username` dépasse 100 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Game ID cannot exceed 256 characters",
+                            description: {
+                                en: "The `game` parameter is longer than 256 characters (since 6.2.0)",
+                                fr: "Le paramètre `game` dépasse 256 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid username",
+                            description: {
+                                en: "The `username` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `username` est un objet ou un tableau (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid game ID",
+                            description: {
+                                en: "The `game` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `game` est un objet ou un tableau (depuis la 6.2.0)",
                             },
                             status: 400,
                         },

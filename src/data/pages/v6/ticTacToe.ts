@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/tic-tac-toe` endpoints allow playing online Tic-Tac-Toe between two players. Games support both public and private modes. A game in progress is deleted after 1 hour without a move, and a finished game 10 minutes after it ends.",
         fr: "Les endpoints `/tic-tac-toe` permettent de jouer au morpion en ligne à deux joueurs. Les parties supportent les modes public et privé. Une partie en cours est supprimée après 1 heure sans coup, et une partie terminée 10 minutes après sa fin.",
     },
-    updated: "2026-10-17",
+    updated: "2026-11-14",
     sections: [
         {
             id: "",
@@ -29,6 +29,33 @@ export const page: Page = {
                             {
                                 type: "p",
                                 text: "`POST /tic-tac-toe` n'existe plus en v6 : il répond `404` (`Endpoint not available in v6.`). Chaque action a son propre endpoint, listé ci-dessous. Pour jouer un coup, utilisez [`POST /tic-tac-toe/play`](ref:tic-tac-toe/play) avec le même corps JSON (`username`, `move`, `session`, `game`).",
+                            },
+                        ],
+                    },
+                },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: { en: "Bounded inputs", fr: "Entrées bornées" },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "Since 6.2.0, the identifiers are bounded: `username` up to 100 characters, `session` and `game` up to 256. A longer value, or one that is an object or an array, is refused with the usual `400` error.",
+                            },
+                            {
+                                type: "p",
+                                text: "Names such as `constructor`, `__proto__` or `toString` are ordinary usernames and game identifiers: such a game is created and found like any other, and forfeiting one that does not exist answers `Game not found`.",
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Depuis la 6.2.0, les identifiants sont bornés : `username` jusqu'à 100 caractères, `session` et `game` jusqu'à 256. Une valeur plus longue, ou qui est un objet ou un tableau, est refusée avec l'erreur `400` habituelle.",
+                            },
+                            {
+                                type: "p",
+                                text: "Les noms tels que `constructor`, `__proto__` ou `toString` sont des noms d'utilisateur et des identifiants de partie ordinaires : une telle partie est créée et retrouvée comme les autres, et abandonner une partie qui n'existe pas répond `Game not found`.",
                             },
                         ],
                     },

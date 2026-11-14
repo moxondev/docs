@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/tic-tac-toe` endpoint allows playing and storing an online Tic-Tac-Toe game. Games are stored for 1 hour and support both public and private modes.",
         fr: "L'endpoint `/tic-tac-toe` permet de jouer et de stocker une partie de morpion en ligne. Les parties sont stockées pendant 1 heure et supportent les modes public et privé.",
     },
-    updated: "2026-05-25",
+    updated: "2026-11-14",
     operations: [
         {
             id: "default",
@@ -51,8 +51,8 @@ export const page: Page = {
                             name: "username",
                             required: true,
                             description: {
-                                en: "The username making the move",
-                                fr: "Le nom d'utilisateur effectuant le mouvement",
+                                en: "The username making the move (max 100 characters)",
+                                fr: "Le nom d'utilisateur effectuant le mouvement (max 100 caractères)",
                             },
                         },
                         {
@@ -67,19 +67,46 @@ export const page: Page = {
                             name: "session",
                             required: true,
                             description: {
-                                en: "The user's session identifier",
-                                fr: "L'identifiant de session de l'utilisateur",
+                                en: "The user's session identifier (max 256 characters)",
+                                fr: "L'identifiant de session de l'utilisateur (max 256 caractères)",
                             },
                         },
                         {
                             name: "game",
                             required: true,
                             description: {
-                                en: "The game identifier for connection. If the game does not exist, it will be created",
-                                fr: "L'identifiant de la partie permettant la connexion. Si la partie n'existe pas, elle sera créée",
+                                en: "The game identifier for connection. If the game does not exist, it will be created. Max 256 characters",
+                                fr: "L'identifiant de la partie permettant la connexion. Si la partie n'existe pas, elle sera créée. Max 256 caractères",
                             },
                         },
                     ],
+                },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: { en: "Bounded inputs", fr: "Entrées bornées" },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "Since 6.2.0, the identifiers are bounded: `username` up to 100 characters, `session` and `game` up to 256. A longer value, or one that is an object or an array, is refused with the usual `400` error.",
+                            },
+                            {
+                                type: "p",
+                                text: "Names such as `constructor`, `__proto__` or `toString` are ordinary usernames and game identifiers: such a game is created and found like any other, and forfeiting one that does not exist answers `Game not found`.",
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Depuis la 6.2.0, les identifiants sont bornés : `username` jusqu'à 100 caractères, `session` et `game` jusqu'à 256. Une valeur plus longue, ou qui est un objet ou un tableau, est refusée avec l'erreur `400` habituelle.",
+                            },
+                            {
+                                type: "p",
+                                text: "Les noms tels que `constructor`, `__proto__` ou `toString` sont des noms d'utilisateur et des identifiants de partie ordinaires : une telle partie est créée et retrouvée comme les autres, et abandonner une partie qui n'existe pas répond `Game not found`.",
+                            },
+                        ],
+                    },
                 },
             ],
         },
@@ -287,6 +314,54 @@ export const page: Page = {
                             description: {
                                 en: "The `game` parameter is missing or invalid",
                                 fr: "Le paramètre `game` est manquant ou invalide",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Username cannot exceed 100 characters",
+                            description: {
+                                en: "The `username` parameter is longer than 100 characters (since 6.2.0)",
+                                fr: "Le paramètre `username` dépasse 100 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Session ID cannot exceed 256 characters",
+                            description: {
+                                en: "The `session` parameter is longer than 256 characters (since 6.2.0)",
+                                fr: "Le paramètre `session` dépasse 256 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Game ID cannot exceed 256 characters",
+                            description: {
+                                en: "The `game` parameter is longer than 256 characters (since 6.2.0)",
+                                fr: "Le paramètre `game` dépasse 256 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid username",
+                            description: {
+                                en: "The `username` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `username` est un objet ou un tableau (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid session ID",
+                            description: {
+                                en: "The `session` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `session` est un objet ou un tableau (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid game ID",
+                            description: {
+                                en: "The `game` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `game` est un objet ou un tableau (depuis la 6.2.0)",
                             },
                             status: 400,
                         },
