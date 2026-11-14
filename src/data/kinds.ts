@@ -214,6 +214,7 @@ export const KINDS: PageIndex = {
         changelog: { kind: "changelog" },
         "changelog/6.0.0": { kind: "release" },
         "changelog/6.1.0": { kind: "release" },
+        "changelog/6.2.0": { kind: "release" },
         chart: { kind: "endpoint" },
         chat: { kind: "endpoint" },
         "chat/clear": { kind: "endpoint" },

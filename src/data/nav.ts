@@ -1269,6 +1269,16 @@ export const NAV: Nav = {
                 fr: "Nouveau nom @moxon/api, export manifest expérimental, correctifs de sécurité.",
             },
         },
+        "changelog/6.2.0": {
+            title: { en: "6.2.0", fr: "6.2.0" },
+            kind: "release",
+            methods: [],
+            updated: "2026-11-14",
+            summary: {
+                en: "Security release: abusive inputs are bounded on every version, /cron dates fixed in some timezones.",
+                fr: "Version de sécurité : les entrées abusives sont bornées sur toutes les versions, dates de /cron corrigées dans certains fuseaux.",
+            },
+        },
         chart: {
             title: { en: "Chart", fr: "Chart" },
             kind: "endpoint",
