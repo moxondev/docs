@@ -46,7 +46,7 @@ The home counts its endpoints from this file. `scripts/pages.ts` asserts the lis
 **Commit:** `MAJOR: data: Add <version> changelog`
 **File:** `src/data/pages/v6/releases.ts`
 
-Add the release to the record, keyed by its number: id `changelog/<version>`, `release: { version, url, summary }`, and the sections of lists in both languages. Link the new endpoints with `[POST /name](ref:name)`. The overview page `changelog.ts` is edited only when the migration guide changes.
+Add the release to the record, keyed by its number: id `changelog/<version>`, `release: { version, url, summary }`, and the sections of lists in both languages. A release that changes the API gets an `api` section (with its own subsections) and a `documentation` section for what changes in the pages; the 6.2.0 entry is the model. Link the new endpoints with `[POST /name](ref:name)`. The overview page `changelog.ts` is edited only when the migration guide changes.
 
 ## Editing a page
 
@@ -79,7 +79,7 @@ export const page: Page = {
 
 A push on `master` deploys the site, a release is a separate and manual gesture: pushing does not oblige to release.
 
-1. **Bump the version.** `package.json` `version` (`BUILD: Bump package version to <version>`), then `npm run gen`: the release is written into `src/data/nav.ts` (`MINOR: data: Regenerate the navigation index for <version>`), and `npm run check` fails while the two differ. In `src/data/versions.ts` the `release` of the latest version follows by itself; the one of an older major is typed.
+1. **Bump the version, last.** The bump is the last commit of the series: every content, changelog, test and fix commit comes before it. Change `package.json` `version`, then run `npm run gen`: the release is written into `src/data/nav.ts`, and `npm run check` fails while the two differ. Commit `package.json`, `package-lock.json` and `src/data/nav.ts` together as `BUILD: Bump package version to <version>`, with no separate navigation commit, so that the tip is green. In `src/data/versions.ts` the `release` of the latest version follows by itself; the one of an older major is typed. A fix found afterwards goes before the bump (rebase while the series is unpushed).
 2. **Verify locally**, as the workflow will:
 
     ```bash
@@ -106,19 +106,19 @@ A push on `master` deploys the site, a release is a separate and manual gesture:
     git push origin <version>
     ```
 
-5. **GitHub release.** After the push and the tag, write the release notes. Follow the style of the previous release (same tone, same level of detail, same link format) and check `gh release view <previous-tag>` first. The title field stays empty.
+5. **GitHub release.** After the push and the tag, write the release notes. Follow the style of the previous release and check `gh release view <previous-tag>` first. The title field stays empty and the notes are in English.
 
     ```bash
-    gh release create <tag> --title "" --notes "$(cat <<'EOF'
-    # Version X.X.X - Mois Année
-
-    - French narrative bullets from the user's perspective, with **[endpoint links](https://moxon.dev/v6/<name>/)**.
-    - Each bullet ends with a period.
-    EOF
-    )"
+    gh release create <tag> --title "" --notes-file notes.md
     ```
 
-    The header is `# Version X.X.X - Mois Année` (month in French, capitalized). The bullets tell what a reader of the documentation or a user of the API gains, not the list of commits. Use `gh release edit <tag> --notes ...` to fix a release that already exists.
+    The notes have no `# Version` header and no date, since the tag already names the version:
+
+    - one intro sentence that says what the release is, with the link to the documentation or to the API release it follows;
+    - then `##` sections, each with bullets that start with a bold lead and an em dash (`- **Lead** — sentence.`), each ending with a period;
+    - the bullets tell what a reader of the documentation gains, not the list of commits, with **[links to the pages](https://moxon.dev/v6/<name>/)**.
+
+    A release of this repository speaks only about the documentation: pages added or updated, notes added to a page, features of the site. What the API changes (limits, errors, behaviours) is told in the release of the API repository; the documentation says what it does about it ("the page lists the new errors") without repeating it. The changelog page (step 4) is the one place that tells both, in an API section and a Documentation section. Use `gh release edit <tag> --notes-file notes.md` to fix a release that already exists.
 
 ### The first deploy of the Next.js site
 
