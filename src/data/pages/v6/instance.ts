@@ -9,7 +9,7 @@ export const page: Page = {
         en: "`/health` and `/logs` report on the state of an instance of the API rather than offering a utility. They sit at the root, outside any version.",
         fr: "`/health` et `/logs` renseignent sur l'état d'une instance de l'API au lieu d'offrir un utilitaire. Ils sont à la racine, hors de toute version.",
     },
-    updated: "2026-10-23",
+    updated: "2026-11-14",
     operations: [
         { id: "health", method: "get", path: "/health", root: true, try: true, params: [] },
         { id: "logs", method: "get", path: "/logs", root: true, try: false, params: [] },
@@ -104,8 +104,8 @@ export const page: Page = {
                             name: "connections",
                             type: "`number`",
                             description: {
-                                en: "Client addresses the rate limiter tracks in the current hour",
-                                fr: "Adresses de clients que la limite de requêtes suit dans l'heure en cours",
+                                en: "Clients the rate limiter tracks in the current hour: an IPv4 address, or a `/64` block for an IPv6 client",
+                                fr: "Clients que la limite de requêtes suit dans l'heure en cours : une adresse IPv4, ou un bloc `/64` pour un client IPv6",
                             },
                         },
                         {
@@ -281,8 +281,8 @@ export const page: Page = {
                 {
                     type: "p",
                     text: {
-                        en: "An instance you run yourself reads its settings from environment variables. One of them concerns this page:",
-                        fr: "Une instance que vous faites tourner vous-même lit ses réglages dans des variables d'environnement. L'une d'elles concerne cette page :",
+                        en: "An instance you run yourself reads its settings from environment variables. Three of them matter here:",
+                        fr: "Une instance que vous faites tourner vous-même lit ses réglages dans des variables d'environnement. Trois d'entre elles comptent ici :",
                     },
                 },
                 {
@@ -300,8 +300,43 @@ export const page: Page = {
                                 fr: "Valeur attendue dans l'en-tête `X-Logs-Token` ; tant qu'elle n'est pas définie, `/logs` répond `404`",
                             },
                         ],
+                        [
+                            "`TRUSTED_PROXIES`",
+                            { en: "one hop", fr: "un saut" },
+                            {
+                                en: "CIDR blocks or `loopback` / `linklocal` / `uniquelocal`, space or comma separated; unset, exactly one reverse proxy is assumed and a warning is logged",
+                                fr: "Blocs CIDR ou `loopback` / `linklocal` / `uniquelocal`, séparés par des espaces ou des virgules ; tant qu'elle n'est pas définie, un seul reverse proxy est supposé et un avertissement est journalisé",
+                            },
+                        ],
+                        [
+                            "`GLOBAL_LIMIT`",
+                            "50000",
+                            {
+                                en: "Requests per hour accepted across the whole instance; only the requests the per-client limits let through use this budget",
+                                fr: "Requêtes par heure acceptées sur toute l'instance ; seules les requêtes que laissent passer les limites par client utilisent ce budget",
+                            },
+                        ],
                     ],
                     kind: "definition",
+                },
+                {
+                    type: "callout",
+                    kind: "warning",
+                    title: { en: "Match the proxy chain", fr: "Alignez la chaîne de proxys" },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "The one-hop default reads the client address from the last `X-Forwarded-For` entry, which is right behind a single reverse proxy such as nginx or Caddy. Exposed directly, callers can forge that header and pick their own address; behind several hops, every caller is counted as the nearest proxy. Set `TRUSTED_PROXIES` to match the actual chain. A forwarded address that is not an IP address counts as the connecting peer.",
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Le réglage par défaut, un seul saut, lit l'adresse du client dans la dernière entrée de `X-Forwarded-For`, ce qui est juste derrière un unique reverse proxy comme nginx ou Caddy. Exposée directement, l'API laisse les appelants forger cet en-tête et choisir leur adresse ; derrière plusieurs sauts, tous les appelants sont comptés comme le proxy le plus proche. Définissez `TRUSTED_PROXIES` pour qu'elle corresponde à la chaîne réelle. Une adresse transmise qui n'est pas une adresse IP compte comme le pair connecté.",
+                            },
+                        ],
+                    },
                 },
                 {
                     type: "callout",

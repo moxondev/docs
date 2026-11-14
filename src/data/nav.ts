@@ -1400,7 +1400,7 @@ export const NAV: Nav = {
             title: { en: "Instance", fr: "Instance" },
             kind: "article",
             methods: ["get"],
-            updated: "2026-10-23",
+            updated: "2026-11-14",
         },
         ip: {
             title: { en: "IP Analyzer", fr: "Analyse d'adresse IP" },
