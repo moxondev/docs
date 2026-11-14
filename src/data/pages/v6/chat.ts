@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/chat` endpoint provides a real-time messaging system with support for public and private channels. Messages are stored for 1 hour.",
         fr: "L'endpoint `/chat` fournit un système de messagerie en temps réel avec support pour les canaux publics et privés. Les messages sont stockés pendant 1 heure.",
     },
-    updated: "2026-09-13",
+    updated: "2026-11-14",
     operations: [
         {
             id: "default",
@@ -63,32 +63,78 @@ export const page: Page = {
                             name: "username",
                             required: true,
                             description: {
-                                en: "The username of the user who sends the message",
-                                fr: "Le nom d'utilisateur de l'expéditeur",
+                                en: "The username of the user who sends the message (max 100 characters)",
+                                fr: "Le nom d'utilisateur de l'expéditeur (max 100 caractères)",
                             },
                         },
                         {
                             name: "message",
                             required: true,
-                            description: { en: "The message to send", fr: "Le message à envoyer" },
+                            description: {
+                                en: "The message to send (max 1000 characters)",
+                                fr: "Le message à envoyer (max 1000 caractères)",
+                            },
                         },
                         {
                             name: "session",
                             required: true,
                             description: {
-                                en: "The session ID of the user",
-                                fr: "L'identifiant de session de l'utilisateur",
+                                en: "The session ID of the user (max 256 characters)",
+                                fr: "L'identifiant de session de l'utilisateur (max 256 caractères)",
                             },
                         },
                         {
                             name: "token",
                             required: false,
                             description: {
-                                en: "The key used to connect to a private chat. If not provided, the message will be sent to the global chat",
-                                fr: "La clé utilisée pour se connecter à un chat privé. Si non fourni, le message sera envoyé dans le chat global",
+                                en: "The key used to connect to a private chat. If not provided, the message will be sent to the global chat. Max 256 characters",
+                                fr: "La clé utilisée pour se connecter à un chat privé. Si non fourni, le message sera envoyé dans le chat global. Max 256 caractères",
                             },
                         },
                     ],
+                },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: { en: "Bounded inputs", fr: "Entrées bornées" },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "Since 6.2.0, the inputs are bounded: `username` up to 100 characters, `message` up to 1000, `session` and `token` up to 256. A longer value, or one that is an object or an array, is refused with the usual `400` error.",
+                            },
+                            {
+                                type: "p",
+                                text: "The optional `timestamp` is kept as sent, up to 128 characters. An object, an array or a longer string is not refused: the message is stored with the server time instead.",
+                            },
+                            {
+                                type: "p",
+                                text: "The public room and each private chat keep their 200 most recent messages: when a new message goes beyond that, the oldest one is dropped, even before its hour is up. At most 1000 private chats can exist at the same time: a new one is refused with `Too many active private chats`, while sending to an existing private chat keeps working.",
+                            },
+                            {
+                                type: "p",
+                                text: "Names such as `constructor`, `__proto__` or `toString` are ordinary usernames and tokens, like any other.",
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Depuis la 6.2.0, les entrées sont bornées : `username` jusqu'à 100 caractères, `message` jusqu'à 1000, `session` et `token` jusqu'à 256. Une valeur plus longue, ou qui est un objet ou un tableau, est refusée avec l'erreur `400` habituelle.",
+                            },
+                            {
+                                type: "p",
+                                text: "Le paramètre optionnel `timestamp` est conservé tel qu'il est envoyé, jusqu'à 128 caractères. Un objet, un tableau ou une chaîne plus longue n'est pas refusé : le message est alors enregistré avec l'heure du serveur.",
+                            },
+                            {
+                                type: "p",
+                                text: "Le salon public et chaque chat privé conservent leurs 200 messages les plus récents : quand un nouveau message dépasse cette limite, le plus ancien est supprimé, même avant la fin de son heure. Au plus 1000 chats privés peuvent exister en même temps : un nouveau est refusé avec `Too many active private chats`, tandis que l'envoi dans un chat privé existant continue de fonctionner.",
+                            },
+                            {
+                                type: "p",
+                                text: "Les noms tels que `constructor`, `__proto__` ou `toString` sont des noms d'utilisateur et des tokens ordinaires, comme les autres.",
+                            },
+                        ],
+                    },
                 },
             ],
         },
@@ -217,6 +263,78 @@ export const page: Page = {
                             description: {
                                 en: "The `session` parameter is missing or invalid",
                                 fr: "Le paramètre `session` est manquant ou invalide",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Username cannot exceed 100 characters",
+                            description: {
+                                en: "The `username` parameter is longer than 100 characters (since 6.2.0)",
+                                fr: "Le paramètre `username` dépasse 100 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Message cannot exceed 1000 characters",
+                            description: {
+                                en: "The `message` parameter is longer than 1000 characters (since 6.2.0)",
+                                fr: "Le paramètre `message` dépasse 1000 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Session ID cannot exceed 256 characters",
+                            description: {
+                                en: "The `session` parameter is longer than 256 characters (since 6.2.0)",
+                                fr: "Le paramètre `session` dépasse 256 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Token cannot exceed 256 characters",
+                            description: {
+                                en: "The `token` parameter is longer than 256 characters (since 6.2.0)",
+                                fr: "Le paramètre `token` dépasse 256 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid username",
+                            description: {
+                                en: "The `username` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `username` est un objet ou un tableau (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid message",
+                            description: {
+                                en: "The `message` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `message` est un objet ou un tableau (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid session ID",
+                            description: {
+                                en: "The `session` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `session` est un objet ou un tableau (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid token",
+                            description: {
+                                en: "The `token` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `token` est un objet ou un tableau (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Too many active private chats",
+                            description: {
+                                en: "1000 private chats already exist and `token` matches none of them: the new private chat is refused (since 6.2.0)",
+                                fr: "1000 chats privés existent déjà et `token` ne correspond à aucun d'eux : le nouveau chat privé est refusé (depuis la 6.2.0)",
                             },
                             status: 400,
                         },

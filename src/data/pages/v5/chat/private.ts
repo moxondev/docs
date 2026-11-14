@@ -6,10 +6,10 @@ export const page: Page = {
     kind: "endpoint",
     title: { en: "Private Chat", fr: "Chat Privé" },
     lead: {
-        en: "The `/chat/private` endpoint retrieves all messages sent during the last hour, belonging to a private chat.",
-        fr: "L'endpoint `/chat/private` récupère tous les messages envoyés durant la dernière heure, appartenant à un chat privé.",
+        en: "The `/chat/private` endpoint retrieves the messages sent during the last hour, up to the 200 most recent, belonging to a private chat.",
+        fr: "L'endpoint `/chat/private` récupère les messages envoyés durant la dernière heure, dans la limite des 200 plus récents, appartenant à un chat privé.",
     },
-    updated: "2026-05-25",
+    updated: "2026-11-14",
     operations: [
         {
             id: "default",
@@ -49,19 +49,46 @@ export const page: Page = {
                             name: "username",
                             required: true,
                             description: {
-                                en: "The username of the user who sends the message",
-                                fr: "Le nom d'utilisateur qui a envoyé le message",
+                                en: "The username of the user who sends the message (max 100 characters)",
+                                fr: "Le nom d'utilisateur qui a envoyé le message (max 100 caractères)",
                             },
                         },
                         {
                             name: "token",
                             required: true,
                             description: {
-                                en: "The key used to connect to the desired private chat",
-                                fr: "La clé permettant la connexion au chat privé désiré",
+                                en: "The key used to connect to the desired private chat (max 256 characters)",
+                                fr: "La clé permettant la connexion au chat privé désiré (max 256 caractères)",
                             },
                         },
                     ],
+                },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: { en: "Bounded inputs", fr: "Entrées bornées" },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "Since 6.2.0, `username` is limited to 100 characters and `token` to 256. A longer value, or one that is an object or an array, is refused with the usual `400` error.",
+                            },
+                            {
+                                type: "p",
+                                text: "A private chat keeps its 200 most recent messages: when a new message goes beyond that, the oldest one is dropped, even before its hour is up, so the response never holds more than 200 messages. A token named like `constructor` or `__proto__` is an ordinary token: if it was never used, it is reported as invalid or expired like any other.",
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Depuis la 6.2.0, `username` est limité à 100 caractères et `token` à 256. Une valeur plus longue, ou qui est un objet ou un tableau, est refusée avec l'erreur `400` habituelle.",
+                            },
+                            {
+                                type: "p",
+                                text: "Un chat privé conserve ses 200 messages les plus récents : quand un nouveau message dépasse cette limite, le plus ancien est supprimé, même avant la fin de son heure, de sorte que la réponse ne contient jamais plus de 200 messages. Un token nommé `constructor` ou `__proto__` est un token ordinaire : s'il n'a jamais été utilisé, il est signalé comme invalide ou expiré, comme les autres.",
+                            },
+                        ],
+                    },
                 },
             ],
         },
@@ -169,6 +196,38 @@ export const page: Page = {
                             description: {
                                 en: "Too many requests in a short period",
                                 fr: "Limite de requêtes atteinte",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Username cannot exceed 100 characters",
+                            description: {
+                                en: "The `username` parameter is longer than 100 characters (since 6.2.0)",
+                                fr: "Le paramètre `username` dépasse 100 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Token cannot exceed 256 characters",
+                            description: {
+                                en: "The `token` parameter is longer than 256 characters (since 6.2.0)",
+                                fr: "Le paramètre `token` dépasse 256 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid username",
+                            description: {
+                                en: "The `username` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `username` est un objet ou un tableau (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid token",
+                            description: {
+                                en: "The `token` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `token` est un objet ou un tableau (depuis la 6.2.0)",
                             },
                             status: 400,
                         },

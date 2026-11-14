@@ -6,10 +6,10 @@ export const page: Page = {
     kind: "endpoint",
     title: { en: "Chat Messages", fr: "Chat Messages" },
     lead: {
-        en: "The `/chat` endpoint retrieves all messages sent during the last hour. This endpoint does not require any options.",
-        fr: "L'endpoint `/chat` récupère tous les messages envoyés durant la dernière heure. Cet endpoint ne nécessite aucune option.",
+        en: "The `/chat` endpoint retrieves the messages sent during the last hour, up to the 200 most recent. This endpoint does not require any options.",
+        fr: "L'endpoint `/chat` récupère les messages envoyés durant la dernière heure, dans la limite des 200 plus récents. Cet endpoint ne nécessite aucune option.",
     },
-    updated: "2026-09-13",
+    updated: "2026-11-14",
     operations: [{ id: "default", method: "get", path: "/chat", try: true, params: [] }],
     sections: [
         { id: "", blocks: [{ type: "endpoint", op: "default" }] },
@@ -22,8 +22,27 @@ export const page: Page = {
                 {
                     type: "p",
                     text: {
-                        en: "This endpoint does not require any parameters. It returns all messages from the last hour.",
-                        fr: "Cet endpoint ne nécessite aucun paramètre. Il retourne tous les messages de la dernière heure.",
+                        en: "This endpoint does not require any parameters. It returns the messages from the last hour, 200 at most.",
+                        fr: "Cet endpoint ne nécessite aucun paramètre. Il retourne les messages de la dernière heure, 200 au plus.",
+                    },
+                },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: { en: "Bounded history", fr: "Historique borné" },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "Since 6.2.0, the public room keeps its 200 most recent messages: when a new message goes beyond that, the oldest one is dropped, even before its hour is up. The response therefore never holds more than 200 messages.",
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Depuis la 6.2.0, le salon public conserve ses 200 messages les plus récents : quand un nouveau message dépasse cette limite, le plus ancien est supprimé, même avant la fin de son heure. La réponse ne contient donc jamais plus de 200 messages.",
+                            },
+                        ],
                     },
                 },
             ],

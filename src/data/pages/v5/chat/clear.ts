@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/chat/:token` endpoint clears all messages from a private chat.",
         fr: "L'endpoint `/chat/:token` efface tous les messages d'un chat privé.",
     },
-    updated: "2026-05-25",
+    updated: "2026-11-14",
     operations: [
         {
             id: "default",
@@ -44,21 +44,24 @@ export const page: Page = {
                             name: "token",
                             required: true,
                             description: {
-                                en: "The private chat token (URL parameter)",
-                                fr: "Le token du chat privé (paramètre d'URL)",
+                                en: "The private chat token (URL parameter, max 256 characters)",
+                                fr: "Le token du chat privé (paramètre d'URL, max 256 caractères)",
                             },
                         },
                         {
                             name: "username",
                             required: true,
-                            description: { en: "The username", fr: "Le nom de l'utilisateur" },
+                            description: {
+                                en: "The username (max 100 characters)",
+                                fr: "Le nom de l'utilisateur (max 100 caractères)",
+                            },
                         },
                         {
                             name: "session",
                             required: true,
                             description: {
-                                en: "The user's session identifier",
-                                fr: "L'identifiant de session de l'utilisateur",
+                                en: "The user's session identifier (max 256 characters)",
+                                fr: "L'identifiant de session de l'utilisateur (max 256 caractères)",
                             },
                         },
                     ],
@@ -78,6 +81,33 @@ export const page: Page = {
                             {
                                 type: "p",
                                 text: "Le paramètre `token` fait partie du chemin de l'URL. Les autres paramètres sont envoyés dans un body JSON avec `Content-Type: application/json`.",
+                            },
+                        ],
+                    },
+                },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: { en: "Bounded inputs", fr: "Entrées bornées" },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "Since 6.2.0, `username` is limited to 100 characters, `session` and `token` to 256. A longer value, or one that is an object or an array, is refused with the usual `400` error.",
+                            },
+                            {
+                                type: "p",
+                                text: "A token named like `constructor` or `__proto__` is an ordinary token: if it was never used, it is reported as invalid or expired like any other.",
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Depuis la 6.2.0, `username` est limité à 100 caractères, `session` et `token` à 256. Une valeur plus longue, ou qui est un objet ou un tableau, est refusée avec l'erreur `400` habituelle.",
+                            },
+                            {
+                                type: "p",
+                                text: "Un token nommé `constructor` ou `__proto__` est un token ordinaire : s'il n'a jamais été utilisé, il est signalé comme invalide ou expiré, comme les autres.",
                             },
                         ],
                     },
@@ -157,6 +187,46 @@ export const page: Page = {
                             description: {
                                 en: "Too many requests in a short period",
                                 fr: "Limite de requêtes atteinte",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Username cannot exceed 100 characters",
+                            description: {
+                                en: "The `username` parameter is longer than 100 characters (since 6.2.0)",
+                                fr: "Le paramètre `username` dépasse 100 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Session ID cannot exceed 256 characters",
+                            description: {
+                                en: "The `session` parameter is longer than 256 characters (since 6.2.0)",
+                                fr: "Le paramètre `session` dépasse 256 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Token cannot exceed 256 characters",
+                            description: {
+                                en: "The `token` parameter is longer than 256 characters (since 6.2.0)",
+                                fr: "Le paramètre `token` dépasse 256 caractères (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid username",
+                            description: {
+                                en: "The `username` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `username` est un objet ou un tableau (depuis la 6.2.0)",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Please provide a valid session ID",
+                            description: {
+                                en: "The `session` parameter is an object or an array (since 6.2.0)",
+                                fr: "Le paramètre `session` est un objet ou un tableau (depuis la 6.2.0)",
                             },
                             status: 400,
                         },
