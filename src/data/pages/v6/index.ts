@@ -279,18 +279,18 @@ export const page: Page = {
                 {
                     type: "callout",
                     kind: "tip",
-                    title: { en: "New in 6.1.0", fr: "Nouveau en 6.1.0" },
+                    title: { en: "New in 6.2.0", fr: "Nouveau en 6.2.0" },
                     body: {
                         en: [
                             {
                                 type: "p",
-                                text: "Every documentation page has one address per version and language: `/v6/hash` for the Hash page in English, `/fr/v6/hash` in French, `/v5/hash` for v5. Old addresses such as `/v6/en/hash` or `/v6/fr/hash` redirect automatically to the new ones, anchors included.",
+                                text: "6.2.0 is a security release: abusive inputs are now refused or bounded on every version, `v4` and `v5` included. Two changes are visible: the dates of `/cron` are fixed on `v5` and `v6`, and `/chat` keeps only the last 200 messages of a room. See the [6.2.0 changelog](ref:changelog/6.2.0).",
                             },
                         ],
                         fr: [
                             {
                                 type: "p",
-                                text: "Chaque page de la documentation a une adresse par version et par langue : `/v6/hash` pour la page Hash en anglais, `/fr/v6/hash` en français, `/v5/hash` pour la v5. Les anciennes adresses comme `/v6/en/hash` ou `/v6/fr/hash` redirigent automatiquement vers les nouvelles, ancres comprises.",
+                                text: "La 6.2.0 est une version de sécurité : les entrées abusives sont désormais refusées ou bornées sur toutes les versions, `v4` et `v5` comprises. Deux changements sont visibles : les dates de `/cron` sont corrigées en `v5` et `v6`, et `/chat` ne garde que les 200 derniers messages d'un salon. Voir le [changelog de la 6.2.0](ref:changelog/6.2.0).",
                             },
                         ],
                     },
