@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/captcha` endpoint generates a CAPTCHA image. It offers two modes: `image`, which returns the answer alongside the picture, and `challenge`, which keeps the answer server-side so it can be verified later.",
         fr: "L'endpoint `/captcha` génère une image CAPTCHA. Il propose deux modes : `image`, qui retourne la réponse en même temps que l'image, et `challenge`, qui garde la réponse côté serveur pour la vérifier ensuite.",
     },
-    updated: "2026-09-08",
+    updated: "2026-11-14",
     operations: [
         {
             id: "default",
@@ -111,16 +111,16 @@ export const page: Page = {
                             name: "text",
                             required: false,
                             description: {
-                                en: "The captcha text. If omitted, a random string is generated. Rejected in `challenge` mode",
-                                fr: "Le texte du captcha. Si omis, une chaîne aléatoire est générée. Refusé en mode `challenge`",
+                                en: "The captcha text, up to 32 characters. If omitted, a random string is generated. Rejected in `challenge` mode",
+                                fr: "Le texte du captcha, 32 caractères au plus. Si omis, une chaîne aléatoire est générée. Refusé en mode `challenge`",
                             },
                         },
                         {
                             name: "length",
                             required: false,
                             description: {
-                                en: "Length of the auto-generated text, 1 to 20. Default: `6`",
-                                fr: "Longueur du texte auto-généré, de 1 à 20. Par défaut : `6`",
+                                en: "Length of the auto-generated text, 1 to 20. Default: `6`. A captcha shorter than the `minLength` sent to [POST /captcha](ref:captcha/verify) is refused there as `weak`",
+                                fr: "Longueur du texte auto-généré, de 1 à 20. Par défaut : `6`. Un captcha plus court que la `minLength` envoyée à [POST /captcha](ref:captcha/verify) y est refusé comme `weak`",
                             },
                         },
                         {
@@ -363,6 +363,14 @@ export const page: Page = {
                             description: {
                                 en: "A `bg` or `color` parameter is malformed",
                                 fr: "Un paramètre `bg` ou `color` est malformé",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Text cannot exceed 32 characters",
+                            description: {
+                                en: "The `text` is longer than 32 characters",
+                                fr: "Le `text` dépasse 32 caractères",
                             },
                             status: 400,
                         },

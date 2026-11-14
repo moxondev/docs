@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/captcha` endpoint generates a CAPTCHA image. You can provide your own text or let the API generate a random one automatically.",
         fr: "L'endpoint `/captcha` génère une image CAPTCHA. Vous pouvez fournir votre propre texte ou laisser l'API en générer un aléatoirement.",
     },
-    updated: "2026-04-21",
+    updated: "2026-11-14",
     operations: [
         {
             id: "default",
@@ -72,8 +72,8 @@ export const page: Page = {
                             name: "text",
                             required: false,
                             description: {
-                                en: "The captcha text. If omitted, a random string is generated",
-                                fr: "Le texte du captcha. Si omis, une chaîne aléatoire est générée",
+                                en: "The captcha text, up to 32 characters. If omitted, a random string is generated",
+                                fr: "Le texte du captcha, 32 caractères au plus. Si omis, une chaîne aléatoire est générée",
                             },
                         },
                         {
@@ -272,6 +272,14 @@ export const page: Page = {
                             description: {
                                 en: "A `bg` or `color` parameter is malformed",
                                 fr: "Un paramètre `bg` ou `color` est mal formaté",
+                            },
+                            status: 400,
+                        },
+                        {
+                            message: "Text cannot exceed 32 characters",
+                            description: {
+                                en: "The `text` is longer than 32 characters",
+                                fr: "Le `text` dépasse 32 caractères",
                             },
                             status: 400,
                         },

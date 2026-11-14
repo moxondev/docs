@@ -386,7 +386,7 @@ export const NAV: Nav = {
             title: { en: "Captcha Generation", fr: "Génération de Captcha" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-04-21",
+            updated: "2026-11-14",
         },
         changelog: {
             title: { en: "Changelog", fr: "Changelog" },
@@ -758,13 +758,13 @@ export const NAV: Nav = {
             title: { en: "Captcha Generation", fr: "Génération de captcha" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-09-08",
+            updated: "2026-11-14",
         },
         "captcha/verify": {
             title: { en: "Captcha Verification", fr: "Vérification de captcha" },
             kind: "endpoint",
             methods: ["post"],
-            updated: "2026-09-08",
+            updated: "2026-11-14",
         },
         case: {
             title: { en: "Case", fr: "Casse" },
@@ -1229,13 +1229,13 @@ export const NAV: Nav = {
             title: { en: "Captcha Generation", fr: "Génération de captcha" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-09-13",
+            updated: "2026-11-14",
         },
         "captcha/verify": {
             title: { en: "Captcha Verification", fr: "Vérification de captcha" },
             kind: "endpoint",
             methods: ["post"],
-            updated: "2026-09-12",
+            updated: "2026-11-14",
         },
         case: {
             title: { en: "Case", fr: "Casse" },
