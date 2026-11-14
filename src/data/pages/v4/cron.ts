@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/cron` endpoint parses a 5-field cron expression and returns a human-readable description along with the next scheduled execution timestamps.",
         fr: "L'endpoint `/cron` analyse une expression cron à 5 champs et retourne une description lisible ainsi que les prochains timestamps d'exécution planifiés.",
     },
-    updated: "2026-05-11",
+    updated: "2026-11-14",
     operations: [
         {
             id: "default",
@@ -72,6 +72,33 @@ export const page: Page = {
                         ],
                     },
                 },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: { en: "Bounded search", fr: "Recherche bornée" },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "Since 6.2.0, the search for the next dates is bounded. A schedule that can never fire, such as `0 0 31 2 *`, or a time that a daylight saving change always skips, now returns an empty `next` array at once, with a `200` status. A search that runs for more than 1 s stops there and returns the dates found so far, possibly fewer than `count`, without an error. A legitimate request gets the same response as before.",
+                            },
+                            {
+                                type: "p",
+                                text: "In timezones east of UTC, a schedule restricted to some months can still return no date, or fewer dates than `count`, as it always did in v4: the result is the same, it is now simply returned at once. [v5 and v6](ref:v6/cron) compute these dates correctly.",
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Depuis la 6.2.0, la recherche des prochaines dates est bornée. Une expression qui ne peut jamais se déclencher, comme `0 0 31 2 *`, ou une heure que le passage à l'heure d'été saute toujours, retourne désormais aussitôt un tableau `next` vide, avec le statut `200`. Une recherche qui dépasse 1 s s'arrête et retourne les dates trouvées jusque-là, éventuellement moins que `count`, sans erreur. Une requête légitime reçoit la même réponse qu'avant.",
+                            },
+                            {
+                                type: "p",
+                                text: "Dans les fuseaux horaires à l'est de UTC, une expression limitée à certains mois peut encore ne retourner aucune date, ou moins de dates que `count`, comme toujours en v4 : le résultat est le même, il est simplement retourné aussitôt. [La v5 et la v6](ref:v6/cron) calculent correctement ces dates.",
+                            },
+                        ],
+                    },
+                },
             ],
         },
         {
@@ -97,8 +124,8 @@ export const page: Page = {
                             required: false,
                             default: "`5`",
                             description: {
-                                en: "Number of upcoming execution timestamps to return (1–20).",
-                                fr: "Nombre de prochains timestamps d'exécution à retourner (1–20).",
+                                en: "Number of upcoming execution timestamps to return (1–20). Fewer are returned when the schedule has no more dates or when the search exceeds 1 s.",
+                                fr: "Nombre de prochains timestamps d'exécution à retourner (1–20). Moins sont retournés lorsque l'expression n'a plus de dates ou que la recherche dépasse 1 s.",
                             },
                         },
                         {

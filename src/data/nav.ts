@@ -519,7 +519,7 @@ export const NAV: Nav = {
             title: { en: "Cron Expression Parser", fr: "Parseur d'expressions cron" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-05-11",
+            updated: "2026-11-14",
         },
         dice: {
             title: { en: "Dice", fr: "Dés" },
@@ -912,7 +912,7 @@ export const NAV: Nav = {
             title: { en: "Cron Expression Parser", fr: "Parseur d'expressions cron" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-07-26",
+            updated: "2026-11-14",
         },
         csv: {
             title: { en: "CSV Conversion", fr: "Conversion CSV" },
@@ -1321,7 +1321,7 @@ export const NAV: Nav = {
             title: { en: "Cron Expression Parser", fr: "Parseur d'expressions cron" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-09-12",
+            updated: "2026-11-14",
         },
         csv: {
             title: { en: "CSV Conversion", fr: "Conversion CSV" },
