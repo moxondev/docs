@@ -10,7 +10,7 @@ export const page: Page = {
         fr: "Bienvenue dans la documentation de l'**API moxon v6**. Cette API fournit une collection complète d'endpoints utilitaires pour les développeurs.",
     },
     banner: true,
-    updated: "2026-11-14",
+    updated: "2026-11-15",
     operations: [{ id: "default", method: "get", path: "/infos", try: true, params: [] }],
     sections: [
         { id: "", blocks: [] },
@@ -279,18 +279,18 @@ export const page: Page = {
                 {
                     type: "callout",
                     kind: "tip",
-                    title: { en: "New in 6.2.0", fr: "Nouveau en 6.2.0" },
+                    title: { en: "New in 6.3.0", fr: "Nouveau en 6.3.0" },
                     body: {
                         en: [
                             {
                                 type: "p",
-                                text: "6.2.0 is a security release: abusive inputs are now refused or bounded on every version, `v4` and `v5` included. Two changes are visible: the dates of `/cron` are fixed on `v5` and `v6`, and `/chat` keeps only the last 200 messages of a room. See the [6.2.0 changelog](ref:changelog/6.2.0).",
+                                text: "6.3.0 adds [/badge](ref:badge), which draws a standalone SVG badge with a label, icons, colors and an optional second part, for a plain `<img>`. It exists in `v6` only. See the [6.3.0 changelog](ref:changelog/6.3.0).",
                             },
                         ],
                         fr: [
                             {
                                 type: "p",
-                                text: "La 6.2.0 est une version de sécurité : les entrées abusives sont désormais refusées ou bornées sur toutes les versions, `v4` et `v5` comprises. Deux changements sont visibles : les dates de `/cron` sont corrigées en `v5` et `v6`, et `/chat` ne garde que les 200 derniers messages d'un salon. Voir le [changelog de la 6.2.0](ref:changelog/6.2.0).",
+                                text: "La 6.3.0 ajoute [/badge](ref:badge), qui dessine un badge SVG autonome avec un libellé, des icônes, des couleurs et une seconde partie facultative, pour un simple `<img>`. Il n'existe qu'en `v6`. Voir le [changelog de la 6.3.0](ref:changelog/6.3.0).",
                             },
                         ],
                     },
