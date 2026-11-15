@@ -49,7 +49,7 @@ function count(text: string, pattern: RegExp): number {
 describe("home Catalogue (static HTML)", () => {
     const categories = homeCatalogue(NAV, LATEST, "en");
 
-    test("49 cards in 7 sections with the anchors, all in the document", () => {
+    test("50 cards in 7 sections with the anchors, all in the document", () => {
         const html = render("en", createElement(Catalogue, { categories }));
         assert.equal(count(html, /<section id="/g), 8);
         for (const anchor of ["securite", "texte", "images", "calcul", "donnees", "reseau"]) {
@@ -57,8 +57,8 @@ describe("home Catalogue (static HTML)", () => {
         }
         assert.match(html, /<section id="temps-reel"/);
         assert.match(html, /<section id="catalogue"/);
-        assert.equal(count(html, new RegExp(`href="/${LATEST}/[a-z-]+/?"`, "g")), 49);
-        assert.match(html, /Catalog<span[^>]*>49<\/span>/);
+        assert.equal(count(html, new RegExp(`href="/${LATEST}/[a-z-]+/?"`, "g")), 50);
+        assert.match(html, /Catalog<span[^>]*>50<\/span>/);
         assert.match(html, /Seven categories\./);
     });
 

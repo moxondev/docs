@@ -38,13 +38,13 @@ function names(categories: readonly HomeCategory[]): string[] {
 }
 
 describe("home catalogue", () => {
-    test("49 listed endpoints in 7 categories, counted from the data", () => {
+    test("50 listed endpoints in 7 categories, counted from the data", () => {
         const categories = catalogue("fr");
         assert.equal(categories.length, 7);
-        assert.equal(countEntries(categories), 49);
+        assert.equal(countEntries(categories), 50);
         assert.deepEqual(
             categories.map((category) => category.entries.length),
-            [9, 8, 7, 10, 6, 6, 3],
+            [9, 8, 8, 10, 6, 6, 3],
         );
         const listed = CATALOGUE.filter((entry) => isListed(entry, LATEST));
         assert.equal(countEntries(categories), listed.length);
@@ -138,7 +138,7 @@ describe("home catalogue status", () => {
 describe("home catalogue filter", () => {
     test("a blank query keeps every category and entry", () => {
         const categories = catalogue("fr");
-        assert.equal(countEntries(filterCategories(categories, "   ")), 49);
+        assert.equal(countEntries(filterCategories(categories, "   ")), 50);
     });
 
     test("fold ignores case and accents", () => {
