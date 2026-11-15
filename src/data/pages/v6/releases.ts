@@ -1,6 +1,94 @@
 import type { Page } from "@/types/content";
 
 export const releases: Record<string, Page> = {
+    "6.3.0": {
+        version: "v6",
+        id: "changelog/6.3.0",
+        kind: "release",
+        title: { en: "6.3.0", fr: "6.3.0" },
+        updated: "2026-11-15",
+        release: {
+            version: "6.3.0",
+            url: "https://github.com/moxondev/api/releases/tag/6.3.0",
+            summary: {
+                en: "New `/badge` endpoint: a standalone SVG badge, in `v6`.",
+                fr: "Nouvel endpoint `/badge` : un badge SVG autonome, en `v6`.",
+            },
+        },
+        sections: [
+            { id: "", blocks: [] },
+            {
+                id: "api",
+                level: 2,
+                title: { en: "API", fr: "API" },
+                blocks: [],
+            },
+            {
+                id: "endpoints",
+                level: 3,
+                title: { en: "Endpoints", fr: "Endpoints" },
+                blocks: [
+                    {
+                        type: "list",
+                        items: [
+                            {
+                                en: "New **[GET /badge](ref:badge)** in `v6`: it draws a standalone SVG badge, a pill that works in a plain `<img>`. Only `label` is required. `start` and `end` give a gradient, `ink` the color of the text and of the icons and `border` an outline. `icon` and `trail` take the name of one of `106` bundled icons (`105` from Lucide, plus `discord`). `message` adds a second part, in the manner of shields.io, with its own `messageStart`, `messageEnd` and `messageInk`. `size` goes from `xs` to `lg` (`16` to `28` px), `radius`, `angle` and `lift` shape the badge, and `font` and `weight` set the text.",
+                                fr: "Nouveau **[GET /badge](ref:badge)** en `v6` : il dessine un badge SVG autonome, une pilule qui fonctionne dans un simple `<img>`. Seul `label` est obligatoire. `start` et `end` donnent un dégradé, `ink` la couleur du texte et des icônes et `border` un contour. `icon` et `trail` prennent le nom de l'une des `106` icônes embarquées (`105` de Lucide, plus `discord`). `message` ajoute une seconde partie, à la manière de shields.io, avec ses propres `messageStart`, `messageEnd` et `messageInk`. `size` va de `xs` à `lg` (`16` à `28` px), `radius`, `angle` et `lift` donnent sa forme au badge, et `font` et `weight` règlent le texte.",
+                            },
+                            {
+                                en: "The texts are bounded and checked: `label` and `message` hold `64` characters at most and refuse control, zero-width and bidirectional formatting characters, and `lift`, `radius` and `angle` take a plain decimal with at most two decimals. Any invalid value is refused with a `400` and a message that names it. The image is sent with `Cache-Control: public, max-age=86400` and `Content-Security-Policy: default-src 'none'`.",
+                                fr: "Les textes sont bornés et contrôlés : `label` et `message` font `64` caractères au plus et refusent les caractères de contrôle, de largeur nulle et de formatage bidirectionnel, et `lift`, `radius` et `angle` prennent un décimal simple avec au plus deux décimales. Toute valeur invalide est refusée avec un `400` et un message qui la nomme. L'image est envoyée avec `Cache-Control: public, max-age=86400` et `Content-Security-Policy: default-src 'none'`.",
+                            },
+                            {
+                                en: "Nothing else changes: `v4` and `v5` do not have `/badge` and answer `404` with `Endpoint not available in v4.` or `Endpoint not available in v5.`, and no other endpoint is touched.",
+                                fr: "Rien d'autre ne change : la `v4` et la `v5` n'ont pas `/badge` et répondent `404` avec `Endpoint not available in v4.` ou `Endpoint not available in v5.`, et aucun autre endpoint n'est touché.",
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                id: "package",
+                level: 3,
+                title: { en: "Package", fr: "Paquet" },
+                blocks: [
+                    {
+                        type: "list",
+                        items: [
+                            {
+                                en: "New **`badge`** export, available from `@moxon/api/v6` and from the package root, which resolves to it: it takes the options of the query string, with `lift`, `radius` and `angle` as numbers, and returns `{ contentType, body }`, `body` being the SVG. It throws an `Error` with the message of the HTTP `400`. `@moxon/api/v4` and `@moxon/api/v5` do not export it.",
+                                fr: "Nouvel export **`badge`**, disponible depuis `@moxon/api/v6` et depuis la racine du paquet, qui y mène : il prend les options de la chaîne de requête, avec `lift`, `radius` et `angle` sous forme de nombres, et renvoie `{ contentType, body }`, `body` étant le SVG. Il lève une `Error` avec le message du `400` HTTP. `@moxon/api/v4` et `@moxon/api/v5` ne l'exportent pas.",
+                            },
+                            {
+                                en: "The icons come from Lucide, whose ISC licence and the MIT licence of the portions derived from Feather are kept in the source code.",
+                                fr: "Les icônes viennent de Lucide, dont la licence ISC et la licence MIT des portions dérivées de Feather sont conservées dans le code source.",
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                id: "documentation",
+                level: 2,
+                title: { en: "Documentation", fr: "Documentation" },
+                blocks: [
+                    {
+                        type: "list",
+                        items: [
+                            {
+                                en: "The new **[Badge](ref:badge)** page documents the parameters in three tables (text and icons, colors, shape and font), the bundled icons by family, the two-part badge, the response and its headers, the use from Node.js and every error message, with a Try panel that shows the badge it draws.",
+                                fr: "La nouvelle page **[Badge](ref:badge)** documente les paramètres en trois tableaux (texte et icônes, couleurs, forme et police), les icônes embarquées par famille, le badge en deux parties, la réponse et ses en-têtes, l'usage depuis Node.js et chaque message d'erreur, avec un panneau Try qui montre le badge dessiné.",
+                            },
+                            {
+                                en: "The catalogue now lists `50` endpoints, `8` of them in Images.",
+                                fr: "Le catalogue compte désormais `50` endpoints, dont `8` dans Images.",
+                            },
+                        ],
+                    },
+                ],
+            },
+        ],
+    },
     "6.2.0": {
         version: "v6",
         id: "changelog/6.2.0",
