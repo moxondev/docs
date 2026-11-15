@@ -1316,6 +1316,58 @@
     }
 }
 
+/*
+ * Fade on both ends of a scrolling list, a hint that more values wait above and below. The top
+ * one grows over the first stretch of the scroll and the bottom one goes away at the end, both
+ * driven by the scroll position, so a list that does not overflow shows none.
+ */
+@property --fade-top {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+}
+
+@property --fade-bottom {
+    syntax: "<length>";
+    inherits: false;
+    initial-value: 0px;
+}
+
+@keyframes fade-edges {
+    0% {
+        --fade-top: 0px;
+        --fade-bottom: 22px;
+    }
+
+    6% {
+        --fade-top: 22px;
+    }
+
+    94% {
+        --fade-bottom: 22px;
+    }
+
+    100% {
+        --fade-top: 22px;
+        --fade-bottom: 0px;
+    }
+}
+
+@utility fade-edges {
+    mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        #000 var(--fade-top),
+        #000 calc(100% - var(--fade-bottom)),
+        transparent
+    );
+
+    @supports (animation-timeline: scroll()) {
+        animation: fade-edges linear both;
+        animation-timeline: scroll(self);
+    }
+}
+
 /* Horizontal pill rows: no visible bar, the pill cut at the edge shows there is more */
 @utility scroll-none {
     scrollbar-width: none;

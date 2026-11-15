@@ -119,7 +119,7 @@ function Listbox({ param, value, id, touch, bench, invalid, describedBy, onChang
                     sideOffset={4}
                     className="z-50 max-h-(--radix-select-content-available-height) min-w-(--radix-select-trigger-width) overflow-hidden rounded-box border border-line bg-surface p-1 shadow-palette"
                 >
-                    <SelectPrimitive.Viewport className="max-h-72 overflow-y-auto">
+                    <SelectPrimitive.Viewport className="max-h-72 overflow-y-auto fade-edges">
                         {param.required === true ? null : (
                             <SelectPrimitive.Item value={CLEAR} className={cn(row, "text-faint")}>
                                 <SelectPrimitive.ItemText>{t("select")}</SelectPrimitive.ItemText>
@@ -186,7 +186,7 @@ function Sheet({ param, value, id, touch, bench, invalid, describedBy, onChange 
                         {t("options", { count: optionCount(param) })}
                     </DrawerDescription>
                 </DrawerHeader>
-                <ul className="max-h-[55dvh] overflow-y-auto px-3 pb-6">
+                <ul className="max-h-[55dvh] overflow-y-auto px-3 pb-6 fade-edges">
                     {param.required === true ? null : (
                         <li>
                             <DrawerClose asChild>
