@@ -9,7 +9,7 @@ export const page: Page = {
         en: "The `/infos` endpoint provides general information about the [API](https://api.moxon.dev). This endpoint does not require any options.",
         fr: "L'endpoint `/infos` fournit des informations générales sur l'[API](https://api.moxon.dev). Cet endpoint ne nécessite aucune option.",
     },
-    updated: "2026-10-17",
+    updated: "2026-11-15",
     operations: [{ id: "default", method: "get", path: "/infos", try: true, params: [] }],
     sections: [
         { id: "", blocks: [{ type: "endpoint", op: "default" }] },
@@ -90,7 +90,7 @@ export const page: Page = {
                         en: [
                             {
                                 type: "p",
-                                text: "`endpoints` counts the **distinct paths** of the requested version, whatever the method. A path shared by a `GET` and a `POST` with exactly the same form is counted once, like `/chat`. It is therefore not the number of method + path pairs: in v6, `/infos` announces 56 endpoints while 57 method + path pairs are served, because `GET /chat` and `POST /chat` count as one.",
+                                text: "`endpoints` counts the **distinct paths** of the requested version, whatever the method. A path shared by a `GET` and a `POST` with exactly the same form is counted once, like `/chat`. It is therefore not the number of method + path pairs: in v6, `/infos` announces 57 endpoints while 58 method + path pairs are served, because `GET /chat` and `POST /chat` count as one.",
                             },
                             {
                                 type: "p",
@@ -100,7 +100,7 @@ export const page: Page = {
                         fr: [
                             {
                                 type: "p",
-                                text: "`endpoints` compte les **chemins distincts** de la version demandée, toutes méthodes confondues. Un chemin partagé par un `GET` et un `POST` avec exactement la même forme n'est compté qu'une fois, comme `/chat`. Ce n'est donc pas le nombre de couples méthode + chemin : en v6, `/infos` annonce 56 endpoints alors que 57 couples méthode + chemin sont servis, parce que `GET /chat` et `POST /chat` ne comptent que pour un.",
+                                text: "`endpoints` compte les **chemins distincts** de la version demandée, toutes méthodes confondues. Un chemin partagé par un `GET` et un `POST` avec exactement la même forme n'est compté qu'une fois, comme `/chat`. Ce n'est donc pas le nombre de couples méthode + chemin : en v6, `/infos` annonce 57 endpoints alors que 58 couples méthode + chemin sont servis, parce que `GET /chat` et `POST /chat` ne comptent que pour un.",
                             },
                             {
                                 type: "p",
