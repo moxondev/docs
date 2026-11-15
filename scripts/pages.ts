@@ -64,7 +64,7 @@ const DATE = /^\d{4}-\d{2}-\d{2}$/;
  * Expected count of listed entries of the latest version per category, in display order: asserted
  * by the check and never typed in the interface.
  */
-const LATEST_COUNTS: readonly number[] = [9, 8, 7, 10, 6, 6, 3];
+const LATEST_COUNTS: readonly number[] = [9, 8, 8, 10, 6, 6, 3];
 
 const LANGS: readonly Lang[] = ["en", "fr"];
 
