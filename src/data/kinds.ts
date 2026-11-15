@@ -206,6 +206,7 @@ export const KINDS: PageIndex = {
         asymmetric: { kind: "endpoint" },
         authentication: { kind: "article" },
         avatar: { kind: "endpoint" },
+        badge: { kind: "endpoint" },
         barcode: { kind: "endpoint" },
         base: { kind: "endpoint" },
         captcha: { kind: "endpoint" },

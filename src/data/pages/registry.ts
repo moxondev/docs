@@ -205,6 +205,7 @@ export const PAGES: Record<Version, Record<string, () => Promise<Page>>> = {
         asymmetric: () => import("./v6/asymmetric").then((m) => m.page),
         authentication: () => import("./v6/authentication").then((m) => m.page),
         avatar: () => import("./v6/avatar").then((m) => m.page),
+        badge: () => import("./v6/badge").then((m) => m.page),
         barcode: () => import("./v6/barcode").then((m) => m.page),
         base: () => import("./v6/base").then((m) => m.page),
         captcha: () => import("./v6/captcha").then((m) => m.page),
