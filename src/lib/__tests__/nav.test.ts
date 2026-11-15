@@ -72,6 +72,7 @@ describe("catalogue entries and families", () => {
         ]);
         assert.deepEqual(subPages(NAV, "v6", "changelog"), []);
         assert.deepEqual(releasePages(NAV, "v6"), [
+            "changelog/6.3.0",
             "changelog/6.2.0",
             "changelog/6.1.0",
             "changelog/6.0.0",
@@ -166,11 +167,11 @@ describe("page status", () => {
 });
 
 describe("sidebar", () => {
-    test("v6 lists 49 entries in the 7 categories with the expected counts", () => {
+    test("v6 lists 50 entries in the 7 categories with the expected counts", () => {
         const model = sidebar(NAV, "v6", "fr");
         assert.deepEqual(
             model.catalogue.map((category) => category.count),
-            [9, 8, 7, 10, 6, 6, 3],
+            [9, 8, 8, 10, 6, 6, 3],
         );
         assert.deepEqual(
             model.catalogue.map((category) => category.id),
@@ -178,7 +179,7 @@ describe("sidebar", () => {
         );
         assert.equal(
             model.catalogue.reduce((sum, category) => sum + category.items.length, 0),
-            49,
+            50,
         );
         assert.equal(model.catalogue[0].title, `S${E_ACUTE}curit${E_ACUTE}`);
         assert.equal(model.catalogue[0].anchor, "securite");
@@ -196,7 +197,12 @@ describe("sidebar", () => {
         );
         assert.deepEqual(
             model.tools[1].children.map((link) => link.href),
-            ["/v6/changelog/6.2.0/", "/v6/changelog/6.1.0/", "/v6/changelog/6.0.0/"],
+            [
+                "/v6/changelog/6.3.0/",
+                "/v6/changelog/6.2.0/",
+                "/v6/changelog/6.1.0/",
+                "/v6/changelog/6.0.0/",
+            ],
         );
     });
 
@@ -300,9 +306,10 @@ describe("page order and pager", () => {
     });
 
     test("release pages page among the changelog and the releases, newest first", () => {
-        const newest = pager(NAV, "v6", "changelog/6.2.0", "en");
+        const newest = pager(NAV, "v6", "changelog/6.3.0", "en");
         assert.equal(newest.prev?.slug, "changelog");
-        assert.equal(newest.next?.slug, "changelog/6.1.0");
+        assert.equal(newest.next?.slug, "changelog/6.2.0");
+        assert.equal(pager(NAV, "v6", "changelog/6.2.0", "en").next?.slug, "changelog/6.1.0");
         assert.equal(pager(NAV, "v6", "changelog/6.1.0", "en").next?.slug, "changelog/6.0.0");
         assert.equal(pager(NAV, "v6", "changelog/6.0.0", "en").next, undefined);
     });
