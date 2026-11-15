@@ -4,7 +4,7 @@ Documentation of the moxon API, published at [moxon.dev](https://moxon.dev): the
 
 ## Features
 
-- Six documented versions, each page in both languages: 250 pages per language, the latest version (v6) with a catalogue of 49 endpoints in 7 categories. v1 to v3 are kept for reference and are no longer served by the API.
+- Six documented versions, each page in both languages: 254 pages per language, the latest version (v6) with a catalogue of 50 endpoints in 7 categories. v1 to v3 are kept for reference and are no longer served by the API.
 - Try panel beside each endpoint (a bar and a sheet on a phone): fill in the parameters, send the request to the API and read the answer; the Playground picks any endpoint of a version.
 - Code samples in cURL, JavaScript, Python and PHP, generated from the same data as the Try panel, with the chosen language remembered.
 - Search palette (`Ctrl K` or `/`), built in the browser on first open from one small index per version and language: pages, sections, parameters, response fields and errors, with `get:` and `post:` filters and a preview.
@@ -133,7 +133,7 @@ The cost was real. A documentation site is not a good case for a framework: 500 
 What a static export cannot do, and how the site lives with it:
 
 - No server, so no redirect or header of its own: old URLs and short forms are generated files, language detection on `/` is an inline script in the browser (no `Accept-Language`), and every unknown URL gets the one `404.html` with a real 404 status even when the client then redirects.
-- No incremental rendering: a content change is a rebuild and a deploy of the whole site (about a minute for 505 pages).
+- No incremental rendering: a content change is a rebuild and a deploy of the whole site (about a minute for 508 pages).
 - No runtime route handlers: the Try panel calls the API straight from the browser, so the API has to allow the origin, and no request can be proxied or kept secret.
 - No cookies and no per-visitor rendering: theme and language come from `localStorage`, and a boot script sets them before the first paint.
 - No image optimization and no custom cache or security headers; GitHub Pages decides.

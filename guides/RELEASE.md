@@ -34,7 +34,7 @@ npm run check
 
 Add an `EndpointMeta` in its category, in alphabetical order: `slug` (the page id), `name` (display name), `category`, `tagline` (the catalogue line, short, both languages), `summary` (one sentence, both languages: the search and meta description), and `since` (the first version that has it). The page of an endpoint with a sub-path such as `/chat/clear` is `chat/clear.ts` next to `chat.ts`, and only the parent has an entry.
 
-The home counts its endpoints from this file. `scripts/pages.ts` asserts the listed total of each category of the latest version (`LATEST_COUNTS`, 49 in 7 categories for v6): when a category gains or loses an endpoint, update that list in the same commit or the check fails with `counts`.
+The home counts its endpoints from this file. `scripts/pages.ts` asserts the listed total of each category of the latest version (`LATEST_COUNTS`, 50 in 7 categories for v6): when a category gains or loses an endpoint, update that list in the same commit or the check fails with `counts`.
 
 ### 3. Other documentation changes
 
