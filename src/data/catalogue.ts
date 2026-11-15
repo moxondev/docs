@@ -299,6 +299,17 @@ export const CATALOGUE: EndpointMeta[] = [
         since: "v4",
     },
     {
+        slug: "badge",
+        name: "Badge",
+        category: "images",
+        tagline: { en: "SVG badges", fr: "Badges SVG" },
+        summary: {
+            en: "Draw a standalone SVG badge with a label, icons, colors and an optional second part.",
+            fr: "Dessiner un badge SVG autonome avec un libellé, des icônes, des couleurs et une seconde partie facultative.",
+        },
+        since: "v6",
+    },
+    {
         slug: "barcode",
         name: "Barcode",
         category: "images",
