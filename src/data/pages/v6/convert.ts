@@ -1,5 +1,24 @@
 import type { Page } from "@/types/content";
 
+/**
+ * The units of the API by quantity: the Try panel lists them under their titles, apart by a rule.
+ */
+const GROUPS = [
+    {
+        label: { en: "Temperature", fr: "Température" },
+        options: ["celsius", "fahrenheit", "kelvin"],
+    },
+    { label: { en: "Length", fr: "Longueur" }, options: ["km", "mi", "m", "ft", "cm", "in", "yd"] },
+    { label: { en: "Weight", fr: "Poids" }, options: ["kg", "lb", "oz", "g", "ton"] },
+    { label: { en: "Data", fr: "Données" }, options: ["b", "kb", "mb", "gb", "tb"] },
+    { label: { en: "Speed", fr: "Vitesse" }, options: ["km/h", "mph", "m/s", "knots"] },
+];
+
+/**
+ * Every unit of the groups, in their order, as the options of the source and target fields.
+ */
+const UNITS = GROUPS.flatMap((group) => group.options);
+
 export const page: Page = {
     version: "v6",
     id: "convert",
@@ -9,7 +28,7 @@ export const page: Page = {
         en: "The `/convert` endpoint allows you to convert values between units of the same category. You need to provide a value to convert, a source unit, and the target unit.",
         fr: "L'endpoint `/convert` permet de convertir des valeurs entre unités de la même catégorie. Vous devez fournir une valeur à convertir, une unité source et l'unité cible.",
     },
-    updated: "2026-09-12",
+    updated: "2026-11-16",
     operations: [
         {
             id: "default",
@@ -23,64 +42,16 @@ export const page: Page = {
                     type: "enum",
                     in: "query",
                     required: true,
-                    options: [
-                        "celsius",
-                        "fahrenheit",
-                        "kelvin",
-                        "km",
-                        "mi",
-                        "m",
-                        "ft",
-                        "cm",
-                        "in",
-                        "yd",
-                        "kg",
-                        "lb",
-                        "oz",
-                        "g",
-                        "ton",
-                        "b",
-                        "kb",
-                        "mb",
-                        "gb",
-                        "tb",
-                        "km/h",
-                        "mph",
-                        "m/s",
-                        "knots",
-                    ],
+                    options: UNITS,
+                    groups: GROUPS,
                 },
                 {
                     name: "to",
                     type: "enum",
                     in: "query",
                     required: true,
-                    options: [
-                        "celsius",
-                        "fahrenheit",
-                        "kelvin",
-                        "km",
-                        "mi",
-                        "m",
-                        "ft",
-                        "cm",
-                        "in",
-                        "yd",
-                        "kg",
-                        "lb",
-                        "oz",
-                        "g",
-                        "ton",
-                        "b",
-                        "kb",
-                        "mb",
-                        "gb",
-                        "tb",
-                        "km/h",
-                        "mph",
-                        "m/s",
-                        "knots",
-                    ],
+                    options: UNITS,
+                    groups: GROUPS,
                 },
             ],
         },
