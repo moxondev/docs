@@ -11,6 +11,6 @@ export const SITE = {
     repo: "https://github.com/moxondev/docs",
     branch: "master",
     version: RELEASE,
-    twitter: "@20syldev",
+    card: { path: "/og.png", width: 1280, height: 640 },
     author: { name: "Sylvain L.", url: "https://sylvain.sh" },
 } as const;
