@@ -118,7 +118,7 @@ A push on `master` deploys the site, a release is a separate and manual gesture:
     - then `##` sections, each with bullets that start with a bold lead and an em dash (`- **Lead** — sentence.`), each ending with a period;
     - the bullets tell what a reader of the documentation gains, not the list of commits, with **[links to the pages](https://moxon.dev/v6/<name>/)**.
 
-    A release of this repository speaks only about the documentation: pages added or updated, notes added to a page, features of the site. What the API changes (limits, errors, behaviours) is told in the release of the API repository; the documentation says what it does about it ("the page lists the new errors") without repeating it. The changelog page (step 4) is the one place that tells both, in an API section and a Documentation section. Use `gh release edit <tag> --notes-file notes.md` to fix a release that already exists.
+    A release of this repository speaks only about the documentation: pages added or updated, notes added to a page, features of the site. What the API changes (limits, errors, behaviours) is told in the release of the API repository; the documentation says what it does about it ("the page lists the new errors") without repeating it. The changelog page (step 4) is the one place that tells both, in an API section and a Documentation section. The notes do not list the changelog entry of the release nor the tip of the home that points to it: both follow every release, so they say nothing, unless the changelog itself changes in style or behaviour. Use `gh release edit <tag> --notes-file notes.md` to fix a release that already exists.
 
 ### The first deploy of the Next.js site
 
