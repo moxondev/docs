@@ -22,6 +22,7 @@ import {
     modulePath,
     navPage,
     navSource,
+    optionProblems,
     type PageEntry,
     readRelease,
     registrySource,
@@ -311,6 +312,59 @@ describe("page checks", () => {
             sections: [{ id: "a", only: "fr", title: { en: "", fr: "Titre" }, blocks: [] }],
         };
         assert.deepEqual(languageProblems(only), []);
+    });
+
+    test("grouped options: titles in both languages and the options end to end", () => {
+        const withGroups = (
+            groups: NonNullable<Page["operations"]>[number]["params"][number]["groups"],
+        ) =>
+            ({
+                ...TARGET,
+                operations: [
+                    {
+                        id: "default",
+                        method: "post",
+                        path: "/hash",
+                        try: true,
+                        params: [
+                            {
+                                name: "method",
+                                type: "enum",
+                                in: "body",
+                                required: true,
+                                options: ["md5", "sha1", "rmd160"],
+                                groups,
+                            },
+                        ],
+                    },
+                ],
+            }) as Page;
+        const title = { en: "Algorithms", fr: "Algorithmes" };
+        assert.deepEqual(optionProblems(TARGET), []);
+        assert.deepEqual(
+            optionProblems(
+                withGroups([
+                    { label: title, options: ["md5", "sha1"] },
+                    { label: { en: "Aliases", fr: "Alias" }, options: ["rmd160"] },
+                ]),
+            ),
+            [],
+        );
+        assert.deepEqual(optionProblems(withGroups([{ label: title, options: ["md5", "sha1"] }])), [
+            "default.method groups do not list its options, in order",
+        ]);
+        assert.deepEqual(
+            optionProblems(
+                withGroups([
+                    { label: title, options: ["sha1", "md5"] },
+                    { label: { en: "Aliases", fr: "" }, options: ["rmd160"] },
+                ]),
+            ),
+            [
+                "default.method.groups[1] has no title in both languages",
+                "default.method groups do not list its options, in order",
+            ],
+        );
     });
 
     test("dates, parents and the version home", () => {

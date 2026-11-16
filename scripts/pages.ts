@@ -630,6 +630,35 @@ export function languageProblems(page: Page): string[] {
 }
 
 /**
+ * Checks the grouped options of the parameters of a page: a group has a title in both languages
+ * and the groups, put end to end, list exactly the options of the parameter, in the same order, so
+ * that the sections of a list never hide or invent a value.
+ *
+ * @param page - Page whose operations are checked
+ * @returns A sentence per problem
+ */
+export function optionProblems(page: Page): string[] {
+    const out: string[] = [];
+    for (const op of page.operations ?? []) {
+        for (const param of op.params) {
+            if (!param.groups) continue;
+            const where = `${op.id}.${param.name}`;
+            if (param.type !== "enum") out.push(`${where} has groups but is not an enum`);
+            param.groups.forEach((group, i) => {
+                if (!group.label.en.trim() || !group.label.fr.trim()) {
+                    out.push(`${where}.groups[${i}] has no title in both languages`);
+                }
+            });
+            const flat = param.groups.flatMap((group) => group.options);
+            if (flat.join("\u0000") !== (param.options ?? []).join("\u0000")) {
+                out.push(`${where} groups do not list its options, in order`);
+            }
+        }
+    }
+    return out;
+}
+
+/**
  * Checks the published pages against the catalogue, the navigation and the reviewed shared prose
  * list; each problem carries the name of the rule it breaks.
  *
@@ -652,6 +681,7 @@ export function checkPages(
     for (const entry of entries) {
         const where = `${entry.version}/${entry.id}`;
         for (const message of languageProblems(entry.page)) fail(where, "languages", message);
+        for (const message of optionProblems(entry.page)) fail(where, "options", message);
         if (entry.page.status !== undefined && !PAGE_STATUSES.includes(entry.page.status)) {
             fail(where, "status", `${String(entry.page.status)} is not a page status`);
         }
