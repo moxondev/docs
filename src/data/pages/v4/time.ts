@@ -1,5 +1,28 @@
 import type { Page } from "@/types/content";
 
+/**
+ * The formats of the API by kind: the Try panel lists them under their titles, apart by a rule.
+ */
+const FORMAT_GROUPS = [
+    {
+        label: { en: "Full formats", fr: "Formats complets" },
+        options: ["iso", "utc", "timestamp", "locale", "date", "time"],
+    },
+    {
+        label: { en: "Date and time parts", fr: "Parties de la date et de l'heure" },
+        options: ["year", "month", "day", "hour", "minute", "second", "ms"],
+    },
+    {
+        label: { en: "Calendar and zone", fr: "Calendrier et fuseau" },
+        options: ["dayOfWeek", "dayOfYear", "weekNumber", "timezone", "timezoneOffset"],
+    },
+];
+
+/**
+ * Every format of the groups, in their order, as the options of the format field.
+ */
+const FORMATS = FORMAT_GROUPS.flatMap((group) => group.options);
+
 export const page: Page = {
     version: "v4",
     id: "time",
@@ -9,7 +32,7 @@ export const page: Page = {
         en: "The `/time` endpoint allows you to retrieve time information based on various parameters. You can get the current time or a random time between a specified range, in different formats and time zones.",
         fr: "L'endpoint `/time` permet de récupérer des informations sur le temps en fonction de différents paramètres. Vous pouvez obtenir l'heure actuelle ou une heure aléatoire entre une plage spécifiée, dans différents formats et fuseaux horaires.",
     },
-    updated: "2026-05-11",
+    updated: "2026-11-16",
     operations: [
         {
             id: "default",
@@ -50,25 +73,8 @@ export const page: Page = {
                     type: "enum",
                     in: "query",
                     required: false,
-                    options: [
-                        "iso",
-                        "utc",
-                        "timestamp",
-                        "locale",
-                        "date",
-                        "time",
-                        "year",
-                        "month",
-                        "day",
-                        "hour",
-                        "minute",
-                        "second",
-                        "ms",
-                        "dayOfWeek",
-                        "dayOfYear",
-                        "weekNumber",
-                        "timezone",
-                    ],
+                    options: FORMATS,
+                    groups: FORMAT_GROUPS,
                 },
                 {
                     name: "timezone",
@@ -155,6 +161,7 @@ export const page: Page = {
             title: { en: "Format Options", fr: "Options de format" },
             aliases: ["options-de-format"],
             blocks: [
+                { type: "label", text: { en: "Full formats:", fr: "Formats complets :" } },
                 {
                     type: "table",
                     head: ["Format", "Description"],
@@ -163,69 +170,65 @@ export const page: Page = {
                             "`iso`",
                             { en: "ISO 8601 format (default)", fr: "Format ISO 8601 (par défaut)" },
                         ],
+                        ["`utc`", { en: "UTC format", fr: "Format UTC" }],
+                        ["`timestamp`", { en: "Unix timestamp", fr: "Timestamp Unix" }],
+                        ["`locale`", { en: "Local format", fr: "Format local" }],
                         [
-                            { en: "`utc`", fr: "`timestamp`" },
-                            { en: "UTC format", fr: "Timestamp Unix" },
+                            "`date`",
+                            {
+                                en: "Date in `MM/DD/YYYY` format",
+                                fr: "Date au format `MM/DD/YYYY`",
+                            },
                         ],
                         [
-                            { en: "`timestamp`", fr: "`locale`" },
-                            { en: "Unix timestamp", fr: "Format local" },
+                            "`time`",
+                            { en: "Time in `HH:MM:SS` format", fr: "Heure au format `HH:MM:SS`" },
+                        ],
+                    ],
+                    kind: "definition",
+                },
+                {
+                    type: "label",
+                    text: { en: "Date and time parts:", fr: "Parties de la date et de l'heure :" },
+                },
+                {
+                    type: "table",
+                    head: ["Format", "Description"],
+                    rows: [
+                        ["`year`", { en: "Year only", fr: "Année uniquement" }],
+                        ["`month`", { en: "Month only", fr: "Mois uniquement" }],
+                        ["`day`", { en: "Day only", fr: "Jour uniquement" }],
+                        ["`hour`", { en: "Hour only", fr: "Heure uniquement" }],
+                        ["`minute`", { en: "Minutes only", fr: "Minutes uniquement" }],
+                        ["`second`", { en: "Seconds only", fr: "Secondes uniquement" }],
+                        ["`ms`", { en: "Milliseconds only", fr: "Millisecondes uniquement" }],
+                    ],
+                    kind: "definition",
+                },
+                { type: "label", text: { en: "Calendar and zone:", fr: "Calendrier et fuseau :" } },
+                {
+                    type: "table",
+                    head: ["Format", "Description"],
+                    rows: [
+                        [
+                            "`dayOfWeek`",
+                            { en: "Day of the week (0-6)", fr: "Jour de la semaine (0-6)" },
                         ],
                         [
-                            { en: "`locale`", fr: "`date`" },
-                            { en: "Local format", fr: "Date au format `MM/DD/YYYY`" },
+                            "`dayOfYear`",
+                            {
+                                en: "Day of the year (1-365/366)",
+                                fr: "Jour de l'année (1-365/366)",
+                            },
                         ],
+                        ["`weekNumber`", { en: "Week number", fr: "Numéro de semaine" }],
+                        ["`timezone`", { en: "Time zone name", fr: "Nom du fuseau horaire" }],
                         [
-                            { en: "`date`", fr: "`time`" },
-                            { en: "Date in `MM/DD/YYYY` format", fr: "Heure au format `HH:MM:SS`" },
-                        ],
-                        [
-                            { en: "`time`", fr: "`year`" },
-                            { en: "Time in `HH:MM:SS` format", fr: "Année uniquement" },
-                        ],
-                        [
-                            { en: "`year`", fr: "`month`" },
-                            { en: "Year only", fr: "Mois uniquement" },
-                        ],
-                        [
-                            { en: "`month`", fr: "`day`" },
-                            { en: "Month only", fr: "Jour uniquement" },
-                        ],
-                        [
-                            { en: "`day`", fr: "`hour`" },
-                            { en: "Day only", fr: "Heure uniquement" },
-                        ],
-                        [
-                            { en: "`hour`", fr: "`minute`" },
-                            { en: "Hour only", fr: "Minutes uniquement" },
-                        ],
-                        [
-                            { en: "`minute`", fr: "`second`" },
-                            { en: "Minutes only", fr: "Secondes uniquement" },
-                        ],
-                        [
-                            { en: "`second`", fr: "`ms`" },
-                            { en: "Seconds only", fr: "Millisecondes uniquement" },
-                        ],
-                        [
-                            { en: "`ms`", fr: "`dayOfWeek`" },
-                            { en: "Milliseconds only", fr: "Jour de la semaine (0-6)" },
-                        ],
-                        [
-                            { en: "`dayOfWeek`", fr: "`dayOfYear`" },
-                            { en: "Day of the week (0-6)", fr: "Jour de l'année (1-365/366)" },
-                        ],
-                        [
-                            { en: "`dayOfYear`", fr: "`weekNumber`" },
-                            { en: "Day of the year (1-365/366)", fr: "Numéro de semaine" },
-                        ],
-                        [
-                            { en: "`weekNumber`", fr: "`timezone`" },
-                            { en: "Week number", fr: "Nom du fuseau horaire" },
-                        ],
-                        [
-                            { en: "`timezone`", fr: "`timezoneOffset`" },
-                            { en: "Time zone name", fr: "Décalage horaire" },
+                            "`timezoneOffset`",
+                            {
+                                en: "Time zone offset, in minutes",
+                                fr: "Décalage horaire, en minutes",
+                            },
                         ],
                     ],
                     kind: "definition",
