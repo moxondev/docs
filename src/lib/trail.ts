@@ -10,6 +10,22 @@ export interface TrailWords {
 }
 
 /**
+ * Keeps the crumbs of a trail that are documents of their own: a crumb that targets a fragment of
+ * the home (the catalogue, a category) is dropped, and so is a group that points at the page
+ * itself or at a later crumb, since the same URL would be listed twice.
+ *
+ * @param trail - Trail of pageTrail, from the home down to the page
+ * @returns The crumbs whose path is a page, in order, the page itself last
+ */
+export function documentTrail(trail: readonly Crumb[]): Crumb[] {
+    return trail.filter(
+        (crumb, index) =>
+            !crumb.path.includes("#") &&
+            !trail.slice(index + 1).some((el) => el.path === crumb.path),
+    );
+}
+
+/**
  * Builds the breadcrumb trail of a page for its structured data: the site home first, then the
  * crumbs of the page (the group words come from the crumbs messages), the page itself last. A
  * crumb without a target of its own, such as the Introduction group, points at the page.

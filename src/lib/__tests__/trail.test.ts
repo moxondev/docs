@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
 import { NAV } from "@/data/nav";
-import { pageTrail } from "@/lib/trail";
+import { documentTrail, pageTrail } from "@/lib/trail";
 
 const WORDS = { home: "moxon", group: (key: string) => `group:${key}` };
 
@@ -32,6 +32,31 @@ describe("breadcrumb trail", () => {
         assert.deepEqual(
             trail.map((crumb) => crumb.path),
             ["/", "/v6/authentication/", "/v6/authentication/"],
+        );
+    });
+
+    test("the structured data keeps the documents: no fragment, no group that repeats the page", () => {
+        const names = (id: string, here: string) =>
+            documentTrail(pageTrail(NAV, "v6", id, "en", WORDS, here)).map((crumb) => crumb.name);
+        assert.deepEqual(names("hash", "/v6/hash/"), ["moxon", "Hash"]);
+        assert.deepEqual(names("authentication", "/v6/authentication/"), [
+            "moxon",
+            "Authentication",
+        ]);
+        const verify = documentTrail(
+            pageTrail(NAV, "v6", "captcha/verify", "en", WORDS, "/v6/captcha/verify/"),
+        );
+        assert.deepEqual(
+            verify.map((crumb) => crumb.path),
+            ["/", "/v6/captcha/", "/v6/captcha/verify/"],
+        );
+        assert.equal(new Set(verify.map((crumb) => crumb.path)).size, verify.length);
+        const release = documentTrail(
+            pageTrail(NAV, "v6", "changelog/6.3.0", "en", WORDS, "/v6/changelog/6.3.0/"),
+        );
+        assert.deepEqual(
+            release.map((crumb) => crumb.path),
+            ["/", "/v6/changelog/", "/v6/changelog/6.3.0/"],
         );
     });
 
