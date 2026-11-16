@@ -12,7 +12,7 @@ Documentation of the moxon API, published at [moxon.dev](https://moxon.dev): the
 - Copy a page as Markdown, edit link to the page module on GitHub, previous and next page, table of contents with the current section.
 - English and French chosen from the browser language and remembered; light, dark and system theme (next-themes) chosen from a menu, no flash on load.
 - Every URL of the previous VitePress site still answers: redirect files for the old paths, prebuilt redirect pages for the short forms (`/latest`, `/changelog`, `/hash`, `/6.1.0`, each also under `/fr`) and a smart redirect on the 404 page for the rest.
-- Sitemap with language alternates, JSON-LD, canonical URLs and Open Graph cards.
+- Sitemap with language alternates, JSON-LD (site and breadcrumbs), canonical URLs and Open Graph cards with the large card `public/og.png`; the retired versions carry a noindex and stay out of the sitemap, and the blocks that are not prose are marked `data-nosnippet`, so that a search snippet comes from the text of the page.
 - Keyboard shortcuts for the language (`Alt L`), the version (`Alt V`), the theme (`Alt T`, which goes through light, dark and system), the search and the request.
 
 ## Stack
