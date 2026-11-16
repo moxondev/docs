@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-import { VERSIONS } from "@/data/versions";
+import { isIndexed, VERSIONS } from "@/data/versions";
 import { localePath, routing } from "@/i18n/routing";
 import { absoluteUrl, href } from "@/lib/routes";
 import type { Lang } from "@/types/content";
@@ -51,7 +51,8 @@ function latestUpdate(nav: Nav): string | undefined {
 
 /**
  * Lists the pages of the sitemap: the two homes, then every documentation page of every version
- * in both languages. Legacy URLs are not listed, they are redirect files.
+ * in both languages, except the retired versions, which carry a noindex. Legacy URLs are not
+ * listed, they are redirect files.
  *
  * @param nav - Navigation index of the published pages (the generated NAV module)
  * @returns The entries in a stable order: homes, then versions newest first, pages by id
@@ -62,6 +63,7 @@ export function sitemapEntries(nav: Nav): MetadataRoute.Sitemap {
         latestUpdate(nav),
     );
     for (const { id: version } of VERSIONS) {
+        if (!isIndexed(version)) continue;
         for (const [id, page] of Object.entries(nav[version] ?? {})) {
             entries.push(
                 ...pageEntries(

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 
 import { PAGES } from "@/data/pages/registry";
-import { LATEST } from "@/data/versions";
+import { isIndexed, LATEST } from "@/data/versions";
 import { pick, plain } from "@/lib/inline";
 import { buildMetadata, metaDescription } from "@/lib/metadata";
 import { catalogueEntry } from "@/lib/nav";
@@ -116,7 +116,8 @@ export function docTitle(version: Version, title: string, t: MetaTranslate): str
 
 /**
  * Builds the metadata of a documentation page: title, description chain (lead, catalogue
- * summary of an endpoint page, per-kind sentence), canonical path and alternates.
+ * summary of an endpoint page, per-kind sentence), canonical path and alternates, and the rule that
+ * keeps a retired version out of the search results.
  *
  * @param lang - Picks the page title and the description, and prefixes the canonical path
  * @param doc - Version, id and module of the page
@@ -144,6 +145,7 @@ export function pageMetadata(lang: Lang, doc: Doc, t: MetaTranslate): Metadata {
             title: docTitle(version, heading, t),
             description: metaDescription(page, lang, fallback, summary),
             path: href(lang, version, id),
+            indexed: isIndexed(version),
         },
         { siteName: t("siteName"), template: t("template") },
     );

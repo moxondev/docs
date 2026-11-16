@@ -59,10 +59,19 @@ describe("buildMetadata", () => {
         });
         assert.deepEqual(meta.twitter, {
             card: "summary",
-            site: "@20syldev",
             title: "Hash - moxon",
             description: "Convertir une chaine.",
         });
+    });
+
+    test("a page is listed by default and a retired version carries a noindex", () => {
+        assert.equal(meta.robots, undefined);
+        const retired = buildMetadata(
+            "en",
+            { title: "Hash, v3", description: "d", path: "/v3/hash/", indexed: false },
+            TEXT,
+        );
+        assert.deepEqual(retired.robots, { index: false, follow: true });
     });
 
     test("an absolute title skips the template (the homes)", () => {
@@ -90,7 +99,7 @@ describe("rootMetadata and VIEWPORT", () => {
             ],
             apple: "/apple-touch-icon.png",
         });
-        assert.deepEqual(meta.twitter, { card: "summary", site: "@20syldev" });
+        assert.deepEqual(meta.twitter, { card: "summary" });
     });
 
     test("theme color per color scheme", () => {

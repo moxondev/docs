@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
 import { NAV } from "@/data/nav";
-import { LATEST, VERSIONS } from "@/data/versions";
+import { isIndexed, LATEST, VERSIONS } from "@/data/versions";
 import { sitemapEntries } from "@/lib/sitemap";
 import type { Nav } from "@/types/nav";
 
@@ -13,7 +13,10 @@ const RELEASE = Object.keys(NAV[LATEST]).find(
 
 describe("sitemap entries", () => {
     const entries = sitemapEntries(NAV);
-    const pages = VERSIONS.reduce((sum, v) => sum + Object.keys(NAV[v.id] ?? {}).length, 0);
+    const pages = VERSIONS.filter((v) => isIndexed(v.id)).reduce(
+        (sum, v) => sum + Object.keys(NAV[v.id] ?? {}).length,
+        0,
+    );
 
     test("two homes, then one entry per page and language", () => {
         assert.equal(entries.length, 2 + 2 * pages);
@@ -35,6 +38,14 @@ describe("sitemap entries", () => {
             assert.ok(Object.values(languages).includes(entry.url));
             assert.ok(languages.fr.startsWith("https://moxon.dev/fr/"));
             assert.ok(!languages.en.startsWith("https://moxon.dev/fr/"));
+        }
+    });
+
+    test("a retired version is left out, since its pages carry a noindex", () => {
+        const retired = VERSIONS.filter((v) => !isIndexed(v.id));
+        assert.ok(retired.length > 0);
+        for (const { id } of retired) {
+            assert.ok(!entries.some((entry) => entry.url.includes(`/${id}/`)), id);
         }
     });
 

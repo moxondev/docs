@@ -140,6 +140,16 @@ describe("page metadata", () => {
         assert.equal(meta.alternates?.canonical, "/fr/v5/hash/");
     });
 
+    test("a retired version is not listed by search engines, the others are", async () => {
+        const meta = async (version: "v3" | "v5", id: string) => {
+            const page = await getPage(version, id);
+            assert.ok(page, `${version}/${id}`);
+            return pageMetadata("en", { version, id, page }, metaOf("en"));
+        };
+        assert.deepEqual((await meta("v3", "hash")).robots, { index: false, follow: true });
+        assert.equal((await meta("v5", "hash")).robots, undefined);
+    });
+
     test("without a lead: the catalogue summary of the entry page, else the kind sentence", async () => {
         const summary = CATALOGUE.find((item) => item.slug === "hash")?.summary.en;
         const entry = pageMetadata(

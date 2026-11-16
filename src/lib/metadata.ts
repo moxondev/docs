@@ -17,6 +17,7 @@ export interface MetaPage {
     description: string;
     path: string;
     absolute?: boolean;
+    indexed?: boolean;
 }
 
 export interface Crumb {
@@ -118,14 +119,14 @@ export function rootMetadata(
             locale: ogLocale(lang),
             type: "website",
         },
-        twitter: { card: "summary", site: SITE.twitter },
+        twitter: { card: "summary" },
     };
 }
 
 /**
  * Builds the metadata of one page: title, description, canonical URL, hreflang alternates with
- * x-default (English), Open Graph and Twitter cards. Next replaces the openGraph and twitter
- * objects of the layout instead of merging them, so they are complete here.
+ * x-default (English), Open Graph and Twitter cards, and a noindex rule when asked. Next replaces
+ * the openGraph and twitter objects of the layout, so they are complete here.
  *
  * @param lang - Language of the page, for og:locale (the other language is the alternate locale)
  * @param page - Title (the template adds the site name unless absolute), description and path of
@@ -140,6 +141,7 @@ export function buildMetadata(lang: Lang, page: MetaPage, text: MetaText): Metad
     return {
         title: page.absolute ? { absolute: page.title } : page.title,
         description: page.description,
+        ...(page.indexed === false ? { robots: { index: false, follow: true } } : {}),
         alternates: {
             canonical: page.path,
             languages: { en: links.en, fr: links.fr, "x-default": links.en },
@@ -155,7 +157,6 @@ export function buildMetadata(lang: Lang, page: MetaPage, text: MetaText): Metad
         },
         twitter: {
             card: "summary",
-            site: SITE.twitter,
             title: full,
             description: page.description,
         },
