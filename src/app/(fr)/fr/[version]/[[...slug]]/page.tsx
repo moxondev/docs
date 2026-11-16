@@ -30,7 +30,7 @@ export function generateMetadata(props: DocProps): Promise<Metadata> {
 
 /**
  * Route of every French documentation page: /vN/ and /vN/<page id>/ under /fr/, with the
- * breadcrumb structured data of an endpoint page.
+ * breadcrumb structured data of the page.
  *
  * @param props - Route props of Next, whose params name the version and the page
  */
