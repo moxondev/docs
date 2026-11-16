@@ -93,9 +93,10 @@ test("endpoint pages end with their own links and have no footer", () => {
     assert.equal(showsFooter(NAV, LATEST, "zzz"), true);
 });
 
-test("the column table gives the home, the playground and the text pages their width", () => {
+test("the column table gives the home, the wide pages and the text pages their width", () => {
     assert.equal(columnClass("home"), "max-w-296 px-5 home:px-8");
-    assert.equal(columnClass("playground"), "max-w-300 px-5 desk:px-12");
+    assert.equal(columnClass("playground"), "max-w-319 px-5 desk:px-12");
+    assert.equal(columnClass("try"), columnClass("playground"));
     for (const kind of [
         "article",
         "index",

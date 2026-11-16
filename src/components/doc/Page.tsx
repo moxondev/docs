@@ -112,7 +112,10 @@ export async function DocPage({ lang, params }: DocPageProps) {
                 className={cn(
                     "mx-auto grid w-full min-w-0 grid-cols-[minmax(0,1fr)] content-start pt-6 pb-20 desk:pt-9",
                     operation
-                        ? "max-w-319 px-5 max-desk:pb-28 desk:px-12 wide:grid-cols-[minmax(0,1fr)_25rem] wide:gap-x-6 wide:pr-6"
+                        ? cn(
+                              columnClass("try"),
+                              "max-desk:pb-28 wide:grid-cols-[minmax(0,1fr)_25rem] wide:gap-x-6 wide:pr-6",
+                          )
                         : columnClass(page.kind),
                 )}
             >

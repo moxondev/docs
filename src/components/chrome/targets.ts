@@ -147,16 +147,17 @@ export function showsFooter(
 }
 
 /**
- * Gives the column of a page: the width and the side padding that the main landmark of the page
- * and the footer under it share, so that the first word of the footer stands under the first
- * word of the page and the two can never diverge.
+ * Gives the column of a page: the width and the side padding that the main landmark and the footer
+ * share. The playground and an endpoint page with its Try panel are the two wide pages and share
+ * one width, so that moving from one to the other never shifts the column.
  *
- * @param kind - Kind of the page, "home" for the home page
+ * @param kind - Kind of the page, "home" for the home page, "try" for an endpoint page that has a
+ *   Try panel in a third column
  * @returns The Tailwind classes of the column
  */
-export function columnClass(kind: PageKind | "home"): string {
+export function columnClass(kind: PageKind | "home" | "try"): string {
     if (kind === "home") return "max-w-296 px-5 home:px-8";
-    if (kind === "playground") return "max-w-300 px-5 desk:px-12";
+    if (kind === "playground" || kind === "try") return "max-w-319 px-5 desk:px-12";
     return "max-w-219 px-5 desk:px-12";
 }
 
