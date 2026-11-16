@@ -1,5 +1,34 @@
 import type { Page } from "@/types/content";
 
+/**
+ * The algorithms of the API by subject: the Try panel lists them under their titles, apart by a
+ * rule.
+ */
+const GROUPS = [
+    {
+        label: { en: "Text", fr: "Texte" },
+        options: ["anagram", "palindrome", "reverse"],
+    },
+    {
+        label: { en: "Numbers", fr: "Nombres" },
+        options: [
+            "bubblesort",
+            "factorial",
+            "fibonacci",
+            "gcd",
+            "isprime",
+            "primefactors",
+            "primelist",
+            "roman",
+        ],
+    },
+];
+
+/**
+ * Every algorithm of the groups, in their order, as the options of the method field.
+ */
+const METHODS = GROUPS.flatMap((group) => group.options);
+
 export const page: Page = {
     version: "v5",
     id: "algorithms",
@@ -9,7 +38,7 @@ export const page: Page = {
         en: "The `/algorithms` endpoint provides several algorithms to use as parameters. You can input one or two values depending on the algorithm.",
         fr: "L'endpoint `/algorithms` fournit plusieurs algorithmes à utiliser comme paramètres. Vous pouvez entrer une ou deux valeurs selon l'algorithme.",
     },
-    updated: "2026-07-26",
+    updated: "2026-11-16",
     operations: [
         {
             id: "default",
@@ -22,19 +51,8 @@ export const page: Page = {
                     type: "enum",
                     in: "query",
                     required: true,
-                    options: [
-                        "anagram",
-                        "bubblesort",
-                        "factorial",
-                        "gcd",
-                        "isprime",
-                        "fibonacci",
-                        "palindrome",
-                        "primelist",
-                        "primefactors",
-                        "reverse",
-                        "roman",
-                    ],
+                    options: METHODS,
+                    groups: GROUPS,
                 },
                 { name: "value", type: "string", in: "query", required: true, placeholder: "42" },
                 { name: "value2", type: "string", in: "query", required: false, placeholder: "24" },
@@ -86,6 +104,7 @@ export const page: Page = {
             title: { en: "Available Methods", fr: "Méthodes disponibles" },
             aliases: ["methodes-disponibles"],
             blocks: [
+                { type: "label", text: { en: "Text:", fr: "Texte :" } },
                 {
                     type: "table",
                     head: {
@@ -99,53 +118,6 @@ export const page: Page = {
                                 en: "Checks if two strings are anagrams",
                                 fr: "Vérifie si deux chaînes sont des anagrammes",
                             },
-                            { en: "Yes", fr: "Oui" },
-                            { en: "Max 1000 chars", fr: "Max 1000 caractères" },
-                        ],
-                        [
-                            "`bubblesort`",
-                            {
-                                en: "Sorts an array of numbers, separated by commas",
-                                fr: "Trie un tableau de nombres, séparés par des virgules",
-                            },
-                            { en: "No", fr: "Non" },
-                            { en: "Max 1000 elements", fr: "Max 1000 éléments" },
-                        ],
-                        [
-                            "`factorial`",
-                            {
-                                en: "Calculates the factorial of a number between 0 and 170",
-                                fr: "Calcule la factorielle d'un nombre entre 0 et 170",
-                            },
-                            { en: "No", fr: "Non" },
-                            "0–170",
-                        ],
-                        [
-                            { en: "`gcd`", fr: "`fibonacci`" },
-                            {
-                                en: "Computes the greatest common divisor of two numbers",
-                                fr: "Calcule une séquence de Fibonacci jusqu'à un nombre donné",
-                            },
-                            { en: "Yes", fr: "Non" },
-                            { en: "1–100,000", fr: "0–1000" },
-                        ],
-                        [
-                            { en: "`isprime`", fr: "`gcd`" },
-                            {
-                                en: "Checks if a number is prime",
-                                fr: "Calcule le plus grand commun diviseur de deux nombres",
-                            },
-                            { en: "No", fr: "Oui" },
-                            { en: "1–100,000", fr: "1–100 000" },
-                        ],
-                        [
-                            { en: "`fibonacci`", fr: "`isprime`" },
-                            {
-                                en: "Calculates a Fibonacci sequence up to a given number",
-                                fr: "Vérifie si un nombre est premier",
-                            },
-                            { en: "No", fr: "Non" },
-                            { en: "0–1000", fr: "1–100 000" },
                         ],
                         [
                             "`palindrome`",
@@ -153,17 +125,53 @@ export const page: Page = {
                                 en: "Checks if a string is a palindrome",
                                 fr: "Vérifie si une chaîne est un palindrome",
                             },
-                            { en: "No", fr: "Non" },
-                            { en: "Max 1000 chars", fr: "Max 1000 caractères" },
+                        ],
+                        ["`reverse`", { en: "Reverses a string", fr: "Inverse une chaîne" }],
+                    ],
+                    kind: "matrix",
+                },
+                { type: "label", text: { en: "Numbers:", fr: "Nombres :" } },
+                {
+                    type: "table",
+                    head: {
+                        en: ["Method", "Description", "Requires `value2`", "Limits"],
+                        fr: ["Méthode", "Description", "Nécessite `value2`", "Limites"],
+                    },
+                    rows: [
+                        [
+                            "`bubblesort`",
+                            {
+                                en: "Sorts an array of numbers, separated by commas",
+                                fr: "Trie un tableau de nombres, séparés par des virgules",
+                            },
                         ],
                         [
-                            "`primelist`",
+                            "`factorial`",
                             {
-                                en: "Returns a list of prime numbers up to a given number",
-                                fr: "Retourne une liste de nombres premiers jusqu'à un nombre donné",
+                                en: "Calculates the factorial of a number between 0 and 170",
+                                fr: "Calcule la factorielle d'un nombre entre 0 et 170",
                             },
-                            { en: "No", fr: "Non" },
-                            { en: "2–10,000", fr: "2–10 000" },
+                        ],
+                        [
+                            "`fibonacci`",
+                            {
+                                en: "Calculates a Fibonacci sequence up to a given number",
+                                fr: "Vérifie si un nombre est premier",
+                            },
+                        ],
+                        [
+                            "`gcd`",
+                            {
+                                en: "Computes the greatest common divisor of two numbers",
+                                fr: "Calcule une séquence de Fibonacci jusqu'à un nombre donné",
+                            },
+                        ],
+                        [
+                            "`isprime`",
+                            {
+                                en: "Checks if a number is prime",
+                                fr: "Calcule le plus grand commun diviseur de deux nombres",
+                            },
                         ],
                         [
                             "`primefactors`",
@@ -171,14 +179,13 @@ export const page: Page = {
                                 en: "Returns the list of prime factors of a number",
                                 fr: "Retourne la liste des facteurs premiers d'un nombre",
                             },
-                            { en: "No", fr: "Non" },
-                            { en: "1–100,000", fr: "1–100 000" },
                         ],
                         [
-                            "`reverse`",
-                            { en: "Reverses a string", fr: "Inverse une chaîne" },
-                            { en: "No", fr: "Non" },
-                            { en: "Max 1000 chars", fr: "Max 1000 caractères" },
+                            "`primelist`",
+                            {
+                                en: "Returns a list of prime numbers up to a given number",
+                                fr: "Retourne une liste de nombres premiers jusqu'à un nombre donné",
+                            },
                         ],
                         [
                             "`roman`",
@@ -186,8 +193,6 @@ export const page: Page = {
                                 en: "Converts between Roman numerals and numbers (1–3999)",
                                 fr: "Convertit entre chiffres romains et nombres (1–3999)",
                             },
-                            { en: "No", fr: "Non" },
-                            "1–3999",
                         ],
                     ],
                     kind: "matrix",
