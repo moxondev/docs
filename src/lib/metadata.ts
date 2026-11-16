@@ -41,6 +41,17 @@ export const VIEWPORT: Viewport = {
 };
 
 /**
+ * Builds the image of the social cards: the card of the site, whose alt text is the site name.
+ *
+ * @param alt - Alternative text of the image, the site name
+ * @returns The image descriptor of Open Graph, with its size
+ */
+function cardImage(alt: string): { url: string; width: number; height: number; alt: string } {
+    const { path, width, height } = SITE.card;
+    return { url: path, width, height, alt };
+}
+
+/**
  * Writes a locale the way Open Graph wants it.
  *
  * @param lang - Language whose region tag (LOCALE_TAGS) is written
@@ -118,8 +129,9 @@ export function rootMetadata(
             siteName: text.siteName,
             locale: ogLocale(lang),
             type: "website",
+            images: [cardImage(text.siteName)],
         },
-        twitter: { card: "summary" },
+        twitter: { card: "summary_large_image" },
     };
 }
 
@@ -154,11 +166,13 @@ export function buildMetadata(lang: Lang, page: MetaPage, text: MetaText): Metad
             locale: ogLocale(lang),
             alternateLocale: [ogLocale(other)],
             type: "website",
+            images: [cardImage(text.siteName)],
         },
         twitter: {
-            card: "summary",
+            card: "summary_large_image",
             title: full,
             description: page.description,
+            images: [SITE.card.path],
         },
     };
 }
@@ -176,6 +190,7 @@ export function websiteJsonLd(lang: Lang, name: string, description: string): Js
         "@context": "https://schema.org",
         "@type": "WebSite",
         name,
+        alternateName: new URL(SITE.url).host,
         url: absoluteUrl(localePath(lang)),
         description,
         inLanguage: LOCALE_TAGS[lang],

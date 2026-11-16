@@ -56,11 +56,13 @@ describe("buildMetadata", () => {
             locale: "fr_FR",
             alternateLocale: ["en_US"],
             type: "website",
+            images: [{ url: "/og.png", width: 1280, height: 640, alt: "moxon" }],
         });
         assert.deepEqual(meta.twitter, {
-            card: "summary",
+            card: "summary_large_image",
             title: "Hash - moxon",
             description: "Convertir une chaine.",
+            images: ["/og.png"],
         });
     });
 
@@ -99,7 +101,10 @@ describe("rootMetadata and VIEWPORT", () => {
             ],
             apple: "/apple-touch-icon.png",
         });
-        assert.deepEqual(meta.twitter, { card: "summary" });
+        assert.deepEqual(meta.twitter, { card: "summary_large_image" });
+        assert.deepEqual((meta.openGraph as { images: unknown[] }).images, [
+            { url: "/og.png", width: 1280, height: 640, alt: "moxon" },
+        ]);
     });
 
     test("theme color per color scheme", () => {
@@ -144,6 +149,7 @@ describe("structured data", () => {
             "@context": "https://schema.org",
             "@type": "WebSite",
             name: "moxon",
+            alternateName: "moxon.dev",
             url: "https://moxon.dev/fr/",
             description: "Documentation",
             inLanguage: "fr-FR",
