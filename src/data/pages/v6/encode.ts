@@ -1,5 +1,24 @@
 import type { Page } from "@/types/content";
 
+/**
+ * The methods of the API by kind: the Try panel lists them under their titles, apart by a rule.
+ */
+const GROUPS = [
+    {
+        label: { en: "Base64 and URL", fr: "Base64 et URL" },
+        options: ["base64encode", "base64decode", "urlencode", "urldecode"],
+    },
+    {
+        label: { en: "Codes and ciphers", fr: "Codes et chiffrements" },
+        options: ["morse", "unmorse", "rot13", "caesar", "binary", "unbinary"],
+    },
+];
+
+/**
+ * Every method of the groups, in their order, as the options of the method field.
+ */
+const METHODS = GROUPS.flatMap((group) => group.options);
+
 export const page: Page = {
     version: "v6",
     id: "encode",
@@ -9,7 +28,7 @@ export const page: Page = {
         en: "The `/encode` endpoint encodes or decodes text in various formats.",
         fr: "L'endpoint `/encode` encode ou décode du texte dans différents formats.",
     },
-    updated: "2026-09-12",
+    updated: "2026-11-16",
     operations: [
         {
             id: "default",
@@ -22,18 +41,8 @@ export const page: Page = {
                     type: "enum",
                     in: "query",
                     required: true,
-                    options: [
-                        "base64encode",
-                        "base64decode",
-                        "urlencode",
-                        "urldecode",
-                        "morse",
-                        "unmorse",
-                        "rot13",
-                        "caesar",
-                        "binary",
-                        "unbinary",
-                    ],
+                    options: METHODS,
+                    groups: GROUPS,
                 },
                 {
                     name: "text",
@@ -91,6 +100,7 @@ export const page: Page = {
             title: { en: "Available Methods", fr: "Méthodes disponibles" },
             aliases: ["methodes-disponibles"],
             blocks: [
+                { type: "label", text: { en: "Base64 and URL:", fr: "Base64 et URL :" } },
                 {
                     type: "table",
                     head: { en: ["Method", "Description"], fr: ["Méthode", "Description"] },
@@ -99,6 +109,17 @@ export const page: Page = {
                         ["`base64decode`", { en: "Decode from Base64", fr: "Décoder du Base64" }],
                         ["`urlencode`", { en: "URL encode", fr: "Encoder pour URL" }],
                         ["`urldecode`", { en: "URL decode", fr: "Décoder une URL" }],
+                    ],
+                    kind: "definition",
+                },
+                {
+                    type: "label",
+                    text: { en: "Codes and ciphers:", fr: "Codes et chiffrements :" },
+                },
+                {
+                    type: "table",
+                    head: { en: ["Method", "Description"], fr: ["Méthode", "Description"] },
+                    rows: [
                         [
                             "`morse`",
                             {
