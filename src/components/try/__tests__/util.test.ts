@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 
 import {
+    centeredScroll,
     controlSpan,
     featuredOptions,
     formatBytes,
@@ -235,4 +236,11 @@ test("a group drops the options the parameter does not have, and an empty group 
         ],
     });
     assert.deepEqual(optionSections(grouped, "en"), [{ title: "Kept", options: ["md5"] }]);
+});
+
+test("a chosen row at the bottom of a list is scrolled to its middle, never above the top", () => {
+    const view = { top: 100, height: 288 };
+    assert.equal(centeredScroll(view, { top: 356, height: 32 }, 0), 128);
+    assert.equal(centeredScroll(view, { top: 110, height: 32 }, 0), 0);
+    assert.equal(centeredScroll(view, { top: 228, height: 32 }, 50), 50);
 });

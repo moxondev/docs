@@ -293,3 +293,20 @@ export function optionSections(
     const rest = options.filter((option) => !claimed.has(option));
     return rest.length > 0 ? [...sections, { options: rest }] : sections;
 }
+
+/**
+ * Computes the scroll position that puts an item in the middle of a scrolling list, never above
+ * the top of the list; the browser caps the other end by itself.
+ *
+ * @param view - Top edge and height of the scrolling list, in viewport pixels
+ * @param item - Top edge and height of the item to centre, in viewport pixels
+ * @param scrollTop - Current scroll position of the list
+ * @returns The scroll position that centres the item
+ */
+export function centeredScroll(
+    view: { top: number; height: number },
+    item: { top: number; height: number },
+    scrollTop: number,
+): number {
+    return Math.max(0, scrollTop + item.top - view.top - (view.height - item.height) / 2);
+}

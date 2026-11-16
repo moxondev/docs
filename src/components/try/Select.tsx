@@ -6,7 +6,7 @@ import { Select as SelectPrimitive } from "radix-ui";
 import { Fragment, useState } from "react";
 
 import { useDesk } from "@/components/search/desk";
-import { optionCount, optionSections } from "@/components/try/util";
+import { centeredScroll, optionCount, optionSections } from "@/components/try/util";
 import {
     Drawer,
     DrawerClose,
@@ -33,6 +33,26 @@ export interface SelectProps {
 
 // Value of the row that empties an optional parameter; Radix refuses an empty item value
 const CLEAR = "\u0000clear";
+
+/**
+ * Scrolls an opened list so that the chosen value stands in its middle instead of at its edge. A
+ * list with no chosen value stays at the top. Used as the ref of the scrolling element, it runs
+ * once the list is mounted, after the frame in which the browser has laid it out.
+ *
+ * @param list - Scrolling element of the list, null when it unmounts
+ */
+function centerChosen(list: HTMLElement | null): void {
+    if (!list) return;
+    requestAnimationFrame(() => {
+        const chosen = list.querySelector<HTMLElement>(
+            '[data-state="checked"], [aria-current="true"]',
+        );
+        if (!chosen) return;
+        const view = list.getBoundingClientRect();
+        const item = chosen.getBoundingClientRect();
+        list.scrollTop = centeredScroll(view, item, list.scrollTop);
+    });
+}
 
 /**
  * Builds the classes of the field that opens the list, the size of the other fields of the form.
@@ -121,7 +141,10 @@ function Listbox({ param, value, id, touch, bench, invalid, describedBy, onChang
                     sideOffset={4}
                     className="z-50 max-h-(--radix-select-content-available-height) min-w-(--radix-select-trigger-width) overflow-hidden rounded-box border border-line bg-surface p-1 shadow-palette"
                 >
-                    <SelectPrimitive.Viewport className="max-h-72 overflow-y-auto fade-edges">
+                    <SelectPrimitive.Viewport
+                        ref={centerChosen}
+                        className="max-h-72 overflow-y-auto fade-edges"
+                    >
                         {param.required === true ? null : (
                             <SelectPrimitive.Item value={CLEAR} className={cn(row, "text-faint")}>
                                 <SelectPrimitive.ItemText>{t("select")}</SelectPrimitive.ItemText>
@@ -208,7 +231,10 @@ function Sheet({ param, value, id, touch, bench, invalid, describedBy, onChange 
                         {t("options", { count: optionCount(param) })}
                     </DrawerDescription>
                 </DrawerHeader>
-                <ul className="max-h-[55dvh] overflow-y-auto px-3 pb-6 fade-edges">
+                <ul
+                    ref={centerChosen}
+                    className="max-h-[55dvh] overflow-y-auto px-3 pb-6 fade-edges"
+                >
                     {param.required === true ? null : (
                         <li>
                             <DrawerClose asChild>
