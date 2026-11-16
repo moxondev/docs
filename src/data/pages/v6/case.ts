@@ -1,5 +1,24 @@
 import type { Page } from "@/types/content";
 
+/**
+ * The targets of the API by use: the Try panel lists them under their titles, apart by a rule.
+ */
+const GROUPS = [
+    {
+        label: { en: "Identifier styles", fr: "Styles d'identifiants" },
+        options: ["camel", "pascal", "snake", "kebab", "constant"],
+    },
+    {
+        label: { en: "Text styles", fr: "Styles de texte" },
+        options: ["title", "sentence", "upper", "lower"],
+    },
+];
+
+/**
+ * Every target of the groups, in their order, as the options of the target field.
+ */
+const TARGETS = GROUPS.flatMap((group) => group.options);
+
 export const page: Page = {
     version: "v6",
     id: "case",
@@ -9,7 +28,7 @@ export const page: Page = {
         en: "The `/case` endpoint converts text between 9 case formats using universal tokenization (camelCase splitting, `_`, `-`, `.`, spaces).",
         fr: "L'endpoint `/case` convertit un texte entre 9 formats de casse avec une tokenisation universelle (split camelCase, `_`, `-`, `.`, espaces).",
     },
-    updated: "2026-09-12",
+    updated: "2026-11-16",
     operations: [
         {
             id: "default",
@@ -29,17 +48,8 @@ export const page: Page = {
                     type: "enum",
                     in: "query",
                     required: false,
-                    options: [
-                        "camel",
-                        "pascal",
-                        "snake",
-                        "kebab",
-                        "constant",
-                        "title",
-                        "sentence",
-                        "upper",
-                        "lower",
-                    ],
+                    options: TARGETS,
+                    groups: GROUPS,
                 },
             ],
         },
@@ -78,6 +88,10 @@ export const page: Page = {
             aliases: ["formats-disponibles"],
             blocks: [
                 {
+                    type: "label",
+                    text: { en: "Identifier styles:", fr: "Styles d'identifiants :" },
+                },
+                {
                     type: "table",
                     head: {
                         en: ["Target", "Description", "Example (`hello_world`)"],
@@ -89,6 +103,17 @@ export const page: Page = {
                         ["`snake`", "snake_case", "`hello_world`"],
                         ["`kebab`", "kebab-case", "`hello-world`"],
                         ["`constant`", "CONSTANT_CASE", "`HELLO_WORLD`"],
+                    ],
+                    kind: "matrix",
+                },
+                { type: "label", text: { en: "Text styles:", fr: "Styles de texte :" } },
+                {
+                    type: "table",
+                    head: {
+                        en: ["Target", "Description", "Example (`hello_world`)"],
+                        fr: ["Format", "Description", "Exemple (`hello_world`)"],
+                    },
+                    rows: [
                         ["`title`", "Title Case", "`Hello World`"],
                         ["`sentence`", "Sentence case", "`Hello world`"],
                         ["`upper`", { en: "UPPERCASE", fr: "MAJUSCULES" }, "`HELLO_WORLD`"],
