@@ -46,5 +46,16 @@ export const VERSIONS: VersionDef[] = [
     { id: "v1", status: "retired", served: false, playground: false, changelog: false },
 ];
 
+/**
+ * Tells whether a search engine may list the pages of a version: every version but the retired
+ * ones, which the API no longer serves and which would only compete with the current pages.
+ *
+ * @param version - Version of the page
+ * @returns False for a retired version, true otherwise
+ */
+export function isIndexed(version: Version): boolean {
+    return VERSIONS.find((def) => def.id === version)?.status !== "retired";
+}
+
 // The latest major (VERSIONS is newest first), used by the home, the 404 page and the redirects
 export const LATEST: Version = VERSIONS[0].id;
