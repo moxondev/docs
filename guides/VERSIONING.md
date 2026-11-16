@@ -59,7 +59,7 @@ The tests need no edit for the bump itself: the suites about the latest version 
 - Version picker, header label and Playground: read from `src/data/versions.ts`. The label of the latest version is the full release (`v7.0.0`), the others show their major.
 - Short forms: `/latest`, `/latest/hash`, the bare page ids and `/changelog/latest` always go to `LATEST`; `/6.0.0` goes to the changelog of the major that holds that release. The postbuild step writes a redirect page for each of them (and for each under `/fr`), enumerated from the pages of `LATEST` and the release pages of the published versions, so nothing is edited by hand; only what has no page (an unknown release, a missing page under `/latest`) is left to the 404 page.
 - Search: one index per version and language is built at `npm run gen` and loaded when the palette opens on that version.
-- Sitemap, canonical URLs and language alternates: derived from the registry.
+- Sitemap, canonical URLs and language alternates: derived from the registry. The pages of a `retired` version carry `noindex, follow` and are left out of the sitemap (`isIndexed` in `src/data/versions.ts`).
 
 ## Retiring a version
 
