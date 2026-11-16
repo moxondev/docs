@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { Fragment, type ReactNode } from "react";
 
 import { Callout } from "@/components/doc/blocks/Callout";
 import { Code } from "@/components/doc/blocks/Code";
@@ -52,6 +52,21 @@ export interface LineStatusProps {
 
 // No-break space that keeps the marker on the same line as the last word of its text
 const GLUE = String.fromCodePoint(0xa0);
+
+// Blocks that are not prose, kept out of the search snippets (data-nosnippet)
+const NO_SNIPPET: ReadonlySet<Block["type"]> = new Set([
+    "endpoint",
+    "params",
+    "fields",
+    "errors",
+    "table",
+    "code",
+    "values",
+    "examples",
+    "try",
+    "plans",
+    "playground",
+]);
 
 /**
  * Builds the example of the filter of a Values block: the start of a featured value that has a
@@ -205,7 +220,8 @@ function BlockView({ block, ctx, head }: BlockViewProps) {
 
 /**
  * Draws the blocks of a section in a column, one gap apart. A split block is drawn as the blocks
- * of the language of the page, so its branches share the column.
+ * of the language of the page. A block that is not prose sits in a box-less wrapper marked
+ * data-nosnippet, so a search engine builds its snippet from the text of the page.
  *
  * @param blocks - Blocks of the section, in order
  * @param ctx - Context of the page, handed to every block
@@ -214,14 +230,18 @@ function BlockView({ block, ctx, head }: BlockViewProps) {
 export function Blocks({ blocks, ctx, head }: BlocksProps) {
     return (
         <div className="flex flex-col gap-4">
-            {blocks.map((block, index) => (
-                <BlockView
-                    key={index}
-                    block={block}
-                    ctx={ctx}
-                    head={index === 0 ? head : undefined}
-                />
-            ))}
+            {blocks.map((block, index) => {
+                const view = (
+                    <BlockView block={block} ctx={ctx} head={index === 0 ? head : undefined} />
+                );
+                return NO_SNIPPET.has(block.type) ? (
+                    <div key={index} data-nosnippet className="contents">
+                        {view}
+                    </div>
+                ) : (
+                    <Fragment key={index}>{view}</Fragment>
+                );
+            })}
         </div>
     );
 }
