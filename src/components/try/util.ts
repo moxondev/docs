@@ -1,6 +1,6 @@
 import type { RequestPhase } from "@/hooks/useRequest";
 import type { ApiResponse } from "@/lib/request";
-import type { ParamSpec } from "@/types/content";
+import type { Lang, ParamSpec } from "@/types/content";
 
 export interface Hang {
     lead: number;
@@ -266,4 +266,30 @@ export function featuredOptions(param: ParamSpec): string[] {
     if (param.type !== "enum") return [];
     const options = param.options ?? [];
     return (param.featured ?? []).filter((value) => options.includes(value));
+}
+
+/**
+ * Splits the options of an enum into the sections of its list: the groups the data names, or one
+ * section without a title when it names none. A group keeps only options the parameter really has,
+ * and an option that no group claims closes the list in a section of its own.
+ *
+ * @param param - Enum parameter whose options and groups are read
+ * @param lang - Language that picks the title of a group
+ * @returns The sections in order, each with its title (absent for a plain list) and its options
+ */
+export function optionSections(
+    param: ParamSpec,
+    lang: Lang,
+): { title?: string; options: string[] }[] {
+    const options = param.options ?? [];
+    if (!param.groups || param.groups.length === 0) return [{ options }];
+    const sections = param.groups
+        .map((group) => ({
+            title: group.label[lang],
+            options: group.options.filter((option) => options.includes(option)),
+        }))
+        .filter((section) => section.options.length > 0);
+    const claimed = new Set(sections.flatMap((section) => section.options));
+    const rest = options.filter((option) => !claimed.has(option));
+    return rest.length > 0 ? [...sections, { options: rest }] : sections;
 }

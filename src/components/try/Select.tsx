@@ -1,12 +1,12 @@
 "use client";
 
 import { Check, ChevronDown } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Select as SelectPrimitive } from "radix-ui";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 import { useDesk } from "@/components/search/desk";
-import { optionCount } from "@/components/try/util";
+import { optionCount, optionSections } from "@/components/try/util";
 import {
     Drawer,
     DrawerClose,
@@ -18,7 +18,7 @@ import {
     DrawerTrigger,
 } from "@/components/ui/drawer";
 import { cn } from "@/lib/utils";
-import type { ParamSpec } from "@/types/content";
+import type { Lang, ParamSpec } from "@/types/content";
 
 export interface SelectProps {
     param: ParamSpec;
@@ -93,6 +93,8 @@ function Tail({ param, touch, bench }: Pick<SelectProps, "param" | "touch" | "be
  */
 function Listbox({ param, value, id, touch, bench, invalid, describedBy, onChange }: SelectProps) {
     const t = useTranslations("try");
+    const sections = optionSections(param, useLocale() as Lang);
+    const heading = "px-2.5 pt-1.5 pb-1 text-[11px] font-medium tracking-wide text-faint uppercase";
     const row =
         "relative flex h-8 cursor-pointer items-center rounded-row pr-8 pl-2.5 font-mono text-[13.5px] text-text outline-none select-none data-[highlighted]:bg-chip data-[highlighted]:text-ink data-[state=checked]:font-semibold data-[state=checked]:text-ink";
 
@@ -125,13 +127,31 @@ function Listbox({ param, value, id, touch, bench, invalid, describedBy, onChang
                                 <SelectPrimitive.ItemText>{t("select")}</SelectPrimitive.ItemText>
                             </SelectPrimitive.Item>
                         )}
-                        {(param.options ?? []).map((option) => (
-                            <SelectPrimitive.Item key={option} value={option} className={row}>
-                                <SelectPrimitive.ItemText>{option}</SelectPrimitive.ItemText>
-                                <SelectPrimitive.ItemIndicator className="absolute right-2.5">
-                                    <Check aria-hidden="true" className="size-3.5" />
-                                </SelectPrimitive.ItemIndicator>
-                            </SelectPrimitive.Item>
+                        {sections.map((section, index) => (
+                            <SelectPrimitive.Group key={section.title ?? "rest"}>
+                                {index > 0 && sections.length > 1 ? (
+                                    <SelectPrimitive.Separator className="mx-1 my-1.5 h-px bg-line-soft" />
+                                ) : null}
+                                {section.title ? (
+                                    <SelectPrimitive.Label className={heading}>
+                                        {section.title}
+                                    </SelectPrimitive.Label>
+                                ) : null}
+                                {section.options.map((option) => (
+                                    <SelectPrimitive.Item
+                                        key={option}
+                                        value={option}
+                                        className={row}
+                                    >
+                                        <SelectPrimitive.ItemText>
+                                            {option}
+                                        </SelectPrimitive.ItemText>
+                                        <SelectPrimitive.ItemIndicator className="absolute right-2.5">
+                                            <Check aria-hidden="true" className="size-3.5" />
+                                        </SelectPrimitive.ItemIndicator>
+                                    </SelectPrimitive.Item>
+                                ))}
+                            </SelectPrimitive.Group>
                         ))}
                     </SelectPrimitive.Viewport>
                 </SelectPrimitive.Content>
@@ -156,6 +176,8 @@ function Listbox({ param, value, id, touch, bench, invalid, describedBy, onChang
 function Sheet({ param, value, id, touch, bench, invalid, describedBy, onChange }: SelectProps) {
     const t = useTranslations("try");
     const [open, setOpen] = useState(false);
+    const sections = optionSections(param, useLocale() as Lang);
+    const heading = "px-3 pt-3 pb-1 text-xs font-medium tracking-wide text-faint uppercase";
     const Root = touch ? DrawerNested : Drawer;
     const choose = (next: string) => onChange(param.name, next);
     const row =
@@ -201,25 +223,41 @@ function Sheet({ param, value, id, touch, bench, invalid, describedBy, onChange 
                             </DrawerClose>
                         </li>
                     )}
-                    {(param.options ?? []).map((option) => (
-                        <li key={option}>
-                            <DrawerClose asChild>
-                                <button
-                                    type="button"
-                                    onClick={() => choose(option)}
-                                    aria-current={option === value ? "true" : undefined}
-                                    className={cn(
-                                        row,
-                                        option === value && "bg-chip font-semibold text-ink",
-                                    )}
-                                >
-                                    {option}
-                                    {option === value ? (
-                                        <Check aria-hidden="true" className="ml-auto size-4" />
-                                    ) : null}
-                                </button>
-                            </DrawerClose>
-                        </li>
+                    {sections.map((section, index) => (
+                        <Fragment key={section.title ?? "rest"}>
+                            {index > 0 && sections.length > 1 ? (
+                                <li role="separator" className="mx-3 my-2 h-px bg-line-soft" />
+                            ) : null}
+                            {section.title ? (
+                                <li role="presentation" className={heading}>
+                                    {section.title}
+                                </li>
+                            ) : null}
+                            {section.options.map((option) => (
+                                <li key={option}>
+                                    <DrawerClose asChild>
+                                        <button
+                                            type="button"
+                                            onClick={() => choose(option)}
+                                            aria-current={option === value ? "true" : undefined}
+                                            className={cn(
+                                                row,
+                                                option === value &&
+                                                    "bg-chip font-semibold text-ink",
+                                            )}
+                                        >
+                                            {option}
+                                            {option === value ? (
+                                                <Check
+                                                    aria-hidden="true"
+                                                    className="ml-auto size-4"
+                                                />
+                                            ) : null}
+                                        </button>
+                                    </DrawerClose>
+                                </li>
+                            ))}
+                        </Fragment>
                     ))}
                 </ul>
             </DrawerContent>

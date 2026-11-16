@@ -8,6 +8,7 @@ import {
     hangingIndent,
     nextTab,
     optionCount,
+    optionSections,
     responseSize,
     splitParams,
     statusAccent,
@@ -203,4 +204,35 @@ test("only the featured values that are real options become chips", () => {
     assert.deepEqual(featuredOptions(method), ["md5", "sha256"]);
     assert.deepEqual(featuredOptions(param({ type: "string", featured: ["a"] })), []);
     assert.deepEqual(featuredOptions(param({ type: "enum", options: ["a"] })), []);
+});
+
+test("a list without groups is one untitled section, grouped options give titled sections", () => {
+    const options = ["md5", "sha1", "rmd160", "ssl3-md5"];
+    assert.deepEqual(optionSections(param({ type: "enum", options }), "en"), [{ options }]);
+    const grouped = param({
+        type: "enum",
+        options,
+        groups: [
+            { label: { en: "Algorithms", fr: "Algorithmes" }, options: ["md5", "sha1"] },
+            { label: { en: "Aliases", fr: "Alias" }, options: ["rmd160"] },
+        ],
+    });
+    assert.deepEqual(optionSections(grouped, "fr"), [
+        { title: "Algorithmes", options: ["md5", "sha1"] },
+        { title: "Alias", options: ["rmd160"] },
+        { options: ["ssl3-md5"] },
+    ]);
+    assert.equal(optionSections(grouped, "en")[0].title, "Algorithms");
+});
+
+test("a group drops the options the parameter does not have, and an empty group disappears", () => {
+    const grouped = param({
+        type: "enum",
+        options: ["md5"],
+        groups: [
+            { label: { en: "Gone", fr: "Parti" }, options: ["nope"] },
+            { label: { en: "Kept", fr: "Garde" }, options: ["md5", "nope"] },
+        ],
+    });
+    assert.deepEqual(optionSections(grouped, "en"), [{ title: "Kept", options: ["md5"] }]);
 });
