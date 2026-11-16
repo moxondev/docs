@@ -58,6 +58,11 @@ export interface Operation {
     params: ParamSpec[];
 }
 
+export interface OptionGroup {
+    label: Loc<string>;
+    options: string[];
+}
+
 export interface ParamSpec {
     name: string;
     type: "string" | "number" | "boolean" | "enum" | "json";
@@ -65,6 +70,7 @@ export interface ParamSpec {
     required: boolean | "conditional";
     default?: string;
     options?: string[];
+    groups?: OptionGroup[];
     featured?: string[];
     placeholder?: string;
     value?: string;
