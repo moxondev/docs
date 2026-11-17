@@ -3,9 +3,9 @@
 import { useTranslations } from "next-intl";
 import { type ReactNode, useId } from "react";
 
-import { Control } from "@/components/try/Control";
-import { Featured } from "@/components/try/Featured";
-import { SendButton } from "@/components/try/Form";
+import { Control } from "@/components/try/controls/Control";
+import { Featured } from "@/components/try/controls/Featured";
+import { SendButton } from "@/components/try/controls/Form";
 import { useFieldFocus } from "@/hooks/useFieldFocus";
 import type { RequestHandle } from "@/hooks/useRequest";
 import { controlSpan, featuredOptions, splitParams } from "@/lib/try/util";

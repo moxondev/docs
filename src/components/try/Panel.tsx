@@ -3,9 +3,9 @@
 import { useTranslations } from "next-intl";
 import { lazy, Suspense, useEffect, useRef } from "react";
 
-import { Announcer } from "@/components/try/Announcer";
-import { RequestForm, RequestLine } from "@/components/try/Form";
-import { Snippet } from "@/components/try/Snippet";
+import { Announcer } from "@/components/try/controls/Announcer";
+import { RequestForm, RequestLine } from "@/components/try/controls/Form";
+import { Snippet } from "@/components/try/response/Snippet";
 import { useRequest } from "@/hooks/useRequest";
 import { apiPath } from "@/lib/request";
 import { orFallback, whenIdle } from "@/lib/try/prefetch";
@@ -36,7 +36,7 @@ function ResponseUnavailable() {
  * @returns The module of the answer view, or of its stand-in when the chunk cannot be fetched
  */
 export const loadResponse = orFallback(
-    () => import("@/components/try/Response").then((m) => m.Response),
+    () => import("@/components/try/response/Response").then((m) => m.Response),
     ResponseUnavailable,
 );
 

@@ -1,4 +1,4 @@
-import { LazySnippet } from "@/components/try/LazySnippet";
+import { LazySnippet } from "@/components/try/response/LazySnippet";
 import type { SamplesProps } from "@/types/try";
 
 /**

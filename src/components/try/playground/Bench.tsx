@@ -3,12 +3,12 @@
 import { useTranslations } from "next-intl";
 import { Suspense, useEffect } from "react";
 
-import { Announcer } from "@/components/try/Announcer";
-import { BenchForm } from "@/components/try/BenchForm";
-import { DocsLink } from "@/components/try/DocsLink";
-import { MethodChip } from "@/components/try/Form";
+import { Announcer } from "@/components/try/controls/Announcer";
+import { MethodChip } from "@/components/try/controls/Form";
 import { loadResponse, Response } from "@/components/try/Panel";
-import { Snippet } from "@/components/try/Snippet";
+import { BenchForm } from "@/components/try/playground/BenchForm";
+import { DocsLink } from "@/components/try/playground/DocsLink";
+import { Snippet } from "@/components/try/response/Snippet";
 import { useRequest } from "@/hooks/useRequest";
 import { useSlim } from "@/hooks/useSlim";
 import { apiPath } from "@/lib/request";

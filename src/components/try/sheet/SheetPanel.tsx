@@ -4,11 +4,11 @@ import { Check, Copy, X } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 
-import { Announcer } from "@/components/try/Announcer";
-import { RequestForm, RequestLine } from "@/components/try/Form";
-import { ResponseBody, Status } from "@/components/try/Response";
-import { QUIET_TAB, tabId, TabList } from "@/components/try/Tabs";
-import { Tokens } from "@/components/try/Tokens";
+import { Announcer } from "@/components/try/controls/Announcer";
+import { RequestForm, RequestLine } from "@/components/try/controls/Form";
+import { ResponseBody, Status } from "@/components/try/response/Response";
+import { QUIET_TAB, tabId, TabList } from "@/components/try/response/Tabs";
+import { Tokens } from "@/components/try/response/Tokens";
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerClose, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
 import { COPY_LABELS, useCopy } from "@/hooks/useCopy";

@@ -2,13 +2,15 @@
 
 import { lazy, Suspense } from "react";
 
-import type { SelectProps } from "@/components/try/Select";
+import type { SelectProps } from "@/components/try/controls/Select";
 import { cn } from "@/lib/utils";
 
 /**
  * The list of the field as its own chunk.
  */
-const Select = lazy(() => import("@/components/try/Select").then((m) => ({ default: m.Select })));
+const Select = lazy(() =>
+    import("@/components/try/controls/Select").then((m) => ({ default: m.Select })),
+);
 
 /**
  * Empty field shown in place of the list while its chunk is fetched, at the height of the field

@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import { type ReactNode, useId } from "react";
 
-import { LazySelect } from "@/components/try/LazySelect";
+import { LazySelect } from "@/components/try/controls/LazySelect";
 import { Input } from "@/components/ui/input";
 import type { FieldIssue } from "@/hooks/useRequest";
 import { SEGMENT_MAX, textareaRows, typeHint } from "@/lib/try/util";

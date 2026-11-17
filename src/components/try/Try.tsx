@@ -24,7 +24,7 @@ const Panel = dynamic(() => import("@/components/try/Panel").then((m) => m.Panel
  * @param op - Operation of the bench, with try true
  * @param docsHref - Address of the documentation page of the operation
  */
-const Bench = dynamic(() => import("@/components/try/Bench").then((m) => m.Bench));
+const Bench = dynamic(() => import("@/components/try/playground/Bench").then((m) => m.Bench));
 
 /**
  * The Try panel of an operation, or nothing when the operation has no live Try (try false). See

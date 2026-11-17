@@ -25,7 +25,7 @@ function SheetUnavailable() {
  * @returns The module of the drawer, or of its stand-in when the chunk cannot be fetched
  */
 const loadSheetPanel = orFallback(
-    () => import("@/components/try/SheetPanel").then((m) => m.SheetPanel),
+    () => import("@/components/try/sheet/SheetPanel").then((m) => m.SheetPanel),
     SheetUnavailable,
 );
 

@@ -353,7 +353,11 @@ describe("sources", () => {
     test("imports resolve through the alias and relative paths only", () => {
         const known = new Set(["src/components/try/Snippet.tsx", "src/lib/routes.ts"]);
         assert.equal(
-            resolveImport("src/components/home/Demo.tsx", "@/components/try/Snippet", known),
+            resolveImport(
+                "src/components/home/Demo.tsx",
+                "@/components/try/response/Snippet",
+                known,
+            ),
             "src/components/try/Snippet.tsx",
         );
         assert.equal(
@@ -390,7 +394,7 @@ describe("sources", () => {
         ].join("\n");
         const demo = [
             '"use client";',
-            'import { Snippet } from "@/components/try/Snippet";',
+            'import { Snippet } from "@/components/try/response/Snippet";',
             "export function Demo() {",
             "    return Snippet();",
             "}",

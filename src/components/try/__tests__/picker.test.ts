@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { groupEntries, scoreEntry } from "@/components/try/Picker";
+import { groupEntries, scoreEntry } from "@/components/try/playground/Picker";
 
 test("an empty filter shows everything", () => {
     assert.equal(scoreEntry("Hash post /hash hash", ""), 1);

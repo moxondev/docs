@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { useLocale, useTranslations } from "next-intl";
 
-import { DocsLink } from "@/components/try/DocsLink";
+import { DocsLink } from "@/components/try/playground/DocsLink";
 import { Try } from "@/components/try/Try";
 import { setQueryParam, useQueryParam } from "@/hooks/useLocationSearch";
 import { apiPath } from "@/lib/request";
@@ -20,7 +20,7 @@ import type { PlaygroundProps } from "@/types/try";
  * @param value - Slug of the selected entry, null when none is selected
  * @param onSelect - Called with the slug of the entry the reader picks
  */
-const Picker = dynamic(() => import("@/components/try/Picker").then((m) => m.Picker), {
+const Picker = dynamic(() => import("@/components/try/playground/Picker").then((m) => m.Picker), {
     ssr: false,
     loading: () => <div aria-hidden="true" className="h-11 w-full max-w-md rounded-box bg-chip" />,
 });

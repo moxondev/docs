@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useMemo } from "react";
 
-import { Tokens } from "@/components/try/Tokens";
+import { Tokens } from "@/components/try/response/Tokens";
 import { Button } from "@/components/ui/button";
 import type { RequestPhase } from "@/hooks/useRequest";
 import { highlight } from "@/lib/highlight";

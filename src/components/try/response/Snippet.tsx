@@ -4,8 +4,8 @@ import { Check, Copy } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useId, useMemo } from "react";
 
-import { QUIET_TAB, tabId, TabList } from "@/components/try/Tabs";
-import { Tokens } from "@/components/try/Tokens";
+import { QUIET_TAB, tabId, TabList } from "@/components/try/response/Tabs";
+import { Tokens } from "@/components/try/response/Tokens";
 import { Button } from "@/components/ui/button";
 import { useCodeLang } from "@/hooks/useCodeLang";
 import { COPY_LABELS, useCopy } from "@/hooks/useCopy";

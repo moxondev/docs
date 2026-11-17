@@ -1,4 +1,4 @@
-import { Playground } from "@/components/try/Playground";
+import { Playground } from "@/components/try/playground/Playground";
 import { NAV } from "@/data/nav";
 import type { DocContext } from "@/lib/doc/context";
 import { catalogueEntry, navTitle } from "@/lib/nav";

@@ -2,7 +2,7 @@
 
 import { lazy, Suspense } from "react";
 
-import type { SnippetProps } from "@/components/try/Snippet";
+import type { SnippetProps } from "@/components/try/response/Snippet";
 import { cn } from "@/lib/utils";
 
 /**
@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
  * @param className - Extra classes for the root, for its place in a column
  */
 const Snippet = lazy(() =>
-    import("@/components/try/Snippet").then((m) => ({ default: m.Snippet })),
+    import("@/components/try/response/Snippet").then((m) => ({ default: m.Snippet })),
 );
 
 /**

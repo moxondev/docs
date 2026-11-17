@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useMemo, useState } from "react";
 
-import { MethodChip } from "@/components/try/Form";
+import { MethodChip } from "@/components/try/controls/Form";
 import { Button } from "@/components/ui/button";
 import {
     Command,

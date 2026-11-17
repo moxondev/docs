@@ -4,7 +4,7 @@ import { LoaderCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { KeyLabels } from "@/components/keys/KeyLabels";
-import { Control } from "@/components/try/Control";
+import { Control } from "@/components/try/controls/Control";
 import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
 import { useFieldFocus } from "@/hooks/useFieldFocus";

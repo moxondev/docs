@@ -12,9 +12,12 @@ import type { SheetProps } from "@/types/try";
  * @param op - Operation of the sheet, with try true
  * @param name - Endpoint name read in the dialog label ("Try the Hash endpoint")
  */
-const SheetBody = dynamic(() => import("@/components/try/SheetBody").then((m) => m.SheetBody), {
-    ssr: false,
-});
+const SheetBody = dynamic(
+    () => import("@/components/try/sheet/SheetBody").then((m) => m.SheetBody),
+    {
+        ssr: false,
+    },
+);
 
 /**
  * The phone Try sheet of an operation, or nothing when the operation has no live Try (try false).

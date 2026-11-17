@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 
-import { LazySnippet } from "@/components/try/LazySnippet";
-import { Tokens } from "@/components/try/Tokens";
+import { LazySnippet } from "@/components/try/response/LazySnippet";
+import { Tokens } from "@/components/try/response/Tokens";
 import { HOME_DEMO } from "@/data/home";
 import { SITE } from "@/data/site";
 import { highlight } from "@/lib/highlight";
