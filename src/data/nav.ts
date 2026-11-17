@@ -1295,6 +1295,16 @@ export const NAV: Nav = {
                 fr: "Nouvel endpoint /badge : un badge SVG autonome, en v6.",
             },
         },
+        "changelog/6.4.0": {
+            title: { en: "6.4.0", fr: "6.4.0" },
+            kind: "release",
+            methods: [],
+            updated: "2026-11-17",
+            summary: {
+                en: "Public Docker image, 41 endpoints declared in the manifest, stricter text for /badge.",
+                fr: "Image Docker publique, 41 endpoints déclarés dans le manifest, texte de /badge plus strict.",
+            },
+        },
         chart: {
             title: { en: "Chart", fr: "Chart" },
             kind: "endpoint",

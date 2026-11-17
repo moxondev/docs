@@ -1,6 +1,150 @@
 import type { Page } from "@/types/content";
 
 export const releases: Record<string, Page> = {
+    "6.4.0": {
+        version: "v6",
+        id: "changelog/6.4.0",
+        kind: "release",
+        title: { en: "6.4.0", fr: "6.4.0" },
+        updated: "2026-11-17",
+        release: {
+            version: "6.4.0",
+            url: "https://github.com/moxondev/api/releases/tag/6.4.0",
+            summary: {
+                en: "Public Docker image, 41 endpoints declared in the manifest, stricter text for `/badge`.",
+                fr: "Image Docker publique, 41 endpoints déclarés dans le manifest, texte de `/badge` plus strict.",
+            },
+        },
+        sections: [
+            { id: "", blocks: [] },
+            {
+                id: "api",
+                level: 2,
+                title: { en: "API", fr: "API" },
+                blocks: [],
+            },
+            {
+                id: "contracts",
+                level: 3,
+                title: { en: "Contracts and manifest", fr: "Contrats et manifest" },
+                blocks: [
+                    {
+                        type: "list",
+                        items: [
+                            {
+                                en: "**41 endpoints are now declared as contracts**: the route, the check of the parameters and the description used by the documentation come from one declaration, so they cannot drift apart. Nothing changes in what they answer: `v4`, `v5` and `v6` behave as in 6.3.0, with the same statuses, the same messages and the same order of checks, apart from the text of a badge (see below).",
+                                fr: "**41 endpoints sont désormais déclarés comme des contrats** : la route, la vérification des paramètres et la description qu'utilise la documentation viennent d'une seule déclaration, si bien qu'elles ne peuvent plus diverger. Rien ne change dans leurs réponses : la `v4`, la `v5` et la `v6` se comportent comme en 6.3.0, avec les mêmes statuts, les mêmes messages et le même ordre de vérifications, hormis le texte d'un badge (voir plus bas).",
+                            },
+                            {
+                                en: "The **[manifest](ref:manifest)** export now lists **42 entries**: the 41 endpoints, with `levenshtein` appearing twice (a `GET` until `v5`, a `POST` from `v6`). Each entry has its `name`, `method`, `path`, `category`, the first (`since`) and last (`until`) version that serves it, its `params` with their `type`, fixed `options` and `default`, and a request `example`. A parameter is marked `required` only when a request without it is refused before the endpoint runs, so the manifest declares fewer required parameters than the endpoints really have.",
+                                fr: "L'export **[manifest](ref:manifest)** compte désormais **42 entrées** : les 41 endpoints, `levenshtein` y figurant deux fois (un `GET` jusqu'à la `v5`, un `POST` depuis la `v6`). Chaque entrée a son `name`, sa `method`, son `path`, sa `category`, la première (`since`) et la dernière (`until`) version qui la sert, ses `params` avec leur `type`, leurs `options` fixes et leur `default`, et un `example` de requête. Un paramètre n'est marqué `required` que lorsqu'une requête sans lui est refusée avant l'exécution de l'endpoint : le manifest déclare donc moins de paramètres obligatoires que les endpoints n'en ont réellement.",
+                            },
+                            {
+                                en: "The manifest stays *experimental*: the endpoints that answer an image, keep a state (chat, tic-tac-toe, the verification of captcha and proof of work) or describe the API itself are not declared yet, and its shape may still change in a minor release.",
+                                fr: "Le manifest reste *expérimental* : les endpoints qui répondent une image, gardent un état (chat, tic-tac-toe, vérification des captchas et des preuves de travail) ou décrivent l'API elle-même ne sont pas encore déclarés, et sa forme peut encore changer dans une version mineure.",
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                id: "docker",
+                level: 3,
+                title: { en: "Docker", fr: "Docker" },
+                blocks: [
+                    {
+                        type: "list",
+                        items: [
+                            {
+                                en: "**A public Docker image**, `ghcr.io/moxondev/api`, for `linux/amd64` and `linux/arm64`. Its tags are `6.4.0`, `6.4` and `6`, which follow the releases, and `latest`, the most recent stable one. It listens on port `3000`, and `docker run -d -p 3000:3000 ghcr.io/moxondev/api:latest` is enough to start it. See **[Instance](ref:instance)**.",
+                                fr: "**Une image Docker publique**, `ghcr.io/moxondev/api`, pour `linux/amd64` et `linux/arm64`. Ses tags sont `6.4.0`, `6.4` et `6`, qui suivent les versions, et `latest`, la plus récente version stable. Elle écoute sur le port `3000`, et `docker run -d -p 3000:3000 ghcr.io/moxondev/api:latest` suffit pour la démarrer. Voir **[Instance](ref:instance)**.",
+                            },
+                            {
+                                en: "It reads the same environment variables as the Node server (`PORT`, `CHALLENGE_SECRET`, `TRUSTED_PROXIES`, `DOCS_URL`, the rate limits and the rest), given with `-e` or from a file with `--env-file`.",
+                                fr: "Elle lit les mêmes variables d'environnement que le serveur Node (`PORT`, `CHALLENGE_SECRET`, `TRUSTED_PROXIES`, `DOCS_URL`, les limites de débit et le reste), passées avec `-e` ou depuis un fichier avec `--env-file`.",
+                            },
+                            {
+                                en: "It is made for a locked-down host: the image runs as the unprivileged `node` user and writes nothing to disk, so it also starts with `--read-only --tmpfs /tmp`. It reports itself `healthy` once `GET /` answers, and it stops at once on `SIGTERM` instead of waiting to be killed.",
+                                fr: "Elle est faite pour un hôte verrouillé : l'image tourne sous l'utilisateur `node`, sans privilèges, et n'écrit rien sur le disque, si bien qu'elle démarre aussi avec `--read-only --tmpfs /tmp`. Elle se déclare `healthy` dès que `GET /` répond, et elle s'arrête aussitôt sur `SIGTERM` au lieu d'attendre d'être tuée.",
+                            },
+                            {
+                                en: "Behind a reverse proxy, set `TRUSTED_PROXIES`: otherwise the server sees the address of the proxy or of the Docker network instead of the caller's, and the rate limits count the wrong clients.",
+                                fr: "Derrière un reverse proxy, définissez `TRUSTED_PROXIES` : sinon le serveur voit l'adresse du proxy ou du réseau Docker au lieu de celle de l'appelant, et les limites de débit comptent les mauvais clients.",
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                id: "badge",
+                level: 3,
+                title: { en: "Badge", fr: "Badge" },
+                blocks: [
+                    {
+                        type: "list",
+                        items: [
+                            {
+                                en: "**[GET /badge](ref:badge)** now refuses invisible characters in `label` and `message`: a soft hyphen, a word joiner, a bidirectional mark, a Hangul or Braille filler, a tag character, a lone surrogate and other format characters. A text made only of spaces, combining marks or variation selectors is refused too. They answer the same `400` as the control characters before them: `Label cannot contain control or invisible characters` (`Message cannot contain control or invisible characters` for `message`).",
+                                fr: "**[GET /badge](ref:badge)** refuse désormais les caractères invisibles dans `label` et `message` : un trait d'union conditionnel, un word joiner, une marque bidirectionnelle, un remplisseur Hangul ou Braille, un caractère de tag, un surrogate isolé et d'autres caractères de format. Un texte fait uniquement d'espaces, de marques combinantes ou de sélecteurs de variation est refusé aussi. Tous répondent le même `400` que les caractères de contrôle avant eux : `Label cannot contain control or invisible characters` (`Message cannot contain control or invisible characters` pour `message`).",
+                            },
+                            {
+                                en: "Still accepted: an emoji with its variation selector, accents, no-break spaces and the ideographic space around a visible text.",
+                                fr: "Restent acceptés : un emoji avec son sélecteur de variation, les accents, les espaces insécables et l'espace idéographique autour d'un texte visible.",
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                id: "package",
+                level: 3,
+                title: { en: "Package", fr: "Paquet" },
+                blocks: [
+                    {
+                        type: "list",
+                        items: [
+                            {
+                                en: "`canvas` goes to `3.2.3`, whose release carries a prebuilt binary for `linux-arm64`: it is what makes the `arm64` image possible. Nothing changes for the library.",
+                                fr: "`canvas` passe en `3.2.3`, dont la version embarque un binaire précompilé pour `linux-arm64` : c'est ce qui rend l'image `arm64` possible. Rien ne change pour la bibliothèque.",
+                            },
+                            {
+                                en: "A vulnerable `minimatch` pulled in by the development dependencies is replaced by a patched release. It only concerned the development tools: it was never installed with `@moxon/api`.",
+                                fr: "Un `minimatch` vulnérable, tiré par les dépendances de développement, est remplacé par une version corrigée. Cela ne concernait que les outils de développement : il n'était jamais installé avec `@moxon/api`.",
+                            },
+                            {
+                                en: "The npm description and the README of the package now announce **50+ endpoints**.",
+                                fr: "La description npm et le README du paquet annoncent désormais **50+ endpoints**.",
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                id: "documentation",
+                level: 2,
+                title: { en: "Documentation", fr: "Documentation" },
+                blocks: [
+                    {
+                        type: "list",
+                        items: [
+                            {
+                                en: "The **[Manifest](ref:manifest)** page now describes the `42` entries: the fields of an entry and of a parameter, and the rule that `required` is set only when a request without the parameter is refused before the endpoint runs. It states which endpoints are not declared yet.",
+                                fr: "La page **[Manifest](ref:manifest)** décrit désormais les `42` entrées : les champs d'une entrée et d'un paramètre, et la règle selon laquelle `required` n'est posé que lorsqu'une requête sans le paramètre est refusée avant l'exécution de l'endpoint. Elle indique quels endpoints ne sont pas encore déclarés.",
+                            },
+                            {
+                                en: "The **[Instance](ref:instance)** page has a new Docker section: the image, its tags, the port, the environment variables, the read-only start, the health check and `TRUSTED_PROXIES` behind a proxy.",
+                                fr: "La page **[Instance](ref:instance)** a une nouvelle section Docker : l'image, ses tags, le port, les variables d'environnement, le démarrage en lecture seule, le contrôle de santé et `TRUSTED_PROXIES` derrière un proxy.",
+                            },
+                            {
+                                en: "The **[Badge](ref:badge)** page lists the invisible characters that `label` and `message` refuse, and the error they answer.",
+                                fr: "La page **[Badge](ref:badge)** liste les caractères invisibles que `label` et `message` refusent, et l'erreur qu'ils renvoient.",
+                            },
+                        ],
+                    },
+                ],
+            },
+        ],
+    },
     "6.3.0": {
         version: "v6",
         id: "changelog/6.3.0",

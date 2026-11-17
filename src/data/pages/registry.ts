@@ -216,6 +216,7 @@ export const PAGES: Record<Version, Record<string, () => Promise<Page>>> = {
         "changelog/6.1.0": () => import("./v6/releases").then((m) => m.releases["6.1.0"]),
         "changelog/6.2.0": () => import("./v6/releases").then((m) => m.releases["6.2.0"]),
         "changelog/6.3.0": () => import("./v6/releases").then((m) => m.releases["6.3.0"]),
+        "changelog/6.4.0": () => import("./v6/releases").then((m) => m.releases["6.4.0"]),
         chart: () => import("./v6/chart").then((m) => m.page),
         chat: () => import("./v6/chat").then((m) => m.page),
         "chat/clear": () => import("./v6/chat/clear").then((m) => m.page),
