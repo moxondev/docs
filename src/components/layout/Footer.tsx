@@ -4,8 +4,8 @@ import { CircleAlertIcon } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 
-import { GitHub } from "@/components/chrome/GitHub";
-import { Logo } from "@/components/chrome/Logo";
+import { GitHub } from "@/components/layout/GitHub";
+import { Logo } from "@/components/layout/Logo";
 import { KINDS } from "@/data/kinds";
 import { LINKS } from "@/data/links";
 import { SITE } from "@/data/site";

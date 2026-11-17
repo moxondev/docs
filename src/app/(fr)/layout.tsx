@@ -3,9 +3,9 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import type { ReactNode } from "react";
 
 import { layoutMetadata } from "@/app/root";
-import { Header } from "@/components/chrome/Header";
-import { OutageHost } from "@/components/chrome/OutageHost";
-import { Topbar } from "@/components/chrome/Topbar";
+import { Header } from "@/components/layout/Header";
+import { OutageHost } from "@/components/layout/OutageHost";
+import { Topbar } from "@/components/layout/Topbar";
 import { Shell } from "@/components/Shell";
 import { VIEWPORT } from "@/lib/metadata";
 

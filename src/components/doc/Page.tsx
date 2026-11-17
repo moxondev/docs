@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
 
-import { Sentinel } from "@/components/chrome/Sentinel";
 import { Sections } from "@/components/doc/Blocks";
 import { Contrib } from "@/components/doc/Contrib";
 import { Crumbs } from "@/components/doc/Crumbs";
@@ -10,6 +9,7 @@ import { Pager } from "@/components/doc/Pager";
 import { Scope } from "@/components/doc/Scope";
 import { Title } from "@/components/doc/Title";
 import { Toc } from "@/components/doc/Toc";
+import { Sentinel } from "@/components/layout/Sentinel";
 import { CONTENT_ID } from "@/components/Shell";
 import { Bar } from "@/components/try/Bar";
 import { Sheet } from "@/components/try/Sheet";

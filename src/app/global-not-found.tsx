@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { layoutMetadata } from "@/app/root";
-import { Header } from "@/components/chrome/Header";
-import { OutageHost } from "@/components/chrome/OutageHost";
-import { Topbar } from "@/components/chrome/Topbar";
+import { Header } from "@/components/layout/Header";
+import { OutageHost } from "@/components/layout/OutageHost";
+import { Topbar } from "@/components/layout/Topbar";
 import { NotFound, type NotFoundCopy } from "@/components/NotFound";
 import { CONTENT_ID, Shell } from "@/components/Shell";
 import { NAV } from "@/data/nav";

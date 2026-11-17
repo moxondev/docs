@@ -7,8 +7,8 @@ import { NextIntlClientProvider } from "next-intl";
 import { createElement, type ReactElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 
-import { Crumb } from "@/components/chrome/Header";
 import { Status } from "@/components/doc/Status";
+import { Crumb } from "@/components/layout/Header";
 import { PAGE_STATUSES } from "@/lib/nav";
 import type { Lang, PageStatus } from "@/types/content";
 

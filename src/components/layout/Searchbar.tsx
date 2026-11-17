@@ -3,8 +3,8 @@
 import { SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import { preloadPalette } from "@/components/chrome/PaletteHost";
 import { KeyLabels } from "@/components/KeyLabels";
+import { preloadPalette } from "@/components/layout/PaletteHost";
 import { Kbd } from "@/components/ui/kbd";
 import { openPalette } from "@/hooks/usePalette";
 import { useSearchHint } from "@/hooks/useSearchHint";

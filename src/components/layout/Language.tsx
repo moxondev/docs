@@ -3,8 +3,8 @@
 import { useTranslations } from "next-intl";
 import type { ComponentType } from "react";
 
-import { LanguageFace } from "@/components/chrome/LanguageFace";
-import type { LanguageMenuProps } from "@/components/chrome/LanguageMenu";
+import { LanguageFace } from "@/components/layout/LanguageFace";
+import type { LanguageMenuProps } from "@/components/layout/LanguageMenu";
 import { useLazyMenu } from "@/hooks/useLazyMenu";
 import { useLocaleSwitch } from "@/hooks/useLocaleSwitch";
 import { LANGUAGE_TRIGGER } from "@/lib/layout/look";
@@ -20,7 +20,7 @@ export interface LanguageProps {
  * @returns The menu component, once its chunk has arrived
  */
 function loadMenu(): Promise<ComponentType<LanguageMenuProps>> {
-    return import("@/components/chrome/LanguageMenu").then((module) => module.LanguageMenu);
+    return import("@/components/layout/LanguageMenu").then((module) => module.LanguageMenu);
 }
 
 /**

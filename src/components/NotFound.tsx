@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo } from "react";
 
-import { Footer } from "@/components/chrome/Footer";
+import { Footer } from "@/components/layout/Footer";
 import { Hint } from "@/components/notfound/Hint";
 import { Search } from "@/components/notfound/Search";
 import { Where } from "@/components/notfound/Where";

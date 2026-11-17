@@ -4,7 +4,7 @@ import { CheckIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useLayoutEffect, useRef } from "react";
 
-import { LanguageFace } from "@/components/chrome/LanguageFace";
+import { LanguageFace } from "@/components/layout/LanguageFace";
 import {
     DropdownMenu,
     DropdownMenuContent,

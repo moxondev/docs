@@ -14,7 +14,7 @@ import { useRoutePath } from "@/hooks/useLocaleSwitch";
  * @param onOpenChange - Called with the state that Escape, the close button or a link ask for
  * @param opener - Ref of the menu button, which gets the focus back when the dialog closes
  */
-const MenuSheet = dynamic(() => import("@/components/chrome/MenuSheet").then((m) => m.MenuSheet), {
+const MenuSheet = dynamic(() => import("@/components/layout/MenuSheet").then((m) => m.MenuSheet), {
     ssr: false,
 });
 
@@ -25,7 +25,7 @@ const DESKTOP = "(min-width: 60rem)";
  * Starts fetching the chunk of the menu sheet without mounting it.
  */
 function preloadSheet(): void {
-    void import("@/components/chrome/MenuSheet");
+    void import("@/components/layout/MenuSheet");
 }
 
 /**

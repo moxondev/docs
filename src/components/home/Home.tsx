@@ -1,8 +1,8 @@
-import { Footer } from "@/components/chrome/Footer";
 import { Scope } from "@/components/doc/Scope";
 import { Catalogue } from "@/components/home/Catalogue";
 import { Further } from "@/components/home/Further";
 import { Hero } from "@/components/home/Hero";
+import { Footer } from "@/components/layout/Footer";
 import { CONTENT_ID } from "@/components/Shell";
 import { NAV } from "@/data/nav";
 import { LATEST } from "@/data/versions";
