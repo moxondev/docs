@@ -171,7 +171,7 @@ export const page: Page = {
         en: "The `/badge` endpoint draws a standalone SVG badge, a pill with a label, optional icons and an optional second part, for a plain `<img>`.",
         fr: "L'endpoint `/badge` dessine un badge SVG autonome, une pilule avec un libellé, des icônes et une seconde partie facultatives, pour un simple `<img>`.",
     },
-    updated: "2026-11-16",
+    updated: "2026-11-17",
     operations: [
         {
             id: "default",
@@ -373,8 +373,64 @@ export const page: Page = {
                 {
                     type: "p",
                     text: {
-                        en: "A `label` or a `message` cannot hold control characters, zero-width characters or bidirectional formatting characters. Runs of spaces count as one, and an accented letter sent as a letter followed by its accent is drawn like the single accented letter.",
-                        fr: "Un `label` ou un `message` ne peut contenir ni caractère de contrôle, ni caractère de largeur nulle, ni caractère de formatage bidirectionnel. Une suite d'espaces compte pour une seule, et une lettre accentuée envoyée en deux caractères, la lettre puis son accent, est dessinée comme la lettre accentuée seule.",
+                        en: "A `label` or a `message` cannot hold control characters or invisible ones, and needs at least one character that draws something (see the box below). Runs of spaces count as one, and an accented letter sent as a letter followed by its accent is drawn like the single accented letter.",
+                        fr: "Un `label` ou un `message` ne peut contenir ni caractère de contrôle ni caractère invisible, et il lui faut au moins un caractère qui dessine quelque chose (voir l'encadré ci-dessous). Une suite d'espaces compte pour une seule, et une lettre accentuée envoyée en deux caractères, la lettre puis son accent, est dessinée comme la lettre accentuée seule.",
+                    },
+                },
+                {
+                    type: "callout",
+                    kind: "info",
+                    title: {
+                        en: "Characters that are refused",
+                        fr: "Caractères refusés",
+                    },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "A `label` or a `message` with one of these characters is refused with a `400`:",
+                            },
+                            {
+                                type: "list",
+                                items: [
+                                    "Control characters, line and paragraph separators, and lone surrogates.",
+                                    "Format characters that draw nothing: the soft hyphen, the zero-width space, the word joiner, the bidirectional marks and the tag characters.",
+                                    "Invisible fillers: the Hangul fillers, the blank Braille pattern and the combining grapheme joiner.",
+                                    "The noncharacters `U+FFFE` and `U+FFFF`.",
+                                ],
+                            },
+                            {
+                                type: "p",
+                                text: "A text made only of spaces is refused as a missing text, and one made only of combining marks or variation selectors is refused like the characters above, as it draws nothing.",
+                            },
+                            {
+                                type: "p",
+                                text: "Still accepted: an emoji or a symbol followed by its variation selector (`U+FE0E` and `U+FE0F`, as in the red heart), accented letters, and no-break or ideographic spaces around a visible text.",
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Un `label` ou un `message` qui contient l'un de ces caractères est refusé avec un `400` :",
+                            },
+                            {
+                                type: "list",
+                                items: [
+                                    "Les caractères de contrôle, les séparateurs de ligne et de paragraphe, et les surrogates isolés.",
+                                    "Les caractères de format qui ne dessinent rien : le trait d'union conditionnel, l'espace de largeur nulle, le word joiner, les marques bidirectionnelles et les caractères de tag.",
+                                    "Les remplisseurs invisibles : les remplisseurs Hangul, le motif Braille vide et le joint de graphèmes combinants.",
+                                    "Les non-caractères `U+FFFE` et `U+FFFF`.",
+                                ],
+                            },
+                            {
+                                type: "p",
+                                text: "Un texte fait uniquement d'espaces est refusé comme un texte manquant, et un texte fait uniquement de marques combinantes ou de sélecteurs de variation est refusé comme les caractères ci-dessus, puisqu'il ne dessine rien.",
+                            },
+                            {
+                                type: "p",
+                                text: "Restent acceptés : un emoji ou un symbole suivi de son sélecteur de variation (`U+FE0E` et `U+FE0F`, comme dans le cœur rouge), les lettres accentuées, et les espaces insécables ou idéographiques autour d'un texte visible.",
+                            },
+                        ],
                     },
                 },
             ],
@@ -699,8 +755,8 @@ export const page: Page = {
                         {
                             message: "Label cannot contain control or invisible characters",
                             description: {
-                                en: "The `label` holds a control, zero-width or bidirectional formatting character. The same message exists for the `message`, as `Message cannot contain control or invisible characters`",
-                                fr: "Le `label` contient un caractère de contrôle, de largeur nulle ou de formatage bidirectionnel. Le même message existe pour le `message`, sous la forme `Message cannot contain control or invisible characters`",
+                                en: "The `label` holds a control or invisible character, or nothing but combining marks or variation selectors (see [the characters that are refused](#content)). The same message exists for the `message`, as `Message cannot contain control or invisible characters`",
+                                fr: "Le `label` contient un caractère de contrôle ou invisible, ou rien d'autre que des marques combinantes ou des sélecteurs de variation (voir [les caractères refusés](#content)). Le même message existe pour le `message`, sous la forme `Message cannot contain control or invisible characters`",
                             },
                             status: 400,
                         },

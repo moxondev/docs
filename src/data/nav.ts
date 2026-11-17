@@ -1217,7 +1217,7 @@ export const NAV: Nav = {
             title: { en: "Badge", fr: "Badge" },
             kind: "endpoint",
             methods: ["get"],
-            updated: "2026-11-16",
+            updated: "2026-11-17",
         },
         barcode: {
             title: { en: "Barcode Generation", fr: "Génération de codes-barres" },
