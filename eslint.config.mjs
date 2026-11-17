@@ -57,7 +57,7 @@ export default defineConfig([
     },
     {
         // The Try panel draws an image answer from a blob URL, which next/image cannot optimize
-        files: ["src/components/try/Response.tsx"],
+        files: ["src/components/try/**/Response.tsx"],
         rules: { "@next/next/no-img-element": "off" },
     },
     prettier,
