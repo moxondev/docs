@@ -1,4 +1,4 @@
-import { Inline } from "@/components/doc/Inline";
+import { Inline } from "@/components/doc/blocks/Inline";
 import type { DocContext } from "@/lib/doc/context";
 import type { ErrorsTable } from "@/types/content";
 

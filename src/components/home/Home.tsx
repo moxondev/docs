@@ -1,4 +1,4 @@
-import { Scope } from "@/components/doc/Scope";
+import { Scope } from "@/components/doc/blocks/Scope";
 import { Catalogue } from "@/components/home/Catalogue";
 import { Further } from "@/components/home/Further";
 import { Hero } from "@/components/home/Hero";

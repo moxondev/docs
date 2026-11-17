@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Fragment } from "react";
 
-import { Copy } from "@/components/doc/Copy";
+import { Copy } from "@/components/doc/blocks/Copy";
 import { highlight, TOKEN_CLASSES } from "@/lib/highlight";
 import { pick } from "@/lib/inline";
 import { cn } from "@/lib/utils";

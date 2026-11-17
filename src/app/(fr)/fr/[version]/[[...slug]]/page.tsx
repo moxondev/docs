@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { setRequestLocale } from "next-intl/server";
 
 import { docJsonLd } from "@/app/root";
-import { DocPage } from "@/components/doc/Page";
+import { DocPage } from "@/components/doc/page/Page";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { docMetadata, docParams, type DocProps, type DocRoute } from "@/lib/pages";
 

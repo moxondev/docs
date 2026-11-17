@@ -7,7 +7,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { createElement, type ReactElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 
-import { Status } from "@/components/doc/Status";
+import { Status } from "@/components/doc/blocks/Status";
 import { Crumb } from "@/components/layout/header/Header";
 import { PAGE_STATUSES } from "@/lib/nav";
 import type { Lang, PageStatus } from "@/types/content";

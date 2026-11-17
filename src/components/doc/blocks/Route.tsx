@@ -3,7 +3,7 @@
 import { CheckIcon, CopyIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import { Method } from "@/components/doc/Method";
+import { Method } from "@/components/doc/blocks/Method";
 import { useCopy } from "@/hooks/useCopy";
 import type { Method as HttpMethod } from "@/types/content";
 

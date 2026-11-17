@@ -1,14 +1,14 @@
 import { notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
 
-import { Sections } from "@/components/doc/Blocks";
-import { Contrib } from "@/components/doc/Contrib";
-import { Crumbs } from "@/components/doc/Crumbs";
-import { Inline } from "@/components/doc/Inline";
-import { Pager } from "@/components/doc/Pager";
-import { Scope } from "@/components/doc/Scope";
-import { Title } from "@/components/doc/Title";
-import { Toc } from "@/components/doc/Toc";
+import { Sections } from "@/components/doc/blocks/Blocks";
+import { Inline } from "@/components/doc/blocks/Inline";
+import { Scope } from "@/components/doc/blocks/Scope";
+import { Crumbs } from "@/components/doc/nav/Crumbs";
+import { Pager } from "@/components/doc/nav/Pager";
+import { Toc } from "@/components/doc/nav/Toc";
+import { Contrib } from "@/components/doc/page/Contrib";
+import { Title } from "@/components/doc/page/Title";
 import { Sentinel } from "@/components/layout/header/Sentinel";
 import { CONTENT_ID } from "@/components/layout/Shell";
 import { Bar } from "@/components/try/Bar";

@@ -10,8 +10,8 @@ import {
 import { useTranslations } from "next-intl";
 import type { MouseEvent, ReactNode } from "react";
 
-import { Method } from "@/components/doc/Method";
-import { Status } from "@/components/doc/Status";
+import { Method } from "@/components/doc/blocks/Method";
+import { Status } from "@/components/doc/blocks/Status";
 import { Marked } from "@/components/search/Marked";
 import { CommandGroup, CommandItem } from "@/components/ui/command";
 import type { SearchIndex } from "@/lib/search";

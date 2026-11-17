@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { Inline } from "@/components/doc/Inline";
-import { Method } from "@/components/doc/Method";
+import { Inline } from "@/components/doc/blocks/Inline";
+import { Method } from "@/components/doc/blocks/Method";
 import { NAV } from "@/data/nav";
 import type { DocContext } from "@/lib/doc/context";
 import { refTarget } from "@/lib/inline";

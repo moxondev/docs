@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 
-import { Inline } from "@/components/doc/Inline";
+import { Inline } from "@/components/doc/blocks/Inline";
 import type { DocContext } from "@/lib/doc/context";
 import { defaultText, NO_DEFAULT, paramView } from "@/lib/doc/params";
 import { pick } from "@/lib/inline";

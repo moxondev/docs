@@ -7,7 +7,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 
-import { Callout } from "@/components/doc/Callout";
+import { Callout } from "@/components/doc/blocks/Callout";
 import type { DocContext } from "@/lib/doc/context";
 import type { CalloutKind } from "@/types/content";
 

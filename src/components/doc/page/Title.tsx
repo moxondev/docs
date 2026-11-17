@@ -1,6 +1,6 @@
-import { Actions } from "@/components/doc/Actions";
-import { Inline } from "@/components/doc/Inline";
-import { Status } from "@/components/doc/Status";
+import { Inline } from "@/components/doc/blocks/Inline";
+import { Status } from "@/components/doc/blocks/Status";
+import { Actions } from "@/components/doc/page/Actions";
 import { NAV } from "@/data/nav";
 import type { DocContext } from "@/lib/doc/context";
 import { hasPage, href } from "@/lib/routes";

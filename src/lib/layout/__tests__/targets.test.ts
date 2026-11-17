@@ -127,7 +127,7 @@ test("the footer takes the column of the page above it", () => {
 test("the home and the documentation page take their column from the shared table", () => {
     // The footer reads the table, so a page that spells its own width would drift away from it
     const root = join(import.meta.dirname, "../../../components");
-    for (const file of ["home/Home.tsx", "doc/Page.tsx", "notfound/NotFound.tsx"]) {
+    for (const file of ["home/Home.tsx", "doc/page/Page.tsx", "notfound/NotFound.tsx"]) {
         const source = readFileSync(join(root, file), "utf8");
         assert.match(source, /columnClass\(/, file);
         assert.doesNotMatch(source, /max-w-(?:296|300|240|205)\b/, file);

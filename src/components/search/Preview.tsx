@@ -2,8 +2,8 @@ import { CornerDownLeftIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 
-import { Method } from "@/components/doc/Method";
-import { Status } from "@/components/doc/Status";
+import { Method } from "@/components/doc/blocks/Method";
+import { Status } from "@/components/doc/blocks/Status";
 import { KeyLabels } from "@/components/keys/KeyLabels";
 import { Kbd } from "@/components/ui/kbd";
 import { CATEGORIES } from "@/data/catalogue";

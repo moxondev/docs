@@ -1,7 +1,7 @@
 import Link from "next/link";
 
-import { Method } from "@/components/doc/Method";
-import { Status } from "@/components/doc/Status";
+import { Method } from "@/components/doc/blocks/Method";
+import { Status } from "@/components/doc/blocks/Status";
 import type { HomeEntry } from "@/lib/home/query";
 
 export interface EntryProps {

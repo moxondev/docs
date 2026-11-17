@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-import { Status } from "@/components/doc/Status";
+import { Status } from "@/components/doc/blocks/Status";
 import { GitHub } from "@/components/layout/header/GitHub";
 import { Logo } from "@/components/layout/header/Logo";
 import { Searchbar } from "@/components/layout/header/Searchbar";

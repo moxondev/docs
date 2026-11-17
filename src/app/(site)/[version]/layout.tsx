@@ -2,7 +2,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import type { ReactNode } from "react";
 
-import { Sidebar } from "@/components/doc/Sidebar";
+import { Sidebar } from "@/components/doc/nav/Sidebar";
 import { Footer } from "@/components/layout/Footer";
 import { Banner } from "@/components/layout/header/Banner";
 import { NAV } from "@/data/nav";
