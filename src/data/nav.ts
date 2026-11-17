@@ -1424,7 +1424,7 @@ export const NAV: Nav = {
             title: { en: "Getting Started", fr: "Commencer" },
             kind: "index",
             methods: ["get"],
-            updated: "2026-11-15",
+            updated: "2026-11-17",
         },
         infos: {
             title: { en: "API Information", fr: "Informations sur l'API" },

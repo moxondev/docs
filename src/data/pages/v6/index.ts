@@ -10,7 +10,7 @@ export const page: Page = {
         fr: "Bienvenue dans la documentation de l'**API moxon v6**. Cette API fournit une collection complète d'endpoints utilitaires pour les développeurs.",
     },
     banner: true,
-    updated: "2026-11-15",
+    updated: "2026-11-17",
     operations: [{ id: "default", method: "get", path: "/infos", try: true, params: [] }],
     sections: [
         { id: "", blocks: [] },
@@ -279,18 +279,18 @@ export const page: Page = {
                 {
                     type: "callout",
                     kind: "tip",
-                    title: { en: "New in 6.3.0", fr: "Nouveau en 6.3.0" },
+                    title: { en: "New in 6.4.0", fr: "Nouveau en 6.4.0" },
                     body: {
                         en: [
                             {
                                 type: "p",
-                                text: "6.3.0 adds [/badge](ref:badge), which draws a standalone SVG badge with a label, icons, colors and an optional second part, for a plain `<img>`. It exists in `v6` only. See the [6.3.0 changelog](ref:changelog/6.3.0).",
+                                text: "6.4.0 publishes the server as a Docker image, `ghcr.io/moxondev/api`, for `amd64` and `arm64`, and the manifest now declares 41 endpoints. [/badge](ref:badge) also refuses invisible characters in its text. See the [6.4.0 changelog](ref:changelog/6.4.0).",
                             },
                         ],
                         fr: [
                             {
                                 type: "p",
-                                text: "La 6.3.0 ajoute [/badge](ref:badge), qui dessine un badge SVG autonome avec un libellé, des icônes, des couleurs et une seconde partie facultative, pour un simple `<img>`. Il n'existe qu'en `v6`. Voir le [changelog de la 6.3.0](ref:changelog/6.3.0).",
+                                text: "La 6.4.0 publie le serveur sous forme d'image Docker, `ghcr.io/moxondev/api`, pour `amd64` et `arm64`, et le manifest déclare désormais 41 endpoints. [/badge](ref:badge) refuse aussi les caractères invisibles dans son texte. Voir le [changelog de la 6.4.0](ref:changelog/6.4.0).",
                             },
                         ],
                     },
