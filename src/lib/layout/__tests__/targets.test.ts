@@ -246,7 +246,7 @@ test("the release submenu lists the releases newest first, in the language of th
     assert.equal(english[0].href, `/v5/changelog/${english[0].label}/`);
     assert.deepEqual(
         releaseLinks(NAV, "en", LATEST).map((link) => link.label),
-        ["6.3.0", "6.2.0", "6.1.0", "6.0.0"],
+        ["6.4.0", "6.3.0", "6.2.0", "6.1.0", "6.0.0"],
     );
 });
 
