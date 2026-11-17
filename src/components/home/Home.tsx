@@ -3,7 +3,7 @@ import { Catalogue } from "@/components/home/Catalogue";
 import { Further } from "@/components/home/Further";
 import { Hero } from "@/components/home/Hero";
 import { Footer } from "@/components/layout/Footer";
-import { CONTENT_ID } from "@/components/Shell";
+import { CONTENT_ID } from "@/components/layout/Shell";
 import { NAV } from "@/data/nav";
 import { LATEST } from "@/data/versions";
 import { countEntries, homeCatalogue } from "@/lib/home/model";

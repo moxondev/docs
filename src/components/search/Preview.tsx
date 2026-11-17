@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 import { Method } from "@/components/doc/Method";
 import { Status } from "@/components/doc/Status";
-import { KeyLabels } from "@/components/KeyLabels";
+import { KeyLabels } from "@/components/keys/KeyLabels";
 import { Kbd } from "@/components/ui/kbd";
 import { CATEGORIES } from "@/data/catalogue";
 import { NAV } from "@/data/nav";

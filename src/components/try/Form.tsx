@@ -3,7 +3,7 @@
 import { LoaderCircle } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import { KeyLabels } from "@/components/KeyLabels";
+import { KeyLabels } from "@/components/keys/KeyLabels";
 import { Control } from "@/components/try/Control";
 import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";

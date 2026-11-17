@@ -4,9 +4,9 @@ import { useEffect, useMemo } from "react";
 
 import { Footer } from "@/components/layout/Footer";
 import { Hint } from "@/components/notfound/Hint";
+import { Redirect } from "@/components/notfound/Redirect";
 import { Search } from "@/components/notfound/Search";
 import { Where } from "@/components/notfound/Where";
-import { Redirect } from "@/components/Redirect";
 import { KINDS } from "@/data/kinds";
 import { SITE } from "@/data/site";
 import { useAddressPath } from "@/hooks/useAddress";

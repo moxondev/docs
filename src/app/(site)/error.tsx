@@ -1,6 +1,6 @@
 "use client";
 
-import { ErrorPage, type ErrorPageProps } from "@/components/ErrorPage";
+import { ErrorPage, type ErrorPageProps } from "@/components/notfound/ErrorPage";
 
 /**
  * Error boundary of the English pages: a page that fails to render shows the error screen under

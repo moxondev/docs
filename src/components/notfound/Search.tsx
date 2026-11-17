@@ -2,7 +2,7 @@
 
 import { SearchIcon } from "lucide-react";
 
-import { KeyLabels } from "@/components/KeyLabels";
+import { KeyLabels } from "@/components/keys/KeyLabels";
 import { preloadPalette } from "@/components/layout/PaletteHost";
 import { Kbd } from "@/components/ui/kbd";
 import { openPalette } from "@/hooks/usePalette";

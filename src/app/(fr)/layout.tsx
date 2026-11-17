@@ -5,8 +5,8 @@ import type { ReactNode } from "react";
 import { layoutMetadata } from "@/app/root";
 import { Header } from "@/components/layout/Header";
 import { OutageHost } from "@/components/layout/OutageHost";
+import { Shell } from "@/components/layout/Shell";
 import { Topbar } from "@/components/layout/Topbar";
-import { Shell } from "@/components/Shell";
 import { VIEWPORT } from "@/lib/metadata";
 
 export interface RootLayoutProps {
