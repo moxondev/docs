@@ -4,9 +4,9 @@ import { ChevronLeftIcon } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
-import { Logo } from "@/components/layout/Logo";
-import { Menu } from "@/components/layout/Menu";
-import { Searchbar } from "@/components/layout/Searchbar";
+import { Logo } from "@/components/layout/header/Logo";
+import { Searchbar } from "@/components/layout/header/Searchbar";
+import { Menu } from "@/components/layout/menus/Menu";
 import { useLocaleSwitch } from "@/hooks/useLocaleSwitch";
 import { useSlim } from "@/hooks/useSlim";
 import { localePath } from "@/i18n/routing";

@@ -21,8 +21,8 @@ import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import type { ReactNode, RefObject } from "react";
 
-import { GitHub } from "@/components/layout/GitHub";
-import { Logo } from "@/components/layout/Logo";
+import { GitHub } from "@/components/layout/header/GitHub";
+import { Logo } from "@/components/layout/header/Logo";
 import { Button } from "@/components/ui/button";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { Dialog, DialogClose, DialogContent, DialogTitle } from "@/components/ui/dialog";

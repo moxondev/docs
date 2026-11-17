@@ -2,8 +2,8 @@
 
 import type { ComponentType } from "react";
 
-import { VersionsFace } from "@/components/layout/VersionsFace";
-import type { VersionsMenuProps } from "@/components/layout/VersionsMenu";
+import { VersionsFace } from "@/components/layout/menus/VersionsFace";
+import type { VersionsMenuProps } from "@/components/layout/menus/VersionsMenu";
 import { KINDS } from "@/data/kinds";
 import { useLazyMenu } from "@/hooks/useLazyMenu";
 import { useRoutePath } from "@/hooks/useLocaleSwitch";
@@ -22,7 +22,7 @@ export interface VersionsProps {
  * @returns The menu component, once its chunk has arrived
  */
 function loadMenu(): Promise<ComponentType<VersionsMenuProps>> {
-    return import("@/components/layout/VersionsMenu").then((module) => module.VersionsMenu);
+    return import("@/components/layout/menus/VersionsMenu").then((module) => module.VersionsMenu);
 }
 
 /**

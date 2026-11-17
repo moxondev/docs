@@ -1,7 +1,7 @@
 import { ChevronDownIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import { Wordmark } from "@/components/layout/Logo";
+import { Wordmark } from "@/components/layout/header/Logo";
 import { majorOf } from "@/lib/layout/targets";
 import { cn } from "@/lib/utils";
 import type { Version } from "@/types/content";

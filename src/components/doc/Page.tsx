@@ -9,7 +9,7 @@ import { Pager } from "@/components/doc/Pager";
 import { Scope } from "@/components/doc/Scope";
 import { Title } from "@/components/doc/Title";
 import { Toc } from "@/components/doc/Toc";
-import { Sentinel } from "@/components/layout/Sentinel";
+import { Sentinel } from "@/components/layout/header/Sentinel";
 import { CONTENT_ID } from "@/components/layout/Shell";
 import { Bar } from "@/components/try/Bar";
 import { Sheet } from "@/components/try/Sheet";

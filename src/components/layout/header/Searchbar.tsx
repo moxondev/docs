@@ -4,7 +4,7 @@ import { SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { KeyLabels } from "@/components/keys/KeyLabels";
-import { preloadPalette } from "@/components/layout/PaletteHost";
+import { preloadPalette } from "@/components/layout/header/PaletteHost";
 import { Kbd } from "@/components/ui/kbd";
 import { openPalette } from "@/hooks/usePalette";
 import { useSearchHint } from "@/hooks/useSearchHint";

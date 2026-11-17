@@ -6,7 +6,7 @@ import { useTheme } from "next-themes";
 import { DropdownMenu as MenuPrimitive } from "radix-ui";
 import { useLayoutEffect, useRef } from "react";
 
-import { ThemeFace } from "@/components/layout/ThemeFace";
+import { ThemeFace } from "@/components/layout/menus/ThemeFace";
 import {
     DropdownMenu,
     DropdownMenuContent,

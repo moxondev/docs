@@ -3,10 +3,10 @@ import { getMessages, setRequestLocale } from "next-intl/server";
 import type { ReactNode } from "react";
 
 import { layoutMetadata } from "@/app/root";
-import { Header } from "@/components/layout/Header";
-import { OutageHost } from "@/components/layout/OutageHost";
+import { Header } from "@/components/layout/header/Header";
+import { OutageHost } from "@/components/layout/header/OutageHost";
+import { Topbar } from "@/components/layout/header/Topbar";
 import { Shell } from "@/components/layout/Shell";
-import { Topbar } from "@/components/layout/Topbar";
 import { VIEWPORT } from "@/lib/metadata";
 
 export interface RootLayoutProps {

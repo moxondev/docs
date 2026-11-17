@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl";
 import { DropdownMenu as MenuPrimitive } from "radix-ui";
 import { type KeyboardEvent, useLayoutEffect, useRef } from "react";
 
-import { VersionsFace } from "@/components/layout/VersionsFace";
+import { VersionsFace } from "@/components/layout/menus/VersionsFace";
 import {
     DropdownMenu,
     DropdownMenuContent,

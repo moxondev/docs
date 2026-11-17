@@ -5,8 +5,8 @@ import { preload, type PreloadOptions } from "react-dom";
 
 import bricolage from "@/app/fonts/bricolage.woff2" with { turbopackModuleType: "asset" };
 import geist from "@/app/fonts/geist.woff2" with { turbopackModuleType: "asset" };
-import { PaletteHost } from "@/components/layout/PaletteHost";
-import { SkipLink } from "@/components/layout/SkipLink";
+import { PaletteHost } from "@/components/layout/header/PaletteHost";
+import { SkipLink } from "@/components/layout/header/SkipLink";
 import { Addressed } from "@/components/notfound/Addressed";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { type AppLocale, clientMessages, LOCALE_KEY, routing } from "@/i18n/routing";

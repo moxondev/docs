@@ -4,8 +4,8 @@ import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { type ComponentType, useEffect, useState } from "react";
 
-import { ThemeFace } from "@/components/layout/ThemeFace";
-import type { ThemeMenuProps } from "@/components/layout/ThemeMenu";
+import { ThemeFace } from "@/components/layout/menus/ThemeFace";
+import type { ThemeMenuProps } from "@/components/layout/menus/ThemeMenu";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { THEME_COLORS } from "@/data/theme";
 import { useHydrated } from "@/hooks/useHydrated";
@@ -24,7 +24,7 @@ export interface ThemeProps {
  * @returns The menu component, once its chunk has arrived
  */
 function loadMenu(): Promise<ComponentType<ThemeMenuProps>> {
-    return import("@/components/layout/ThemeMenu").then((module) => module.ThemeMenu);
+    return import("@/components/layout/menus/ThemeMenu").then((module) => module.ThemeMenu);
 }
 
 /**

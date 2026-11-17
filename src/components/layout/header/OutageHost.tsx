@@ -7,7 +7,7 @@ import { lazy, Suspense } from "react";
  * not next/dynamic, which would preload it), fetched when hydration reaches it.
  */
 const Outage = lazy(() =>
-    import("@/components/layout/Outage").then((module) => ({ default: module.Outage })),
+    import("@/components/layout/header/Outage").then((module) => ({ default: module.Outage })),
 );
 
 /**

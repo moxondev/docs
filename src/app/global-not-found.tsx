@@ -2,10 +2,10 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { layoutMetadata } from "@/app/root";
-import { Header } from "@/components/layout/Header";
-import { OutageHost } from "@/components/layout/OutageHost";
+import { Header } from "@/components/layout/header/Header";
+import { OutageHost } from "@/components/layout/header/OutageHost";
+import { Topbar } from "@/components/layout/header/Topbar";
 import { CONTENT_ID, Shell } from "@/components/layout/Shell";
-import { Topbar } from "@/components/layout/Topbar";
 import { NotFound, type NotFoundCopy } from "@/components/notfound/NotFound";
 import { NAV } from "@/data/nav";
 import { LATEST } from "@/data/versions";

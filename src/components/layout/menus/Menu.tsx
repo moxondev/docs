@@ -14,9 +14,12 @@ import { useRoutePath } from "@/hooks/useLocaleSwitch";
  * @param onOpenChange - Called with the state that Escape, the close button or a link ask for
  * @param opener - Ref of the menu button, which gets the focus back when the dialog closes
  */
-const MenuSheet = dynamic(() => import("@/components/layout/MenuSheet").then((m) => m.MenuSheet), {
-    ssr: false,
-});
+const MenuSheet = dynamic(
+    () => import("@/components/layout/menus/MenuSheet").then((m) => m.MenuSheet),
+    {
+        ssr: false,
+    },
+);
 
 // Media query of the desktop header, the desk breakpoint of globals.css
 const DESKTOP = "(min-width: 60rem)";
@@ -25,7 +28,7 @@ const DESKTOP = "(min-width: 60rem)";
  * Starts fetching the chunk of the menu sheet without mounting it.
  */
 function preloadSheet(): void {
-    void import("@/components/layout/MenuSheet");
+    void import("@/components/layout/menus/MenuSheet");
 }
 
 /**
