@@ -3,8 +3,8 @@ import { SearchIcon, XIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useRef } from "react";
 
-import type { FilterMethod } from "@/components/search/entries";
 import { Kbd } from "@/components/ui/kbd";
+import type { FilterMethod } from "@/lib/search/entries";
 import { cn } from "@/lib/utils";
 
 export interface FieldProps {

@@ -12,6 +12,9 @@ import type { MouseEvent, ReactNode } from "react";
 
 import { Method } from "@/components/doc/Method";
 import { Status } from "@/components/doc/Status";
+import { Marked } from "@/components/search/Marked";
+import { CommandGroup, CommandItem } from "@/components/ui/command";
+import type { SearchIndex } from "@/lib/search";
 import {
     type ActivateMode,
     countedKinds,
@@ -20,10 +23,7 @@ import {
     type LinkEntry,
     type Section,
     type SuggestEntry,
-} from "@/components/search/entries";
-import { Marked } from "@/components/search/Marked";
-import { CommandGroup, CommandItem } from "@/components/ui/command";
-import type { SearchIndex } from "@/lib/search";
+} from "@/lib/search/entries";
 
 export interface ResultsProps {
     sections: Section[];

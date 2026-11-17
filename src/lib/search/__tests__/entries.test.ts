@@ -9,7 +9,7 @@ import {
     type LinkEntry,
     pickValue,
     withMethod,
-} from "@/components/search/entries";
+} from "@/lib/search/entries";
 import type { SearchDoc, SearchGroup } from "@/types/search";
 
 // Documents of two pages, as the index file holds them

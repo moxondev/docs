@@ -1,4 +1,4 @@
-import { splitMarks } from "@/components/search/marks";
+import { splitMarks } from "@/lib/search/marks";
 
 export interface MarkedProps {
     text: string;

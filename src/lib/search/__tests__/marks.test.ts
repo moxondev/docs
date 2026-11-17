@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { queryWords, splitMarks } from "@/components/search/marks";
+import { queryWords, splitMarks } from "@/lib/search/marks";
 
 // Letters built from their code points so that this file stays pure ASCII
 const E_ACUTE = String.fromCodePoint(0xe9);

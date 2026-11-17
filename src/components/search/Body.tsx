@@ -2,20 +2,8 @@ import { useTranslations } from "next-intl";
 import { type KeyboardEvent, useMemo, useRef, useState } from "react";
 
 import { useDesk } from "@/components/search/desk";
-import {
-    type ActivateMode,
-    buildSections,
-    type Choice,
-    type Entry,
-    type FilterMethod,
-    flatEntries,
-    type LinkEntry,
-    pickValue,
-    withMethod,
-} from "@/components/search/entries";
 import { Field, Filters } from "@/components/search/Field";
 import { Hints } from "@/components/search/Hints";
-import { queryWords } from "@/components/search/marks";
 import { Preview } from "@/components/search/Preview";
 import { Results } from "@/components/search/Results";
 import { Tips } from "@/components/search/Tips";
@@ -29,6 +17,18 @@ import { matches, SHORTCUT } from "@/hooks/useShortcuts";
 import { catalogueTarget, toolTarget } from "@/lib/layout/targets";
 import { isListed } from "@/lib/nav";
 import { playgroundHref } from "@/lib/search";
+import {
+    type ActivateMode,
+    buildSections,
+    type Choice,
+    type Entry,
+    type FilterMethod,
+    flatEntries,
+    type LinkEntry,
+    pickValue,
+    withMethod,
+} from "@/lib/search/entries";
+import { queryWords } from "@/lib/search/marks";
 import type { Lang, Version } from "@/types/content";
 import type { SearchDoc } from "@/types/search";
 

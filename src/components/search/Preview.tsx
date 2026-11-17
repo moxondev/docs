@@ -5,7 +5,6 @@ import type { ReactNode } from "react";
 import { Method } from "@/components/doc/Method";
 import { Status } from "@/components/doc/Status";
 import { KeyLabels } from "@/components/KeyLabels";
-import type { ActivateMode, DocEntry, Entry } from "@/components/search/entries";
 import { Kbd } from "@/components/ui/kbd";
 import { CATEGORIES } from "@/data/catalogue";
 import { NAV } from "@/data/nav";
@@ -14,6 +13,7 @@ import { useModKey } from "@/hooks/useModKey";
 import { catalogueEntry } from "@/lib/nav";
 import { parsePath } from "@/lib/routes";
 import { pageParams, playgroundHref, type SearchIndex } from "@/lib/search";
+import type { ActivateMode, DocEntry, Entry } from "@/lib/search/entries";
 import type { Lang } from "@/types/content";
 import type { SearchDoc } from "@/types/search";
 

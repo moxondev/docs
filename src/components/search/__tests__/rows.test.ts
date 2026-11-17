@@ -6,11 +6,11 @@ import { NextIntlClientProvider } from "next-intl";
 import { createElement, type ReactElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 
-import { docEntry, type Section } from "@/components/search/entries";
 import { Preview } from "@/components/search/Preview";
 import { Results } from "@/components/search/Results";
 import { PAGE_STATUSES } from "@/lib/nav";
 import { createIndex } from "@/lib/search";
+import { docEntry, type Section } from "@/lib/search/entries";
 import type { Lang, PageStatus } from "@/types/content";
 import type { SearchDoc } from "@/types/search";
 
