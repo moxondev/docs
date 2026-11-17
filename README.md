@@ -4,7 +4,7 @@ Documentation of the moxon API, published at [moxon.dev](https://moxon.dev): the
 
 ## Features
 
-- Six documented versions, each page in both languages: 254 pages per language, the latest version (v6) with a catalogue of 50 endpoints in 7 categories. v1 to v3 are kept for reference and are no longer served by the API.
+- Six documented versions, each page in both languages: 255 pages per language, the latest version (v6) with a catalogue of 50 endpoints in 7 categories. v1 to v3 are kept for reference and are no longer served by the API.
 - Try panel beside each endpoint (a bar and a sheet on a phone): fill in the parameters, send the request to the API and read the answer; the Playground picks any endpoint of a version.
 - Code samples in cURL, JavaScript, Python and PHP, generated from the same data as the Try panel, with the chosen language remembered.
 - Search palette (`Ctrl K` or `/`), built in the browser on first open from one small index per version and language: pages, sections, parameters, response fields and errors, with `get:` and `post:` filters and a preview.
