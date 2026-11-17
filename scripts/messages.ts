@@ -152,6 +152,7 @@ const TREE_OF: readonly (readonly [string, ClientTree])[] = [
     ["src/components/try/", "try"],
     ["src/components/try/Playground.tsx", "playground"],
     ["src/components/try/Picker.tsx", "playground"],
+    ["src/components/try/playground/", "playground"],
     ["src/components/search/", "search"],
     ["src/components/home/", "home"],
 ];
