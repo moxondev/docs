@@ -5,17 +5,11 @@ import { useTranslations } from "next-intl";
 import { useMemo } from "react";
 
 import { Tokens } from "@/components/try/Tokens";
-import {
-    formatBytes,
-    responseSize,
-    statusAccent,
-    statusLabel,
-    statusTone,
-} from "@/components/try/util";
 import { Button } from "@/components/ui/button";
 import type { RequestPhase } from "@/hooks/useRequest";
 import { highlight } from "@/lib/highlight";
 import { type ApiResponse, TIMEOUT_MS } from "@/lib/request";
+import { formatBytes, responseSize, statusAccent, statusLabel, statusTone } from "@/lib/try/util";
 import { cn } from "@/lib/utils";
 
 export interface ResponseProps {

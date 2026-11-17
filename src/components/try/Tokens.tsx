@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 
-import { hangingIndent } from "@/components/try/util";
 import { type Token, TOKEN_CLASSES } from "@/lib/highlight";
+import { hangingIndent } from "@/lib/try/util";
 import { cn } from "@/lib/utils";
 
 export interface TokensProps {

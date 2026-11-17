@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
+import type { ApiResponse } from "@/lib/request";
 import {
     centeredScroll,
     controlSpan,
@@ -17,8 +18,7 @@ import {
     statusTone,
     textareaRows,
     typeHint,
-} from "@/components/try/util";
-import type { ApiResponse } from "@/lib/request";
+} from "@/lib/try/util";
 import type { ParamSpec } from "@/types/content";
 
 /**

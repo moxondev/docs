@@ -6,7 +6,6 @@ import { Select as SelectPrimitive } from "radix-ui";
 import { Fragment, useState } from "react";
 
 import { useDesk } from "@/components/search/desk";
-import { centeredScroll, optionCount, optionSections } from "@/components/try/util";
 import {
     Drawer,
     DrawerClose,
@@ -17,6 +16,7 @@ import {
     DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer";
+import { centeredScroll, optionCount, optionSections } from "@/lib/try/util";
 import { cn } from "@/lib/utils";
 import type { Lang, ParamSpec } from "@/types/content";
 

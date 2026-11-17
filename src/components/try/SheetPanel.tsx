@@ -9,7 +9,6 @@ import { RequestForm, RequestLine } from "@/components/try/Form";
 import { ResponseBody, Status } from "@/components/try/Response";
 import { QUIET_TAB, tabId, TabList } from "@/components/try/Tabs";
 import { Tokens } from "@/components/try/Tokens";
-import { scrollBehavior } from "@/components/try/util";
 import { Button } from "@/components/ui/button";
 import { Drawer, DrawerClose, DrawerContent, DrawerTitle } from "@/components/ui/drawer";
 import { COPY_LABELS, useCopy } from "@/hooks/useCopy";
@@ -19,6 +18,7 @@ import { restoreOpener, useSheet } from "@/hooks/useSheet";
 import { highlight } from "@/lib/highlight";
 import { apiPath } from "@/lib/request";
 import { generateSnippet } from "@/lib/snippets";
+import { scrollBehavior } from "@/lib/try/util";
 import type { Operation, Version } from "@/types/content";
 
 export type SheetView = "response" | "curl";

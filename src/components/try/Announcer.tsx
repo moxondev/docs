@@ -1,8 +1,8 @@
 import { useTranslations } from "next-intl";
 
-import { statusLabel } from "@/components/try/util";
 import type { RequestPhase } from "@/hooks/useRequest";
 import type { ApiResponse } from "@/lib/request";
+import { statusLabel } from "@/lib/try/util";
 
 export interface AnnouncerProps {
     phase: RequestPhase;

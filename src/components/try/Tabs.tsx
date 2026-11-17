@@ -2,7 +2,7 @@
 
 import type { KeyboardEvent } from "react";
 
-import { nextTab } from "@/components/try/util";
+import { nextTab } from "@/lib/try/util";
 import { cn } from "@/lib/utils";
 
 export interface TabItem {

@@ -5,11 +5,11 @@ import { lazy, Suspense, useEffect, useRef } from "react";
 
 import { Announcer } from "@/components/try/Announcer";
 import { RequestForm, RequestLine } from "@/components/try/Form";
-import { orFallback, whenIdle } from "@/components/try/prefetch";
 import { Snippet } from "@/components/try/Snippet";
-import { scrollBehavior } from "@/components/try/util";
 import { useRequest } from "@/hooks/useRequest";
 import { apiPath } from "@/lib/request";
+import { orFallback, whenIdle } from "@/lib/try/prefetch";
+import { scrollBehavior } from "@/lib/try/util";
 import { cn } from "@/lib/utils";
 import type { TryProps } from "@/types/try";
 

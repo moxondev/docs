@@ -2,9 +2,9 @@
 
 import { lazy, Suspense, useEffect, useState } from "react";
 
-import { orFallback, whenIdle } from "@/components/try/prefetch";
 import { useRequest } from "@/hooks/useRequest";
 import { closeSheet, useSheet } from "@/hooks/useSheet";
+import { orFallback, whenIdle } from "@/lib/try/prefetch";
 import type { SheetProps } from "@/types/try";
 
 /**

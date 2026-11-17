@@ -8,11 +8,11 @@ import { BenchForm } from "@/components/try/BenchForm";
 import { DocsLink } from "@/components/try/DocsLink";
 import { MethodChip } from "@/components/try/Form";
 import { loadResponse, Response } from "@/components/try/Panel";
-import { whenIdle } from "@/components/try/prefetch";
 import { Snippet } from "@/components/try/Snippet";
 import { useRequest } from "@/hooks/useRequest";
 import { useSlim } from "@/hooks/useSlim";
 import { apiPath } from "@/lib/request";
+import { whenIdle } from "@/lib/try/prefetch";
 import { cn } from "@/lib/utils";
 import type { BenchBodyProps, BenchProps } from "@/types/try";
 

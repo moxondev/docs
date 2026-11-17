@@ -6,9 +6,9 @@ import { type ReactNode, useId } from "react";
 import { Control } from "@/components/try/Control";
 import { Featured } from "@/components/try/Featured";
 import { SendButton } from "@/components/try/Form";
-import { controlSpan, featuredOptions, splitParams } from "@/components/try/util";
 import { useFieldFocus } from "@/hooks/useFieldFocus";
 import type { RequestHandle } from "@/hooks/useRequest";
+import { controlSpan, featuredOptions, splitParams } from "@/lib/try/util";
 import { cn } from "@/lib/utils";
 import type { Operation, ParamSpec } from "@/types/content";
 
