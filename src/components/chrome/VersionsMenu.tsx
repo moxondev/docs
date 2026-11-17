@@ -6,21 +6,6 @@ import { useTranslations } from "next-intl";
 import { DropdownMenu as MenuPrimitive } from "radix-ui";
 import { type KeyboardEvent, useLayoutEffect, useRef } from "react";
 
-import {
-    LATEST_MARK,
-    MENU_HEADING,
-    MENU_MODALITY,
-    MENU_PANEL,
-    MENU_ROW,
-    VERSIONS_TRIGGER,
-} from "@/components/chrome/look";
-import {
-    majorOf,
-    releaseLinks,
-    versionEntries,
-    type VersionEntry,
-    versionGroups,
-} from "@/components/chrome/targets";
 import { VersionsFace } from "@/components/chrome/VersionsFace";
 import {
     DropdownMenu,
@@ -38,6 +23,21 @@ import { SITE } from "@/data/site";
 import { useEntryFocus } from "@/hooks/useLazyMenu";
 import { useRoutePath } from "@/hooks/useLocaleSwitch";
 import { localePath } from "@/i18n/routing";
+import {
+    LATEST_MARK,
+    MENU_HEADING,
+    MENU_MODALITY,
+    MENU_PANEL,
+    MENU_ROW,
+    VERSIONS_TRIGGER,
+} from "@/lib/layout/look";
+import {
+    majorOf,
+    releaseLinks,
+    versionEntries,
+    type VersionEntry,
+    versionGroups,
+} from "@/lib/layout/targets";
 import { parsePath } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import type { Lang } from "@/types/content";

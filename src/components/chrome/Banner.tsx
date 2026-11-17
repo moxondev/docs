@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 
-import { bannerKind, versionLabel } from "@/components/chrome/targets";
 import { KINDS } from "@/data/kinds";
 import { LATEST, VERSIONS } from "@/data/versions";
+import { bannerKind, versionLabel } from "@/lib/layout/targets";
 import { href, INDEX, parsePath, versionTarget } from "@/lib/routes";
 
 // Icon of each kind: a triangle for the previous version, an octagon for legacy and retired ones

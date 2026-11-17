@@ -2,7 +2,6 @@ import { notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 import { Sentinel } from "@/components/chrome/Sentinel";
-import { columnClass } from "@/components/chrome/targets";
 import { Sections } from "@/components/doc/Blocks";
 import { docContext, NEW_TAB_ID } from "@/components/doc/context";
 import { Contrib } from "@/components/doc/Contrib";
@@ -18,6 +17,7 @@ import { Sheet } from "@/components/try/Sheet";
 import { Try } from "@/components/try/Try";
 import { NAV } from "@/data/nav";
 import { tryOperation } from "@/lib/anchors";
+import { columnClass } from "@/lib/layout/targets";
 import { navTitle, slimMeta, tocEntries } from "@/lib/nav";
 import { type DocParams, resolveDoc } from "@/lib/pages";
 import { cn } from "@/lib/utils";

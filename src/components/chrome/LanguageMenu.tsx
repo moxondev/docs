@@ -5,8 +5,6 @@ import { useTranslations } from "next-intl";
 import { useLayoutEffect, useRef } from "react";
 
 import { LanguageFace } from "@/components/chrome/LanguageFace";
-import { LANGUAGE_TRIGGER, MENU_MODALITY, MENU_PANEL, MENU_ROW } from "@/components/chrome/look";
-import { languageRows } from "@/components/chrome/targets";
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -16,6 +14,8 @@ import {
 import { useEntryFocus } from "@/hooks/useLazyMenu";
 import { useLocaleSwitch } from "@/hooks/useLocaleSwitch";
 import { routing } from "@/i18n/routing";
+import { LANGUAGE_TRIGGER, MENU_MODALITY, MENU_PANEL, MENU_ROW } from "@/lib/layout/look";
+import { languageRows } from "@/lib/layout/targets";
 import { cn } from "@/lib/utils";
 
 export interface LanguageMenuProps {

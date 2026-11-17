@@ -1,7 +1,6 @@
 import { useTranslations } from "next-intl";
 import { type KeyboardEvent, useMemo, useRef, useState } from "react";
 
-import { catalogueTarget, toolTarget } from "@/components/chrome/targets";
 import { useDesk } from "@/components/search/desk";
 import {
     type ActivateMode,
@@ -27,6 +26,7 @@ import { KINDS } from "@/data/kinds";
 import { NAV } from "@/data/nav";
 import { useSearch } from "@/hooks/useSearch";
 import { matches, SHORTCUT } from "@/hooks/useShortcuts";
+import { catalogueTarget, toolTarget } from "@/lib/layout/targets";
 import { isListed } from "@/lib/nav";
 import { playgroundHref } from "@/lib/search";
 import type { Lang, Version } from "@/types/content";

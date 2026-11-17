@@ -6,10 +6,10 @@ import { useTranslations } from "next-intl";
 
 import { GitHub } from "@/components/chrome/GitHub";
 import { Logo } from "@/components/chrome/Logo";
-import { type FooterMode, footerPlan } from "@/components/chrome/targets";
 import { KINDS } from "@/data/kinds";
 import { LINKS } from "@/data/links";
 import { SITE } from "@/data/site";
+import { type FooterMode, footerPlan } from "@/lib/layout/targets";
 import { linkAttrs, parsePath } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 

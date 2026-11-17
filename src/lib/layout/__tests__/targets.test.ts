@@ -3,6 +3,11 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { test } from "node:test";
 
+import { NAV } from "@/data/nav";
+import { SITE } from "@/data/site";
+import { THEME_CHOICES } from "@/data/theme";
+import { LATEST, VERSIONS, type VersionStatus } from "@/data/versions";
+import { routing } from "@/i18n/routing";
 import {
     bannerKind,
     catalogueTarget,
@@ -24,12 +29,7 @@ import {
     versionEntries,
     versionGroups,
     versionLabel,
-} from "@/components/chrome/targets";
-import { NAV } from "@/data/nav";
-import { SITE } from "@/data/site";
-import { THEME_CHOICES } from "@/data/theme";
-import { LATEST, VERSIONS, type VersionStatus } from "@/data/versions";
-import { routing } from "@/i18n/routing";
+} from "@/lib/layout/targets";
 import { alternates } from "@/lib/routes";
 
 // C with a cedilla, built from its code point so that this file stays pure ASCII
@@ -126,7 +126,7 @@ test("the footer takes the column of the page above it", () => {
 
 test("the home and the documentation page take their column from the shared table", () => {
     // The footer reads the table, so a page that spells its own width would drift away from it
-    const root = join(import.meta.dirname, "../..");
+    const root = join(import.meta.dirname, "../../../components");
     for (const file of ["home/Home.tsx", "doc/Page.tsx", "NotFound.tsx"]) {
         const source = readFileSync(join(root, file), "utf8");
         assert.match(source, /columnClass\(/, file);

@@ -1,5 +1,4 @@
 import { Footer } from "@/components/chrome/Footer";
-import { columnClass } from "@/components/chrome/targets";
 import { Scope } from "@/components/doc/Scope";
 import { Catalogue } from "@/components/home/Catalogue";
 import { Further } from "@/components/home/Further";
@@ -8,6 +7,7 @@ import { countEntries, homeCatalogue } from "@/components/home/model";
 import { CONTENT_ID } from "@/components/Shell";
 import { NAV } from "@/data/nav";
 import { LATEST } from "@/data/versions";
+import { columnClass } from "@/lib/layout/targets";
 import { cn } from "@/lib/utils";
 import type { Lang } from "@/types/content";
 

@@ -2,13 +2,13 @@
 
 import type { ComponentType } from "react";
 
-import { VERSIONS_TRIGGER } from "@/components/chrome/look";
-import { versionEntries } from "@/components/chrome/targets";
 import { VersionsFace } from "@/components/chrome/VersionsFace";
 import type { VersionsMenuProps } from "@/components/chrome/VersionsMenu";
 import { KINDS } from "@/data/kinds";
 import { useLazyMenu } from "@/hooks/useLazyMenu";
 import { useRoutePath } from "@/hooks/useLocaleSwitch";
+import { VERSIONS_TRIGGER } from "@/lib/layout/look";
+import { versionEntries } from "@/lib/layout/targets";
 
 export interface VersionsProps {
     open: boolean;

@@ -4,14 +4,14 @@ import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { type ComponentType, useEffect, useState } from "react";
 
-import { THEME_TRIGGER, tipOnKeyFocus } from "@/components/chrome/look";
-import { themeChoice } from "@/components/chrome/targets";
 import { ThemeFace } from "@/components/chrome/ThemeFace";
 import type { ThemeMenuProps } from "@/components/chrome/ThemeMenu";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { THEME_COLORS } from "@/data/theme";
 import { useHydrated } from "@/hooks/useHydrated";
 import { useLazyMenu } from "@/hooks/useLazyMenu";
+import { THEME_TRIGGER, tipOnKeyFocus } from "@/lib/layout/look";
+import { themeChoice } from "@/lib/layout/targets";
 
 export interface ThemeProps {
     open: boolean;

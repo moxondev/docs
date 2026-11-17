@@ -23,7 +23,16 @@ import type { ReactNode, RefObject } from "react";
 
 import { GitHub } from "@/components/chrome/GitHub";
 import { Logo } from "@/components/chrome/Logo";
-import { LATEST_MARK } from "@/components/chrome/look";
+import { Button } from "@/components/ui/button";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Dialog, DialogClose, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { KINDS } from "@/data/kinds";
+import { LINKS } from "@/data/links";
+import { SITE } from "@/data/site";
+import { useLocaleSwitch, useRoutePath } from "@/hooks/useLocaleSwitch";
+import { openPalette } from "@/hooks/usePalette";
+import { routing } from "@/i18n/routing";
+import { LATEST_MARK } from "@/lib/layout/look";
 import {
     catalogueTarget,
     currentRow,
@@ -38,16 +47,7 @@ import {
     versionEntries,
     type VersionEntry,
     versionGroups,
-} from "@/components/chrome/targets";
-import { Button } from "@/components/ui/button";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { Dialog, DialogClose, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { KINDS } from "@/data/kinds";
-import { LINKS } from "@/data/links";
-import { SITE } from "@/data/site";
-import { useLocaleSwitch, useRoutePath } from "@/hooks/useLocaleSwitch";
-import { openPalette } from "@/hooks/usePalette";
-import { routing } from "@/i18n/routing";
+} from "@/lib/layout/targets";
 import { linkAttrs, parsePath } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import type { Lang } from "@/types/content";

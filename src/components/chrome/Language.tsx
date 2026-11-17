@@ -5,9 +5,9 @@ import type { ComponentType } from "react";
 
 import { LanguageFace } from "@/components/chrome/LanguageFace";
 import type { LanguageMenuProps } from "@/components/chrome/LanguageMenu";
-import { LANGUAGE_TRIGGER } from "@/components/chrome/look";
 import { useLazyMenu } from "@/hooks/useLazyMenu";
 import { useLocaleSwitch } from "@/hooks/useLocaleSwitch";
+import { LANGUAGE_TRIGGER } from "@/lib/layout/look";
 
 export interface LanguageProps {
     open: boolean;

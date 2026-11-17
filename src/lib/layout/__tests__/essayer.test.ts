@@ -7,7 +7,7 @@ import {
     firstField,
     type FocusTarget,
     TRY_FIELDS,
-} from "@/components/chrome/essayer";
+} from "@/lib/layout/essayer";
 
 /**
  * Builds a fake Try panel whose first field records the focus options it is given.

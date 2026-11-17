@@ -6,18 +6,10 @@ import { useTranslations } from "next-intl";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
-import { essayer } from "@/components/chrome/essayer";
 import { GitHub } from "@/components/chrome/GitHub";
 import { Language } from "@/components/chrome/Language";
 import { Logo } from "@/components/chrome/Logo";
 import { Searchbar } from "@/components/chrome/Searchbar";
-import {
-    type HeaderMenu,
-    menuAfter,
-    nextTheme,
-    themeChoice,
-    toolTarget,
-} from "@/components/chrome/targets";
 import { Theme } from "@/components/chrome/Theme";
 import { ThemeStatus } from "@/components/chrome/ThemeStatus";
 import { Versions } from "@/components/chrome/Versions";
@@ -32,6 +24,14 @@ import { openSheet } from "@/hooks/useSheet";
 import { useShortcuts } from "@/hooks/useShortcuts";
 import { type SlimMeta, useSlim } from "@/hooks/useSlim";
 import { TRY_ANCHOR } from "@/lib/anchors";
+import { essayer } from "@/lib/layout/essayer";
+import {
+    type HeaderMenu,
+    menuAfter,
+    nextTheme,
+    themeChoice,
+    toolTarget,
+} from "@/lib/layout/targets";
 import { linkAttrs, parsePath } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import type { Lang, Method, Version } from "@/types/content";

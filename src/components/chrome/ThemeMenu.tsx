@@ -6,14 +6,6 @@ import { useTheme } from "next-themes";
 import { DropdownMenu as MenuPrimitive } from "radix-ui";
 import { useLayoutEffect, useRef } from "react";
 
-import {
-    MENU_MODALITY,
-    MENU_PANEL,
-    MENU_ROW,
-    THEME_TRIGGER,
-    tipOnKeyFocus,
-} from "@/components/chrome/look";
-import { themeRows } from "@/components/chrome/targets";
 import { ThemeFace } from "@/components/chrome/ThemeFace";
 import {
     DropdownMenu,
@@ -24,6 +16,14 @@ import {
 import { TooltipTrigger } from "@/components/ui/tooltip";
 import type { ThemeChoice } from "@/data/theme";
 import { useEntryFocus } from "@/hooks/useLazyMenu";
+import {
+    MENU_MODALITY,
+    MENU_PANEL,
+    MENU_ROW,
+    THEME_TRIGGER,
+    tipOnKeyFocus,
+} from "@/lib/layout/look";
+import { themeRows } from "@/lib/layout/targets";
 import { cn } from "@/lib/utils";
 
 export interface ThemeMenuProps {

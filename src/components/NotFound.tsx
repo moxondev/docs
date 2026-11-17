@@ -3,7 +3,6 @@
 import { useEffect, useMemo } from "react";
 
 import { Footer } from "@/components/chrome/Footer";
-import { columnClass } from "@/components/chrome/targets";
 import { Hint } from "@/components/notfound/Hint";
 import { type NotFoundCopy, say } from "@/components/notfound/say";
 import { Search } from "@/components/notfound/Search";
@@ -14,6 +13,7 @@ import { SITE } from "@/data/site";
 import { useAddressPath } from "@/hooks/useAddress";
 import { useTitleSwap } from "@/hooks/useTitleSwap";
 import { type AppLocale, localePath } from "@/i18n/routing";
+import { columnClass } from "@/lib/layout/targets";
 import { getSmartRedirect } from "@/lib/redirect";
 import { parsePath } from "@/lib/routes";
 import { searchTerm, suggestPath } from "@/lib/suggest";

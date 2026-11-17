@@ -2,7 +2,7 @@ import { ChevronDownIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 import { Wordmark } from "@/components/chrome/Logo";
-import { majorOf } from "@/components/chrome/targets";
+import { majorOf } from "@/lib/layout/targets";
 import { cn } from "@/lib/utils";
 import type { Version } from "@/types/content";
 
