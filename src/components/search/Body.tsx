@@ -1,7 +1,6 @@
 import { useTranslations } from "next-intl";
 import { type KeyboardEvent, useMemo, useRef, useState } from "react";
 
-import { useDesk } from "@/components/search/desk";
 import { Field, Filters } from "@/components/search/Field";
 import { Hints } from "@/components/search/Hints";
 import { Preview } from "@/components/search/Preview";
@@ -12,6 +11,7 @@ import { Command, CommandList } from "@/components/ui/command";
 import { CATALOGUE, CATEGORIES } from "@/data/catalogue";
 import { KINDS } from "@/data/kinds";
 import { NAV } from "@/data/nav";
+import { useDesk } from "@/hooks/useDesk";
 import { useSearch } from "@/hooks/useSearch";
 import { matches, SHORTCUT } from "@/hooks/useShortcuts";
 import { catalogueTarget, toolTarget } from "@/lib/layout/targets";

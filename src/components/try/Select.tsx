@@ -5,7 +5,6 @@ import { useLocale, useTranslations } from "next-intl";
 import { Select as SelectPrimitive } from "radix-ui";
 import { Fragment, useState } from "react";
 
-import { useDesk } from "@/components/search/desk";
 import {
     Drawer,
     DrawerClose,
@@ -16,6 +15,7 @@ import {
     DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer";
+import { useDesk } from "@/hooks/useDesk";
 import { centeredScroll, optionCount, optionSections } from "@/lib/try/util";
 import { cn } from "@/lib/utils";
 import type { Lang, ParamSpec } from "@/types/content";
