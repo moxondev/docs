@@ -150,8 +150,6 @@ const TRANSLATOR_METHODS = new Set(["rich", "markup", "raw", "has"]);
 const TREE_OF: readonly (readonly [string, ClientTree])[] = [
     ["src/components/doc/", "page"],
     ["src/components/try/", "try"],
-    ["src/components/try/Playground.tsx", "playground"],
-    ["src/components/try/Picker.tsx", "playground"],
     ["src/components/try/playground/", "playground"],
     ["src/components/search/", "search"],
     ["src/components/home/", "home"],

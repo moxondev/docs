@@ -318,10 +318,10 @@ describe("client trees", () => {
     });
 
     test("source folders map to their trees", () => {
-        assert.equal(treeOf("src/components/chrome/Header.tsx"), "root");
-        assert.equal(treeOf("src/components/doc/Toc.tsx"), "page");
+        assert.equal(treeOf("src/components/layout/header/Header.tsx"), "root");
+        assert.equal(treeOf("src/components/doc/nav/Toc.tsx"), "page");
         assert.equal(treeOf("src/components/try/Try.tsx"), "try");
-        assert.equal(treeOf("src/components/try/Picker.tsx"), "playground");
+        assert.equal(treeOf("src/components/try/playground/Picker.tsx"), "playground");
         assert.equal(treeOf("src/components/search/Palette.tsx"), "search");
         assert.equal(treeOf("src/components/home/Demo.tsx"), "home");
         assert.equal(treeOf("src/app/(site)/error.tsx"), "root");
@@ -351,14 +351,14 @@ describe("client trees", () => {
 
 describe("sources", () => {
     test("imports resolve through the alias and relative paths only", () => {
-        const known = new Set(["src/components/try/Snippet.tsx", "src/lib/routes.ts"]);
+        const known = new Set(["src/components/try/response/Snippet.tsx", "src/lib/routes.ts"]);
         assert.equal(
             resolveImport(
                 "src/components/home/Demo.tsx",
                 "@/components/try/response/Snippet",
                 known,
             ),
-            "src/components/try/Snippet.tsx",
+            "src/components/try/response/Snippet.tsx",
         );
         assert.equal(
             resolveImport("src/components/doc/Page.tsx", "../../lib/routes", known),
@@ -377,8 +377,8 @@ describe("sources", () => {
             '    return t("copy") + s("send");',
             "}",
         ].join("\n");
-        assert.deepEqual(sourceFindings({ "src/components/chrome/Header.tsx": header }), [
-            "src/components/chrome/Header.tsx:5 client-namespace",
+        assert.deepEqual(sourceFindings({ "src/components/layout/header/Header.tsx": header }), [
+            "src/components/layout/header/Header.tsx:5 client-namespace",
         ]);
         assert.deepEqual(sourceFindings({ "src/components/try/Header.tsx": header }), []);
     });
@@ -402,9 +402,9 @@ describe("sources", () => {
         assert.deepEqual(
             sourceFindings({
                 "src/components/home/Demo.tsx": demo,
-                "src/components/try/Snippet.tsx": snippet,
+                "src/components/try/response/Snippet.tsx": snippet,
             }),
-            ["src/components/try/Snippet.tsx:4 client-namespace"],
+            ["src/components/try/response/Snippet.tsx:4 client-namespace"],
         );
     });
 
@@ -425,16 +425,16 @@ describe("sources", () => {
             "}",
         ].join("\n");
         const sources = {
-            "src/components/chrome/Host.tsx": host,
+            "src/components/layout/Host.tsx": host,
             "src/components/search/Body.tsx": palette,
         };
         assert.deepEqual(sourceFindings(sources), []);
         assert.deepEqual(
             sourceFindings({
-                "src/components/chrome/Host.tsx": host,
-                "src/components/chrome/Body.tsx": palette,
+                "src/components/layout/Host.tsx": host,
+                "src/components/layout/Body.tsx": palette,
             }),
-            ["src/components/chrome/Body.tsx:4 client-namespace"],
+            ["src/components/layout/Body.tsx:4 client-namespace"],
         );
         assert.deepEqual(
             sourceFindings({
@@ -462,10 +462,10 @@ describe("sources", () => {
             '    return t("x") + u("common.copy");',
             "}",
         ].join("\n");
-        assert.deepEqual(sourceFindings({ "src/components/chrome/Fields.tsx": server }), []);
-        assert.deepEqual(sourceFindings({ "src/components/chrome/Any.tsx": dynamic }), [
-            "src/components/chrome/Any.tsx:4 client-namespace",
-            "src/components/chrome/Any.tsx:5 client-namespace",
+        assert.deepEqual(sourceFindings({ "src/components/layout/Fields.tsx": server }), []);
+        assert.deepEqual(sourceFindings({ "src/components/layout/Any.tsx": dynamic }), [
+            "src/components/layout/Any.tsx:4 client-namespace",
+            "src/components/layout/Any.tsx:5 client-namespace",
         ]);
     });
 
