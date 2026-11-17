@@ -9,7 +9,7 @@ export const page: Page = {
         en: "`/health` and `/logs` report on the state of an instance of the API rather than offering a utility. They sit at the root, outside any version.",
         fr: "`/health` et `/logs` renseignent sur l'état d'une instance de l'API au lieu d'offrir un utilitaire. Ils sont à la racine, hors de toute version.",
     },
-    updated: "2026-11-14",
+    updated: "2026-11-17",
     operations: [
         { id: "health", method: "get", path: "/health", root: true, try: true, params: [] },
         { id: "logs", method: "get", path: "/logs", root: true, try: false, params: [] },
@@ -353,6 +353,99 @@ export const page: Page = {
                             {
                                 type: "p",
                                 text: "Qui détient `LOGS_TOKEN` voit quels endpoints chaque client appelle, à quelle fréquence et depuis quel système. Choisissez une valeur longue et aléatoire, et ne l'envoyez qu'en HTTPS.",
+                            },
+                        ],
+                    },
+                },
+            ],
+        },
+        {
+            id: "docker",
+            level: 2,
+            title: { en: "Docker", fr: "Docker" },
+            blocks: [
+                {
+                    type: "p",
+                    text: {
+                        en: "Since 6.4.0, a public image of the API is published to the GitHub Container Registry as `ghcr.io/moxondev/api`, for `linux/amd64` and `linux/arm64`. It listens on port `3000` and reads the same environment variables as the Node server, such as those of [Configuration](#configuration): pass them with `-e`, or in a file with `--env-file`.",
+                        fr: "Depuis la 6.4.0, une image publique de l'API est publiée sur le GitHub Container Registry sous le nom `ghcr.io/moxondev/api`, pour `linux/amd64` et `linux/arm64`. Elle écoute sur le port `3000` et lit les mêmes variables d'environnement que le serveur Node, comme celles de la section [Configuration](#configuration) : passez-les avec `-e`, ou dans un fichier avec `--env-file`.",
+                    },
+                },
+                {
+                    type: "code",
+                    lang: "bash",
+                    text: "docker run -d --name moxon -p 3000:3000 ghcr.io/moxondev/api:latest",
+                },
+                {
+                    type: "table",
+                    head: {
+                        en: ["Tag", "What it points to"],
+                        fr: ["Tag", "Ce vers quoi il pointe"],
+                    },
+                    rows: [
+                        [
+                            "`6.4.0`, `6.4`, `6`",
+                            {
+                                en: "A release: the exact version, its minor line, its major line",
+                                fr: "Une version : la version exacte, sa ligne mineure, sa ligne majeure",
+                            },
+                        ],
+                        [
+                            "`latest`",
+                            {
+                                en: "The most recent stable release",
+                                fr: "La dernière version stable",
+                            },
+                        ],
+                    ],
+                    kind: "definition",
+                },
+                {
+                    type: "label",
+                    text: { en: "On a locked-down host", fr: "Sur un hôte verrouillé" },
+                },
+                {
+                    type: "p",
+                    text: {
+                        en: "The image runs as the unprivileged `node` user and writes nothing to disk, so it also starts with a read-only filesystem. Put the settings in a file, here `moxon.env`, and replace the placeholder with the output of `openssl rand -hex 32`:",
+                        fr: "L'image tourne avec l'utilisateur non privilégié `node` et n'écrit rien sur le disque : elle démarre donc aussi avec un système de fichiers en lecture seule. Mettez les réglages dans un fichier, ici `moxon.env`, et remplacez l'espace réservé par le résultat de `openssl rand -hex 32` :",
+                    },
+                },
+                {
+                    type: "code",
+                    lang: "bash",
+                    text: "docker run -d --name moxon -p 3000:3000 --read-only --tmpfs /tmp \\\n    --env-file moxon.env ghcr.io/moxondev/api:latest",
+                },
+                {
+                    type: "code",
+                    lang: "text",
+                    text: "CHALLENGE_SECRET=<openssl rand -hex 32>\nTRUSTED_PROXIES=uniquelocal",
+                },
+                {
+                    type: "p",
+                    text: {
+                        en: "The image checks itself: `docker ps` reports it `healthy` once `GET /` answers. `tini` is its entrypoint, so `docker stop` ends the server at once instead of waiting to kill it. To build the image from a clone of the repository, run `docker build -t moxon-api .`.",
+                        fr: "L'image se surveille elle-même : `docker ps` l'indique `healthy` dès que `GET /` répond. `tini` en est le point d'entrée, donc `docker stop` arrête le serveur aussitôt, sans attendre d'être tué de force. Pour construire l'image depuis un clone du dépôt, lancez `docker build -t moxon-api .`.",
+                    },
+                },
+                {
+                    type: "callout",
+                    kind: "warning",
+                    title: {
+                        en: "Set TRUSTED_PROXIES behind Docker",
+                        fr: "Définissez TRUSTED_PROXIES derrière Docker",
+                    },
+                    body: {
+                        en: [
+                            {
+                                type: "p",
+                                text: "Behind a reverse proxy or a Docker network, the address the server sees is the proxy's or the network's, not the caller's. Set `TRUSTED_PROXIES` to that proxy, as described above, otherwise the rate limits count the proxy instead of the callers.",
+                            },
+                        ],
+                        fr: [
+                            {
+                                type: "p",
+                                text: "Derrière un reverse proxy ou un réseau Docker, l'adresse que voit le serveur est celle du proxy ou du réseau, pas celle de l'appelant. Définissez `TRUSTED_PROXIES` sur ce proxy, comme décrit plus haut, sans quoi les limites de requêtes comptent le proxy au lieu des appelants.",
                             },
                         ],
                     },
