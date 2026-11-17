@@ -6,10 +6,10 @@ import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
-import { categoryOf, childLabel, filterCatalogue } from "@/components/doc/filter";
 import { Method } from "@/components/doc/Method";
 import { Status } from "@/components/doc/Status";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { categoryOf, childLabel, filterCatalogue } from "@/lib/doc/filter";
 import type { NavCategory, NavLink, SidebarModel } from "@/lib/nav";
 import { parsePath } from "@/lib/routes";
 import { cn } from "@/lib/utils";

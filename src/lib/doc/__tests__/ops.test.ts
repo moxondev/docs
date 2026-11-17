@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
-import { blockOperations } from "@/components/doc/ops";
+import { blockOperations } from "@/lib/doc/ops";
 import { getPage } from "@/lib/pages";
 import type { Page } from "@/types/content";
 

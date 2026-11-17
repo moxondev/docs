@@ -1,6 +1,6 @@
-import type { DocContext } from "@/components/doc/context";
 import { Playground } from "@/components/try/Playground";
 import { NAV } from "@/data/nav";
+import type { DocContext } from "@/lib/doc/context";
 import { catalogueEntry, navTitle } from "@/lib/nav";
 import { loadPages } from "@/lib/pages";
 import type { PlaygroundEntry } from "@/types/try";

@@ -4,7 +4,7 @@ import { ChevronDownIcon, SearchIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { type ReactNode, useId, useState } from "react";
 
-import { filterGroups, hiddenNames, type ValueGroup } from "@/components/doc/groups";
+import { filterGroups, hiddenNames, type ValueGroup } from "@/lib/doc/groups";
 import { cn } from "@/lib/utils";
 
 export interface ValuesProps {

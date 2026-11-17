@@ -1,8 +1,8 @@
 import { MessageSquareWarningIcon, SquarePenIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
 
-import { type DocContext, NEW_TAB_ID } from "@/components/doc/context";
-import { editUrl, issueUrl } from "@/components/doc/edit";
+import { type DocContext, NEW_TAB_ID } from "@/lib/doc/context";
+import { editUrl, issueUrl } from "@/lib/doc/edit";
 import { formatDate } from "@/lib/format";
 import { linkAttrs } from "@/lib/routes";
 

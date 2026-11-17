@@ -1,5 +1,5 @@
-import type { DocContext } from "@/components/doc/context";
 import { Inline } from "@/components/doc/Inline";
+import type { DocContext } from "@/lib/doc/context";
 import { pick } from "@/lib/inline";
 import type { Block } from "@/types/content";
 

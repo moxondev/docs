@@ -1,8 +1,8 @@
 import { Actions } from "@/components/doc/Actions";
-import type { DocContext } from "@/components/doc/context";
 import { Inline } from "@/components/doc/Inline";
 import { Status } from "@/components/doc/Status";
 import { NAV } from "@/data/nav";
+import type { DocContext } from "@/lib/doc/context";
 import { hasPage, href } from "@/lib/routes";
 
 export interface TitleProps {

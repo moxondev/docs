@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
-import { defaultText, paramView } from "@/components/doc/params";
+import { defaultText, paramView } from "@/lib/doc/params";
 import type { ParamSpec } from "@/types/content";
 
 // The empty-default marker, an em dash built from its code point to stay ASCII

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
-import { barPercent } from "@/components/doc/scale";
+import { barPercent } from "@/lib/doc/scale";
 
 describe("bar of a plan on the ladder", () => {
     test("the width is the share of the largest quota", () => {

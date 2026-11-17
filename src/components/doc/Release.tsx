@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 
-import { type DocContext, NEW_TAB_ID } from "@/components/doc/context";
 import { Inline } from "@/components/doc/Inline";
+import { type DocContext, NEW_TAB_ID } from "@/lib/doc/context";
 import { linkAttrs } from "@/lib/routes";
 
 export interface ReleaseProps {

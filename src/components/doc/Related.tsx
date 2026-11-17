@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-import type { DocContext } from "@/components/doc/context";
 import { Inline } from "@/components/doc/Inline";
 import { Method } from "@/components/doc/Method";
 import { NAV } from "@/data/nav";
+import type { DocContext } from "@/lib/doc/context";
 import { refTarget } from "@/lib/inline";
 import { hasPage, href } from "@/lib/routes";
 import type { Block } from "@/types/content";

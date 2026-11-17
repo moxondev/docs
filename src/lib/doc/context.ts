@@ -1,6 +1,6 @@
-import { blockOperations } from "@/components/doc/ops";
-import type { ValuesRef } from "@/components/doc/params";
 import { type PageAnchors, pageAnchors } from "@/lib/anchors";
+import { blockOperations } from "@/lib/doc/ops";
+import type { ValuesRef } from "@/lib/doc/params";
 import type { Block, Lang, Operation, Page, Version } from "@/types/content";
 
 export interface DocContext {

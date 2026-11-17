@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 
-import { NEW_TAB_ID } from "@/components/doc/context";
+import { NEW_TAB_ID } from "@/lib/doc/context";
 import { type IconName, type InlineNode, parseInline, pick } from "@/lib/inline";
 import { linkAttrs, type RefContext, resolveRef } from "@/lib/routes";
 import type { Inline as InlineText, Lx } from "@/types/content";

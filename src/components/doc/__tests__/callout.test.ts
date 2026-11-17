@@ -8,7 +8,7 @@ import { createElement } from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 
 import { Callout } from "@/components/doc/Callout";
-import type { DocContext } from "@/components/doc/context";
+import type { DocContext } from "@/lib/doc/context";
 import type { CalloutKind } from "@/types/content";
 
 import common from "../../../../messages/en/common.json";

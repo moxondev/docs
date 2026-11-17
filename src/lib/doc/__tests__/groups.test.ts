@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
-import { familyName, filterGroups, hiddenNames, valueGroups } from "@/components/doc/groups";
+import { familyName, filterGroups, hiddenNames, valueGroups } from "@/lib/doc/groups";
 
 // Families of a hash list, shortened: the SHA family holds the featured values
 const GROUPS = [

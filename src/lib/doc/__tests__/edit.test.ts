@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
-import { editUrl, issueUrl, modulePath } from "@/components/doc/edit";
+import { editUrl, issueUrl, modulePath } from "@/lib/doc/edit";
 
 describe("module path of a page", () => {
     test("a page id is the module name under its version", () => {

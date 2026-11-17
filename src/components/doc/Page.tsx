@@ -3,7 +3,6 @@ import { useTranslations } from "next-intl";
 
 import { Sentinel } from "@/components/chrome/Sentinel";
 import { Sections } from "@/components/doc/Blocks";
-import { docContext, NEW_TAB_ID } from "@/components/doc/context";
 import { Contrib } from "@/components/doc/Contrib";
 import { Crumbs } from "@/components/doc/Crumbs";
 import { Inline } from "@/components/doc/Inline";
@@ -17,6 +16,7 @@ import { Sheet } from "@/components/try/Sheet";
 import { Try } from "@/components/try/Try";
 import { NAV } from "@/data/nav";
 import { tryOperation } from "@/lib/anchors";
+import { docContext, NEW_TAB_ID } from "@/lib/doc/context";
 import { columnClass } from "@/lib/layout/targets";
 import { navTitle, slimMeta, tocEntries } from "@/lib/nav";
 import { type DocParams, resolveDoc } from "@/lib/pages";

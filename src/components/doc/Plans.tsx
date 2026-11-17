@@ -3,12 +3,12 @@ import { useTranslations } from "next-intl";
 import type { ReactNode } from "react";
 import { useId } from "react";
 
-import type { DocContext } from "@/components/doc/context";
-import { NEW_TAB_ID } from "@/components/doc/context";
-import { barPercent } from "@/components/doc/scale";
 import { Button } from "@/components/ui/button";
 import type { Plan } from "@/data/plans";
 import { PLANS } from "@/data/plans";
+import type { DocContext } from "@/lib/doc/context";
+import { NEW_TAB_ID } from "@/lib/doc/context";
+import { barPercent } from "@/lib/doc/scale";
 import { formatApprox, formatCount, formatPrice } from "@/lib/format";
 import { linkAttrs } from "@/lib/routes";
 import { cn } from "@/lib/utils";

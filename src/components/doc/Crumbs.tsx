@@ -2,8 +2,8 @@ import { ChevronRightIcon } from "lucide-react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 
-import type { DocContext } from "@/components/doc/context";
 import { NAV } from "@/data/nav";
+import type { DocContext } from "@/lib/doc/context";
 import { crumbs } from "@/lib/nav";
 
 export interface CrumbsProps {
