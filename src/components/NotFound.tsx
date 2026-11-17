@@ -4,7 +4,6 @@ import { useEffect, useMemo } from "react";
 
 import { Footer } from "@/components/chrome/Footer";
 import { Hint } from "@/components/notfound/Hint";
-import { type NotFoundCopy, say } from "@/components/notfound/say";
 import { Search } from "@/components/notfound/Search";
 import { Where } from "@/components/notfound/Where";
 import { Redirect } from "@/components/Redirect";
@@ -14,12 +13,13 @@ import { useAddressPath } from "@/hooks/useAddress";
 import { useTitleSwap } from "@/hooks/useTitleSwap";
 import { type AppLocale, localePath } from "@/i18n/routing";
 import { columnClass } from "@/lib/layout/targets";
+import { type NotFoundCopy, say } from "@/lib/notfound/say";
 import { getSmartRedirect } from "@/lib/redirect";
 import { parsePath } from "@/lib/routes";
 import { searchTerm, suggestPath } from "@/lib/suggest";
 import { cn } from "@/lib/utils";
 
-export type { NotFoundCopy } from "@/components/notfound/say";
+export type { NotFoundCopy } from "@/lib/notfound/say";
 
 export interface NotFoundStats {
     count: number;

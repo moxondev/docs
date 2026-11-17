@@ -1,6 +1,6 @@
 import { CornerDownRightIcon, UnlinkIcon } from "lucide-react";
 
-import type { Say } from "@/components/notfound/say";
+import type { Say } from "@/lib/notfound/say";
 
 export interface HintProps {
     say: Say;

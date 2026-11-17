@@ -7,10 +7,10 @@ import {
     SquareTerminalIcon,
 } from "lucide-react";
 
-import type { Say } from "@/components/notfound/say";
 import { KINDS } from "@/data/kinds";
 import { LATEST, VERSIONS } from "@/data/versions";
 import { catalogueTarget, docsTarget, toolTarget } from "@/lib/layout/targets";
+import type { Say } from "@/lib/notfound/say";
 import { href, INDEX } from "@/lib/routes";
 import type { Lang } from "@/types/content";
 
