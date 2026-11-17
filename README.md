@@ -54,18 +54,20 @@ src/app/(site)/           Root layout and routes of the English site, served at 
 src/app/(fr)/fr/          Root layout and routes of the French site, served at /fr/
 src/app/fonts/            Geist, Geist Mono and Bricolage Grotesque (latin and latin-ext subsets)
 src/app/globals.css       The only stylesheet: Tailwind, design tokens, fonts, animations
-src/components/chrome/    Header, phone top bar, menus, version and language controls, banner, footer
-src/components/doc/       Page blocks: route bar, tables, code, callouts, sidebar, table of contents, status
+src/components/doc/       Documentation page: blocks/ (route bar, tables, code, callouts), page/ (page, title, actions), nav/ (sidebar, table of contents, crumbs, pager)
 src/components/home/      Home page: hero, catalogue, further reading
+src/components/keys/      Key combination of a shortcut hint
+src/components/layout/    Shell and footer; header/ (header, phone top bar, banner, outage alert), menus/ (phone menu, version, language and theme controls)
+src/components/notfound/  404 page, redirect screen and error screen
 src/components/search/    Search palette, loaded on first open
 src/components/seo/       JSON-LD
-src/components/try/       Try panel, phone bar and sheet, Playground, code samples, response viewer
+src/components/try/       Try panel: controls/ (form fields), response/ (response viewer, snippets), playground/ (Playground bench), sheet/ (phone sheet)
 src/components/ui/        Generated shadcn/ui components
 src/data/                 Catalogue, versions, plans, links, site constants, home, shortcuts, theme
 src/data/pages/vN/        The content: one TypeScript module per page, v1 to v6
 src/hooks/                Preferences, shortcuts, search, request, sheet, palette and address state
 src/i18n/                 next-intl routing and request configuration
-src/lib/                  Routes, redirects, inline grammar, navigation, search, snippets, metadata, Markdown
+src/lib/                  Routes, redirects, inline grammar, navigation, snippets, metadata, Markdown; one folder per domain (layout/, doc/, home/, search/, try/, notfound/) for the logic of the components
 src/types/                Content model, navigation and search types
 ```
 
@@ -94,6 +96,10 @@ The content model is bilingual by construction (`Loc<T>` holds `en` and `fr`), s
 3. A sibling route group `src/app/(xx)/xx/` with its own root layout (`lang="xx"`), its home, its `[version]` layout and its `[[...slug]]` page, copied from `(fr)`.
 4. `src/types/content.ts`: add the code to `Lang` and `Loc`, then give every `Loc` leaf of the data (every page, `catalogue.ts`, `plans.ts`) a value in the new language; `tsc` lists what is missing.
 5. The places that name both languages: `src/lib/routes.ts`, `src/lib/redirect.ts`, `src/lib/sitemap.ts`, `src/lib/metadata.ts`, `src/lib/format.ts`, `src/lib/inline.ts` (the test that tells a `Loc` from a plain value), `src/app/global-not-found.tsx`, the language switch (a menu with one row per locale, `src/components/chrome/Language.tsx` and `LanguageMenu.tsx`) and the scripts `pages.ts`, `public.ts`, `redirects.ts`, `links.ts` and `messages.ts`.
+
+### Code layout
+
+A folder of `src/components/` holds only `.tsx` files. The pure logic of a component (tables of targets, view models, filters, parsers, helpers) lives in `src/lib/<domain>/`, named after the folder it serves, and a hook that reads the browser lives in `src/hooks/`. The tests of that logic sit in the `__tests__/` of its folder; a test that renders a component stays in the `__tests__/` of the component folder. A folder that grows past about a dozen files is split by function, as `doc/` (blocks, page, nav), `try/` and `layout/`.
 
 ### Data workflow
 
