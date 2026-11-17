@@ -1451,7 +1451,7 @@ export const NAV: Nav = {
             kind: "article",
             methods: [],
             status: "experimental",
-            updated: "2026-10-17",
+            updated: "2026-11-17",
         },
         matrix: {
             title: { en: "Matrix", fr: "Matrix" },
