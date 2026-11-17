@@ -5,12 +5,12 @@ import { layoutMetadata } from "@/app/root";
 import { Header } from "@/components/chrome/Header";
 import { OutageHost } from "@/components/chrome/OutageHost";
 import { Topbar } from "@/components/chrome/Topbar";
-import { countEntries, homeCatalogue } from "@/components/home/model";
 import { NotFound, type NotFoundCopy } from "@/components/NotFound";
 import { CONTENT_ID, Shell } from "@/components/Shell";
 import { NAV } from "@/data/nav";
 import { LATEST } from "@/data/versions";
 import { loadMessages } from "@/i18n/request";
+import { countEntries, homeCatalogue } from "@/lib/home/model";
 import { VIEWPORT } from "@/lib/metadata";
 
 // Browser chrome colors of both color schemes, as in the root layouts, which this document lacks

@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import { Category } from "@/components/home/Category";
 import { usePhone } from "@/components/home/phone";
-import { countEntries, filterCategories, type HomeCategory } from "@/components/home/query";
+import { countEntries, filterCategories, type HomeCategory } from "@/lib/home/query";
 
 export interface CatalogueProps {
     categories: HomeCategory[];

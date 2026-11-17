@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import { Method } from "@/components/doc/Method";
 import { Status } from "@/components/doc/Status";
-import type { HomeEntry } from "@/components/home/query";
+import type { HomeEntry } from "@/lib/home/query";
 
 export interface EntryProps {
     entry: HomeEntry;

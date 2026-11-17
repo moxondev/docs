@@ -7,9 +7,9 @@ import { renderToStaticMarkup } from "react-dom/server";
 
 import { Catalogue } from "@/components/home/Catalogue";
 import { Category } from "@/components/home/Category";
-import { homeCatalogue } from "@/components/home/model";
 import { NAV } from "@/data/nav";
 import { LATEST } from "@/data/versions";
+import { homeCatalogue } from "@/lib/home/model";
 import type { Lang } from "@/types/content";
 
 import aria from "../../../../messages/en/aria.json";

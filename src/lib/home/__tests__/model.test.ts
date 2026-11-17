@@ -1,16 +1,16 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 
+import { CATALOGUE, CATEGORIES } from "@/data/catalogue";
+import { NAV } from "@/data/nav";
+import { LATEST } from "@/data/versions";
 import {
     countEntries,
     filterCategories,
     fold,
     homeCatalogue,
     type HomeCategory,
-} from "@/components/home/model";
-import { CATALOGUE, CATEGORIES } from "@/data/catalogue";
-import { NAV } from "@/data/nav";
-import { LATEST } from "@/data/versions";
+} from "@/lib/home/model";
 import { isListed } from "@/lib/nav";
 import { getPage } from "@/lib/pages";
 

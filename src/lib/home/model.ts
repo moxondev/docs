@@ -1,11 +1,11 @@
-import type { HomeCategory } from "@/components/home/query";
 import { CATEGORIES } from "@/data/catalogue";
+import type { HomeCategory } from "@/lib/home/query";
 import { catalogueEntry, sidebar } from "@/lib/nav";
 import type { Lang, Version } from "@/types/content";
 import type { Nav } from "@/types/nav";
 
-export { countEntries, filterCategories, fold } from "@/components/home/query";
-export type { HomeCategory, HomeEntry } from "@/components/home/query";
+export { countEntries, filterCategories, fold } from "@/lib/home/query";
+export type { HomeCategory, HomeEntry } from "@/lib/home/query";
 
 /**
  * Builds the catalogue of the home page from the navigation index: the categories in display order

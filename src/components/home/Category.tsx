@@ -1,7 +1,7 @@
 import { ChevronDownIcon } from "lucide-react";
 
 import { Entry } from "@/components/home/Entry";
-import type { HomeCategory } from "@/components/home/query";
+import type { HomeCategory } from "@/lib/home/query";
 import { cn } from "@/lib/utils";
 
 export interface CategoryProps {
