@@ -72,6 +72,7 @@ describe("catalogue entries and families", () => {
         ]);
         assert.deepEqual(subPages(NAV, "v6", "changelog"), []);
         assert.deepEqual(releasePages(NAV, "v6"), [
+            "changelog/6.4.0",
             "changelog/6.3.0",
             "changelog/6.2.0",
             "changelog/6.1.0",
@@ -198,6 +199,7 @@ describe("sidebar", () => {
         assert.deepEqual(
             model.tools[1].children.map((link) => link.href),
             [
+                "/v6/changelog/6.4.0/",
                 "/v6/changelog/6.3.0/",
                 "/v6/changelog/6.2.0/",
                 "/v6/changelog/6.1.0/",
@@ -306,9 +308,10 @@ describe("page order and pager", () => {
     });
 
     test("release pages page among the changelog and the releases, newest first", () => {
-        const newest = pager(NAV, "v6", "changelog/6.3.0", "en");
+        const newest = pager(NAV, "v6", "changelog/6.4.0", "en");
         assert.equal(newest.prev?.slug, "changelog");
-        assert.equal(newest.next?.slug, "changelog/6.2.0");
+        assert.equal(newest.next?.slug, "changelog/6.3.0");
+        assert.equal(pager(NAV, "v6", "changelog/6.3.0", "en").next?.slug, "changelog/6.2.0");
         assert.equal(pager(NAV, "v6", "changelog/6.2.0", "en").next?.slug, "changelog/6.1.0");
         assert.equal(pager(NAV, "v6", "changelog/6.1.0", "en").next?.slug, "changelog/6.0.0");
         assert.equal(pager(NAV, "v6", "changelog/6.0.0", "en").next, undefined);
